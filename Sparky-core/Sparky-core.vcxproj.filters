@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\graphics">
+      <UniqueIdentifier>{f41a0423-0301-4e1c-b1ee-981af399a6a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\window.cpp">
+      <Filter>源文件\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\vec2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\mat4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\vec3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\buffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\indexbuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\vertexarray.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\vec4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader\computshader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader\shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader\computebuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader\graphcisshader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\Mesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\FluidRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\objloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particlemanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particlememorypool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particlemempoolmanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\staticbuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\DynamicBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\runnablethread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\particlemesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particleemitter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="engine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\ParticleRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="particle\particlesystem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="graphics\window.h">
+      <Filter>源文件\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\vec2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\mat4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\vec3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\fileutils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\indexbuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\vertexarray.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\vec4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\computeshader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\computebuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\graphicsshader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\shaderresource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\FluidRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\rawmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\objloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\Partical.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particalemitter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particalmanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particalmemorypool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particalmempoolmanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particalsystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\dynamicmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\material.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\Particle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particleemitter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particlemanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particlememorypool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particlemempoolmanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\staticbuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\DynamicBuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\runnable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\runnablethread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\threadpool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\queuedthread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\particlemesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particlesystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="particle\particlemesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="engine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\ParticleRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\particlemeshhpass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\particle.vert" />
+    <None Include="shaders\particle.frag" />
+    <None Include="shaders\ApplyAdvection.comp" />
+    <None Include="shaders\ApplyAdvectionVelocity.comp" />
+    <None Include="shaders\ApplyBuoyancy.comp" />
+    <None Include="shaders\ApplyImpulse.comp" />
+    <None Include="shaders\ComputeConfinement.comp" />
+    <None Include="shaders\ComputeDivergence.comp" />
+    <None Include="shaders\ComputeJacobi.comp" />
+    <None Include="shaders\ComputeObstacles.comp" />
+    <None Include="shaders\ComputeProjection.comp" />
+    <None Include="shaders\ComputeVorticity.comp" />
+    <None Include="shaders\generate-spirv.bat">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="shaders\SmokeRayCast.frag" />
+    <None Include="shaders\SmokeRayCast.vert" />
+  </ItemGroup>
+</Project>
