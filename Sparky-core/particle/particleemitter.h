@@ -8,10 +8,19 @@ using namespace sparky::render;
 class sparky::render::Material;
 namespace sparky
 {
+	namespace render
+	{
+		struct PerEmitterVertex;
+		class ParticleMesh;
+	}
+}
+ 
+namespace sparky
+{
 	namespace particle
 	{
 		class Particle;
-		class ParticleMesh;
+		
 		class ParticleSystem;
 		enum EmitType
 		{
@@ -44,6 +53,7 @@ namespace sparky
 			vec3 m_Position;
 			vec3 m_Speed;
 
+			PerEmitterVertex*  m_QuadVertices;
 		private:
 			ParticleSystem* m_Owner;
 			EmitType m_EmitType; 

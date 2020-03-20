@@ -1,5 +1,4 @@
 #pragma once
-#include "particlemanager.h"
 #include <vector>
 #include "particlememorypool.h"
 #include "particlesystem.h"
@@ -9,6 +8,7 @@
 #define DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS 10
 #define DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS 10
 #define DEFAULT_NUM_MEMORY_POOLS  1
+
 
 using namespace sparky::render;
 namespace sparky

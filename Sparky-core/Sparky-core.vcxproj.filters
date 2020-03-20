@@ -230,9 +230,6 @@
     <ClInclude Include="particle\particlesystem.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="particle\particlemesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="utils\timer.h">
       <Filter>头文件</Filter>
     </ClInclude>

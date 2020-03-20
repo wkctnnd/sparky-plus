@@ -4,7 +4,7 @@
 #include "maths/util.h"
 #include <string.h>
 namespace sparky{
-	namespace particle
+	namespace render
 	{
 		ParticleMesh::ParticleMesh(unsigned int size, vec3 cameraposition)
 		{

@@ -16,6 +16,14 @@ namespace sparky
 	{
 		class ParticleEmitter;
 		class ParticleSystem;
+	}
+}
+using namespace sparky::particle;
+namespace sparky
+{
+	namespace render
+	{
+	
 		struct PerEmitterVertex
 		{
 			ParticleEmitter* emitter;

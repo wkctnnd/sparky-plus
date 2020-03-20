@@ -174,7 +174,6 @@
     <ClInclude Include="particle\particlemanager.h" />
     <ClInclude Include="particle\particlememorypool.h" />
     <ClInclude Include="particle\particlemempoolmanager.h" />
-    <ClInclude Include="particle\particlemesh.h" />
     <ClInclude Include="render\particlemesh.h" />
     <ClInclude Include="particle\particlesystem.h" />
     <ClInclude Include="particle\Partical.h" />

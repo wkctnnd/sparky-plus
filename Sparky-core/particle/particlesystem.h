@@ -1,11 +1,20 @@
 #pragma once
 #include "particleemitter.h"
 #include <vector>
+
+using namespace sparky::render;
+namespace sparky
+{
+	namespace render
+	{
+		class ParticleMesh;
+	}
+}
 namespace sparky
 {
 	namespace particle
 	{
-		class ParticleMesh;
+		
 		class ParticleSystem
 		{
 			friend ParticleEmitter;
