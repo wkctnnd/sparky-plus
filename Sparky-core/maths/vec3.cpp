@@ -63,6 +63,11 @@ namespace sparky {
 			return vec3(x / length, y / length, z / length);
 		}
 
+		float vec3::length()const
+		{
+			return sqrt(x * x + y * y + z * z);
+		}
+
 		std::ostream& operator<<(std::ostream& stream, const vec3& vector)
 		{
 			stream << "vec3: (" << vector.x << "," << vector.y <<","<<vector.z<< ")";

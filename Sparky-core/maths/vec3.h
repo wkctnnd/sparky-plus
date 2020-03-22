@@ -17,6 +17,7 @@ namespace sparky {
 			vec3 Cross(const vec3& other) const;
 			float Dot(const vec3& other) const;
 			vec3 Normalize()const;
+			float length() const;
 			friend std::ostream& operator<<(std::ostream& stream, const vec3& vector);
 
 			friend vec3 operator+(vec3 left, const vec3& right);

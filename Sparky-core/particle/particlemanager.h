@@ -25,13 +25,18 @@ namespace sparky
 			void Update();
 			~ParticleManager() {};
 			void GetQuadVertices();
+			void PrepareRenderData();
 			void CreateParticleSystem();
+			void SortInThread(unsigned int id);
+			void MergeThreads();
 			ParticleMesh* GetRenderable() { return m_ParticleMesh; };
 		private:
 			std::vector<ParticleSystem*> m_Systems[DEFAULT_NUM_MEMORY_POOLS];
 			ParticleMempoolManager *m_MemPoolMgr;
 			ParticleMesh *m_ParticleMesh;
 
+			std::list<ParticleEmitter*> m_SortedEmitters[DEFAULT_NUM_MEMORY_POOLS];
+			//ParticleEmitter* m_SortedEmitters[DEFAULT_NUM_MEMORY_POOLS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS];
 			PerEmitterVertex*  m_QuadVertices[DEFAULT_NUM_MEMORY_POOLS];
 			unsigned int* EmitterSize[DEFAULT_NUM_MEMORY_POOLS];
 

@@ -12,11 +12,14 @@ namespace sparky
 			m_EmitType = type;
 		}
 
-		void ParticleEmitter::Initialize(ParticleSystem* o, EmitType type)
+		void ParticleEmitter::Initialize(ParticleSystem* o, unsigned int maxsize,EmitType type)
 		{
 			random.Seed(10);
 			m_EmitType = type;
 			m_Owner = o;
+			m_MaxSize = maxsize;
+			m_Vertices = new vec3[maxsize];
+			m_ActiveCount = 0;
 		}
 		void ParticleEmitter::GenerateParticles()
 		{
@@ -52,6 +55,22 @@ namespace sparky
 				vertexarray[offset++] = (*particle)->m_position + right * (*particle)->m_Scale + up * (*particle)->m_Scale;
 				vertexarray[offset++] = (*particle)->m_position - right * (*particle)->m_Scale - up * (*particle)->m_Scale;
 				vertexarray[offset++] = (*particle)->m_position - right * (*particle)->m_Scale + up * (*particle)->m_Scale;
+			}
+		}
+
+		void ParticleEmitter::GenVertices()
+		{
+			unsigned int m_ActiveCount = 0;
+			vec3 right(1, 0, 0);
+			vec3 up(0, 1, 0);
+			for (auto particle = m_Particles.begin(); particle != m_Particles.end(); particle++)
+			{		
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position + right * (*particle)->m_Scale + up * (*particle)->m_Scale;
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position + right * (*particle)->m_Scale - up * (*particle)->m_Scale;
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position - right * (*particle)->m_Scale - up * (*particle)->m_Scale;
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position + right * (*particle)->m_Scale + up * (*particle)->m_Scale;
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position - right * (*particle)->m_Scale - up * (*particle)->m_Scale;
+					m_Vertices[m_ActiveCount++] = (*particle)->m_position - right * (*particle)->m_Scale + up * (*particle)->m_Scale;
 			}
 		}
 
