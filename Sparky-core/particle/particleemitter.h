@@ -41,12 +41,12 @@ namespace sparky
 			void GenerateParticles();
 			void UpdateParticleState();
 
-			void Initialize(ParticleSystem* o, unsigned int maxSize,EmitType type);
+			void Initialize(ParticleSystem* o ,EmitType type);
 			void GetParticlesVertex(vec3*);
 			void GenVertices();
 			unsigned int GetParicleCount() { return m_Particles.size(); }
 			vec3 GetPosition() { return m_Position; }
-			float Distance2Camera() { return (m_Position - m_Owner->m_CameraPos).length(); }
+			float Distance2Camera();
 		protected:
 			std::list<Particle*> m_Particles;
 			Material* m_Material;

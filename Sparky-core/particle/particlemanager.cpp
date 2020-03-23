@@ -4,6 +4,10 @@ namespace sparky
 {
 	namespace particle
 	{
+		unsigned int ParticleManager::m_MaxParticleCount = DEFAULT_MAX_MEMORY_MANAGER_PARTICLES;
+		unsigned int ParticleManager::m_MaxParticleEmitterCount = DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS;
+		unsigned int ParticleManager::m_MaxParticleSystemCount = DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS;
+
 		void ParticleManager::Update()
 		{
 			for (unsigned int i = 0; i < DEFAULT_NUM_MEMORY_POOLS; i++)
@@ -193,9 +197,18 @@ namespace sparky
 
 		void ParticleManager::MergeThreads()
 		{
-
+			for (unsigned int i = 0; i < DEFAULT_NUM_MEMORY_POOLS; i++)
+			{
+				m_MergedSortedEmitters.merge(m_SortedEmitters[i]);
+			}
 		}
 
-
+		void ParticleManager::PostUpdate()
+		{
+			for (unsigned int i = 0; i < DEFAULT_NUM_MEMORY_POOLS; i++)
+			{
+				m_SortedEmitters[i].clear();
+			 }
+		}
 	}
 }

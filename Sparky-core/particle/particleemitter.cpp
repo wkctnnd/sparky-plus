@@ -12,13 +12,13 @@ namespace sparky
 			m_EmitType = type;
 		}
 
-		void ParticleEmitter::Initialize(ParticleSystem* o, unsigned int maxsize,EmitType type)
+		void ParticleEmitter::Initialize(ParticleSystem* o ,EmitType type)
 		{
 			random.Seed(10);
 			m_EmitType = type;
 			m_Owner = o;
-			m_MaxSize = maxsize;
-			m_Vertices = new vec3[maxsize];
+			m_MaxSize = ParticleManager::m_MaxParticleCount;
+			m_Vertices = new vec3[m_MaxSize];
 			m_ActiveCount = 0;
 		}
 		void ParticleEmitter::GenerateParticles()
@@ -41,6 +41,11 @@ namespace sparky
 				}
 			}
 			
+		}
+
+		float ParticleEmitter::Distance2Camera()
+		{
+			return (m_Position - m_Owner->m_CameraPos).length(); 
 		}
 
 		void ParticleEmitter::GetParticlesVertex(vec3* vertexarray)

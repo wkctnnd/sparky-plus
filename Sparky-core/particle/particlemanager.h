@@ -30,15 +30,22 @@ namespace sparky
 			void SortInThread(unsigned int id);
 			void MergeThreads();
 			ParticleMesh* GetRenderable() { return m_ParticleMesh; };
+			void PostUpdate();
+
+			static unsigned int m_MaxParticleCount;
+			static unsigned int m_MaxParticleSystemCount;
+			static unsigned int m_MaxParticleEmitterCount;
 		private:
 			std::vector<ParticleSystem*> m_Systems[DEFAULT_NUM_MEMORY_POOLS];
 			ParticleMempoolManager *m_MemPoolMgr;
 			ParticleMesh *m_ParticleMesh;
 
 			std::list<ParticleEmitter*> m_SortedEmitters[DEFAULT_NUM_MEMORY_POOLS];
+			std::list<ParticleEmitter*> m_MergedSortedEmitters;
 			//ParticleEmitter* m_SortedEmitters[DEFAULT_NUM_MEMORY_POOLS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS];
 			PerEmitterVertex*  m_QuadVertices[DEFAULT_NUM_MEMORY_POOLS];
 			unsigned int* EmitterSize[DEFAULT_NUM_MEMORY_POOLS];
+
 
 		};
 	}
