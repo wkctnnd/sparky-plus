@@ -13,6 +13,7 @@ namespace sparky
 
 		RunnableThread* RunnableThread::CreateThread()
 		{
+
 			return 0;
 		}
 	
