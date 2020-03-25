@@ -1,4 +1,4 @@
-#include "work.h"
+#include "workable.h"
 
 namespace sparky
 {

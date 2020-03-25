@@ -4,7 +4,7 @@ namespace sparky
 {
 	namespace thread
 	{
-		class Work
+		class Workable
 		{
 		public:
 			virtual void Working() = 0;

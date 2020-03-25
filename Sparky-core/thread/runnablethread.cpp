@@ -1,5 +1,6 @@
 #pragma once
 #include "runnablethread.h"
+#include "runnable.h"
 #include <thread>
 namespace sparky
 {
@@ -11,10 +12,17 @@ namespace sparky
 
 		}
 
-		RunnableThread* RunnableThread::CreateThread()
+		RunnableThread* RunnableThread::CreateThread(Runnable* runnable)
+		{
+			RunnableThread* newThread = new RunnableThread(runnable);
+			//m_Runnable = runnable;
+			return newThread;
+		}
+
+
+		RunnableThread::RunnableThread(Runnable* runnable)
 		{
 
-			return 0;
 		}
 	
 	}

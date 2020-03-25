@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <queue>
 namespace sparky
 {
 	namespace thread
@@ -8,10 +9,11 @@ namespace sparky
 		class ThreadPool
 		{
 		public:
-			void PushWorker(class Work* work);
+			void PushWorker(class Workable* work);
+
 		private:
 			std::vector<class QueuedThread*> m_Threads;
-			std::vector<>
+			std::queue<class Walkable*> m_Works;
 		};
 	}
 }
