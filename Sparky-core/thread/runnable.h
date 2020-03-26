@@ -10,6 +10,9 @@ namespace sparky
 			virtual void Stop() = 0;
 			virtual void Init() = 0;
 			virtual void Exit() = 0;
+
+		protected:
+			class RunnableThread* thread;
 		};
 	}
 }

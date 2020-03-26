@@ -105,6 +105,12 @@
     <ClCompile Include="particle\particlesystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="thread\queuedthread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\workable.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -243,6 +249,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="utils\random.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\workable.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

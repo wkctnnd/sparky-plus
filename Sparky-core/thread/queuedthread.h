@@ -11,6 +11,9 @@ namespace sparky
 			virtual void Stop();
 			virtual void Init();
 			virtual void Exit();
+
+		private:
+
 		};
 	}
 }

@@ -161,8 +161,11 @@
     <ClCompile Include="maths\vec4.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
+    <ClCompile Include="thread\queuedthread.cpp" />
     <ClCompile Include="thread\runnablethread.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="thread\threadpool.cpp" />
+    <ClCompile Include="thread\workable.cpp" />
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +212,7 @@
     <ClInclude Include="thread\runnablethread.h" />
     <ClInclude Include="thread\threadpool.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="thread\workable.h" />
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />

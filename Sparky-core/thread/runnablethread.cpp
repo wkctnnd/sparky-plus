@@ -22,7 +22,7 @@ namespace sparky
 
 		RunnableThread::RunnableThread(Runnable* runnable)
 		{
-
+			 
 		}
 	
 	}
