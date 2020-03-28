@@ -15,12 +15,14 @@ namespace sparky
 			void Initialize(unsigned int size);
 			void PushWorker(class Workable* work, void(*function) = 0);
 
-			void Update();
+			void Update(Runnable* runnable);
 		private:
 			std::vector<class QueuedThread*> m_Threads;
 			std::queue<class Walkable*> m_Works;
 
 			std::condition_variable m_WorkTodo;
+
+			std::vector<class QueuedThread*> m_RunningThreads;
 			std::mutex m_Mutex;
 			std::mutex m_WorkListMutex;
 			bool IsWorkReady;

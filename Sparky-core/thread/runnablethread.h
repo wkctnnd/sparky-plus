@@ -6,17 +6,18 @@ namespace sparky
 	namespace thread
 	{
 		class Runnable;
+		class ThreadPool;
 		class RunnableThread
 		{
 		public:
 			virtual void Run();
-			static RunnableThread* CreateThread(Runnable* rannable);
-
+			static RunnableThread* CreateThread(void *func£¨£©, ThreadPool* pool);
+			RunnableThread(void *func, ThreadPool* pool);
 
 		private:
-			RunnableThread(Runnable* rannable);
+			
 
-			std::thread *m_Thread;
+			std::thread m_Thread;
 			Runnable *m_Runnable;
 		};
 	}

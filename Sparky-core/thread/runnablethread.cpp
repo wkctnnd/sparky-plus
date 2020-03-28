@@ -2,6 +2,7 @@
 #include "runnablethread.h"
 #include "runnable.h"
 #include <thread>
+#include "threadpool.h"
 namespace sparky
 {
 	namespace thread
@@ -12,18 +13,21 @@ namespace sparky
 
 		}
 
-		RunnableThread* RunnableThread::CreateThread(Runnable* runnable)
+		RunnableThread* RunnableThread::CreateThread(void* func£¨£©, ThreadPool* pool)
 		{
-			RunnableThread* newThread = new RunnableThread(runnable);
+			RunnableThread* newThread = new RunnableThread(func, pool);
 			//m_Runnable = runnable;
 			return newThread;
 		}
 
 
-		RunnableThread::RunnableThread(Runnable* runnable)
+		RunnableThread::RunnableThread(void *func, ThreadPool* pool)
 		{
-			 
+			m_Thread = std::thread(func, pool);
 		}
+
+
+
 	
 	}
 }
