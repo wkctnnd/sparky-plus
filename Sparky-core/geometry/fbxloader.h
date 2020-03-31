@@ -6,7 +6,7 @@ namespace sparky {
 		class fbxLoader
 		{
 		public:
-			static void LoadMesh(const char* file, RawMesh& rmesh);
+			static bool LoadMesh(const char* file, RawMesh& rmesh);
 
 		};
 	}
