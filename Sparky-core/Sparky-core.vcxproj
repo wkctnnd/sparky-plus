@@ -70,13 +70,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -86,7 +86,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Sparky-core\Sparky-core;D:\Sparky-core\Dependencies\GLEW\include;D:\Sparky-core\Dependencies\GLFW\include;D:\Sparky-core\Dependencies\glm-0.9.9.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Sparky-core\Sparky-core;D:\Sparky-core\Dependencies\GLEW\include;D:\Sparky-core\Dependencies\GLFW\include;D:\Sparky-core\Dependencies\glm-0.9.9.1;D:\Engine\sparky-plus\Dependencies\fbx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="geometry\fbxloader.cpp" />
     <ClCompile Include="geometry\objloader.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="geometry\fbxloader.h" />
     <ClInclude Include="geometry\rawmesh.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />

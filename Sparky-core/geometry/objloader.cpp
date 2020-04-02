@@ -1,4 +1,5 @@
 #include "objloader.h"
+
 using namespace sparky::maths;
 namespace sparky {
 

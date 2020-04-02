@@ -111,6 +111,12 @@
     <ClCompile Include="thread\workable.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="thread\threadpool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\fbxloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -252,6 +258,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="thread\workable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\fbxloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
