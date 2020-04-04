@@ -2,6 +2,7 @@
 #include <vector>
 #include "maths/vec3.h"
 #include "maths/vec2.h"
+#include "maths/vec4.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -21,7 +22,9 @@ namespace sparky
 		struct RawMesh
 		{
 			std::vector<vec3> m_Position;
+			std::vector<vec4> m_Color;
 			std::vector<vec3> m_Normal;
+			std::vector<vec3> m_Tangent;
 
 			std::vector<unsigned short> m_Faces;
 		};

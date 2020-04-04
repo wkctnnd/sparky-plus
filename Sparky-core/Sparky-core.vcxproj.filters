@@ -63,9 +63,6 @@
     <ClCompile Include="render\FluidRenderer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="geometry\objloader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="particle\particle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -102,10 +99,13 @@
     <ClCompile Include="particle\particlesystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="geometry\fbxloader.cpp">
+    <ClCompile Include="Asset\AssetLoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="geometry\AssetLoader.cpp">
+    <ClCompile Include="Asset\fbxloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\objloader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -162,12 +162,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="render\FluidRenderer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\rawmesh.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="geometry\objloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="particle\Partical.h">
@@ -236,13 +230,22 @@
     <ClInclude Include="utils\random.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="geometry\fbxloader.h">
+    <ClInclude Include="Asset\AssetLoader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="geometry\AssetLoader.h">
+    <ClInclude Include="Asset\fbxloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="geometry\meshloader.h">
+    <ClInclude Include="Asset\meshloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\objloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\rawmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\rawskinmesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

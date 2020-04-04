@@ -135,9 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="geometry\AssetLoader.cpp" />
-    <ClCompile Include="geometry\fbxloader.cpp" />
-    <ClCompile Include="geometry\objloader.cpp" />
+    <ClCompile Include="Asset\AssetLoader.cpp" />
+    <ClCompile Include="Asset\fbxloader.cpp" />
+    <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
     <ClCompile Include="graphics\buffers\staticbuffer.cpp" />
@@ -167,10 +167,11 @@
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="geometry\AssetLoader.h" />
-    <ClInclude Include="geometry\fbxloader.h" />
-    <ClInclude Include="geometry\meshloader.h" />
-    <ClInclude Include="geometry\rawmesh.h" />
+    <ClInclude Include="Asset\AssetLoader.h" />
+    <ClInclude Include="Asset\fbxloader.h" />
+    <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="Asset\rawmesh.h" />
+    <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />
     <ClInclude Include="particle\Particle.h" />
@@ -201,7 +202,7 @@
     <ClInclude Include="graphics\shader\shader.h" />
     <ClInclude Include="graphics\shader\shaderresource.h" />
     <ClInclude Include="graphics\window.h" />
-    <ClInclude Include="geometry\objloader.h" />
+    <ClInclude Include="Asset\objloader.h" />
     <ClInclude Include="maths\mat4.h" />
     <ClInclude Include="maths\util.h" />
     <ClInclude Include="maths\vec2.h" />
