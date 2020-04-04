@@ -3,7 +3,8 @@
 #include "geometry/objloader.h"
 #include "graphics/buffers/staticbuffer.h"
 #include "graphics/buffers/indexbuffer.h"
-using namespace sparky::geometry;
+#include "geometry/rawmesh.h"
+using namespace sparky::asset;
 namespace sparky {
 	namespace render {
 		Mesh* Mesh::Load(const char* file)

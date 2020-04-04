@@ -5,7 +5,7 @@
 using namespace sparky::maths;
 namespace sparky
 {
-	namespace geometry
+	namespace asset
 	{
 
 		/*struct Face

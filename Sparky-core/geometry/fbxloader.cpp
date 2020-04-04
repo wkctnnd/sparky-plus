@@ -1,12 +1,43 @@
 #include "fbxloader.h"
-#include <fbxsdk.h>
-#include <fbxsdk/fileio/fbxiosettings.h>
+
 using namespace sparky::maths;
 namespace sparky {
 
-	namespace geometry {
+	namespace asset {
 
-		void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO)
+		// Bake node attributes and materials under this node recursively.
+  // Currently only mesh, light and material.
+		void FBXLoader::LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO)
+		{
+			// Bake material and hook as user data.
+
+			FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
+			if (lNodeAttribute)
+			{
+				// Bake mesh as VBO(vertex buffer object) into GPU.
+				if (lNodeAttribute->GetAttributeType() == FbxNodeAttribute::eMesh)
+				{
+					FbxMesh * lMesh = pNode->GetMesh();
+					if (pSupportVBO && lMesh && !lMesh->GetUserDataPtr())
+					{
+						//º”‘ÿmesh
+						/*FbxAutoPtr<VBOMesh> lMeshCache(new VBOMesh);
+						if (lMeshCache->Initialize(lMesh))
+						{
+							lMesh->SetUserDataPtr(lMeshCache.Release());
+						}*/
+					}
+				}
+			}
+
+			const int lChildCount = pNode->GetChildCount();
+			for (int lChildIndex = 0; lChildIndex < lChildCount; ++lChildIndex)
+			{
+				LoadCacheRecursive(pNode->GetChild(lChildIndex), pAnimLayer, pSupportVBO);
+			}
+		}
+
+		void FBXLoader::LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO)
 		{
 			// Load the textures into GPU, only for file texture now
 			const int lTextureCount = pScene->GetTextureCount();
@@ -26,45 +57,90 @@ namespace sparky {
 						continue;
 					}
 
-					GLuint lTextureObject = 0;
-					bool lStatus = LoadTextureFromFile(lFileName, lTextureObject);
+		/*			GLuint lTextureObject = 0;
+					bool lStatus = LoadTextureFromFile(lFileName, lTextureObject);*/
 
 					const FbxString lAbsFbxFileName = FbxPathUtils::Resolve(pFbxFileName);
 					const FbxString lAbsFolderName = FbxPathUtils::GetFolderName(lAbsFbxFileName);
-					if (!lStatus)
-					{
-						// Load texture from relative file name (relative to FBX file)
-						const FbxString lResolvedFileName = FbxPathUtils::Bind(lAbsFolderName, lFileTexture->GetRelativeFileName());
-						lStatus = LoadTextureFromFile(lResolvedFileName, lTextureObject);
-					}
+					//if (!lStatus)
+					//{
+					//	// Load texture from relative file name (relative to FBX file)
+					//	const FbxString lResolvedFileName = FbxPathUtils::Bind(lAbsFolderName, lFileTexture->GetRelativeFileName());
+					//	lStatus = LoadTextureFromFile(lResolvedFileName, lTextureObject);
+					//}
 
-					if (!lStatus)
-					{
-						// Load texture from file name only (relative to FBX file)
-						const FbxString lTextureFileName = FbxPathUtils::GetFileName(lFileName);
-						const FbxString lResolvedFileName = FbxPathUtils::Bind(lAbsFolderName, lTextureFileName);
-						lStatus = LoadTextureFromFile(lResolvedFileName, lTextureObject);
-					}
+					//if (!lStatus)
+					//{
+					//	// Load texture from file name only (relative to FBX file)
+					//	const FbxString lTextureFileName = FbxPathUtils::GetFileName(lFileName);
+					//	const FbxString lResolvedFileName = FbxPathUtils::Bind(lAbsFolderName, lTextureFileName);
+					//	lStatus = LoadTextureFromFile(lResolvedFileName, lTextureObject);
+					//}
 
-					if (!lStatus)
-					{
-						FBXSDK_printf("Failed to load texture file: %s\n", lFileName.Buffer());
-						continue;
-					}
+					//if (!lStatus)
+					//{
+					//	FBXSDK_printf("Failed to load texture file: %s\n", lFileName.Buffer());
+					//	continue;
+					//}
 
-					if (lStatus)
-					{
-						GLuint * lTextureName = new GLuint(lTextureObject);
-						lFileTexture->SetUserDataPtr(lTextureName);
-					}
+					//if (lStatus)
+					//{
+					//	GLuint * lTextureName = new GLuint(lTextureObject);
+					//	lFileTexture->SetUserDataPtr(lTextureName);
+					//}
 				}
 			}
 
 			LoadCacheRecursive(pScene->GetRootNode(), pAnimLayer, pSupportVBO);
 		}
 
+		void FBXLoader::Initialize()
+		{
+			InitializeSdkObjects(mSdkManager, mScene);
 
-		bool fbxLoader::LoadMesh(const char* file, RawMesh& rmesh)
+			if (mSdkManager)
+			{
+				// Create the importer.
+				int lFileFormat = -1;
+				mImporter = FbxImporter::Create(mSdkManager, "");
+				
+			}
+		}
+
+		void FBXLoader::InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene)
+		{
+			//The first thing to do is to create the FBX Manager which is the object allocator for almost all the classes in the SDK
+			pManager = FbxManager::Create();
+			if (!pManager)
+			{
+				FBXSDK_printf("Error: Unable to create FBX Manager!\n");
+				exit(1);
+			}
+			else FBXSDK_printf("Autodesk FBX SDK version %s\n", pManager->GetVersion());
+
+			//Create an IOSettings object. This object holds all import/export settings.
+			FbxIOSettings* ios = FbxIOSettings::Create(pManager, IOSROOT);
+			pManager->SetIOSettings(ios);
+
+			//Load plugins from the executable directory (optional)
+			FbxString lPath = FbxGetApplicationDirectory();
+			pManager->LoadPluginsDirectory(lPath.Buffer());
+
+			//Create an FBX scene. This object holds most objects imported/exported from/to files.
+			pScene = FbxScene::Create(pManager, "My Scene");
+			if (!pScene)
+			{
+				FBXSDK_printf("Error: Unable to create FBX scene!\n");
+				exit(1);
+			}
+		}
+
+		bool FBXLoader::LoadFile(const char* file)
+		{
+			return true;
+		}
+
+		bool FBXLoader::LoadMesh(const char* filename, RawMesh& rmesh)
 		{
 			FbxManager* lSdkManager = FbxManager::Create();
 
@@ -82,68 +158,119 @@ namespace sparky {
 			//const char* lFilename = "file.fbx";
 
 			// Initialize the importer.
-			bool lImportStatus = lImporter->Initialize(file, -1, lSdkManager->GetIOSettings());
+
+			int lFileFormat;
+			if (!mSdkManager->GetIOPluginRegistry()->DetectReaderFileFormat(filename, lFileFormat))
+			{
+				// Unrecognizable file format. Try to fall back to FbxImporter::eFBX_BINARY
+				lFileFormat = mSdkManager->GetIOPluginRegistry()->FindReaderIDByDescription("FBX binary (*.fbx)");;
+			}
+
+			// Initialize the importer by providing a filename.
+			if (mImporter->Initialize(filename, lFileFormat) == true)
+			{
+				// File format version numbers to be populated.
+				int lFileMajor, lFileMinor, lFileRevision;
+
+				// Populate the FBX file format version numbers with the import file.
+				lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+
+				//FbxScene * mScene;
+				bool lResult = false;
+				lResult = lImporter->Import(mScene);
+
+				FbxAxisSystem SceneAxisSystem = mScene->GetGlobalSettings().GetAxisSystem();
+				FbxAxisSystem OurAxisSystem(FbxAxisSystem::eYAxis, FbxAxisSystem::eParityOdd, FbxAxisSystem::eRightHanded);
+				if (SceneAxisSystem != OurAxisSystem)
+				{
+					OurAxisSystem.ConvertScene(mScene);
+				}
+
+				// Convert Unit System to what is used in this example, if needed
+				FbxSystemUnit SceneSystemUnit = mScene->GetGlobalSettings().GetSystemUnit();
+				if (SceneSystemUnit.GetScaleFactor() != 1.0)
+				{
+					//The unit in this example is centimeter.
+					FbxSystemUnit::cm.ConvertScene(mScene);
+				}
+
+				// Get the list of all the animation stack.
+				mScene->FillAnimStackNameArray(mAnimStackNameArray);
 
 
-			if (!lImportStatus) {
-				printf("Call to FbxImporter::Initialize() failed.\n");
-				printf("Error returned: %s\n\n", lImporter->GetStatus().GetErrorString());
+				// Convert mesh, NURBS and patch into triangle mesh
+				FbxGeometryConverter lGeomConverter(mSdkManager);
+				try {
+					lGeomConverter.Triangulate(mScene, /*replace*/true);
+				}
+				catch (std::runtime_error) {
+					FBXSDK_printf("Scene integrity verification failed.\n");
+					return false;
+				}
+
+				FillPoseArray(mScene, mPoseArray);
+			}
+			else
+			{
 				return false;
 			}
 
-
-			// File format version numbers to be populated.
-			int lFileMajor, lFileMinor, lFileRevision;
-
-			// Populate the FBX file format version numbers with the import file.
-			lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+		}
 
 
-			FbxScene * mScene;
-			bool lResult = false;
-			lResult = lImporter->Import(mScene);
+		bool FBXLoader::SetCurrentAnimStack(int pIndex)
+		{
+			//const int lAnimStackCount = mAnimStackNameArray.GetCount();
+			//if (!lAnimStackCount || pIndex >= lAnimStackCount)
+			//{
+			//	return false;
+			//}
 
-			FbxAxisSystem SceneAxisSystem = mScene->GetGlobalSettings().GetAxisSystem();
-			FbxAxisSystem OurAxisSystem(FbxAxisSystem::eYAxis, FbxAxisSystem::eParityOdd, FbxAxisSystem::eRightHanded);
-			if (SceneAxisSystem != OurAxisSystem)
-			{
-				OurAxisSystem.ConvertScene(mScene);
-			}
+			//// select the base layer from the animation stack
+			//FbxAnimStack * lCurrentAnimationStack = mScene->FindMember<FbxAnimStack>(mAnimStackNameArray[pIndex]->Buffer());
+			//if (lCurrentAnimationStack == NULL)
+			//{
+			//	// this is a problem. The anim stack should be found in the scene!
+			//	return false;
+			//}
 
-			// Convert Unit System to what is used in this example, if needed
-			FbxSystemUnit SceneSystemUnit = mScene->GetGlobalSettings().GetSystemUnit();
-			if (SceneSystemUnit.GetScaleFactor() != 1.0)
-			{
-				//The unit in this example is centimeter.
-				FbxSystemUnit::cm.ConvertScene(mScene);
-			}
+			//// we assume that the first animation layer connected to the animation stack is the base layer
+			//// (this is the assumption made in the FBXSDK)
+			//mCurrentAnimLayer = lCurrentAnimationStack->GetMember<FbxAnimLayer>();
+			//mScene->SetCurrentAnimationStack(lCurrentAnimationStack);
 
-			// Get the list of all the animation stack.
-			mScene->FillAnimStackNameArray(mAnimStackNameArray);
+			//FbxTakeInfo* lCurrentTakeInfo = mScene->GetTakeInfo(*(mAnimStackNameArray[pIndex]));
+			//if (lCurrentTakeInfo)
+			//{
+			//	mStart = lCurrentTakeInfo->mLocalTimeSpan.GetStart();
+			//	mStop = lCurrentTakeInfo->mLocalTimeSpan.GetStop();
+			//}
+			//else
+			//{
+			//	// Take the time line value
+			//	FbxTimeSpan lTimeLineTimeSpan;
+			//	mScene->GetGlobalSettings().GetTimelineDefaultTimeSpan(lTimeLineTimeSpan);
 
+			//	mStart = lTimeLineTimeSpan.GetStart();
+			//	mStop = lTimeLineTimeSpan.GetStop();
+			//}
 
-			// Convert mesh, NURBS and patch into triangle mesh
-			FbxGeometryConverter lGeomConverter(mSdkManager);
-			try {
-				lGeomConverter.Triangulate(mScene, /*replace*/true);
-			}
-			catch (std::runtime_error) {
-				FBXSDK_printf("Scene integrity verification failed.\n");
-				return false;
-			}
+			//// check for smallest start with cache start
+			//if (mCache_Start < mStart)
+			//	mStart = mCache_Start;
 
-			// Bake the scene for one frame
-			LoadCacheRecursive(mScene, mCurrentAnimLayer, mFileName, mSupportVBO);
+			//// check for biggest stop with cache stop
+			//if (mCache_Stop > mStop)
+			//	mStop = mCache_Stop;
 
-			// Convert any .PC2 point cache data into the .MC format for 
-			// vertex cache deformer playback.
-			PreparePointCacheData(mScene, mCache_Start, mCache_Stop);
+			//// move to beginning
+			//mCurrentTime = mStart;
 
-			// Get the list of pose in the scene
-			FillPoseArray(mScene, mPoseArray);
+			//// Set the scene status flag to refresh 
+			//// the scene in the next timer callback.
+			//mStatus = MUST_BE_REFRESHED;
 
-
-
+			return true;
 		}
 	}
 }

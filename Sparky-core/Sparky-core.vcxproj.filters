@@ -84,9 +84,6 @@
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="thread\runnablethread.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="render\particlemesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -105,16 +102,10 @@
     <ClCompile Include="particle\particlesystem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="thread\queuedthread.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="thread\workable.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="thread\threadpool.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="geometry\fbxloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\AssetLoader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -224,18 +215,6 @@
     <ClInclude Include="graphics\buffers\DynamicBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="thread\runnable.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="thread\runnablethread.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="thread\threadpool.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="thread\queuedthread.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="render\particlemesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -257,10 +236,13 @@
     <ClInclude Include="utils\random.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="thread\workable.h">
+    <ClInclude Include="geometry\fbxloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="geometry\fbxloader.h">
+    <ClInclude Include="geometry\AssetLoader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="geometry\meshloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -71,13 +71,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\fbx\lib\x64\debug;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\$(Configuration)\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\fbx\lib\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -89,7 +89,7 @@
       <AdditionalIncludeDirectories>D:\Sparky-core\Sparky-core;D:\Sparky-core\Dependencies\GLEW\include;D:\Sparky-core\Dependencies\GLFW\include;D:\Sparky-core\Dependencies\glm-0.9.9.1;D:\Engine\sparky-plus\Dependencies\fbx\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32s.lib;libfbxsdk.lib;zlib-md.lib;libfbxsdk-md.lib;libfbxsdk-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLFW\lib;D:\Sparky-core\Dependencies\GLEW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -103,7 +103,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLEW\lib;D:\Sparky-core\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32d.lib;opengl32.lib;libfbxsdk-md.lib;zlib-md.lib;libxml2-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="geometry\AssetLoader.cpp" />
     <ClCompile Include="geometry\fbxloader.cpp" />
     <ClCompile Include="geometry\objloader.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
@@ -162,15 +163,13 @@
     <ClCompile Include="maths\vec4.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
-    <ClCompile Include="thread\queuedthread.cpp" />
-    <ClCompile Include="thread\runnablethread.cpp" />
     <ClCompile Include="engine.cpp" />
-    <ClCompile Include="thread\threadpool.cpp" />
-    <ClCompile Include="thread\workable.cpp" />
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="geometry\AssetLoader.h" />
     <ClInclude Include="geometry\fbxloader.h" />
+    <ClInclude Include="geometry\meshloader.h" />
     <ClInclude Include="geometry\rawmesh.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />
@@ -209,12 +208,7 @@
     <ClInclude Include="maths\vec3.h" />
     <ClInclude Include="maths\vec4.h" />
     <ClInclude Include="render\mesh.h" />
-    <ClInclude Include="thread\queuedthread.h" />
-    <ClInclude Include="thread\runnable.h" />
-    <ClInclude Include="thread\runnablethread.h" />
-    <ClInclude Include="thread\threadpool.h" />
     <ClInclude Include="engine.h" />
-    <ClInclude Include="thread\workable.h" />
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />

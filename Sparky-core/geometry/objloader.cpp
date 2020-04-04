@@ -1,10 +1,11 @@
 #include "objloader.h"
-
+#include "utils/fileutils.h"
+#include "geometry/rawmesh.h"
 using namespace sparky::maths;
 namespace sparky {
 
-	namespace geometry {
-		void objLoader::LoadMesh(const char* file, RawMesh& rmesh)
+	namespace asset {
+		bool objLoader::LoadMesh(const char* file, RawMesh& rmesh)
 		{
 			rmesh.m_Position.push_back(vec3(-1,-1,-1));
 			rmesh.m_Position.push_back(vec3(-1, -1, 1));
@@ -59,7 +60,7 @@ namespace sparky {
 			rmesh.m_Faces.push_back(7);
 			rmesh.m_Faces.push_back(3);
 
-
+			return true;
 
 			//rmesh.m_Faces.push_back(Face(0, 1, 2));
 			//rmesh.m_Faces.push_back(Face(0, 2, 3));

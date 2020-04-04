@@ -1,12 +1,11 @@
 #pragma once
-#include "utils/fileutils.h"
-#include "geometry/rawmesh.h"
+
 namespace sparky {
-	namespace geometry {
+	namespace asset {
 		class objLoader
 		{
 		public:
-			static void LoadMesh(const char* file, RawMesh& rmesh);
+			static bool LoadMesh(const char* file, class RawMesh& rmesh);
 
 		};
 	}
