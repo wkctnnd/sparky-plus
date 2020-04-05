@@ -7,8 +7,11 @@
 #include "utils/timer.h"
 #include "render/ParticleRenderer.h"
 #include "particle/particlemanager.h"
+
+#include "Asset/AssetLoader.h"
 using namespace sparky::render;
 using namespace sparky::particle;
+using namespace sparky::asset;
 namespace sparky
 {
 	Timer Engine::GlobalTimer;
@@ -20,7 +23,12 @@ namespace sparky
 		//render.Initialize();
 		m_Renderer = new ParticleRenderer();
 		m_Renderer->Initialize();
+
+		m_AssetLoader = AssetLoader::INSTANCE();
+		m_AssetLoader->Initialize();
 		Mesh* smokemesh = Mesh::Load("autoload");
+
+		m_AssetLoader->LoadFile("humanoid.fbx");
 		m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();

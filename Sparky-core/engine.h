@@ -5,7 +5,10 @@ namespace sparky{
 		class FluidRenderer;
 		class ParticleRenderer;
 	}
-
+	namespace asset
+	{
+		class AssetLoader;
+	}
 	namespace particle
 	{
 		class ParticleManager;
@@ -26,7 +29,7 @@ namespace sparky
 
 	private:
 		sparky::render::ParticleRenderer *m_Renderer;
-
+		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
 	};
 }

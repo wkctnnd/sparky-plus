@@ -1,10 +1,15 @@
 #include "fbxloader.h"
-//#include <fbxsdk/core/fbx>
+#include <fbxsdk/scene/geometry/fbxlayer.h>
 using namespace sparky::maths;
 namespace sparky {
 
 	namespace asset {
 
+
+		FBXLoader::FBXLoader()
+		{
+			int a = 1;
+		}
 		// Bake node attributes and materials under this node recursively.
   // Currently only mesh, light and material.
 		void FBXLoader::LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO)
@@ -57,8 +62,8 @@ namespace sparky {
 						continue;
 					}
 
-		/*			GLuint lTextureObject = 0;
-					bool lStatus = LoadTextureFromFile(lFileName, lTextureObject);*/
+					/*			GLuint lTextureObject = 0;
+								bool lStatus = LoadTextureFromFile(lFileName, lTextureObject);*/
 
 					const FbxString lAbsFbxFileName = FbxPathUtils::Resolve(pFbxFileName);
 					const FbxString lAbsFolderName = FbxPathUtils::GetFolderName(lAbsFbxFileName);
@@ -103,7 +108,7 @@ namespace sparky {
 				// Create the importer.
 				int lFileFormat = -1;
 				mImporter = FbxImporter::Create(mSdkManager, "");
-				
+
 			}
 		}
 
@@ -137,7 +142,6 @@ namespace sparky {
 
 		bool FBXLoader::LoadFile(const char* filename)
 		{
-			FbxImporter* lImporter = FbxImporter::Create(mSdkManager, "");
 
 			int lFileFormat;
 			if (!mSdkManager->GetIOPluginRegistry()->DetectReaderFileFormat(filename, lFileFormat))
@@ -150,19 +154,25 @@ namespace sparky {
 			// Initialize the importer by providing a filename.
 			if (mImporter->Initialize(filename, lFileFormat) == true)
 			{
+
+				std::string error = mImporter->GetStatus().GetErrorString();
+				if (error.size() > 0)
+				{
+					std::cout << error;
+				}
 				// File format version numbers to be populated.
 				int lFileMajor, lFileMinor, lFileRevision;
 
 				// Populate the FBX file format version numbers with the import file.
-				lImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
+				mImporter->GetFileVersion(lFileMajor, lFileMinor, lFileRevision);
 
 				//FbxScene * mScene;
-				
+
 
 
 				//单线程，仅支持一次加载一个场景
 				mScene->Clear();
-				lResult = lImporter->Import(mScene);
+				lResult = mImporter->Import(mScene);
 
 				FbxAxisSystem SceneAxisSystem = mScene->GetGlobalSettings().GetAxisSystem();
 				FbxAxisSystem OurAxisSystem(FbxAxisSystem::eYAxis, FbxAxisSystem::eParityOdd, FbxAxisSystem::eRightHanded);
@@ -180,18 +190,18 @@ namespace sparky {
 				}
 
 
-				lImporter->Destroy();
+				mImporter->Destroy();
 
-				 
+
 			}
 			return lResult;
-				
+
 		}
 
 		bool FBXLoader::LoadMesh(RawMesh& rmesh)
 		{
 			// Get the list of all the animation stack.
-			mScene->FillAnimStackNameArray(mAnimStackNameArray);
+			//mScene->FillAnimStackNameArray(mAnimStackNameArray);
 
 
 			// Convert mesh, NURBS and patch into triangle mesh
@@ -204,9 +214,9 @@ namespace sparky {
 				return false;
 			}
 
-			FillPoseArray(mScene, mPoseArray);
-		 
-			
+			//FillPoseArray(mScene, mPoseArray);
+
+
 
 
 			return true;
@@ -221,109 +231,109 @@ namespace sparky {
 			FbxPose* pPose)
 		{
 			// All the links must have the same link mode.
-			FbxCluster::ELinkMode lClusterMode = ((FbxSkin*)pMesh->GetDeformer(0, FbxDeformer::eSkin))->GetCluster(0)->GetLinkMode();
+			//FbxCluster::ELinkMode lClusterMode = ((FbxSkin*)pMesh->GetDeformer(0, FbxDeformer::eSkin))->GetCluster(0)->GetLinkMode();
 
-			int lVertexCount = pMesh->GetControlPointsCount();
-			FbxAMatrix* lClusterDeformation = new FbxAMatrix[lVertexCount];
-			memset(lClusterDeformation, 0, lVertexCount * sizeof(FbxAMatrix));
+			//int lVertexCount = pMesh->GetControlPointsCount();
+			//FbxAMatrix* lClusterDeformation = new FbxAMatrix[lVertexCount];
+			//memset(lClusterDeformation, 0, lVertexCount * sizeof(FbxAMatrix));
 
-			double* lClusterWeight = new double[lVertexCount];
-			memset(lClusterWeight, 0, lVertexCount * sizeof(double));
+			//double* lClusterWeight = new double[lVertexCount];
+			//memset(lClusterWeight, 0, lVertexCount * sizeof(double));
 
-			if (lClusterMode == FbxCluster::eAdditive)
-			{
-				for (int i = 0; i < lVertexCount; ++i)
-				{
-					lClusterDeformation[i].SetIdentity();
-				}
-			}
+			//if (lClusterMode == FbxCluster::eAdditive)
+			//{
+			//	for (int i = 0; i < lVertexCount; ++i)
+			//	{
+			//		lClusterDeformation[i].SetIdentity();
+			//	}
+			//}
 
-			// For all skins and all clusters, accumulate their deformation and weight
-			// on each vertices and store them in lClusterDeformation and lClusterWeight.
-			int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
-			for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
-			{
-				FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
+			//// For all skins and all clusters, accumulate their deformation and weight
+			//// on each vertices and store them in lClusterDeformation and lClusterWeight.
+			//int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
+			//for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
+			//{
+			//	FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
 
-				int lClusterCount = lSkinDeformer->GetClusterCount();
-				for (int lClusterIndex = 0; lClusterIndex < lClusterCount; ++lClusterIndex)
-				{
-					FbxCluster* lCluster = lSkinDeformer->GetCluster(lClusterIndex);
-					if (!lCluster->GetLink())
-						continue;
+			//	int lClusterCount = lSkinDeformer->GetClusterCount();
+			//	for (int lClusterIndex = 0; lClusterIndex < lClusterCount; ++lClusterIndex)
+			//	{
+			//		FbxCluster* lCluster = lSkinDeformer->GetCluster(lClusterIndex);
+			//		if (!lCluster->GetLink())
+			//			continue;
 
-					FbxAMatrix lVertexTransformMatrix;
-					ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
+			//		FbxAMatrix lVertexTransformMatrix;
+			//		ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
 
-					int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
-					for (int k = 0; k < lVertexIndexCount; ++k)
-					{
-						int lIndex = lCluster->GetControlPointIndices()[k];
+			//		int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
+			//		for (int k = 0; k < lVertexIndexCount; ++k)
+			//		{
+			//			int lIndex = lCluster->GetControlPointIndices()[k];
 
-						// Sometimes, the mesh can have less points than at the time of the skinning
-						// because a smooth operator was active when skinning but has been deactivated during export.
-						if (lIndex >= lVertexCount)
-							continue;
+			//			// Sometimes, the mesh can have less points than at the time of the skinning
+			//			// because a smooth operator was active when skinning but has been deactivated during export.
+			//			if (lIndex >= lVertexCount)
+			//				continue;
 
-						double lWeight = lCluster->GetControlPointWeights()[k];
+			//			double lWeight = lCluster->GetControlPointWeights()[k];
 
-						if (lWeight == 0.0)
-						{
-							continue;
-						}
+			//			if (lWeight == 0.0)
+			//			{
+			//				continue;
+			//			}
 
-						// Compute the influence of the link on the vertex.
-						FbxAMatrix lInfluence = lVertexTransformMatrix;
-						MatrixScale(lInfluence, lWeight);
+			//			// Compute the influence of the link on the vertex.
+			//			FbxAMatrix lInfluence = lVertexTransformMatrix;
+			//			MatrixScale(lInfluence, lWeight);
 
-						if (lClusterMode == FbxCluster::eAdditive)
-						{
-							// Multiply with the product of the deformations on the vertex.
-							MatrixAddToDiagonal(lInfluence, 1.0 - lWeight);
-							lClusterDeformation[lIndex] = lInfluence * lClusterDeformation[lIndex];
+			//			if (lClusterMode == FbxCluster::eAdditive)
+			//			{
+			//				// Multiply with the product of the deformations on the vertex.
+			//				MatrixAddToDiagonal(lInfluence, 1.0 - lWeight);
+			//				lClusterDeformation[lIndex] = lInfluence * lClusterDeformation[lIndex];
 
-							// Set the link to 1.0 just to know this vertex is influenced by a link.
-							lClusterWeight[lIndex] = 1.0;
-						}
-						else // lLinkMode == FbxCluster::eNormalize || lLinkMode == FbxCluster::eTotalOne
-						{
-							// Add to the sum of the deformations on the vertex.
-							MatrixAdd(lClusterDeformation[lIndex], lInfluence);
+			//				// Set the link to 1.0 just to know this vertex is influenced by a link.
+			//				lClusterWeight[lIndex] = 1.0;
+			//			}
+			//			else // lLinkMode == FbxCluster::eNormalize || lLinkMode == FbxCluster::eTotalOne
+			//			{
+			//				// Add to the sum of the deformations on the vertex.
+			//				MatrixAdd(lClusterDeformation[lIndex], lInfluence);
 
-							// Add to the sum of weights to either normalize or complete the vertex.
-							lClusterWeight[lIndex] += lWeight;
-						}
-					}//For each vertex			
-				}//lClusterCount
-			}
+			//				// Add to the sum of weights to either normalize or complete the vertex.
+			//				lClusterWeight[lIndex] += lWeight;
+			//			}
+			//		}//For each vertex			
+			//	}//lClusterCount
+			//}
 
-			//Actually deform each vertices here by information stored in lClusterDeformation and lClusterWeight
-			for (int i = 0; i < lVertexCount; i++)
-			{
-				FbxVector4 lSrcVertex = pVertexArray[i];
-				FbxVector4& lDstVertex = pVertexArray[i];
-				double lWeight = lClusterWeight[i];
+			////Actually deform each vertices here by information stored in lClusterDeformation and lClusterWeight
+			//for (int i = 0; i < lVertexCount; i++)
+			//{
+			//	FbxVector4 lSrcVertex = pVertexArray[i];
+			//	FbxVector4& lDstVertex = pVertexArray[i];
+			//	double lWeight = lClusterWeight[i];
 
-				// Deform the vertex if there was at least a link with an influence on the vertex,
-				if (lWeight != 0.0)
-				{
-					lDstVertex = lClusterDeformation[i].MultT(lSrcVertex);
-					if (lClusterMode == FbxCluster::eNormalize)
-					{
-						// In the normalized link mode, a vertex is always totally influenced by the links. 
-						lDstVertex /= lWeight;
-					}
-					else if (lClusterMode == FbxCluster::eTotalOne)
-					{
-						// In the total 1 link mode, a vertex can be partially influenced by the links. 
-						lSrcVertex *= (1.0 - lWeight);
-						lDstVertex += lSrcVertex;
-					}
-				}
-			}
+			//	// Deform the vertex if there was at least a link with an influence on the vertex,
+			//	if (lWeight != 0.0)
+			//	{
+			//		lDstVertex = lClusterDeformation[i].MultT(lSrcVertex);
+			//		if (lClusterMode == FbxCluster::eNormalize)
+			//		{
+			//			// In the normalized link mode, a vertex is always totally influenced by the links. 
+			//			lDstVertex /= lWeight;
+			//		}
+			//		else if (lClusterMode == FbxCluster::eTotalOne)
+			//		{
+			//			// In the total 1 link mode, a vertex can be partially influenced by the links. 
+			//			lSrcVertex *= (1.0 - lWeight);
+			//			lDstVertex += lSrcVertex;
+			//		}
+			//	}
+			//}
 
-			delete[] lClusterDeformation;
-			delete[] lClusterWeight;
+			//delete[] lClusterDeformation;
+			//delete[] lClusterWeight;
 		}
 
 		// Deform the vertex array in Dual Quaternion Skinning way.
@@ -333,119 +343,119 @@ namespace sparky {
 			FbxVector4* pVertexArray,
 			FbxPose* pPose)
 		{
-			// All the links must have the same link mode.
-			FbxCluster::ELinkMode lClusterMode = ((FbxSkin*)pMesh->GetDeformer(0, FbxDeformer::eSkin))->GetCluster(0)->GetLinkMode();
+			//// All the links must have the same link mode.
+			//FbxCluster::ELinkMode lClusterMode = ((FbxSkin*)pMesh->GetDeformer(0, FbxDeformer::eSkin))->GetCluster(0)->GetLinkMode();
 
-			int lVertexCount = pMesh->GetControlPointsCount();
-			int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
+			//int lVertexCount = pMesh->GetControlPointsCount();
+			//int lSkinCount = pMesh->GetDeformerCount(FbxDeformer::eSkin);
 
-			FbxDualQuaternion* lDQClusterDeformation = new FbxDualQuaternion[lVertexCount];
-			memset(lDQClusterDeformation, 0, lVertexCount * sizeof(FbxDualQuaternion));
+			//FbxDualQuaternion* lDQClusterDeformation = new FbxDualQuaternion[lVertexCount];
+			//memset(lDQClusterDeformation, 0, lVertexCount * sizeof(FbxDualQuaternion));
 
-			double* lClusterWeight = new double[lVertexCount];
-			memset(lClusterWeight, 0, lVertexCount * sizeof(double));
+			//double* lClusterWeight = new double[lVertexCount];
+			//memset(lClusterWeight, 0, lVertexCount * sizeof(double));
 
-			// For all skins and all clusters, accumulate their deformation and weight
-			// on each vertices and store them in lClusterDeformation and lClusterWeight.
-			for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
-			{
-				FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
-				int lClusterCount = lSkinDeformer->GetClusterCount();
-				for (int lClusterIndex = 0; lClusterIndex < lClusterCount; ++lClusterIndex)
-				{
-					FbxCluster* lCluster = lSkinDeformer->GetCluster(lClusterIndex);
-					if (!lCluster->GetLink())
-						continue;
+			//// For all skins and all clusters, accumulate their deformation and weight
+			//// on each vertices and store them in lClusterDeformation and lClusterWeight.
+			//for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
+			//{
+			//	FbxSkin * lSkinDeformer = (FbxSkin *)pMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin);
+			//	int lClusterCount = lSkinDeformer->GetClusterCount();
+			//	for (int lClusterIndex = 0; lClusterIndex < lClusterCount; ++lClusterIndex)
+			//	{
+			//		FbxCluster* lCluster = lSkinDeformer->GetCluster(lClusterIndex);
+			//		if (!lCluster->GetLink())
+			//			continue;
 
-					FbxAMatrix lVertexTransformMatrix;
-					ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
+			//		FbxAMatrix lVertexTransformMatrix;
+			//		ComputeClusterDeformation(pGlobalPosition, pMesh, lCluster, lVertexTransformMatrix, pTime, pPose);
 
-					FbxQuaternion lQ = lVertexTransformMatrix.GetQ();
-					FbxVector4 lT = lVertexTransformMatrix.GetT();
-					FbxDualQuaternion lDualQuaternion(lQ, lT);
+			//		FbxQuaternion lQ = lVertexTransformMatrix.GetQ();
+			//		FbxVector4 lT = lVertexTransformMatrix.GetT();
+			//		FbxDualQuaternion lDualQuaternion(lQ, lT);
 
-					int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
-					for (int k = 0; k < lVertexIndexCount; ++k)
-					{
-						int lIndex = lCluster->GetControlPointIndices()[k];
+			//		int lVertexIndexCount = lCluster->GetControlPointIndicesCount();
+			//		for (int k = 0; k < lVertexIndexCount; ++k)
+			//		{
+			//			int lIndex = lCluster->GetControlPointIndices()[k];
 
-						// Sometimes, the mesh can have less points than at the time of the skinning
-						// because a smooth operator was active when skinning but has been deactivated during export.
-						if (lIndex >= lVertexCount)
-							continue;
+			//			// Sometimes, the mesh can have less points than at the time of the skinning
+			//			// because a smooth operator was active when skinning but has been deactivated during export.
+			//			if (lIndex >= lVertexCount)
+			//				continue;
 
-						double lWeight = lCluster->GetControlPointWeights()[k];
+			//			double lWeight = lCluster->GetControlPointWeights()[k];
 
-						if (lWeight == 0.0)
-							continue;
+			//			if (lWeight == 0.0)
+			//				continue;
 
-						// Compute the influence of the link on the vertex.
-						FbxDualQuaternion lInfluence = lDualQuaternion * lWeight;
-						if (lClusterMode == FbxCluster::eAdditive)
-						{
-							// Simply influenced by the dual quaternion.
-							lDQClusterDeformation[lIndex] = lInfluence;
+			//			// Compute the influence of the link on the vertex.
+			//			FbxDualQuaternion lInfluence = lDualQuaternion * lWeight;
+			//			if (lClusterMode == FbxCluster::eAdditive)
+			//			{
+			//				// Simply influenced by the dual quaternion.
+			//				lDQClusterDeformation[lIndex] = lInfluence;
 
-							// Set the link to 1.0 just to know this vertex is influenced by a link.
-							lClusterWeight[lIndex] = 1.0;
-						}
-						else // lLinkMode == FbxCluster::eNormalize || lLinkMode == FbxCluster::eTotalOne
-						{
-							if (lClusterIndex == 0)
-							{
-								lDQClusterDeformation[lIndex] = lInfluence;
-							}
-							else
-							{
-								// Add to the sum of the deformations on the vertex.
-								// Make sure the deformation is accumulated in the same rotation direction. 
-								// Use dot product to judge the sign.
-								double lSign = lDQClusterDeformation[lIndex].GetFirstQuaternion().DotProduct(lDualQuaternion.GetFirstQuaternion());
-								if (lSign >= 0.0)
-								{
-									lDQClusterDeformation[lIndex] += lInfluence;
-								}
-								else
-								{
-									lDQClusterDeformation[lIndex] -= lInfluence;
-								}
-							}
-							// Add to the sum of weights to either normalize or complete the vertex.
-							lClusterWeight[lIndex] += lWeight;
-						}
-					}//For each vertex
-				}//lClusterCount
-			}
+			//				// Set the link to 1.0 just to know this vertex is influenced by a link.
+			//				lClusterWeight[lIndex] = 1.0;
+			//			}
+			//			else // lLinkMode == FbxCluster::eNormalize || lLinkMode == FbxCluster::eTotalOne
+			//			{
+			//				if (lClusterIndex == 0)
+			//				{
+			//					lDQClusterDeformation[lIndex] = lInfluence;
+			//				}
+			//				else
+			//				{
+			//					// Add to the sum of the deformations on the vertex.
+			//					// Make sure the deformation is accumulated in the same rotation direction. 
+			//					// Use dot product to judge the sign.
+			//					double lSign = lDQClusterDeformation[lIndex].GetFirstQuaternion().DotProduct(lDualQuaternion.GetFirstQuaternion());
+			//					if (lSign >= 0.0)
+			//					{
+			//						lDQClusterDeformation[lIndex] += lInfluence;
+			//					}
+			//					else
+			//					{
+			//						lDQClusterDeformation[lIndex] -= lInfluence;
+			//					}
+			//				}
+			//				// Add to the sum of weights to either normalize or complete the vertex.
+			//				lClusterWeight[lIndex] += lWeight;
+			//			}
+			//		}//For each vertex
+			//	}//lClusterCount
+			//}
 
-			//Actually deform each vertices here by information stored in lClusterDeformation and lClusterWeight
-			for (int i = 0; i < lVertexCount; i++)
-			{
-				FbxVector4 lSrcVertex = pVertexArray[i];
-				FbxVector4& lDstVertex = pVertexArray[i];
-				double lWeightSum = lClusterWeight[i];
+			////Actually deform each vertices here by information stored in lClusterDeformation and lClusterWeight
+			//for (int i = 0; i < lVertexCount; i++)
+			//{
+			//	FbxVector4 lSrcVertex = pVertexArray[i];
+			//	FbxVector4& lDstVertex = pVertexArray[i];
+			//	double lWeightSum = lClusterWeight[i];
 
-				// Deform the vertex if there was at least a link with an influence on the vertex,
-				if (lWeightSum != 0.0)
-				{
-					lDQClusterDeformation[i].Normalize();
-					lDstVertex = lDQClusterDeformation[i].Deform(lDstVertex);
+			//	// Deform the vertex if there was at least a link with an influence on the vertex,
+			//	if (lWeightSum != 0.0)
+			//	{
+			//		lDQClusterDeformation[i].Normalize();
+			//		lDstVertex = lDQClusterDeformation[i].Deform(lDstVertex);
 
-					if (lClusterMode == FbxCluster::eNormalize)
-					{
-						// In the normalized link mode, a vertex is always totally influenced by the links. 
-						lDstVertex /= lWeightSum;
-					}
-					else if (lClusterMode == FbxCluster::eTotalOne)
-					{
-						// In the total 1 link mode, a vertex can be partially influenced by the links. 
-						lSrcVertex *= (1.0 - lWeightSum);
-						lDstVertex += lSrcVertex;
-					}
-				}
-			}
+			//		if (lClusterMode == FbxCluster::eNormalize)
+			//		{
+			//			// In the normalized link mode, a vertex is always totally influenced by the links. 
+			//			lDstVertex /= lWeightSum;
+			//		}
+			//		else if (lClusterMode == FbxCluster::eTotalOne)
+			//		{
+			//			// In the total 1 link mode, a vertex can be partially influenced by the links. 
+			//			lSrcVertex *= (1.0 - lWeightSum);
+			//			lDstVertex += lSrcVertex;
+			//		}
+			//	}
+			//}
 
-			delete[] lDQClusterDeformation;
-			delete[] lClusterWeight;
+			//delete[] lDQClusterDeformation;
+			//delete[] lClusterWeight;
 		}
 
 
@@ -493,20 +503,20 @@ namespace sparky {
 			}
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxMesh* lMesh)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode)
 		{
-			//we need to get the number of clusters
-			const int lSkinCount = lMesh->GetDeformerCount(FbxDeformer::eSkin);
-			int lClusterCount = 0;
-			for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
-			{
-				lClusterCount += ((FbxSkin *)(lMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin)))->GetClusterCount();
-			}
-			if (lClusterCount)
-			{
-				// Deform the vertex array with the skin deformer.
-				ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray, pPose);
-			}
+			////we need to get the number of clusters
+			//const int lSkinCount = lMesh->GetDeformerCount(FbxDeformer::eSkin);
+			//int lClusterCount = 0;
+			//for (int lSkinIndex = 0; lSkinIndex < lSkinCount; ++lSkinIndex)
+			//{
+			//	lClusterCount += ((FbxSkin *)(lMesh->GetDeformer(lSkinIndex, FbxDeformer::eSkin)))->GetClusterCount();
+			//}
+			//if (lClusterCount)
+			//{
+			//	// Deform the vertex array with the skin deformer.
+			//	ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray, pPose);
+			//}
 		}
 
 		void FBXLoader::ProcessMesh(FbxNode* pNode)
@@ -525,19 +535,19 @@ namespace sparky {
 				RawMesh *rawstaticmesh = new RawMesh();
 
 				ReadRawStaticMesh(pMesh, rawstaticmesh);
-				
+
 			}
 			else  //skin mesh
 			{
 				RawSkinMesh *rawskinmesh = new RawSkinMesh();
 				ReadRawSkinMesh(pMesh, rawskinmesh);
 			}
-			
+
 		}
 
 		void FBXLoader::ReadRawStaticMesh(FbxMesh* pMesh, RawMesh* rawstaticmesh)
 		{
-			if (pMesh->GetElementVertexColorCount < 1)
+			if (pMesh->GetElementVertexColorCount() < 1)
 			{
 				return;
 			}
@@ -552,10 +562,10 @@ namespace sparky {
 					int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
 
 					// Read the vertex
-					
 
 
-				
+
+
 					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Position[j]);
 
 					// Read the color of each vertex
@@ -563,15 +573,15 @@ namespace sparky {
 
 					// Read the UV of each vertex
 					for (int k = 0; k < 2; ++k)
-		/*			{
-						ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
-					}*/
+						/*			{
+										ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
+									}*/
 
-					// Read the normal of each vertex
-					ReadNormal(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Normal[j]);
+									// Read the normal of each vertex
+						//ReadNormal(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Normal[j]);
 
 					// Read the tangent of each vertex
-					ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
+					//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
 
 					vertexCounter++;
 				}
@@ -586,7 +596,7 @@ namespace sparky {
 
 		void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
 		{
-			FbxGeometryElement* pVertexColor = pMesh->GetElementVertexColor(0);
+			FbxGeometryElementVertexColor* pVertexColor = pMesh->GetElementVertexColor(0);
 			switch (pVertexColor->GetMappingMode())
 			{
 			case FbxGeometryElement::eByControlPoint:
@@ -624,7 +634,7 @@ namespace sparky {
 				{
 				case FbxGeometryElement::eDirect:
 				{
-				 
+
 					color.x = pVertexColor->GetDirectArray().GetAt(vertexCount).mRed;
 					color.y = pVertexColor->GetDirectArray().GetAt(vertexCount).mGreen;
 					color.z = pVertexColor->GetDirectArray().GetAt(vertexCount).mBlue;
@@ -647,7 +657,7 @@ namespace sparky {
 			break;
 			}
 		}
-		void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
+		/*void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
 		{
 			FbxGeometryElementVertexColor* pVertexColor = pMesh->GetElementVertexColor(0);
 			switch (pVertexColor->GetMappingMode())
@@ -709,10 +719,10 @@ namespace sparky {
 			break;
 			}
 		}
-
-		void FBXLoader::ReadRawSkinMesh(FbxMesh* pMesh,  RawSkinMesh* skinmesh)
+*/
+		void FBXLoader::ReadRawSkinMesh(FbxMesh* pMesh, RawSkinMesh* skinmesh)
 		{
-			if (pMesh->GetElementVertexColorCount < 1)
+			if (pMesh->GetElementVertexColorCount() < 1)
 			{
 				return;
 			}
@@ -743,10 +753,10 @@ namespace sparky {
 									}*/
 
 									// Read the normal of each vertex
-						ReadNormal(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Normal[j]);
+					//	ReadNormal(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Normal[j]);
 
 					// Read the tangent of each vertex
-					ReadTangent(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Tangent[j]);
+					//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Tangent[j]);
 
 					vertexCounter++;
 				}
@@ -756,61 +766,56 @@ namespace sparky {
 
 
 		}
-		void FBXLoader::ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
+	/*	void FBXLoader::ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
 		{
 
 		}
 		void FBXLoader::ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
 		{
-			
-		}
+
+		}*/
 		void FBXLoader::ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& position)
 		{
 			FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
 
 			position.x = pCtrlPoint[ctrlPointIndex].mData[0];
-			position.y = pCtrlPoint[ctrlPointIndex].mData(1);
-			position.z = pCtrlPoint[ctrlPointIndex].mData(2);
+			position.y = pCtrlPoint[ctrlPointIndex].mData[1];
+			position.z = pCtrlPoint[ctrlPointIndex].mData[2];
 		}
 
 
 		void FBXLoader::ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount)
 		{
-		
-		
+
+
 		}
 
-		
+
 		void FBXLoader::ProcessNode(FbxNode* pNode)
 		{
-		
-				FbxNodeAttribute::EType attributeType;
 
-				if (pNode->GetNodeAttribute())
-				{
-					switch (pNode->GetNodeAttribute()->GetAttributeType())
-					{
-					case FbxNodeAttribute::eMesh:
-						ProcessMesh(pNode);
-						break;
-					case FbxNodeAttribute::eSkeleton:
-						ProcessSkeleton(pNode);
-						break;
-					case FbxNodeAttribute::eLIGHT:
-						//ProcessLight(pNode);
-						break;
-					case FbxNodeAttribute::eCAMERA:
-						//ProcessCamera();
-						break;
-					}
-				}
+			FbxNodeAttribute::EType attributeType;
 
-				for (int i = 0; i < pNode->GetChildCount(); ++i)
+			if (pNode->GetNodeAttribute())
+			{
+				switch (pNode->GetNodeAttribute()->GetAttributeType())
 				{
-					ProcessNode(pNode->GetChild(i));
+				case FbxNodeAttribute::eMesh:
+					ProcessMesh(pNode);
+					break;
+				case FbxNodeAttribute::eSkeleton:
+					ProcessSkeleton(pNode);
+					break;
+
 				}
 			}
-			
+
+			for (int i = 0; i < pNode->GetChildCount(); ++i)
+			{
+				ProcessNode(pNode->GetChild(i));
+			}
+
+
 		}
 		bool FBXLoader::SetCurrentAnimStack(int pIndex)
 		{
@@ -866,5 +871,6 @@ namespace sparky {
 
 			return true;
 		}
-	 
+
+	}
 }

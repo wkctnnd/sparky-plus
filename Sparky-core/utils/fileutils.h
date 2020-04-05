@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <direct.h>
+#define  MAX_PATH 1000
 namespace sparky {
 	class FileUtile
 	{
@@ -24,6 +26,17 @@ namespace sparky {
 			delete[] data;
 
 			return result;
+		}
+
+		static std::string GetCurrentWorkingDirectory()
+		{
+			std::string str;
+			char ch[MAX_PATH];
+
+
+			_getcwd(ch, MAX_PATH);//ok...
+			str = ch;
+			return str;
 		}
 	};
 	

@@ -172,6 +172,7 @@
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
+    <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />
     <ClInclude Include="particle\Particle.h" />

@@ -1,9 +1,9 @@
 #include "render/mesh.h"
 #include "utils/fileutils.h"
-#include "geometry/objloader.h"
+#include "Asset/objloader.h"
 #include "graphics/buffers/staticbuffer.h"
 #include "graphics/buffers/indexbuffer.h"
-#include "geometry/rawmesh.h"
+#include "Asset/rawmesh.h"
 using namespace sparky::asset;
 namespace sparky {
 	namespace render {

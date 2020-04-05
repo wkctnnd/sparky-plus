@@ -14,6 +14,7 @@ namespace sparky {
 		class FBXLoader 
 		{
 		public:
+			FBXLoader();
 			bool LoadFile(const char* file);
 			bool LoadMesh(RawMesh& rmesh);
 			void Initialize();
@@ -22,15 +23,15 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node);
 			void ProcessMesh(FbxNode* pNode);
-			void ProcessSkeleton(FbxMesh* pMesh);
+			void ProcessSkeleton(FbxNode* pNode);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
 			void ComputeLinearDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
 			void ReadRawStaticMesh(FbxMesh* pMesh, RawMesh* rawstaticmesh);
 			void ReadRawSkinMesh(FbxMesh* pMesh, RawSkinMesh* rawskinmesh);
-			void ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& tangent);
-			void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& normal);
+			//void ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& tangent);
+			//void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& normal);
 			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& pos);
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
@@ -48,9 +49,9 @@ namespace sparky {
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);
 
 		private:
-			FbxArray<FbxString*> mAnimStackNameArray;
+			std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;
-			FbxArray<FbxPose*> mPoseArray;
+			std::vector<FbxPose*> mPoseArray;
 			FbxScene * mScene;
 			FbxImporter * mImporter;
 

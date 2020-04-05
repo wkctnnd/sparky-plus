@@ -1,6 +1,6 @@
 #include "objloader.h"
 #include "utils/fileutils.h"
-#include "geometry/rawmesh.h"
+#include "Asset/rawmesh.h"
 using namespace sparky::maths;
 namespace sparky {
 
