@@ -12,6 +12,12 @@ namespace sparky
 	{
 		struct joint
 		{
+			joint(joint* p, std::string n)
+			{
+				name = n;
+				parent = p;
+
+			}
 			std::string name;
 			vec3 position;
 			joint* parent;

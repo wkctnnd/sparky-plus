@@ -34,6 +34,7 @@ namespace sparky {
 			{
 				//RawMesh mesh;
 				m_FbxLoader->LoadFile(fullrelativepath.c_str());
+				m_FbxLoader->LoadResources();
 			}
 		}
 	

@@ -16,6 +16,7 @@ namespace sparky {
 		public:
 			FBXLoader();
 			bool LoadFile(const char* file);
+			void LoadResources();
 			bool LoadMesh(RawMesh& rmesh);
 			void Initialize();
 		private:
@@ -23,7 +24,7 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node);
 			void ProcessMesh(FbxNode* pNode);
-			void ProcessSkeleton(FbxNode* pNode);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);

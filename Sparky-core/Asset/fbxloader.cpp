@@ -1,5 +1,6 @@
 #include "fbxloader.h"
 #include <fbxsdk/scene/geometry/fbxlayer.h>
+#include <fbxsdk/scene/geometry/fbxskeleton.h>
 using namespace sparky::maths;
 namespace sparky {
 
@@ -196,6 +197,11 @@ namespace sparky {
 			}
 			return lResult;
 
+		}
+
+		void FBXLoader::LoadResources()
+		{
+			ProcessNode(mScene->GetRootNode());
 		}
 
 		bool FBXLoader::LoadMesh(RawMesh& rmesh)
@@ -503,8 +509,31 @@ namespace sparky {
 			}
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex)
 		{
+
+			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
+
+
+			// Only draw the skeleton if it's a limb node and if 
+			// the parent also has an attribute of type skeleton.
+			if (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode &&
+				pNode->GetParent() &&
+				pNode->GetParent()->GetNodeAttribute() &&
+				pNode->GetParent()->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
+			{
+				/*GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition);*/
+				joint* j = 0;
+				if (parentindex == -1)
+				{
+					j = new joint(0, pNode->GetName());
+				}
+				j = new joint(skeleton->joints[parentindex], pNode->GetName());
+				
+				skeleton->joints.push_back(j);
+			}
+
+
 			////we need to get the number of clusters
 			//const int lSkinCount = lMesh->GetDeformerCount(FbxDeformer::eSkin);
 			//int lClusterCount = 0;
@@ -517,6 +546,13 @@ namespace sparky {
 			//	// Deform the vertex array with the skin deformer.
 			//	ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray, pPose);
 			//}
+
+			for (int i = 0; i < pNode->GetChildCount(); ++i)
+			{
+				if(pNode->GetNodeAttribute()&& pNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
+					ProcessSkeleton(pNode->GetChild(i), skeleton, skeleton->joints.size()-1);
+			}
+
 		}
 
 		void FBXLoader::ProcessMesh(FbxNode* pNode)
@@ -536,11 +572,14 @@ namespace sparky {
 
 				ReadRawStaticMesh(pMesh, rawstaticmesh);
 
+				m_MeshAsset.push_back(rawstaticmesh);
+
 			}
 			else  //skin mesh
 			{
 				RawSkinMesh *rawskinmesh = new RawSkinMesh();
 				ReadRawSkinMesh(pMesh, rawskinmesh);
+				m_SkinMeshAsset.push_back(rawskinmesh);
 			}
 
 		}
@@ -804,8 +843,10 @@ namespace sparky {
 					ProcessMesh(pNode);
 					break;
 				case FbxNodeAttribute::eSkeleton:
-					ProcessSkeleton(pNode);
-					break;
+					Skeleton* skeleton = new Skeleton();
+					ProcessSkeleton(pNode, skeleton);
+					m_SkeletalAsset.push_back(skeleton);
+					return;
 
 				}
 			}
