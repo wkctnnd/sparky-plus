@@ -213,6 +213,7 @@ namespace sparky {
 			for (unsigned int i = 0; i < m_AnimStacks.size(); i++)
 			{
 				FbxAnimLayer * AnimLayer = m_AnimStacks[i]->GetMember<FbxAnimLayer>();
+				if()
 			}
 			ProcessNode(mScene->GetRootNode());
 		}
@@ -522,7 +523,26 @@ namespace sparky {
 			}
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex)
+		//加载骨骼的动画信息
+		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode, StackTimeSpan& timeSpan)
+		{
+			KTime       keyTimer;
+
+			unsigned long millseconds;
+
+			for (UINT i = 0; i < timeSpan.mKeyNums; ++i)
+			{
+				millseconds = timeSpan.mStart + (float)i * timeSpan.mStep;
+				keyTimer.SetMilliSeconds(millseconds);
+
+				// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
+				// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+				KFbxXMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
+				KFbxXMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+			}
+		}
+
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer)
 		{
 
 			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
@@ -537,6 +557,10 @@ namespace sparky {
 				if (parentindex == -1)
 				{
 					j = new joint(0, pNode->GetName());
+					if (!animationlayer)
+					{
+
+					}
 				}
 				else
 				{
@@ -843,7 +867,7 @@ namespace sparky {
 		}
 
 
-		void FBXLoader::ProcessNode(FbxNode* pNode)
+		void FBXLoader::ProcessNode(FbxNode* pNode, FbxAnimLayer* animationlayer)
 		{
 
 			FbxNodeAttribute::EType attributeType;
@@ -857,7 +881,7 @@ namespace sparky {
 					break;
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton* skeleton = new Skeleton();
-					ProcessSkeleton(pNode, skeleton , -1);
+					ProcessSkeleton(pNode, skeleton , -1, animationlayer);
 					m_SkeletalAsset.push_back(skeleton);
 					return;
 					//case FbxNodeAttribute::e

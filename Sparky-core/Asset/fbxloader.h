@@ -24,9 +24,9 @@ namespace sparky {
 		private:
 			void ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
  
-			void ProcessNode(FbxNode* node);
-			void ProcessMesh(FbxNode* pNode);
-			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex);
+			void ProcessNode(FbxNode* node, FbxAnimLayer* animationlayer = 0);
+			void ProcessMesh(FbxNode* pNode, FbxAnimLayer* animationlayer = 0);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex£¬, FbxAnimLayer* animationlayer = 0);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
@@ -38,6 +38,8 @@ namespace sparky {
 			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& pos);
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
+
+			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode, StackTimeSpan& timeSpan);
 			void FillPoseArray(FbxScene* pScene, FbxArray<FbxPose*>& pPoseArray)
 			{
 				const int lPoseCount = pScene->GetPoseCount();
@@ -58,6 +60,7 @@ namespace sparky {
 			FbxScene * mScene;
 			FbxImporter * mImporter;
 
+			//std::vector<AnimationClip*> m_ClipAsset;
 			std::vector<FbxAnimStack*> m_AnimStacks;
 			std::vector<RawMesh*> m_MeshAsset;
 			std::vector<RawSkinMesh*> m_SkinMeshAsset;
