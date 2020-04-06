@@ -190,7 +190,8 @@ namespace sparky {
 					FbxSystemUnit::cm.ConvertScene(mScene);
 				}
 
-
+				
+			
 				mImporter->Destroy();
 
 
@@ -201,6 +202,18 @@ namespace sparky {
 
 		void FBXLoader::LoadResources()
 		{
+			FbxArray<FbxString*> AnimStackNameArray;
+			mScene->FillAnimStackNameArray(AnimStackNameArray);
+			for (size_t i = 0; i < AnimStackNameArray.Size(); i++)
+			{
+				FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
+				m_AnimStacks.push_back(AnimationStack);
+			}
+
+			for (unsigned int i = 0; i < m_AnimStacks.size(); i++)
+			{
+				FbxAnimLayer * AnimLayer = m_AnimStacks[i]->GetMember<FbxAnimLayer>();
+			}
 			ProcessNode(mScene->GetRootNode());
 		}
 
@@ -517,10 +530,7 @@ namespace sparky {
 
 			// Only draw the skeleton if it's a limb node and if 
 			// the parent also has an attribute of type skeleton.
-			if (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode &&
-				pNode->GetParent() &&
-				pNode->GetParent()->GetNodeAttribute() &&
-				pNode->GetParent()->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
+			if (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode)
 			{
 				/*GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition);*/
 				joint* j = 0;
@@ -528,7 +538,12 @@ namespace sparky {
 				{
 					j = new joint(0, pNode->GetName());
 				}
-				j = new joint(skeleton->joints[parentindex], pNode->GetName());
+				else
+				{
+					j = new joint(skeleton->joints[parentindex], pNode->GetName());
+					skeleton->joints[parentindex]->children.push_back(j);
+				}
+					
 				
 				skeleton->joints.push_back(j);
 			}
@@ -777,9 +792,6 @@ namespace sparky {
 
 					// Read the vertex
 
-
-
-
 					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Position[j]);
 
 					// Read the color of each vertex
@@ -787,9 +799,9 @@ namespace sparky {
 
 					// Read the UV of each vertex
 					for (int k = 0; k < 2; ++k)
-						/*			{
-										ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
-									}*/
+					{
+						//ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
+					}
 
 									// Read the normal of each vertex
 					//	ReadNormal(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Normal[j]);
@@ -802,6 +814,7 @@ namespace sparky {
 
 				// 根据读入的信息组装三角形，并以某种方式使用即可，比如存入到列表中、保存到文件等...
 			}
+
 
 
 		}
@@ -844,9 +857,10 @@ namespace sparky {
 					break;
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton* skeleton = new Skeleton();
-					ProcessSkeleton(pNode, skeleton);
+					ProcessSkeleton(pNode, skeleton , -1);
 					m_SkeletalAsset.push_back(skeleton);
 					return;
+					//case FbxNodeAttribute::e
 
 				}
 			}

@@ -7,6 +7,8 @@
 #include <fbxsdk/fileio/fbxiosettings.h>
 #include "maths/vec3.h"
 #include "maths/vec4.h"
+#include "asset/skeleton.h"
+#include "animation.h"
 
 using namespace sparky::maths;
 namespace sparky {
@@ -50,15 +52,17 @@ namespace sparky {
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);
 
 		private:
-			std::vector<FbxString*> mAnimStackNameArray;
+			//std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;
 			std::vector<FbxPose*> mPoseArray;
 			FbxScene * mScene;
 			FbxImporter * mImporter;
 
+			std::vector<FbxAnimStack*> m_AnimStacks;
 			std::vector<RawMesh*> m_MeshAsset;
 			std::vector<RawSkinMesh*> m_SkinMeshAsset;
 			std::vector<Skeleton*> m_SkeletalAsset;
+			std::vector<SkeletonPose*> m_ClipAsset;
 		};
 	}
 }

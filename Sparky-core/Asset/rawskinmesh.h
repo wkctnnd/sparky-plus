@@ -5,28 +5,29 @@
 #include "maths/vec2.h"
 #include "maths/vec4.h"
 #include <string>
+#include "skeleton.h"
 using namespace sparky::maths;
 namespace sparky
 {
 	namespace asset
 	{
-		struct joint
-		{
-			joint(joint* p, std::string n)
-			{
-				name = n;
-				parent = p;
+		//struct joint
+		//{
+		//	joint(joint* p, std::string n)
+		//	{
+		//		name = n;
+		//		parent = p;
 
-			}
-			std::string name;
-			vec3 position;
-			joint* parent;
-			std::vector<joint*> children;
-		};
-		struct Skeleton
-		{
-			std::vector<joint*> joints;
-		};
+		//	}
+		//	std::string name;
+		//	vec3 position;
+		//	joint* parent;
+		//	std::vector<joint*> children;
+		//};
+		//struct Skeleton
+		//{
+		//	std::vector<joint*> joints;
+		//};
 
 		struct RawSkinMesh
 		{
