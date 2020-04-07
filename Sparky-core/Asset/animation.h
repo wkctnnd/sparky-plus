@@ -19,6 +19,7 @@ namespace sparky
 
 		struct SkeletonPose
 		{
+			float time;
 			std::vector<Pose> LocalPose;
 			std::vector<mat4> WorldPos;
 		};

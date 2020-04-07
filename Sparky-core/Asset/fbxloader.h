@@ -26,7 +26,7 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node, FbxAnimLayer* animationlayer = 0);
 			void ProcessMesh(FbxNode* pNode, FbxAnimLayer* animationlayer = 0);
-			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex£¬, FbxAnimLayer* animationlayer = 0);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, SkeletonPose* pose = 0);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
@@ -39,7 +39,7 @@ namespace sparky {
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
 
-			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode, StackTimeSpan& timeSpan);
+			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode);
 			void FillPoseArray(FbxScene* pScene, FbxArray<FbxPose*>& pPoseArray)
 			{
 				const int lPoseCount = pScene->GetPoseCount();
