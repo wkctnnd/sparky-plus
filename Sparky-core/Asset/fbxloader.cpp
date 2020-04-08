@@ -213,8 +213,10 @@ namespace sparky {
 				FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
 				m_AnimStacks.push_back(AnimationStack);
 
-
-				SkeletonPose* pose = new SkeletonPose();
+				FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
+				SkeletonPose* pose = new SkeletonPose(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
+				
+				m_ClipInfos.push_back(stackspan);
 				m_ClipAsset.push_back(pose);
 	/*			FbxTimeSpan stack = AnimationStack->GetLocalTimeSpan();
 				FbxTime start = AnimationStack->LocalStart;
@@ -538,23 +540,33 @@ namespace sparky {
 		//加载骨骼的动画信息
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode)
 		{
-			//Time       keyTimer;
+			unsigned long millseconds;
+			for (unsigned int i = 0; i < m_ClipAsset.size(); i++)
+			{
+				FbxTimeSpan& span = m_ClipInfos[i];
+				unsigned int framecount = span.GetDuration().GetFrameCount();
+				for (unsigned int j = 0; j < framecount; ++j)
+				{
 
-			//unsigned long millseconds;
+					
+					FbxTime keyTimer;
+					unsigned long t0 = span.GetDuration().GetFramedTime().GetMilliSeconds();
+					float t1 = span.GetDuration().GetMilliSeconds() / framecount;
+					millseconds = (span.GetStart() + t1 * (float)j).Get();
+					keyTimer.SetMilliSeconds(millseconds);
 
-			//for (unsigned int i = 0; i < timeSpan.mKeyNums; ++i)
-			//{
-			//	millseconds = timeSpan.mStart + (float)i * timeSpan.mStep;
-			//	keyTimer.SetMilliSeconds(millseconds);
+					// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
+					// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+					FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
+					FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
 
-			//	// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
-			//	// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
-			//	FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
-			//	FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
-			//}
+
+				}
+			}
+		
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, SkeletonPose* pose)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, SkeletonPose** pose)
 		{
 
 			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
@@ -569,10 +581,10 @@ namespace sparky {
 				if (parentindex == -1)
 				{
 					j = new joint(0, pNode->GetName());
-					if (!animationlayer)
+					/*if (!animationlayer)
 					{
-						
-					}
+						*pose = new SkeletonPose();
+					}*/
 				}
 				else
 				{
@@ -580,7 +592,7 @@ namespace sparky {
 					skeleton->joints[parentindex]->children.push_back(j);
 
 					
-					//LoadNodeCurve(animationlayer, pNode, )
+					LoadNodeCurve(animationlayer, pNode);
 				}
 					
 				
@@ -896,8 +908,10 @@ namespace sparky {
 					break;
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton* skeleton = new Skeleton();
+					//SkeletonPose* pose;
 					ProcessSkeleton(pNode, skeleton , -1, animationlayer);
 					m_SkeletalAsset.push_back(skeleton);
+			
 					return;
 					//case FbxNodeAttribute::e
 

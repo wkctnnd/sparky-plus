@@ -26,7 +26,7 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node, FbxAnimLayer* animationlayer = 0);
 			void ProcessMesh(FbxNode* pNode, FbxAnimLayer* animationlayer = 0);
-			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, SkeletonPose* pose = 0);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, SkeletonPose** pose = 0);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
@@ -66,6 +66,7 @@ namespace sparky {
 			std::vector<RawSkinMesh*> m_SkinMeshAsset;
 			std::vector<Skeleton*> m_SkeletalAsset;
 			std::vector<SkeletonPose*> m_ClipAsset;
+			std::vector<FbxTimeSpan> m_ClipInfos;
 		};
 	}
 }

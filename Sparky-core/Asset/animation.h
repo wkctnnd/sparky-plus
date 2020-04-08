@@ -19,7 +19,13 @@ namespace sparky
 
 		struct SkeletonPose
 		{
-			float time;
+			SkeletonPose(unsigned long span, unsigned int fcount)
+			{
+				milliseconds = span;
+				framecount = fcount;
+			}
+			unsigned long milliseconds;
+			unsigned int framecount;
 			std::vector<Pose> LocalPose;
 			std::vector<mat4> WorldPos;
 		};
