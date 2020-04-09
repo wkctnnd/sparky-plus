@@ -49,6 +49,10 @@ namespace sparky {
 					pPoseArray.Add(pScene->GetPose(i));
 				}
 			}
+
+
+			void AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)£»
+			void AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList);
 			bool SetCurrentAnimStack(int pIndex);
 			void LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO);
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);

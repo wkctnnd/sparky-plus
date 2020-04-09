@@ -1010,5 +1010,114 @@ namespace sparky {
 			return true;
 		}
 
+
+		//加载骨骼权重
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)
+		{
+			if (!pMesh || !pSkeletonMgr)
+			{
+				return;
+			}
+
+			int ctrlPointCount = pMesh->GetControlPointsCount();
+			int deformerCount = pMesh->GetDeformerCount();
+
+			// 初始化相应的列表
+			ctrlPointSkeletonList.SetCapacity(ctrlPointCount);
+			ctrlPointSkeletonList.setListSize(ctrlPointCount);
+
+			KFbxDeformer* pFBXDeformer;
+			KFbxSkin*     pFBXSkin;
+
+			for (int i = 0; i < deformerCount; ++i)
+			{
+				pFBXDeformer = pMesh->GetDeformer(i);
+
+				if (pFBXDeformer == NULL)
+				{
+					continue;
+				}
+
+				// 只考虑eSKIN的管理方式
+				if (pFBXDeformer->GetDeformerType() != KFbxDeformer::eSKIN)
+				{
+					continue;
+				}
+
+				pFBXSkin = (KFbxSkin*)(pFBXDeformer);
+				if (pFBXSkin == NULL)
+				{
+					continue;
+				}
+
+				AssociateSkeletonWithCtrlPoint(pFBXSkin, pSkeletonMgr, ctrlPointSkeletonList);
+			}
+		}
+
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)
+		{
+			if (!pSkin || !pSkeletonMgr)
+			{
+				return;
+			}
+
+			KFbxCluster::ELinkMode linkMode = KFbxCluster::eNORMALIZE;
+			KFbxCluster* pCluster;
+			KFbxNode*    pLinkNode;
+			int          skeletonIndex;
+			CSkeleton*   pSkeleton;
+			KFbxXMatrix  transformMatrix, transformLinkMatrix;
+			int          clusterCount = pSkin->GetClusterCount();
+
+			// 处理当前Skin中的每个Cluster（对应到Skeleton）
+			for (int i = 0; i < clusterCount; ++i)
+			{
+				pCluster = pSkin->GetCluster(i);
+
+				if (!pCluster)
+				{
+					continue;
+				}
+
+				pLinkNode = pCluster->GetLink();
+
+				if (!pLinkNode)
+				{
+					continue;
+				}
+
+				// 通过Skeleton管理器搜索到当前Cluster所对应的Skeleton，并与Cluster进行关联
+				skeletonIndex = pSkeletonMgr->FindSkeleton(pLinkNode->GetName());
+
+				// ... //关联Skeleton与Cluster
+
+				if (skeletonIndex < 0)
+				{
+					continue;
+				}
+
+				pSkeleton = pSkeletonMgr->GetSkeleton(skeletonIndex);
+
+				// 得到每个Cluster（Skeleton）所对应的Transform和TransformLink矩阵，后面具体说明
+				pCluster->GetTransformMatrix(transformMatrix);
+				pCluster->GetTransformLinkMatrix(transformLinkMatrix);
+
+				// 其它适宜的操作，将Transform、TransformLink转换为映射矩阵并存储到相应的Skeleton中
+				// ...
+
+				int     associatedCtrlPointCount = pCluster->GetControlPointIndicesCount();
+				int*    pCtrlPointIndices = pCluster->GetControlPointIndices();
+				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
+				int     ctrlPointIndex;
+
+				// 遍历当前Cluster所影响到的每个Vertex，并将对相应的信息做记录以便Skinning时使用
+				for (int j = 0; j < associatedCtrlPointCount; ++j)
+				{
+					ctrlPointIndex = pCtrlPointIndices[j];
+					ctrlPointSkeletonList[ctrlPointIndex].AddSkeleton(skeletonIndex, pCtrlPointWeights[j]);
+				}
+			}
+		}
+
 	}
 }
