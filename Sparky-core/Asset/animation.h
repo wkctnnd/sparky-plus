@@ -12,6 +12,12 @@ namespace sparky
 	{
 		struct Pose
 		{
+			Pose(vec3 t, vec3 s, Quaternion q)
+			{
+				translate = t;
+				scale = s;
+				quat = q;
+			}
 			vec3 translate;
 			vec3 scale;
 			Quaternion quat;
@@ -27,7 +33,7 @@ namespace sparky
 			unsigned long milliseconds;
 			unsigned int framecount;
 			std::vector<Pose> LocalPose;
-			std::vector<mat4> WorldPos;
+			std::vector<mat4> WorldPose;
 		};
 
 

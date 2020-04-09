@@ -53,6 +53,8 @@ namespace sparky {
 			void LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO);
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);
 
+			mat4 ConvertFBXMatrix(FbxAMatrix& fbxmat);
+			vec4 ConvertFBXVec4(FbxVector4& fbxvec);
 		private:
 			//std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;

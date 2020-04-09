@@ -1,14 +1,16 @@
 #pragma once
  
-#include "vec3.h"
+#include "vec4.h"
 namespace sparky {
 	namespace maths {
-		struct Quaternion
+		class Quaternion
 		{
-			float elements[4 * 4];
+		public:
+			Quaternion() { m_Element.x = 0; m_Element.y = 0; m_Element.z = 0; m_Element.w = 0; };
+			Quaternion(float x, float y, float z, float w) {}
 
-			Quaternion();
-			 
+		private:
+			vec4 m_Element;
 		};
 
 	}

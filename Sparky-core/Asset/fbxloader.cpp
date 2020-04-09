@@ -1,6 +1,8 @@
 #include "fbxloader.h"
 #include <fbxsdk/scene/geometry/fbxlayer.h>
 #include <fbxsdk/scene/geometry/fbxskeleton.h>
+
+//https://blog.csdn.net/jxw167/article/details/81630899
 using namespace sparky::maths;
 namespace sparky {
 
@@ -41,6 +43,25 @@ namespace sparky {
 			{
 				LoadCacheRecursive(pNode->GetChild(lChildIndex), pAnimLayer, pSupportVBO);
 			}
+		}
+
+		mat4 FBXLoader::ConvertFBXMatrix(FbxAMatrix& fbxmat)
+		{
+			mat4 matrix;
+			for (unsigned int i=0;i<4;i++)
+			{
+				for (unsigned int j=0;j<4;j++)
+				{
+					matrix.elements[i * 4 + j] = fbxmat.Get(i, j);
+				}
+			}
+			return matrix;
+		}
+
+		vec4 FBXLoader::ConvertFBXVec4(FbxVector4& fbxvec)
+		{
+			vec4 vec(fbxvec[0], fbxvec[1], fbxvec[2], fbxvec[3]);
+			return vec;
 		}
 
 		void FBXLoader::LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO)
@@ -559,8 +580,17 @@ namespace sparky {
 					// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
 					FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
 					FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+					
+					FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
+					FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
+					FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
 
-
+					vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+					vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+					Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
+					Pose pose(translate,scale,quat);
+					m_ClipAsset[i]->LocalPose.push_back(pose);
+					m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
 				}
 			}
 		
