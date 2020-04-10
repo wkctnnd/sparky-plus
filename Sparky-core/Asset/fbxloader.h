@@ -51,14 +51,16 @@ namespace sparky {
 			}
 
 
-			void AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)£»
-			void AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList);
+			void AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, RawSkinMesh* rawskinmesh);
+			void AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, RawSkinMesh* rawskinmesh);
 			bool SetCurrentAnimStack(int pIndex);
 			void LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO);
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);
 
 			mat4 ConvertFBXMatrix(FbxAMatrix& fbxmat);
 			vec4 ConvertFBXVec4(FbxVector4& fbxvec);
+
+			void LoadSkinData();
 		private:
 			//std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;
@@ -73,6 +75,9 @@ namespace sparky {
 			std::vector<Skeleton*> m_SkeletalAsset;
 			std::vector<SkeletonPose*> m_ClipAsset;
 			std::vector<FbxTimeSpan> m_ClipInfos;
+
+			std::vector<FbxMesh*> m_FbxMeshProcessing;
+			
 		};
 	}
 }

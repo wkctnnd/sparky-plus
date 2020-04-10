@@ -1,6 +1,7 @@
 #include "fbxloader.h"
 #include <fbxsdk/scene/geometry/fbxlayer.h>
 #include <fbxsdk/scene/geometry/fbxskeleton.h>
+#include <list>
 
 //https://blog.csdn.net/jxw167/article/details/81630899
 using namespace sparky::maths;
@@ -676,6 +677,9 @@ namespace sparky {
 				RawSkinMesh *rawskinmesh = new RawSkinMesh();
 				ReadRawSkinMesh(pMesh, rawskinmesh);
 				m_SkinMeshAsset.push_back(rawskinmesh);
+				m_FbxMeshProcessing.push_back(pMesh);
+
+				
 			}
 
 		}
@@ -953,8 +957,10 @@ namespace sparky {
 				ProcessNode(pNode->GetChild(i));
 			}
 
-
+		
 		}
+
+
 		bool FBXLoader::SetCurrentAnimStack(int pIndex)
 		{
 			//const int lAnimStackCount = mAnimStackNameArray.GetCount();
@@ -1012,9 +1018,9 @@ namespace sparky {
 
 
 		//加载骨骼权重
-		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, RawSkinMesh* rawskinmesh)
 		{
-			if (!pMesh || !pSkeletonMgr)
+			if (!pMesh || m_SkeletalAsset.size()!=0)
 			{
 				return;
 			}
@@ -1023,8 +1029,8 @@ namespace sparky {
 			int deformerCount = pMesh->GetDeformerCount();
 
 			// 初始化相应的列表
-			ctrlPointSkeletonList.SetCapacity(ctrlPointCount);
-			ctrlPointSkeletonList.setListSize(ctrlPointCount);
+			//ctrlPointSkeletonList.SetCapacity(ctrlPointCount);
+			//ctrlPointSkeletonList.setListSize(ctrlPointCount);
 
 			FbxDeformer* pFBXDeformer;
 			FbxSkin*     pFBXSkin;
@@ -1039,7 +1045,7 @@ namespace sparky {
 				}
 
 				// 只考虑eSKIN的管理方式
-				if (pFBXDeformer->GetDeformerType() != FbxDeformer::eSKIN)
+				if (pFBXDeformer->GetDeformerType() != FbxDeformer::eSkin)
 				{
 					continue;
 				}
@@ -1050,13 +1056,13 @@ namespace sparky {
 					continue;
 				}
 
-				AssociateSkeletonWithCtrlPoint(pFBXSkin, pSkeletonMgr, ctrlPointSkeletonList);
+				AssociateSkeletonWithCtrlPoint(pFBXSkin, rawskinmesh);
 			}
 		}
 
-		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, CSkeletonMgr* pSkeletonMgr, List<VertexSkeletonList>& ctrlPointSkeletonList)
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, RawSkinMesh* rawskinmesh)
 		{
-			if (!pSkin || !pSkeletonMgr)
+			if (!pSkin || m_SkeletalAsset.size() != 0)
 			{
 				return;
 			}
@@ -1117,6 +1123,15 @@ namespace sparky {
 					ctrlPointSkeletonList[ctrlPointIndex].AddSkeleton(skeletonIndex, pCtrlPointWeights[j]);
 				}
 			}
+		}
+
+		void FBXLoader::LoadSkinData()
+		{
+			for (unsigned int i = 0; i < m_FbxMeshProcessing.size(); i++)
+			{
+				AssociateSkeletonWithCtrlPoint(m_FbxMeshProcessing[i], m_SkinMeshAsset[i]);
+			}
+		
 		}
 
 	}
