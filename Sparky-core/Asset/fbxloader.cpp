@@ -1026,8 +1026,8 @@ namespace sparky {
 			ctrlPointSkeletonList.SetCapacity(ctrlPointCount);
 			ctrlPointSkeletonList.setListSize(ctrlPointCount);
 
-			KFbxDeformer* pFBXDeformer;
-			KFbxSkin*     pFBXSkin;
+			FbxDeformer* pFBXDeformer;
+			FbxSkin*     pFBXSkin;
 
 			for (int i = 0; i < deformerCount; ++i)
 			{
@@ -1039,12 +1039,12 @@ namespace sparky {
 				}
 
 				// 只考虑eSKIN的管理方式
-				if (pFBXDeformer->GetDeformerType() != KFbxDeformer::eSKIN)
+				if (pFBXDeformer->GetDeformerType() != FbxDeformer::eSKIN)
 				{
 					continue;
 				}
 
-				pFBXSkin = (KFbxSkin*)(pFBXDeformer);
+				pFBXSkin = (FbxSkin*)(pFBXDeformer);
 				if (pFBXSkin == NULL)
 				{
 					continue;
@@ -1061,12 +1061,12 @@ namespace sparky {
 				return;
 			}
 
-			KFbxCluster::ELinkMode linkMode = KFbxCluster::eNORMALIZE;
-			KFbxCluster* pCluster;
-			KFbxNode*    pLinkNode;
+			FbxCluster::ELinkMode linkMode = FbxCluster::eNORMALIZE;
+			FbxCluster* pCluster;
+			FbxNode*    pLinkNode;
 			int          skeletonIndex;
 			CSkeleton*   pSkeleton;
-			KFbxXMatrix  transformMatrix, transformLinkMatrix;
+			FbxXMatrix  transformMatrix, transformLinkMatrix;
 			int          clusterCount = pSkin->GetClusterCount();
 
 			// 处理当前Skin中的每个Cluster（对应到Skeleton）
