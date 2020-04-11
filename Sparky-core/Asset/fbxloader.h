@@ -76,6 +76,34 @@ namespace sparky {
 			void LoadResources();
 			bool LoadMesh(RawMesh& rmesh);
 			void Initialize();
+
+			RawSkinMesh* GetRawSkinMesh(unsigned int id) 
+			{ 
+				m_PostProcess->GetRawSkinMesh(id); 
+			}
+			unsigned int GetRawSkinMeshCount() 
+			{
+				return m_PostProcess->GetRawSkinMeshCount();
+			}
+			RawMesh* GetRawStaticMesh(unsigned int id) 
+			{
+				return m_PostProcess->GetRawStaticMesh(id);
+			}
+			unsigned int GetRawStaticMeshCount() 
+			{ 
+				return m_PostProcess->GetRawStaticMeshCount(); 
+			}
+
+			unsigned int GetClipCount()
+			{
+				return m_ClipAsset.size();
+			}
+
+			SkeletonPose* GetClip(unsigned int id)
+			{
+				return m_ClipAsset[id];
+			}
+
 		private:
 			void ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
  
