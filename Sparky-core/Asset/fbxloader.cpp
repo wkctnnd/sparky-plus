@@ -9,17 +9,49 @@ namespace sparky {
 
 	namespace asset {
 
+		void FBXEasyMeshPostProcess::Process(std::vector<InterMediateMesh*>& intermediatemeharray)
+		{
+			for (unsigned int i = 0; i < intermediatemeharray.size(); i++)
+			{
+				if (intermediatemeharray[i]->VertexArray[0]->CurrentIndex == -1)
+				{
 
+					RawMesh* mesh = new RawMesh();
+					for (unsigned int j=0;j<intermediatemeharray[i]->VertexArray.size();i++)
+					{
+						mesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j]->Position);
+						mesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j]->Normal);
+						mesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j]->Tangent);
+					}
+			
+					m_MeshAsset.push_back(mesh);
+				}
+				else
+				{
+					RawSkinMesh* skinmesh = new RawSkinMesh();
+					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); i++)
+					{
+						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j]->Position);
+						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j]->Normal);
+						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j]->Tangent);
+						skinmesh->m_BoneIndex.push_back(vec4(intermediatemeharray[i]->VertexArray[j]->BoneIndex[0], intermediatemeharray[i]->VertexArray[j]->BoneIndex[1], intermediatemeharray[i]->VertexArray[j]->BoneIndex[2], intermediatemeharray[i]->VertexArray[j]->BoneIndex[3]));
+					}
+					m_SkinMeshAsset.push_back(skinmesh);
+				}
+			}
+		}
+		
 		FBXLoader::FBXLoader()
 		{
 			int a = 1;
+			m_PostProcess = new FBXEasyMeshPostProcess();
 		}
 		// Bake node attributes and materials under this node recursively.
   // Currently only mesh, light and material.
 		void FBXLoader::LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO)
 		{
 			// Bake material and hook as user data.
-
+ 
 			FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 			if (lNodeAttribute)
 			{
@@ -230,21 +262,27 @@ namespace sparky {
 			}*/
 			FbxArray<FbxString*> AnimStackNameArray;
 			mScene->FillAnimStackNameArray(AnimStackNameArray);
-			for (size_t i = 0; i < AnimStackNameArray.Size(); i++)
-			{
-				FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
-				m_AnimStacks.push_back(AnimationStack);
 
-				FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
-				SkeletonPose* pose = new SkeletonPose(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
-				
-				m_ClipInfos.push_back(stackspan);
-				m_ClipAsset.push_back(pose);
-	/*			FbxTimeSpan stack = AnimationStack->GetLocalTimeSpan();
-				FbxTime start = AnimationStack->LocalStart;
-				FbxTime end = AnimationStack->LocalStop;
-				int a = 1;*/
-			}
+		/*	unsigned int posecount = mScene->GetPoseCount();
+			unsigned int posecount2 = mScene->GetCharacterPoseCount();
+			unsigned int count3 = mScene->GetGeometryCount();
+			FbxGeometry* g = mScene->GetGeometry(0);
+			g->GetNormals()*/
+	//		for (size_t i = 0; i < AnimStackNameArray.Size(); i++)
+	//		{
+	//			FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
+	//			m_AnimStacks.push_back(AnimationStack);
+
+	//			FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
+	//			SkeletonPose* pose = new SkeletonPose(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
+	//			
+	//			m_ClipInfos.push_back(stackspan);
+	//			m_ClipAsset.push_back(pose);
+	///*			FbxTimeSpan stack = AnimationStack->GetLocalTimeSpan();
+	//			FbxTime start = AnimationStack->LocalStart;
+	//			FbxTime end = AnimationStack->LocalStop;
+	//			int a = 1;*/
+	//		}
 
 			for (unsigned int i = 0; i < m_AnimStacks.size(); i++)
 			{
@@ -252,6 +290,13 @@ namespace sparky {
 				//if()
 			}
 			ProcessNode(mScene->GetRootNode());
+			LoadSkinData();
+			PostProcess();
+		}
+
+		void FBXLoader::PostProcess()
+		{
+			m_PostProcess->Process(m_InterMeshArray);
 		}
 
 		bool FBXLoader::LoadMesh(RawMesh& rmesh)
@@ -661,30 +706,33 @@ namespace sparky {
 			}
 
 			const bool lHasSkin = pMesh->GetDeformerCount(FbxDeformer::eSkin) > 0;
-
+			InterMediateMesh *intermesh = new InterMediateMesh();
+			ReadIntemediateMesh(pMesh, intermesh);
+			m_InterMeshArray.push_back(intermesh);
 			//static mesh
-			if (!lHasSkin)
-			{
-				RawMesh *rawstaticmesh = new RawMesh();
+			//if (!lHasSkin)
+			//{
+			//	//RawMesh *rawstaticmesh = new RawMesh();
 
-				ReadRawStaticMesh(pMesh, rawstaticmesh);
+			//	InterMediateMesh *intermesh = new InterMediateMesh();
+			//	ReadRawStaticMesh(pMesh, intermesh);
 
-				m_MeshAsset.push_back(rawstaticmesh);
+			//	m_MeshAsset.push_back(rawstaticmesh);
 
-			}
-			else  //skin mesh
-			{
-				RawSkinMesh *rawskinmesh = new RawSkinMesh();
-				ReadRawSkinMesh(pMesh, rawskinmesh);
-				m_SkinMeshAsset.push_back(rawskinmesh);
-				m_FbxMeshProcessing.push_back(pMesh);
+			//}
+			//else  //skin mesh
+			//{
+			//	RawSkinMesh *rawskinmesh = new RawSkinMesh();
+			//	ReadRawSkinMesh(pMesh, rawskinmesh);
+			//	m_SkinMeshAsset.push_back(rawskinmesh);
+			//	m_FbxMeshProcessing.push_back(pMesh);
 
-				
-			}
+			//	
+			//}
 
 		}
 
-		void FBXLoader::ReadRawStaticMesh(FbxMesh* pMesh, RawMesh* rawstaticmesh)
+		void FBXLoader::ReadIntemediateMesh(FbxMesh* pMesh, InterMediateMesh* rawstaticmesh)
 		{
 			if (pMesh->GetElementVertexColorCount() < 1)
 			{
@@ -694,6 +742,17 @@ namespace sparky {
 			int triangleCount = pMesh->GetPolygonCount();
 			int vertexCounter = 0;
 
+			FbxVector4* ctrlPoint = pMesh->GetControlPoints();
+			int ctrlpointcount = pMesh->GetControlPointsCount();
+			rawstaticmesh->VertexArray.resize(triangleCount * 3);
+			//for (unsigned int i = 0; i < ctrlpointcount; i++)
+			//{
+			//	rawstaticmesh->m_Position[i].x = ctrlPoint[i].mData[0];
+			//	rawstaticmesh->m_Position[i].y = ctrlPoint[i].mData[1];
+			//	rawstaticmesh->m_Position[i].z = ctrlPoint[i].mData[2];
+			//}
+			FbxArray<FbxVector4>  pNormals;
+			pMesh->GetPolygonVertexNormals(pNormals);
 			for (int i = 0; i < triangleCount; ++i)
 			{
 				for (int j = 0; j < 3; j++)
@@ -702,16 +761,19 @@ namespace sparky {
 
 					// Read the vertex
 
+					//pMesh->
+					rawstaticmesh->Faces.push_back(ctrlPointIndex);
 
-
-
-					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Position[j]);
+					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter]->Position);
 
 					// Read the color of each vertex
-					ReadColor(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Color[j]);
+					ReadColor(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter]->Color);
 
 					// Read the UV of each vertex
 					for (int k = 0; k < 2; ++k)
+					{
+
+					}
 						/*			{
 										ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
 									}*/
@@ -721,7 +783,11 @@ namespace sparky {
 
 					// Read the tangent of each vertex
 					//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
-
+					if (rawstaticmesh->CtrlVertices.find(ctrlPointIndex) == rawstaticmesh->CtrlVertices.end())
+					{
+						rawstaticmesh->CtrlVertices.insert(std::pair<unsigned int, std::list<InterVertexData*>>(ctrlPointIndex, std::list<InterVertexData*>()));
+					}
+					rawstaticmesh->CtrlVertices[ctrlPointIndex].push_back(rawstaticmesh->VertexArray[vertexCounter]);
 					vertexCounter++;
 				}
 
@@ -859,50 +925,7 @@ namespace sparky {
 			}
 		}
 */
-		void FBXLoader::ReadRawSkinMesh(FbxMesh* pMesh, RawSkinMesh* skinmesh)
-		{
-			if (pMesh->GetElementVertexColorCount() < 1)
-			{
-				return;
-			}
-
-			int triangleCount = pMesh->GetPolygonCount();
-			int vertexCounter = 0;
-
-			for (int i = 0; i < triangleCount; ++i)
-			{
-				for (int j = 0; j < 3; j++)
-				{
-					int ctrlPointIndex = pMesh->GetPolygonVertex(i, j);
-
-					// Read the vertex
-
-					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Position[j]);
-
-					// Read the color of each vertex
-					ReadColor(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Color[j]);
-
-					// Read the UV of each vertex
-					for (int k = 0; k < 2; ++k)
-					{
-						//ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
-					}
-
-									// Read the normal of each vertex
-					//	ReadNormal(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Normal[j]);
-
-					// Read the tangent of each vertex
-					//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, skinmesh->m_Tangent[j]);
-
-					vertexCounter++;
-				}
-
-				// 根据读入的信息组装三角形，并以某种方式使用即可，比如存入到列表中、保存到文件等...
-			}
-
-
-
-		}
+	
 	/*	void FBXLoader::ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
 		{
 
@@ -1018,7 +1041,7 @@ namespace sparky {
 
 
 		//加载骨骼权重
-		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, RawSkinMesh* rawskinmesh)
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, InterMediateMesh* interskinmesh)
 		{
 			if (!pMesh || m_SkeletalAsset.size()!=0)
 			{
@@ -1056,23 +1079,23 @@ namespace sparky {
 					continue;
 				}
 
-				AssociateSkeletonWithCtrlPoint(pFBXSkin, rawskinmesh);
+				AssociateSkeletonWithCtrlPoint(pFBXSkin, interskinmesh);
 			}
 		}
 
-		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, RawSkinMesh* rawskinmesh)
+		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, InterMediateMesh* interskinmesh)
 		{
-			if (!pSkin || m_SkeletalAsset.size() != 0)
+			if (!pSkin || m_SkeletalAsset.size() != 0 || !interskinmesh)
 			{
 				return;
 			}
 
-			FbxCluster::ELinkMode linkMode = FbxCluster::eNORMALIZE;
+			FbxCluster::ELinkMode linkMode = FbxCluster::eNormalize;
 			FbxCluster* pCluster;
 			FbxNode*    pLinkNode;
-			int          skeletonIndex;
-			CSkeleton*   pSkeleton;
-			FbxXMatrix  transformMatrix, transformLinkMatrix;
+			int         jointIndex;
+			joint*		pJoint;
+			//FbxXMatrix  transformMatrix, transformLinkMatrix;
 			int          clusterCount = pSkin->GetClusterCount();
 
 			// 处理当前Skin中的每个Cluster（对应到Skeleton）
@@ -1084,7 +1107,7 @@ namespace sparky {
 				{
 					continue;
 				}
-
+				//double* weight = pCluster->GetControlPointWeights();
 				pLinkNode = pCluster->GetLink();
 
 				if (!pLinkNode)
@@ -1093,20 +1116,20 @@ namespace sparky {
 				}
 
 				// 通过Skeleton管理器搜索到当前Cluster所对应的Skeleton，并与Cluster进行关联
-				skeletonIndex = pSkeletonMgr->FindSkeleton(pLinkNode->GetName());
+				jointIndex = GetJointIndex(pLinkNode->GetName());
 
 				// ... //关联Skeleton与Cluster
 
-				if (skeletonIndex < 0)
+				if (jointIndex < 0)
 				{
 					continue;
 				}
 
-				pSkeleton = pSkeletonMgr->GetSkeleton(skeletonIndex);
+				pJoint = GetJoint(jointIndex);
 
 				// 得到每个Cluster（Skeleton）所对应的Transform和TransformLink矩阵，后面具体说明
-				pCluster->GetTransformMatrix(transformMatrix);
-				pCluster->GetTransformLinkMatrix(transformLinkMatrix);
+				//pCluster->GetTransformMatrix(transformMatrix);
+				//pCluster->GetTransformLinkMatrix(transformLinkMatrix);
 
 				// 其它适宜的操作，将Transform、TransformLink转换为映射矩阵并存储到相应的Skeleton中
 				// ...
@@ -1120,18 +1143,51 @@ namespace sparky {
 				for (int j = 0; j < associatedCtrlPointCount; ++j)
 				{
 					ctrlPointIndex = pCtrlPointIndices[j];
-					ctrlPointSkeletonList[ctrlPointIndex].AddSkeleton(skeletonIndex, pCtrlPointWeights[j]);
+					if (interskinmesh->CtrlVertices.find(ctrlPointIndex) != interskinmesh->CtrlVertices.end())
+					{
+						for (auto iter = interskinmesh->CtrlVertices[ctrlPointIndex].begin(); iter != interskinmesh->CtrlVertices[ctrlPointIndex].end(); iter++)
+						{
+						 
+								if ((*iter)->CurrentIndex < 3)
+								{
+									(*iter)->CurrentIndex++;
+									(*iter)->BoneIndex[(*iter)->CurrentIndex] = jointIndex;
+									(*iter)->BoneWeight[(*iter)->CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
+								}
+							
+							
+						}
+					}
+						
 				}
 			}
 		}
 
 		void FBXLoader::LoadSkinData()
 		{
+			//intermesharray.resize(m_FbxMeshProcessing.size());
 			for (unsigned int i = 0; i < m_FbxMeshProcessing.size(); i++)
 			{
-				AssociateSkeletonWithCtrlPoint(m_FbxMeshProcessing[i], m_SkinMeshAsset[i]);
+				AssociateSkeletonWithCtrlPoint(m_FbxMeshProcessing[i], m_InterMeshArray[i]);
 			}
 		
+		}
+
+		int FBXLoader::GetJointIndex(FbxString jointname)
+		{
+			//暂时默认，一个fbx只有一个骨骼
+			for (int i=0;i<m_SkeletalAsset[0]->joints.size();i++)
+			{
+				if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
+				{
+					return i;
+				}
+			}
+		}
+
+		joint* FBXLoader::GetJoint(int index)
+		{
+			return m_SkeletalAsset[0]->joints[index];
 		}
 
 	}

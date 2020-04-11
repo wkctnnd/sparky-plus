@@ -39,6 +39,8 @@ namespace sparky
 			std::vector<vec4> m_BoneIndex;
 			std::vector<unsigned short> m_Faces;
 			Skeleton m_Skeleton;
+
+			bool Indexed() { return m_Faces.size() > 0; }
 		};
 	}
 }

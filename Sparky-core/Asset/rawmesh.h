@@ -27,6 +27,8 @@ namespace sparky
 			std::vector<vec3> m_Tangent;
 
 			std::vector<unsigned short> m_Faces;
+
+			bool Indexed() { return m_Faces.size() > 0; }
 		};
 	}
 }
