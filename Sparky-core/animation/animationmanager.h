@@ -14,7 +14,7 @@ namespace sparky
 {
 	namespace animation
 	{
-		class Animation
+		class AnimationManager
 		{
 		public:
 			const std::string& GetAnimationName() const;
@@ -25,11 +25,13 @@ namespace sparky
 			bool GetWeight()const;
 
 			SkeletonPose* GetPose(unsigned int id, long duration);
-			unsigned int GetAnimationId(std::string& name);
-
+			int GetAnimationId(std::string& name);
+			AnimationManager* INSTANCE();
 		protected:
 			std::vector<class SkeletonClip*> m_Clips;
 			std::map<std::string, unsigned int> m_ClipId;
+			static AnimationManager* m_AnimationManager;
+			AnimationManager() {}
 		};
 	}
 }
