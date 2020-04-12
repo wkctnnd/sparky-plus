@@ -99,7 +99,7 @@ namespace sparky {
 				return m_ClipAsset.size();
 			}
 
-			SkeletonPose* GetClip(unsigned int id)
+			SkeletonClip* GetClip(unsigned int id)
 			{
 				return m_ClipAsset[id];
 			}
@@ -109,7 +109,7 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node, FbxAnimLayer* animationlayer = 0);
 			void ProcessMesh(FbxNode* pNode, FbxAnimLayer* animationlayer = 0);
-			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, SkeletonPose** pose = 0);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, SkeletonClip** pose = 0);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
@@ -160,7 +160,7 @@ namespace sparky {
 			std::vector<FbxAnimStack*> m_AnimStacks;
 		
 			std::vector<Skeleton*> m_SkeletalAsset;
-			std::vector<SkeletonPose*> m_ClipAsset;
+			std::vector<SkeletonClip*> m_ClipAsset;
 			std::vector<FbxTimeSpan> m_ClipInfos;
 
 			std::vector<InterMediateMesh*> m_InterMeshArray;

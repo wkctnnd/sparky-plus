@@ -37,6 +37,33 @@ namespace sparky {
 				m_FbxLoader->LoadResources();
 			}
 		}
+
+		class RawSkinMesh* AssetLoader::GetRawSkinMesh(unsigned int id)
+		{
+			return m_FbxLoader->GetRawSkinMesh(id);
+		}
+		unsigned int AssetLoader::GetRawSkinMeshCount()
+		{
+			return m_FbxLoader->GetRawSkinMeshCount();
+		}
+		class RawMesh* AssetLoader::GetRawStaticMesh(unsigned int id)
+		{
+			return m_FbxLoader->GetRawStaticMesh(id);
+		}
+		unsigned int AssetLoader::GetRawStaticMeshCount()
+		{
+			return m_FbxLoader->GetRawStaticMeshCount();
+		}
+
+		unsigned int AssetLoader::GetClipCount()
+		{
+			return m_FbxLoader->GetClipCount();
+		}
+
+		class SkeletonClip* AssetLoader::GetClip(unsigned int id)
+		{
+			return m_FbxLoader->GetClip(id);
+		}
 	
 	}
 }

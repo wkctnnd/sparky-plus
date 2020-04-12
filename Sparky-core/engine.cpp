@@ -29,6 +29,9 @@ namespace sparky
 		Mesh* smokemesh = Mesh::Load("autoload");
 
 		m_AssetLoader->LoadFile("humanoid.fbx");
+		RawSkinMesh* rawskinmesh = m_AssetLoader->GetRawSkinMesh(0);
+		SkeletonClip* skeletonpos = m_AssetLoader->GetClip(0);
+
 		m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();

@@ -169,12 +169,16 @@
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation\animation.h" />
     <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
+    <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Asset\fbxloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
+    <ClInclude Include="Asset\skeletalpose.h" />
+    <ClInclude Include="Asset\skeleton.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />

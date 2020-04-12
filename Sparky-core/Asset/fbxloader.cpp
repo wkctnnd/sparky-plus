@@ -274,7 +274,7 @@ namespace sparky {
 	//			m_AnimStacks.push_back(AnimationStack);
 
 	//			FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
-	//			SkeletonPose* pose = new SkeletonPose(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
+	//			SkeletonClip* pose = new SkeletonClip(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
 	//			
 	//			m_ClipInfos.push_back(stackspan);
 	//			m_ClipAsset.push_back(pose);
@@ -634,7 +634,7 @@ namespace sparky {
 					vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
 					vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
 					Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
-					Pose pose(translate,scale,quat);
+					SkeletonPose pose(translate,scale,quat);
 					m_ClipAsset[i]->LocalPose.push_back(pose);
 					m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
 				}
@@ -642,7 +642,7 @@ namespace sparky {
 		
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, SkeletonPose** pose)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, SkeletonClip** pose)
 		{
 
 			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
@@ -659,7 +659,7 @@ namespace sparky {
 					j = new joint(0, pNode->GetName());
 					/*if (!animationlayer)
 					{
-						*pose = new SkeletonPose();
+						*pose = new SkeletonClip();
 					}*/
 				}
 				else
@@ -965,7 +965,7 @@ namespace sparky {
 					break;
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton* skeleton = new Skeleton();
-					//SkeletonPose* pose;
+					//SkeletonClip* pose;
 					ProcessSkeleton(pNode, skeleton , -1, animationlayer);
 					m_SkeletalAsset.push_back(skeleton);
 			

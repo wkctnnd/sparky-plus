@@ -10,9 +10,9 @@ namespace sparky
 {
 	namespace asset
 	{
-		struct Pose
+		struct SkeletonPose
 		{
-			Pose(vec3 t, vec3 s, Quaternion q)
+			SkeletonPose(vec3 t, vec3 s, Quaternion q)
 			{
 				translate = t;
 				scale = s;
@@ -23,16 +23,16 @@ namespace sparky
 			Quaternion quat;
 		};
 
-		struct SkeletonPose
+		struct SkeletonClip
 		{
-			SkeletonPose(unsigned long span, unsigned int fcount)
+			SkeletonClip(unsigned long span, unsigned int fcount)
 			{
 				milliseconds = span;
 				framecount = fcount;
 			}
 			unsigned long milliseconds;
 			unsigned int framecount;
-			std::vector<Pose> LocalPose;
+			std::vector<SkeletonPose> LocalPose;
 			std::vector<mat4> WorldPose;
 		};
 
@@ -41,7 +41,7 @@ namespace sparky
 		{
 
 		private:
-			SkeletonPose* m_ClipPose;
+			SkeletonClip* m_ClipPose;
 		};
 
 		class AnimationStack
