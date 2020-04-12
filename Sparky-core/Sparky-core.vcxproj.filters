@@ -108,6 +108,12 @@
     <ClCompile Include="Asset\objloader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="render\skinmeshrender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\skinmesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -251,6 +257,18 @@
     <ClInclude Include="global.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="render\skinmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\skinmeshrenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\skeletalmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\animationstate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />
@@ -270,5 +288,7 @@
     </None>
     <None Include="shaders\SmokeRayCast.frag" />
     <None Include="shaders\SmokeRayCast.vert" />
+    <None Include="shaders\skinmesh.frag" />
+    <None Include="shaders\skinmesh.vert" />
   </ItemGroup>
 </Project>

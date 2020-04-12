@@ -19,6 +19,14 @@ namespace sparky {
 			glUseProgram(0);
 		}
 
+		void Shader::setUniformMat4v(const GLchar* name, glm::mat4* matrix, unsigned int count)
+		{
+			int t = GetUniformLocation(name);
+			glUniformMatrix4fv(GetUniformLocation(name), count, GL_FALSE, glm::value_ptr(matrix[0]));
+			GLenum  Error = glGetError();
+			assert(Error == GL_NO_ERROR);
+		}
+
 		void Shader::setUniformMat41(const GLchar* name, glm::mat4& matrix)
 		{
 			int t = GetUniformLocation(name);

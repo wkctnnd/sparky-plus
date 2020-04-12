@@ -8,7 +8,7 @@
 #include "maths/vec3.h"
 #include "maths/vec4.h"
 #include "asset/skeleton.h"
-#include "animation.h"
+#include "skeletalpose.h"
 #include "map"
 #include "list"
 
@@ -79,7 +79,7 @@ namespace sparky {
 
 			RawSkinMesh* GetRawSkinMesh(unsigned int id) 
 			{ 
-				m_PostProcess->GetRawSkinMesh(id); 
+				return m_PostProcess->GetRawSkinMesh(id); 
 			}
 			unsigned int GetRawSkinMeshCount() 
 			{

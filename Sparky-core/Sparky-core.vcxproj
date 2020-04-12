@@ -164,9 +164,12 @@
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="render\skinmesh.cpp" />
+    <ClCompile Include="render\skinmeshrender.cpp" />
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\fbxloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
@@ -211,6 +214,9 @@
     <ClInclude Include="maths\vec4.h" />
     <ClInclude Include="render\mesh.h" />
     <ClInclude Include="engine.h" />
+    <ClInclude Include="render\skeletalmesh.h" />
+    <ClInclude Include="render\skinmesh.h" />
+    <ClInclude Include="render\skinmeshrenderer.h" />
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
@@ -229,6 +235,8 @@
     <None Include="shaders\generate-spirv.bat" />
     <None Include="shaders\particle.frag" />
     <None Include="shaders\particle.vert" />
+    <None Include="shaders\skinmesh.frag" />
+    <None Include="shaders\skinmesh.vert" />
     <None Include="shaders\SmokeRayCast.frag" />
     <None Include="shaders\SmokeRayCast.vert" />
   </ItemGroup>

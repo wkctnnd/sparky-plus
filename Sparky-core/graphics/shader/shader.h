@@ -25,6 +25,7 @@ namespace sparky {
 			void disable();
 
 			GLint GetUniformLocation(const GLchar* name);
+			void setUniformMat4v(const GLchar* name, glm::mat4* matrix, unsigned int count);
 			void setUniformMat41(const GLchar* name, glm::mat4& matrix);
 			void setUniformMat4(const GLchar* name, const mat4& matrix);
 			void setUniform1f(const GLchar* name, float value);
