@@ -4,17 +4,18 @@ namespace sparky
 {
 	namespace animation
 	{
+
+		
 		template<class T>
-		class Sequence
+		class DataSet
 		{
 			virtual T Evaluate(unsigned long duration) = 0;
 
+
+		private:
+			
 		};
 
-		template<class T>
-		class LinearInterpolator :public Interpolator<T>
-		{
-			virtual T Evaluate()
-		};
+
 	}
 }
