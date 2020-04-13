@@ -16,7 +16,9 @@ namespace sparky
 		SkeletonPose* AnimationManager::GetPose(unsigned int id, long duration)
 		{
 			SkeletonClip* clip = m_Clips[id];
-			
+
+
+			return clip;
 		}
 
 		int AnimationManager::GetAnimationId(std::string& name)

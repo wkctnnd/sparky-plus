@@ -284,6 +284,12 @@
     <ClInclude Include="animation\animationmanager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="animation\Interpolator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\sequence.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />
