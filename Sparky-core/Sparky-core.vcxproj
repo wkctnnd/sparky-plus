@@ -173,7 +173,7 @@
     <ClInclude Include="animation\animationmanager.h" />
     <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="animation\Interpolator.h" />
-    <ClInclude Include="animation\sequence.h" />
+    <ClInclude Include="animation\property.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Asset\fbxloader.h" />
