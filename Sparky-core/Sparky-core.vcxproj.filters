@@ -117,6 +117,12 @@
     <ClCompile Include="animation\animationmanager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="animation\property.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="animation\animationlayer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -288,6 +294,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation\property.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\animationlayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,18 +6,26 @@ namespace sparky
 {
 	namespace animation
 	{
+		template<class T>
+		struct KeyValue
+		{
+			unsigned int time;//millisecond
+			T value;
+		};
 
-		template< class datatpe, typename InterpType, InterpType type>
+		template< class datatype>
 		class Property
 		{
- 
-			 void Set
-			 T& Evaluate();
+		public:
+			Interpolator<datatype>* GetInterpolator();
+			 T& Evaluate(unsigned long time);
+			 void SetInterpolatorType(InterpolatorType type)
+			 void AddKeyValue(KeyValue<T>& keyvalue);
+			// void BindData(KeyValueSet<datatype>*  data);
 
 		private:
-			KeyValueSet<datatype>* m_ValueSet;
-			unsigned int m_CurrentKeyLocation;
-			InterpolatorType m_type;
+			std::vector<KeyValue<datatype>>  m_KeyValues;
+			InterpolatorType  m_Type;
 		};
 
 

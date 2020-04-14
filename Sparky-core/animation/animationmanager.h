@@ -29,7 +29,7 @@ namespace sparky
 			AnimationManager* INSTANCE();
 		protected:
 			std::vector<class SkeletonClip*> m_Clips;
-			std::map<std::string, unsigned int> m_ClipId;
+			//std::map<std::string, unsigned int> m_ClipId;
 			static AnimationManager* m_AnimationManager;
 			AnimationManager() {}
 		};

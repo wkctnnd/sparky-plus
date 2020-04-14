@@ -135,7 +135,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation\animationlayer.cpp" />
     <ClCompile Include="animation\animationmanager.cpp" />
+    <ClCompile Include="animation\property.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
@@ -170,6 +172,7 @@
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation\animationlayer.h" />
     <ClInclude Include="animation\animationmanager.h" />
     <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="animation\Interpolator.h" />
