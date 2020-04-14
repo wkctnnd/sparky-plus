@@ -1,28 +1,27 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "Interpolator.h"
 namespace sparky
 {
 	namespace animation
 	{
-		template<class T>
-		struct KeyValue
-		{
-			unsigned int time;//millisecond
-			T value;
-		};
-		
-		template<class T>
+
+		template< class datatpe, typename InterpType, InterpType type>
 		class Property
 		{
-			friend class LinearInterpolator <T>;
-			void AddKeyValue(KeyValue<T>& keyvalue);
-			virtual T& Evaluate();
+ 
+			 void Set
+			 T& Evaluate();
 
 		private:
-			std::vector<KeyValue<T>>  m_KeyValues;
+			KeyValueSet<datatype>* m_ValueSet;
+			unsigned int m_CurrentKeyLocation;
+			InterpolatorType m_type;
 		};
+
 
 
 	}
 }
+#include "property.cpp"
