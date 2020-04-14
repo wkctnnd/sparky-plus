@@ -14,6 +14,7 @@ namespace sparky
 		template<class T>
 		class Interpolator
 		{
+		public:
 			virtual T Evaluate(unsigned long duration) = 0;
 			static InterpolatorType<T> *GetInterpolator(unsigned int propertyid,InterpolatorType type)
 			{
@@ -27,6 +28,8 @@ namespace sparky
 					break;
 				}
 			}
+		protected:
+			unsigned int m_LastFrame;
 		};
 
 		template<class T>
@@ -34,7 +37,7 @@ namespace sparky
 		{
 			virtual T Evaluate(Property<T> &p, unsigned int lastlocation, unsigned int currenttime)
 			{
-				
+				 
 			}
 
 			static LinearInterpolator<T>* GetInterpolater(unsigned int properid)
