@@ -31,7 +31,7 @@ namespace sparky
 			std::vector<Interpolator<float>*> interpolator;
 			for (unsigned int i = 0; i < m_FloatProperties.size(); i++)
 			{
-				interpolator.push_back((*m_FloatProperties[i])->GetInterpolator()); 
+				interpolator.push_back((*m_FloatProperties[i])->GetInterpolator(m_FloatProperties[i]));
 			}
 			return interpolator;
 		}
@@ -41,7 +41,7 @@ namespace sparky
 			std::vector<Interpolator<vec3>*> interpolator;
 			for (unsigned int i = 0; i < m_Vec3Properties.size(); i++)
 			{
-				interpolator.push_back((*m_Vec3Properties[i])->GetInterpolator());
+				interpolator.push_back((*m_Vec3Properties[i])->GetInterpolator(m_Vec3Properties[i]));
 			}
 			return interpolator;
 		}
@@ -51,7 +51,7 @@ namespace sparky
 			std::vector<Interpolator<Quaternion>*> interpolator;
 			for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
 			{
-				interpolator.push_back((*m_QuatProperties[i])->GetInterpolator());
+				interpolator.push_back((*m_QuatProperties[i])->GetInterpolator(m_QuatProperties[i]));
 			}
 			return interpolator;
 		}

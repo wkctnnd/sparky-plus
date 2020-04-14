@@ -13,9 +13,22 @@ namespace sparky
 			m_QuatInterpolators = layer->GetQuatInterpolator();
 		}
 
-		void Controller::UpdateProperties()
+		void Controller::UpdateProperties(unsigned long elapse)
 		{
+			for (unsigned int i = 0; i < m_FloatInterpolators.size(); i++)
+			{
+				m_FloatInterpolators[i]->Evaluate(elapse);
+			}
 
+			for (unsigned int i = 0;i<m_Vec3Interpolators.size();i++)
+			{
+				m_Vec3Interpolators[i]->Evaluate(elapse);
+			}
+
+			for (unsigned int i = 0;i<m_QuatInterpolators.size();i++)
+			{
+				m_QuatInterpolators[i]->Evaluate(elapse);
+			}
 		}
 
 	}

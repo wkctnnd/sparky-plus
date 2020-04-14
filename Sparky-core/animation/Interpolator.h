@@ -11,11 +11,24 @@ namespace sparky
 			Linear_Type,
 			TypeNum
 		};
+
 		template<class T>
 		class Interpolator
 		{
 		public:
-			virtual T Evaluate(unsigned long duration) = 0;
+		 
+			Interpolator(Property<T>* property)
+			{
+				m_Property = property;
+			}
+			 
+			T Evaluate(unsigned long duration)
+			{
+				T res;
+				return res;
+			}
+
+			/*template<class T>
 			static InterpolatorType<T> *GetInterpolator(unsigned int propertyid,InterpolatorType type)
 			{
 				switch (type)
@@ -27,14 +40,19 @@ namespace sparky
 				default:
 					break;
 				}
-			}
+			}*/
 		protected:
+			 
+			Property<T>* m_Property;
 			unsigned int m_LastFrame;
 		};
 
 		template<class T>
 		class LinearInterpolator :public Interpolator<T>
 		{
+			 
+			LinearInterpolator(Property<T>* property):Interpolator<T>(property)
+			{}
 			virtual T Evaluate(Property<T> &p, unsigned int lastlocation, unsigned int currenttime)
 			{
 				 
