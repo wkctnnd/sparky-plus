@@ -11,7 +11,9 @@
 #include "skeletalpose.h"
 #include "map"
 #include "list"
+#include "animation/animationlayer.h"
 
+using namespace sparky::animation;
 using namespace sparky::maths;
 namespace sparky {
 	namespace asset {
@@ -144,6 +146,7 @@ namespace sparky {
 			vec4 ConvertFBXVec4(FbxVector4& fbxvec);
 
 			void LoadSkinData();
+			void LoadAnimationData();
 			int GetJointIndex(FbxString jointname);
 			joint* GetJoint(int index);
 
@@ -165,7 +168,7 @@ namespace sparky {
 
 			std::vector<InterMediateMesh*> m_InterMeshArray;
 			std::vector<FbxMesh*> m_FbxMeshProcessing;
-
+			std::vector<AnimationLayer *> m_AnimationLayers;
 			FBXMeshPostProcess *m_PostProcess;
 			
 		};

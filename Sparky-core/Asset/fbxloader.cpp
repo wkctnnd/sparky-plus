@@ -4,6 +4,7 @@
 #include <list>
 
 //https://blog.csdn.net/jxw167/article/details/81630899
+//https://blog.csdn.net/guizhidaoni/article/details/104940957
 using namespace sparky::maths;
 namespace sparky {
 
@@ -260,35 +261,8 @@ namespace sparky {
 			{
 				FbxCharacterPose* pose = mScene->GetCharacterPose(i);
 			}*/
-			FbxArray<FbxString*> AnimStackNameArray;
-			mScene->FillAnimStackNameArray(AnimStackNameArray);
-
-		/*	unsigned int posecount = mScene->GetPoseCount();
-			unsigned int posecount2 = mScene->GetCharacterPoseCount();
-			unsigned int count3 = mScene->GetGeometryCount();
-			FbxGeometry* g = mScene->GetGeometry(0);
-			g->GetNormals()*/
-	//		for (size_t i = 0; i < AnimStackNameArray.Size(); i++)
-	//		{
-	//			FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
-	//			m_AnimStacks.push_back(AnimationStack);
-
-	//			FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
-	//			SkeletonClip* pose = new SkeletonClip(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
-	//			
-	//			m_ClipInfos.push_back(stackspan);
-	//			m_ClipAsset.push_back(pose);
-	///*			FbxTimeSpan stack = AnimationStack->GetLocalTimeSpan();
-	//			FbxTime start = AnimationStack->LocalStart;
-	//			FbxTime end = AnimationStack->LocalStop;
-	//			int a = 1;*/
-	//		}
-
-			for (unsigned int i = 0; i < m_AnimStacks.size(); i++)
-			{
-				FbxAnimLayer * AnimLayer = m_AnimStacks[i]->GetMember<FbxAnimLayer>();
-				//if()
-			}
+		
+			LoadAnimationData();
 			ProcessNode(mScene->GetRootNode());
 			LoadSkinData();
 			PostProcess();
@@ -624,6 +598,8 @@ namespace sparky {
 
 					// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
 					// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+					//pAnimationLayer->
+
 					FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
 					FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
 					
@@ -1173,6 +1149,47 @@ namespace sparky {
 				AssociateSkeletonWithCtrlPoint(m_FbxMeshProcessing[i], m_InterMeshArray[i]);
 			}
 		
+		}
+
+		void FBXLoader::LoadAnimationData()
+		{
+			FbxArray<FbxString*> AnimStackNameArray;
+			mScene->FillAnimStackNameArray(AnimStackNameArray);
+
+	
+			int numstacks = mScene->GetSrcObjectCount<FbxAnimStack>();
+			std::vector<FbxAnimStack*> stacks;
+			for (int i = 0; i < numstacks; i++)
+			{
+				FbxAnimStack* pAnimStack = FbxCast<FbxAnimStack>(mScene->GetSrcObject<FbxAnimStack>(i));
+				stacks.push_back(pAnimStack);
+			}
+			/*	unsigned int posecount = mScene->GetPoseCount();
+			unsigned int posecount2 = mScene->GetCharacterPoseCount();
+			unsigned int count3 = mScene->GetGeometryCount();
+			FbxGeometry* g = mScene->GetGeometry(0);
+			g->GetNormals()*/
+			//		for (size_t i = 0; i < AnimStackNameArray.Size(); i++)
+			//		{
+			//			FbxAnimStack *  AnimationStack = mScene->FindMember<FbxAnimStack>(AnimStackNameArray[i]->Buffer());
+			//			m_AnimStacks.push_back(AnimationStack);
+
+			//			FbxTimeSpan stackspan = AnimationStack->GetLocalTimeSpan();
+			//			SkeletonClip* pose = new SkeletonClip(stackspan.GetDuration().Get(), stackspan.GetDuration().GetFrameCount());
+			//			
+			//			m_ClipInfos.push_back(stackspan);
+			//			m_ClipAsset.push_back(pose);
+			///*			FbxTimeSpan stack = AnimationStack->GetLocalTimeSpan();
+			//			FbxTime start = AnimationStack->LocalStart;
+			//			FbxTime end = AnimationStack->LocalStop;
+			//			int a = 1;*/
+			//		}
+
+			for (unsigned int i = 0; i < m_AnimStacks.size(); i++)
+			{
+				FbxAnimLayer * AnimLayer = m_AnimStacks[i]->GetMember<FbxAnimLayer>();
+				//if()
+			}
 		}
 
 		int FBXLoader::GetJointIndex(FbxString jointname)
