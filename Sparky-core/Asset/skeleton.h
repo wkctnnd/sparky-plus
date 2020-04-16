@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "maths/vec3.h"
+#include "maths/mat4.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -10,12 +11,17 @@ namespace sparky
 		{
 			joint(joint* p, std::string n)
 			{
-				name = n;
+				bonename = n;
 				parent = p;
 
 			}
-			std::string name;
-			vec3 position;
+			
+			std::string bonename;
+			//wostd::string 
+			//vec3 position;
+			mat4 InvBoneMatrix;
+
+			
 			joint* parent;
 			std::vector<joint*> children;
 		};

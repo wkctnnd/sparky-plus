@@ -13,17 +13,29 @@ namespace sparky
 			T value;
 		};
 
+
+		class KeyValueCollectionBase
+		{
+		public:
+			virtual InterpolatorBase * GetInterpolator(KeyValueCollectionBase* keyvalues) { return 0; }
+			int GetUniqueKey() { return m_UniqueKey; }
+		protected:
+			int m_UniqueKey;
+		};
+
 		template< class datatype>
-		class Property
+		class KeyValueCollection :public KeyValueCollectionBase
 		{
 		public:
 
-			Interpolator<datatype>* GetInterpolator(Property<datatype>* property);
+			//Interpolator<datatype>* GetInterpolator(KeyValueCollection<datatype>* property);
+
+			InterpolatorBase* GetInterpolator(KeyValueCollectionBase* keyvalues);
 
 				// T& Evaluate(unsigned long time);
-				void SetInterpolatorType(InterpolatorType type);
+			void SetInterpolatorType(InterpolatorType type);
 
-				void AddKeyValue(KeyValue<datatype>& keyvalue);
+			void AddKeyValue(KeyValue<datatype>& keyvalue);
 			
 			 datatype Get() { return m_Value; }
 			// void BindData(KeyValueSet<datatype>*  data);
@@ -32,6 +44,9 @@ namespace sparky
 			std::vector<KeyValue<datatype>>  m_KeyValues;
 			InterpolatorType  m_Type;
 			datatype m_Value;
+
+			std::string m_Name;
+			
 		};
 
 		/*template< class datatype>
@@ -55,4 +70,4 @@ namespace sparky
 
 	}
 }
-#include "property.inl"
+#include "keyvalue.inl"

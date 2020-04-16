@@ -4,6 +4,7 @@
 #include "maths/vec3.h"
 #include "Interpolator.h"
 #include "maths/quaternion.h"
+
 using namespace sparky::maths;
 namespace sparky
 {
@@ -14,15 +15,18 @@ namespace sparky
 		class Controller
 		{
 		public:
-			void Initialize(class AnimationLayer* layer);
+			void Initialize(std::vector<class AnimationLayer*>& layers);
 			void UpdateProperties(unsigned long elapse);
+
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
 			std::vector<Interpolator<vec3>*> m_Vec3Interpolators;
 			std::vector<Interpolator<Quaternion>*> m_QuatInterpolators;*/
 
-			std::vector<InterpolatorBase*>  m_Interpolators;
+			std::vector<AnimationLayer*>  m_KeyValueCollectionArray;
 			float m_CurrentTime;
+
+			std::map<int, InterpolatorBase*> m_InterpolatorMap;
 		};
 
 

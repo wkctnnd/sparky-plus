@@ -5,23 +5,51 @@
 #include "maths/vec3.h"
 #include "maths/mat4.h"
 #include "maths/quaternion.h"
+#include "animation/keyvalue.h"
 using namespace sparky::maths;
+using namespace sparky::animation;
 namespace sparky
 {
 	namespace asset
 	{
+		//struct SkeletonPose
+		//{
+		//	SkeletonPose(vec3 t, vec3 s, Quaternion q)
+		//	{
+		//		translate = t;
+		//		scale = s;
+		//		quat = q;
+		//	}
+		//	vec3 translate;
+		//	vec3 scale;
+		//	Quaternion quat;
+		//};
+
 		struct SkeletonPose
 		{
-			SkeletonPose(vec3 t, vec3 s, Quaternion q)
-			{
-				translate = t;
-				scale = s;
-				quat = q;
-			}
-			vec3 translate;
-			vec3 scale;
-			Quaternion quat;
+			//SkeletonPose()
+			//{
+
+			//}
+			//Property<vec3> Translate;
+			//Property<vec3> scale;
+			//Property<Quaternion> quat;
 		};
+
+		/*struct SkeletonClip
+		{
+			SkeletonClip(unsigned long span, unsigned int fcount)
+			{
+				milliseconds = span;
+				framecount = fcount;
+			}
+			unsigned long milliseconds;
+			unsigned int framecount;
+	
+
+			std::vector<SkeletonPose> LocalPose;
+			std::vector<mat4> WorldPose;
+		};*/
 
 		struct SkeletonClip
 		{
@@ -32,7 +60,9 @@ namespace sparky
 			}
 			unsigned long milliseconds;
 			unsigned int framecount;
-			std::vector<SkeletonPose> LocalPose;
+
+
+			SkeletonPose LocalPose;
 			std::vector<mat4> WorldPose;
 		};
 

@@ -634,9 +634,11 @@ namespace sparky {
 					vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
 					vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
 					Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
-					SkeletonPose pose(translate,scale,quat);
-					m_ClipAsset[i]->LocalPose.push_back(pose);
-					m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
+					
+					//需要修改成property
+					//SkeletonPose pose(translate,scale,quat);
+					//m_ClipAsset[i]->LocalPose.push_back(pose);
+					//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
 				}
 			}
 		
@@ -1178,11 +1180,12 @@ namespace sparky {
 			//暂时默认，一个fbx只有一个骨骼
 			for (int i=0;i<m_SkeletalAsset[0]->joints.size();i++)
 			{
-				if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
+			/*	if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
 				{
 					return i;
-				}
+				}*/
 			}
+			return 0;
 		}
 
 		joint* FBXLoader::GetJoint(int index)

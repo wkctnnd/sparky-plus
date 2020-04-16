@@ -177,7 +177,8 @@
     <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="animation\controller.h" />
     <ClInclude Include="animation\Interpolator.h" />
-    <ClInclude Include="animation\property.h" />
+    <ClInclude Include="animation\keyvalue.h" />
+    <ClInclude Include="animation\propertygroup.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Asset\fbxloader.h" />
@@ -233,7 +234,7 @@
     <ClInclude Include="utils\timer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="animation\property.inl" />
+    <None Include="animation\keyvalue.inl" />
     <None Include="shaders\ApplyAdvection.comp" />
     <None Include="shaders\ApplyAdvectionVelocity.comp" />
     <None Include="shaders\ApplyBuoyancy.comp" />

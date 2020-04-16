@@ -7,7 +7,7 @@ namespace sparky
 	{
 
 		template< class datatype>
-		class Property;
+		class KeyValueCollection;
 
 		enum InterpolatorType
 		{
@@ -19,6 +19,9 @@ namespace sparky
 		{
 		public:
 			virtual void Evaluate(unsigned long duration) = 0;
+
+			virtual int GetUniqueKey() = 0;
+			
 		};
 
 		template<class T>
@@ -26,7 +29,7 @@ namespace sparky
 		{
 		public:
 		 
-			Interpolator(Property<T>* property)
+			Interpolator(KeyValueCollection<T>* property)
 			{
 				m_Property = property;
 			}
@@ -36,6 +39,10 @@ namespace sparky
 	 
 			}
 
+			virtual int GetUniqueKey()
+			{
+				m_keyValue->GetUniqueKey();
+			}
 			/*template<class T>
 			static InterpolatorType<T> *GetInterpolator(unsigned int propertyid,InterpolatorType type)
 			{
@@ -51,7 +58,7 @@ namespace sparky
 			}*/
 		protected:
 			 
-			Property<T>* m_Property;
+			KeyValueCollection<T>* m_keyValue;
 			unsigned int m_LastFrame;
 		};
 
@@ -59,7 +66,7 @@ namespace sparky
 		class LinearInterpolator :public Interpolator<T>
 		{
 		public:
-			LinearInterpolator(Property<T>* property):Interpolator<T>(property)
+			LinearInterpolator(KeyValueCollection<T>* property):Interpolator<T>(property)
 			{}
 			virtual void Evaluate(unsigned int currenttime)
 			{

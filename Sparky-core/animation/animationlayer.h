@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "property.h"
+#include "keyvalue.h"
 #include "maths/quaternion.h"
 #include "maths/vec3.h"
 using namespace sparky::maths;
@@ -23,13 +23,20 @@ namespace sparky
 			//std::vector<Interpolator<Quaternion>*> GetQuatInterpolator();
 
 			std::vector<InterpolatorBase*> GetInterPolator();
-
+		
 		private:
-			std::vector<Property<float>*> m_FloatProperties;
-			std::vector<Property<Quaternion>*> 	m_QuatProperties;
-			std::vector<Property<vec3>*> m_Vec3Properties;
+
+			std::vector<std::string>  m_PropertyName;
+
+			std::vector<KeyValueCollectionBase*> m_KeyValueCollectionBaseArray;
+
+			std::vector<KeyValueCollection<float>*> m_FloatProperties;
+			std::vector<KeyValueCollection<Quaternion>*> 	m_QuatProperties;
+			std::vector<KeyValueCollection<vec3>*> m_Vec3Properties;
 			float m_BlendWeight;
 			bool m_Loop;
+
+			
 		};
 
 

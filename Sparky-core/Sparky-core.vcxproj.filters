@@ -293,13 +293,16 @@
     <ClInclude Include="animation\Interpolator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="animation\property.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="animation\animationlayer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation\controller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\propertygroup.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\keyvalue.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -323,7 +326,7 @@
     <None Include="shaders\SmokeRayCast.vert" />
     <None Include="shaders\skinmesh.frag" />
     <None Include="shaders\skinmesh.vert" />
-    <None Include="animation\property.inl">
+    <None Include="animation\keyvalue.inl">
       <Filter>头文件</Filter>
     </None>
   </ItemGroup>
