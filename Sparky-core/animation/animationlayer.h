@@ -18,9 +18,11 @@ namespace sparky
 			bool GetWeight()const;
 
 			//Property<float> GetFloatProperties();
-			std::vector<Interpolator<float>*> GetFloatInterpolator();
-			std::vector<Interpolator<vec3>*> GetVec3Interpolator();
-			std::vector<Interpolator<Quaternion>*> GetQuatInterpolator();
+			//std::vector<Interpolator<float>*> GetFloatInterpolator();
+			//std::vector<Interpolator<vec3>*> GetVec3Interpolator();
+			//std::vector<Interpolator<Quaternion>*> GetQuatInterpolator();
+
+			std::vector<InterpolatorBase*> GetInterPolator();
 
 		private:
 			std::vector<Property<float>*> m_FloatProperties;

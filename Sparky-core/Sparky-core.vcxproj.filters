@@ -117,9 +117,6 @@
     <ClCompile Include="animation\animationmanager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="animation\property.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="animation\animationlayer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -326,5 +323,8 @@
     <None Include="shaders\SmokeRayCast.vert" />
     <None Include="shaders\skinmesh.frag" />
     <None Include="shaders\skinmesh.vert" />
+    <None Include="animation\property.inl">
+      <Filter>头文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

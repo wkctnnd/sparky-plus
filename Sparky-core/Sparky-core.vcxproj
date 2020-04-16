@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8CA744EE-0BF2-405E-B510-B27C942E1540}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -138,7 +138,6 @@
     <ClCompile Include="animation\animationlayer.cpp" />
     <ClCompile Include="animation\animationmanager.cpp" />
     <ClCompile Include="animation\controller.cpp" />
-    <ClCompile Include="animation\property.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
@@ -234,6 +233,7 @@
     <ClInclude Include="utils\timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="animation\property.inl" />
     <None Include="shaders\ApplyAdvection.comp" />
     <None Include="shaders\ApplyAdvectionVelocity.comp" />
     <None Include="shaders\ApplyBuoyancy.comp" />

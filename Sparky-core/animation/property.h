@@ -17,10 +17,14 @@ namespace sparky
 		class Property
 		{
 		public:
-			Interpolator<datatype>* GetInterpolator();
-			 T& Evaluate(unsigned long time);
-			 void SetInterpolatorType(InterpolatorType type)
-			 void AddKeyValue(KeyValue<T>& keyvalue);
+
+			Interpolator<datatype>* GetInterpolator(Property<datatype>* property);
+
+				// T& Evaluate(unsigned long time);
+				void SetInterpolatorType(InterpolatorType type);
+
+				void AddKeyValue(KeyValue<datatype>& keyvalue);
+			
 			 datatype Get() { return m_Value; }
 			// void BindData(KeyValueSet<datatype>*  data);
 
@@ -30,8 +34,25 @@ namespace sparky
 			datatype m_Value;
 		};
 
-
+		/*template< class datatype>
+		void sparky::animation::Property<datatype>::AddKeyValue(KeyValue<datatype>& keyvalue)
+		{
+		
+		}
+		
+		template< class datatype>
+		void sparky::animation::Property<datatype>::SetInterpolatorType(InterpolatorType type)
+		{
+		
+		}
+		
+		template< class datatype>
+		sparky::animation::Interpolator<datatype>* sparky::animation::Property<datatype>::GetInterpolator(Property<datatype>* property)
+		{
+		return nullptr;
+		}*/
+		
 
 	}
 }
-#include "property.cpp"
+#include "property.inl"

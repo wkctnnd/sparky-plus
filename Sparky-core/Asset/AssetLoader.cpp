@@ -38,7 +38,7 @@ namespace sparky {
 			}
 		}
 
-		class RawSkinMesh* AssetLoader::GetRawSkinMesh(unsigned int id)
+		RawSkinMesh* AssetLoader::GetRawSkinMesh(unsigned int id)
 		{
 			return m_FbxLoader->GetRawSkinMesh(id);
 		}
@@ -63,7 +63,10 @@ namespace sparky {
 		class SkeletonClip* AssetLoader::GetClip(unsigned int id)
 		{
 			return m_FbxLoader->GetClip(id);
+			
 		}
 	
+		
+
 	}
 }

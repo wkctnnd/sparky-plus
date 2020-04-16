@@ -8,14 +8,12 @@ namespace sparky
 
 		void Controller::Initialize(AnimationLayer* layer)
 		{
-			m_FloatInterpolators = layer->GetFloatInterpolator();
-			m_Vec3Interpolators = layer->GetVec3Interpolator();
-			m_QuatInterpolators = layer->GetQuatInterpolator();
+			m_Interpolators = layer->GetInterPolator();
 		}
 
 		void Controller::UpdateProperties(unsigned long elapse)
 		{
-			for (unsigned int i = 0; i < m_FloatInterpolators.size(); i++)
+			/*for (unsigned int i = 0; i < m_FloatInterpolators.size(); i++)
 			{
 				m_FloatInterpolators[i]->Evaluate(elapse);
 			}
@@ -28,6 +26,11 @@ namespace sparky
 			for (unsigned int i = 0;i<m_QuatInterpolators.size();i++)
 			{
 				m_QuatInterpolators[i]->Evaluate(elapse);
+			}*/
+
+			for (unsigned int i = 0; i < m_Interpolators.size(); i++)
+			{
+				m_Interpolators[i]->Evaluate(elapse);
 			}
 		}
 

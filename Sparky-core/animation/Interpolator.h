@@ -1,10 +1,13 @@
 #pragma once
 #include <string>
-#include "property.h"
+#include <map>
 namespace sparky
 {
 	namespace animation
 	{
+
+		template< class datatype>
+		class Property;
 
 		enum InterpolatorType
 		{
@@ -12,8 +15,14 @@ namespace sparky
 			TypeNum
 		};
 
+		class InterpolatorBase
+		{
+		public:
+			virtual void Evaluate(unsigned long duration) = 0;
+		};
+
 		template<class T>
-		class Interpolator
+		class Interpolator:InterpolatorBase
 		{
 		public:
 		 
@@ -22,10 +31,9 @@ namespace sparky
 				m_Property = property;
 			}
 			 
-			T Evaluate(unsigned long duration)
+			void Evaluate(unsigned long duration)
 			{
-				T res;
-				return res;
+	 
 			}
 
 			/*template<class T>
@@ -50,15 +58,15 @@ namespace sparky
 		template<class T>
 		class LinearInterpolator :public Interpolator<T>
 		{
-			 
+		public:
 			LinearInterpolator(Property<T>* property):Interpolator<T>(property)
 			{}
-			virtual T Evaluate(Property<T> &p, unsigned int lastlocation, unsigned int currenttime)
+			virtual void Evaluate(unsigned int currenttime)
 			{
 				 
 			}
 
-			static LinearInterpolator<T>* GetInterpolater(unsigned int properid)
+		/*	static LinearInterpolator<T>* GetInterpolater(unsigned int properid)
 			{
 				auto result = m_Interpolaters.find(properid);
 				if (result == m_Interpolaters::end())
@@ -68,7 +76,7 @@ namespace sparky
 					return interpolator;
 				}
 				return *result;
-			}
+			}*/
 			std::map<unsigned int, LinearInterpolator<T>*> m_Interpolaters;
 		};
 	}

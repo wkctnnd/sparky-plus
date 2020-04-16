@@ -17,9 +17,11 @@ namespace sparky
 			void Initialize(class AnimationLayer* layer);
 			void UpdateProperties(unsigned long elapse);
 		private:
-			std::vector<Interpolator<float>*>  m_FloatInterpolators;
+			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
 			std::vector<Interpolator<vec3>*> m_Vec3Interpolators;
-			std::vector<Interpolator<Quaternion>*> m_QuatInterpolators;
+			std::vector<Interpolator<Quaternion>*> m_QuatInterpolators;*/
+
+			std::vector<InterpolatorBase*>  m_Interpolators;
 			float m_CurrentTime;
 		};
 

@@ -9,6 +9,8 @@
 #include "particle/particlemanager.h"
 
 #include "Asset/AssetLoader.h"
+#include "Asset/rawskinmesh.h"
+#include "Asset/skeletalpose.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -17,7 +19,7 @@ namespace sparky
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
-		
+
 		FluidRenderer::FluidParam param;
 		//render(param);
 		//render.Initialize();
