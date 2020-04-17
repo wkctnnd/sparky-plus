@@ -76,8 +76,8 @@ namespace sparky
 			//{
 			//	//interpolator.push_back(m_QuatProperties[i]->GetInterpolator(m_QuatProperties[i]));
 			//}
-			for(unsigned int i=0;i<m_KeyValueCollectionBaseArray.size();i++)
-				interpolator.push_back(m_KeyValueCollectionBaseArray[i]->GetInterpolator(m_KeyValueCollectionBaseArray[i]));
+			for(unsigned int i=0;i<m_KeyValueCollectionArray.size();i++)
+				interpolator.push_back(m_KeyValueCollectionArray[i]->GetInterpolator(m_KeyValueCollectionArray[i]));
 			return interpolator;
 		}
 	}

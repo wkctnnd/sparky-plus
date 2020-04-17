@@ -18,29 +18,26 @@ namespace sparky
 			return interpolator;
 		}*/
 
-		template< class datatype>
-		void KeyValueCollection<datatype>::SetInterpolatorType(InterpolatorType type)
+		void KeyValueCollection::SetInterpolatorType(InterpolatorType type)
 		{
 			m_Type = type;
 		}
 
-		template< class datatype>
-		void KeyValueCollection<datatype>::AddKeyValue(KeyValue<datatype>& keyvalue)
+
+		void KeyValueCollection::AddKeyValue(KeyValue& keyvalue)
 		{
 			m_KeyValues.push_back(keyvalue);
 		}
 
 
-
-		template< class datatype>
-		InterpolatorBase* KeyValueCollection<datatype>::GetInterpolator(KeyValueCollectionBase* values)
+		KeyValueCollection* KeyValueCollection::GetInterpolator(KeyValueCollection* values)
 		{
 			InterpolatorBase* interpolator = nullptr;
 			switch (m_Type)
 			{
 			case Linear_Type:
 			{
-				interpolator = new LinearInterpolator< datatype >(values);
+				interpolator = new LinearInterpolator(values);
 			}
 			}
 

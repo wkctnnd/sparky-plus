@@ -28,11 +28,11 @@ namespace sparky
 
 			std::vector<std::string>  m_PropertyName;
 
-			std::vector<KeyValueCollectionBase*> m_KeyValueCollectionBaseArray;
+			std::vector<KeyValueCollection*> m_KeyValueCollectionArray;
 
-			std::vector<KeyValueCollection<float>*> m_FloatProperties;
+		/*	std::vector<KeyValueCollection*> m_FloatProperties;
 			std::vector<KeyValueCollection<Quaternion>*> 	m_QuatProperties;
-			std::vector<KeyValueCollection<vec3>*> m_Vec3Properties;
+			std::vector<KeyValueCollection<vec3>*> m_Vec3Properties;*/
 			float m_BlendWeight;
 			bool m_Loop;
 

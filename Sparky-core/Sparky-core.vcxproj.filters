@@ -123,6 +123,9 @@
     <ClCompile Include="animation\controller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="animation\keyvalue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -303,6 +306,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation\keyvalue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\keyvaluenode.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

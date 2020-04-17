@@ -6,7 +6,7 @@ namespace sparky
 	namespace animation
 	{
 
-		template< class datatype>
+	 
 		class KeyValueCollection;
 
 		enum InterpolatorType
@@ -18,55 +18,26 @@ namespace sparky
 		class InterpolatorBase
 		{
 		public:
-			virtual void Evaluate(unsigned long duration) = 0;
+			InterpolatorBase(KeyValueCollection* keyvalues) :m_keyValues(keyvalues) {}
+			virtual void Evaluate(unsigned long duration) {};
 
-			virtual int GetUniqueKey() = 0;
+			int GetUniqueKey()
+			{
+				//m_keyValue->GetUniqueKey();
+				return 0;
+			}
 			
-		};
-
-		template<class T>
-		class Interpolator:InterpolatorBase
-		{
-		public:
-		 
-			Interpolator(KeyValueCollection<T>* property)
-			{
-				m_Property = property;
-			}
-			 
-			void Evaluate(unsigned long duration)
-			{
-	 
-			}
-
-			virtual int GetUniqueKey()
-			{
-				m_keyValue->GetUniqueKey();
-			}
-			/*template<class T>
-			static InterpolatorType<T> *GetInterpolator(unsigned int propertyid,InterpolatorType type)
-			{
-				switch (type)
-				{
-				case sparky::animation::Linear_Type:
-					return LinearInterpolator<T>::GetInterpolator(propertyid);
- 
-				 
-				default:
-					break;
-				}
-			}*/
 		protected:
-			 
-			KeyValueCollection<T>* m_keyValue;
-			unsigned int m_LastFrame;
+		
+
+			KeyValueCollection * m_keyValues;
 		};
 
-		template<class T>
-		class LinearInterpolator :public Interpolator<T>
+
+		class LinearInterpolator :public InterpolatorBase
 		{
 		public:
-			LinearInterpolator(KeyValueCollection<T>* property):Interpolator<T>(property)
+			LinearInterpolator(KeyValueCollection* keyvalues):InterpolatorBase(keyvalues)
 			{}
 			virtual void Evaluate(unsigned int currenttime)
 			{
@@ -84,7 +55,7 @@ namespace sparky
 				}
 				return *result;
 			}*/
-			std::map<unsigned int, LinearInterpolator<T>*> m_Interpolaters;
+			std::map<unsigned int, LinearInterpolator*> m_Interpolaters;
 		};
 	}
 }

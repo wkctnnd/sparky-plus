@@ -138,6 +138,7 @@
     <ClCompile Include="animation\animationlayer.cpp" />
     <ClCompile Include="animation\animationmanager.cpp" />
     <ClCompile Include="animation\controller.cpp" />
+    <ClCompile Include="animation\keyvalue.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="animation\controller.h" />
     <ClInclude Include="animation\Interpolator.h" />
     <ClInclude Include="animation\keyvalue.h" />
+    <ClInclude Include="animation\keyvaluenode.h" />
     <ClInclude Include="animation\propertygroup.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\AssetManager.h" />

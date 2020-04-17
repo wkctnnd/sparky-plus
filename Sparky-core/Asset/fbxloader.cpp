@@ -579,6 +579,47 @@ namespace sparky {
 		}
 
 		//加载骨骼的动画信息
+		//void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode)
+		//{
+		//	unsigned long millseconds;
+		//	for (unsigned int i = 0; i < m_ClipAsset.size(); i++)
+		//	{
+		//		FbxTimeSpan& span = m_ClipInfos[i];
+		//		unsigned int framecount = span.GetDuration().GetFrameCount();
+		//		for (unsigned int j = 0; j < framecount; ++j)
+		//		{
+
+		//			
+		//			FbxTime keyTimer;
+		//			unsigned long t0 = span.GetDuration().GetFramedTime().GetMilliSeconds();
+		//			float t1 = span.GetDuration().GetMilliSeconds() / framecount;
+		//			millseconds = (span.GetStart() + t1 * (float)j).Get();
+		//			keyTimer.SetMilliSeconds(millseconds);
+
+		//			// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
+		//			// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+		//			//pAnimationLayer->
+
+		//			FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
+		//			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+		//			
+		//			FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
+		//			FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
+		//			FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
+
+		//			vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+		//			vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+		//			Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
+		//			
+		//			//需要修改成property
+		//			//SkeletonPose pose(translate,scale,quat);
+		//			//m_ClipAsset[i]->LocalPose.push_back(pose);
+		//			//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
+		//		}
+		//	}
+		//
+		//}
+
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode)
 		{
 			unsigned long millseconds;
@@ -599,8 +640,28 @@ namespace sparky {
 					// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
 					// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
 					//pAnimationLayer->
+					FbxAnimCurve* Curve[3];
+					Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+					Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+					Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+					pNode->LclTranslation.GetCurveNode()
+					
+			/*		int keycount = TranslateAnimCurve->KeyGetCount();
+					for (int i = 0; i < keycount; i++)
+					{
+						TranslateAnimCurve->KeyGet(0)
+					}
+*/
 
-					FbxAMatrix curveKeyLocalMatrix = pNode->EvaluateLocalTransform(keyTimer);
+					Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+					Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+					Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+
+					Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+					Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+					Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+
+					
 					FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
 					
 					FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
@@ -646,10 +707,11 @@ namespace sparky {
 					skeleton->joints[parentindex]->children.push_back(j);
 
 					
-					LoadNodeCurve(animationlayer, pNode);
+					
 				}
 					
-				
+				LoadNodeCurve(animationlayer, pNode);
+
 				skeleton->joints.push_back(j);
 			}
 
@@ -944,7 +1006,8 @@ namespace sparky {
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton* skeleton = new Skeleton();
 					//SkeletonClip* pose;
-					ProcessSkeleton(pNode, skeleton , -1, animationlayer);
+					for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+						ProcessSkeleton(pNode, skeleton , -1, m_FBXAnimLayers[i]);
 					m_SkeletalAsset.push_back(skeleton);
 			
 					return;
@@ -1158,12 +1221,23 @@ namespace sparky {
 
 	
 			int numstacks = mScene->GetSrcObjectCount<FbxAnimStack>();
-			std::vector<FbxAnimStack*> stacks;
+	 
 			for (int i = 0; i < numstacks; i++)
 			{
 				FbxAnimStack* pAnimStack = FbxCast<FbxAnimStack>(mScene->GetSrcObject<FbxAnimStack>(i));
-				stacks.push_back(pAnimStack);
+				m_AnimStacks.push_back(pAnimStack);
+				int layernum = pAnimStack->GetMemberCount<FbxAnimLayer>();
+				for (int j = 0; j < layernum; j++)
+				{
+					FbxAnimLayer *animationlayer = pAnimStack->GetMember<FbxAnimLayer>(i);
+					m_FBXAnimLayers.push_back(animationlayer);
+				}
+				
 			}
+
+			//for(int i=0;i<)
+
+
 			/*	unsigned int posecount = mScene->GetPoseCount();
 			unsigned int posecount2 = mScene->GetCharacterPoseCount();
 			unsigned int count3 = mScene->GetGeometryCount();

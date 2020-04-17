@@ -6,45 +6,45 @@ namespace sparky
 {
 	namespace animation
 	{
-		template<class T>
+ 
 		struct KeyValue
 		{
 			unsigned int time;//millisecond
-			T value;
+			float value;
 		};
 
 
-		class KeyValueCollectionBase
-		{
-		public:
-			virtual InterpolatorBase * GetInterpolator(KeyValueCollectionBase* keyvalues) { return 0; }
-			int GetUniqueKey() { return m_UniqueKey; }
-		protected:
-			int m_UniqueKey;
-		};
+		//class KeyValueCollectionBase
+		//{
+		//public:
+		//	virtual InterpolatorBase * GetInterpolator(KeyValueCollectionBase* keyvalues) { return 0; }
+		//	int GetUniqueKey() { return m_UniqueKey; }
+		//protected:
+		//	int m_UniqueKey;
+		//};
 
-		template< class datatype>
-		class KeyValueCollection :public KeyValueCollectionBase
+	
+		class KeyValueCollection  
 		{
 		public:
 
 			//Interpolator<datatype>* GetInterpolator(KeyValueCollection<datatype>* property);
 
-			InterpolatorBase* GetInterpolator(KeyValueCollectionBase* keyvalues);
+			InterpolatorBase* GetInterpolator(KeyValueCollection* keyvalues);
 
 				// T& Evaluate(unsigned long time);
 			void SetInterpolatorType(InterpolatorType type);
 
-			void AddKeyValue(KeyValue<datatype>& keyvalue);
+			void AddKeyValue(KeyValue& keyvalue);
 			
-			 datatype Get() { return m_Value; }
+			// float GetValue() { return m_Value; }
 			// void BindData(KeyValueSet<datatype>*  data);
 
 		private:
-			std::vector<KeyValue<datatype>>  m_KeyValues;
+			std::vector<KeyValue>  m_KeyValues;
 			InterpolatorType  m_Type;
-			datatype m_Value;
-
+			//datatype m_Value;
+			int m_UniqueKey;
 			std::string m_Name;
 			
 		};
@@ -70,4 +70,4 @@ namespace sparky
 
 	}
 }
-#include "keyvalue.inl"
+//#include "keyvalue.inl"

@@ -169,6 +169,7 @@ namespace sparky {
 			std::vector<InterMediateMesh*> m_InterMeshArray;
 			std::vector<FbxMesh*> m_FbxMeshProcessing;
 			std::vector<AnimationLayer *> m_AnimationLayers;
+			std::vector<FbxAnimLayer*> m_FBXAnimLayers;
 			FBXMeshPostProcess *m_PostProcess;
 			
 		};
