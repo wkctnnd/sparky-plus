@@ -311,6 +311,9 @@
     <ClInclude Include="animation\keyvaluenode.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="animation\property.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

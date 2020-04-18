@@ -9,6 +9,11 @@ namespace sparky
  
 		struct KeyValue
 		{
+			KeyValue(float v, unsigned int t)
+			{
+				value = v;
+				time = t;
+			}
 			unsigned int time;//millisecond
 			float value;
 		};

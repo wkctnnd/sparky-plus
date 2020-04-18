@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8CA744EE-0BF2-405E-B510-B27C942E1540}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -180,6 +180,7 @@
     <ClInclude Include="animation\Interpolator.h" />
     <ClInclude Include="animation\keyvalue.h" />
     <ClInclude Include="animation\keyvaluenode.h" />
+    <ClInclude Include="animation\property.h" />
     <ClInclude Include="animation\propertygroup.h" />
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\AssetManager.h" />
