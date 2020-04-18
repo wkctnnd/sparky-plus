@@ -644,14 +644,24 @@ namespace sparky {
 					Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 					Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 					Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-					pNode->LclTranslation.GetCurveNode()
+					//pNode->LclTranslation.GetCurveNode()
 					
-			/*		int keycount = TranslateAnimCurve->KeyGetCount();
-					for (int i = 0; i < keycount; i++)
+					for (int i = 0; i < 3; i++)
 					{
-						TranslateAnimCurve->KeyGet(0)
+						KeyValueCollection *valuecollection = new KeyValueCollection();
+						int keycount = Curve[i]->KeyGetCount();
+						for (int i = 0; i < keycount; i++)
+						{
+							FbxAnimCurveKey& curvekey = Curve[i]->KeyGet(i);
+							float data = curvekey.GetValue();
+							FbxTime time = curvekey.GetTime();
+
+							KeyValue value(data, time.Get());
+							buhaokan->AddKeyValue(value);
+						}
 					}
-*/
+					
+
 
 					Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 					Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
