@@ -4,9 +4,7 @@
 #include <string>
  
 //https://ppx209.com/videos/33278/av-fc2ppv-1202738/
-//#define Curve_Component_X "X"
-//#define Curve_Component_Y "Y"
-//#define Curve_Component_Z "Z"
+
 namespace sparky
 {
 	namespace animation
@@ -29,9 +27,15 @@ namespace sparky
 		template<class T>
 		class Property;
 
+		class KeyValueNodeBase
+		{
+
+		};
+
+
 		//实体与channel发生关系
 		template<class T>
-		class KeyValueNode
+		class KeyValueNode:public KeyValueNodeBase
 		{
 		public:
 			KeyValueNode(KeyValueNodeType type) :m_Type(type) {}
@@ -44,7 +48,7 @@ namespace sparky
 			KeyValueNodeType GetType() { return m_Type; }
 			T Evaluate();
 			
-			void AddComponent(const char* CurveComponent, class KeyValueCollection*);
+			void AddComponent(std::string CurveComponent, class KeyValueCollection*);
 
 			KeyValueNode<T> *CreateKeyValueNode();
 		private:
@@ -77,9 +81,9 @@ namespace sparky
 		}
 
 		template<class T>
-		void KeyValueNode<T>::AddComponent(const char* CurveComponent, class KeyValueCollection* keyvaluecollection)
+		void KeyValueNode<T>::AddComponent(std::string CurveComponent, class KeyValueCollection* keyvaluecollection)
 		{
-			m_KeyValueCollectionMap.insert(CurveComponent, keyvaluecollection);
+			m_KeyValueCollectionMap.insert(std::make_pair(CurveComponent, keyvaluecollection));
 		}
 	}
 }

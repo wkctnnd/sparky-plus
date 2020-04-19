@@ -13,6 +13,15 @@
 #include "list"
 #include "animation/animationlayer.h"
 
+namespace sparky
+{
+	namespace animation
+	{
+		template<class T>
+		class KeyValueNode;
+	}
+}
+
 using namespace sparky::animation;
 using namespace sparky::maths;
 namespace sparky {
@@ -125,6 +134,9 @@ namespace sparky {
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
 
 			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer *layer, FbxNode* pNode);
+
+			template<class T>
+			void LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
 			void FillPoseArray(FbxScene* pScene, FbxArray<FbxPose*>& pPoseArray)
 			{
 				const int lPoseCount = pScene->GetPoseCount();

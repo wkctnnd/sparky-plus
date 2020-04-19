@@ -56,7 +56,10 @@ namespace sparky
 			}
 			return interpolator;
 		}*/
-
+		void AnimationLayer::AddKeyValueNode(KeyValueNodeBase* keyvaluenode)
+		{
+			m_KeyValueNodeBaseArray.push_back(keyvaluenode);
+		}
 
 		std::vector<InterpolatorBase*> AnimationLayer::GetInterPolator()
 		{

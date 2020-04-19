@@ -3,6 +3,7 @@
 #include <fbxsdk/scene/geometry/fbxskeleton.h>
 #include <list>
 #include "animation/keyvaluenode.h"
+#include "global.h"
 //https://blog.csdn.net/jxw167/article/details/81630899
 //https://blog.csdn.net/guizhidaoni/article/details/104940957
 using namespace sparky::maths;
@@ -10,6 +11,13 @@ using namespace sparky::animation;
 namespace sparky {
 
 	namespace asset {
+
+		const char * Curve_Component[]
+		{
+			"X",
+			"Y",
+			"Z"
+		};
 
 		void FBXEasyMeshPostProcess::Process(std::vector<InterMediateMesh*>& intermediatemeharray)
 		{
@@ -621,97 +629,97 @@ namespace sparky {
 		//
 		//}
 
+		template<class T>
+		void FBXLoader::LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** Curve, int count)
+		{
+			for (int i = 0; i < count; i++)
+			{
+				int keycount = Curve[i]->KeyGetCount();
+
+				if (keycount > 0)
+				{
+					KeyValueCollection *valuecollection = new KeyValueCollection();
+					FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
+
+					switch (fbxtype)
+					{
+					case FbxAnimCurveDef::eInterpolationLinear:
+						valuecollection->SetInterpolatorType(Linear_Type);
+					default:
+						valuecollection->SetInterpolatorType(Linear_Type);
+						break;
+					}
+
+					for (int i = 0; i < keycount; i++)
+					{
+						FbxAnimCurveKey curvekey = Curve[i]->KeyGet(i);
+						float data = curvekey.GetValue();
+						FbxTime time = curvekey.GetTime();
+
+						KeyValue value(data, time.Get());
+						valuecollection->AddKeyValue(value);
+					}
+
+					keyvaluenode->AddComponent(Curve_Component[i], valuecollection);
+				}
+
+			}
+		}
+
+
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		{
-			unsigned long millseconds;
-			for (unsigned int i = 0; i < m_ClipAsset.size(); i++)
-			{
-				FbxTimeSpan& span = m_ClipInfos[i];
-				unsigned int framecount = span.GetDuration().GetFrameCount();
-				for (unsigned int j = 0; j < framecount; ++j)
-				{
-
-					
-					FbxTime keyTimer;
-					unsigned long t0 = span.GetDuration().GetFramedTime().GetMilliSeconds();
-					float t1 = span.GetDuration().GetMilliSeconds() / framecount;
-					millseconds = (span.GetStart() + t1 * (float)j).Get();
-					keyTimer.SetMilliSeconds(millseconds);
-
-					// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
-					// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
-					//pAnimationLayer->
-					FbxAnimCurve* Curve[3];
-					Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-					Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-					Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-					//pNode->LclTranslation.GetCurveNode()
-					
-					KeyValueNode<vec3> *keyvaluenode = new KeyValueNode<vec3>(Translate_Type);
-
-					for (int i = 0; i < 3; i++)
-					{
-						int keycount = Curve[i]->KeyGetCount();
-						
-						if (keycount > 0)
-						{
-							KeyValueCollection *valuecollection = new KeyValueCollection();
-							FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
-
-							switch (fbxtype)
-							{
-							case FbxAnimCurveDef::eInterpolationLinear:
-								valuecollection->SetInterpolatorType(Linear_Type);
-							default:
-								valuecollection->SetInterpolatorType(Linear_Type);
-								break;
-							}
-
-							for (int i = 0; i < keycount; i++)
-							{
-								FbxAnimCurveKey curvekey = Curve[i]->KeyGet(i);
-								float data = curvekey.GetValue();
-								FbxTime time = curvekey.GetTime();
-
-								KeyValue value(data, time.Get());
-								valuecollection->AddKeyValue(value);
-							}
-							
-
-						}
-						
-						
-						
-					}
-					
+			
+			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Type);
+			KeyValueNode<vec3> *rotatekeyvaluenode = new KeyValueNode<vec3>(Rotation_Type);
+			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Type);
 
 
-					Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-					Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-					Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
+			// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+			//pAnimationLayer->
+			FbxAnimCurve* Curve[3];
+			Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+			Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+			Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			//pNode->LclTranslation.GetCurveNode()
 
-					Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-					Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-					Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 
-					
-					FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
-					
-					FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
-					FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
-					FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
 
-					vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
-					vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
-					Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
-					
-					//需要修改成property
-					//SkeletonPose pose(translate,scale,quat);
-					//m_ClipAsset[i]->LocalPose.push_back(pose);
-					//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
-				}
-			}
-		
+			LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
+
+
+
+			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+			Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+
+			LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
+
+
+			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+			Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+			Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+
+			LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
+			/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+
+						FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
+						FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
+						FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
+
+						vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+						vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+						Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
+						*/
+						//需要修改成property
+						//SkeletonPose pose(translate,scale,quat);
+						//m_ClipAsset[i]->LocalPose.push_back(pose);
+						//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
+
+			layer->AddKeyValueNode(translatekeyvaluenode);
+			layer->AddKeyValueNode(rotatekeyvaluenode);
+			layer->AddKeyValueNode(scalekeyvaluenode);
 		}
 
 		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, AnimationLayer* layer, SkeletonClip** pose)

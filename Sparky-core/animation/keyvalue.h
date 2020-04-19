@@ -2,11 +2,17 @@
 #include <string>
 #include <vector>
 #include "Interpolator.h"
+
+
 namespace sparky
 {
 	namespace animation
 	{
  
+
+
+
+
 		struct KeyValue
 		{
 			KeyValue(float v, unsigned int t)

@@ -1,9 +1,6 @@
 #pragma once
 #include <string>
 
-
-
-
 namespace sparky {
 	namespace asset {
 		class AssetLoader
