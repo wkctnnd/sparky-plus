@@ -2,10 +2,11 @@
 #include <fbxsdk/scene/geometry/fbxlayer.h>
 #include <fbxsdk/scene/geometry/fbxskeleton.h>
 #include <list>
-
+#include "animation/keyvaluenode.h"
 //https://blog.csdn.net/jxw167/article/details/81630899
 //https://blog.csdn.net/guizhidaoni/article/details/104940957
 using namespace sparky::maths;
+using namespace sparky::animation;
 namespace sparky {
 
 	namespace asset {
@@ -620,7 +621,7 @@ namespace sparky {
 		//
 		//}
 
-		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, FbxNode* pNode)
+		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		{
 			unsigned long millseconds;
 			for (unsigned int i = 0; i < m_ClipAsset.size(); i++)
@@ -646,19 +647,41 @@ namespace sparky {
 					Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 					//pNode->LclTranslation.GetCurveNode()
 					
+					KeyValueNode<vec3> *keyvaluenode = new KeyValueNode<vec3>(Translate_Type);
+
 					for (int i = 0; i < 3; i++)
 					{
-						KeyValueCollection *valuecollection = new KeyValueCollection();
 						int keycount = Curve[i]->KeyGetCount();
-						for (int i = 0; i < keycount; i++)
+						
+						if (keycount > 0)
 						{
-							FbxAnimCurveKey& curvekey = Curve[i]->KeyGet(i);
-							float data = curvekey.GetValue();
-							FbxTime time = curvekey.GetTime();
+							KeyValueCollection *valuecollection = new KeyValueCollection();
+							FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
 
-							KeyValue value(data, time.Get());
-							buhaokan->AddKeyValue(value);
+							switch (fbxtype)
+							{
+							case FbxAnimCurveDef::eInterpolationLinear:
+								valuecollection->SetInterpolatorType(Linear_Type);
+							default:
+								valuecollection->SetInterpolatorType(Linear_Type);
+								break;
+							}
+
+							for (int i = 0; i < keycount; i++)
+							{
+								FbxAnimCurveKey curvekey = Curve[i]->KeyGet(i);
+								float data = curvekey.GetValue();
+								FbxTime time = curvekey.GetTime();
+
+								KeyValue value(data, time.Get());
+								valuecollection->AddKeyValue(value);
+							}
+							
+
 						}
+						
+						
+						
 					}
 					
 
@@ -691,7 +714,7 @@ namespace sparky {
 		
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, SkeletonClip** pose)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, AnimationLayer* layer, SkeletonClip** pose)
 		{
 
 			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
@@ -720,7 +743,7 @@ namespace sparky {
 					
 				}
 					
-				LoadNodeCurve(animationlayer, pNode);
+				LoadNodeCurve(animationlayer, layer, pNode);
 
 				skeleton->joints.push_back(j);
 			}
@@ -1017,7 +1040,7 @@ namespace sparky {
 					Skeleton* skeleton = new Skeleton();
 					//SkeletonClip* pose;
 					for (int i = 0; i < m_FBXAnimLayers.size(); i++)
-						ProcessSkeleton(pNode, skeleton , -1, m_FBXAnimLayers[i]);
+						ProcessSkeleton(pNode, skeleton , -1, m_FBXAnimLayers[i], m_AnimationLayers[i]);
 					m_SkeletalAsset.push_back(skeleton);
 			
 					return;
@@ -1240,7 +1263,9 @@ namespace sparky {
 				for (int j = 0; j < layernum; j++)
 				{
 					FbxAnimLayer *animationlayer = pAnimStack->GetMember<FbxAnimLayer>(i);
+					AnimationLayer  *layer = new AnimationLayer();
 					m_FBXAnimLayers.push_back(animationlayer);
+					m_AnimationLayers.push_back(layer);
 				}
 				
 			}

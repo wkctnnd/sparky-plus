@@ -1,20 +1,30 @@
 #pragma once
-#include "property.h"
 
-template<class datatype>
-class Property
+
+namespace sparky
 {
-public:
-	datatype EvaluateValue(unsigned long time);
+	namespace animation
+	{
+		template<class T>
+		class KeyValueNode;
+
+		template<class datatype>
+		class Property
+		{
+		public:
+			datatype EvaluateValue(unsigned long time);
 
 
-private:
-	std::vector<class KeyValueNode*> m_KeyValueNodeArray;
-};
+		private:
+			//KeyValueNode<datatype> dta;
+			std::vector<KeyValueNode<datatype>*> m_KeyValueNodeArray;
+		};
 
 
-template<class datatype>
-datatype Property::EvaluateValue(unsigned long time)
-{
+		template<class datatype>
+		datatype Property<datatype>::EvaluateValue(unsigned long time)
+		{
 
+		}
+	}
 }
