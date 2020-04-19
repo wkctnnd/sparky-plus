@@ -164,6 +164,9 @@ namespace sparky {
 
 			
 			void PostProcess();
+
+			unsigned int GetAnimationLayerCount() { return m_AnimationLayers.size(); }
+			AnimationLayer* GetAnimationLayer(int id) { return m_AnimationLayers[id]; }
 		private:
 			//std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;
