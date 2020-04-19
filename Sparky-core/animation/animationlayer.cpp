@@ -61,27 +61,32 @@ namespace sparky
 			m_KeyValueNodeBaseArray.push_back(keyvaluenode);
 		}
 
-		std::vector<InterpolatorBase*> AnimationLayer::GetInterPolator()
+		//std::vector<InterpolatorBase*> AnimationLayer::GetInterPolator()
+		//{
+		//	std::vector<InterpolatorBase*> interpolator;
+		//	//for (unsigned int i = 0; i < m_FloatProperties.size(); i++)
+		//	//{
+		//	//	auto temp = m_FloatProperties[i]->GetInterpolator(m_FloatProperties[i]);
+		//	//	//interpolator.push_back(temp);
+		//	//}
+ 
+		//	//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
+		//	//{
+		//	//	//interpolator.push_back(m_Vec3Properties[i]->GetInterpolator(m_QuatProperties[i]));
+		//	//}
+ 
+		//	//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
+		//	//{
+		//	//	//interpolator.push_back(m_QuatProperties[i]->GetInterpolator(m_QuatProperties[i]));
+		//	//}
+		//	for(unsigned int i=0;i<m_KeyValueCollectionArray.size();i++)
+		//		interpolator.push_back(m_KeyValueCollectionArray[i]->GetInterpolator(m_KeyValueCollectionArray[i]));
+		//	return interpolator;
+		//}
+
+		void AnimationLayer::Update(unsigned long elapse)
 		{
-			std::vector<InterpolatorBase*> interpolator;
-			//for (unsigned int i = 0; i < m_FloatProperties.size(); i++)
-			//{
-			//	auto temp = m_FloatProperties[i]->GetInterpolator(m_FloatProperties[i]);
-			//	//interpolator.push_back(temp);
-			//}
- 
-			//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
-			//{
-			//	//interpolator.push_back(m_Vec3Properties[i]->GetInterpolator(m_QuatProperties[i]));
-			//}
- 
-			//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
-			//{
-			//	//interpolator.push_back(m_QuatProperties[i]->GetInterpolator(m_QuatProperties[i]));
-			//}
-			for(unsigned int i=0;i<m_KeyValueCollectionArray.size();i++)
-				interpolator.push_back(m_KeyValueCollectionArray[i]->GetInterpolator(m_KeyValueCollectionArray[i]));
-			return interpolator;
+
 		}
 	}
 }

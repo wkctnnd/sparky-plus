@@ -26,7 +26,7 @@ namespace sparky
 			std::vector<AnimationLayer*>  m_KeyValueCollectionArray;
 			float m_CurrentTime;
 
-			std::map<int, InterpolatorBase*> m_InterpolatorMap;
+			//std::map<int, InterpolatorBase*> m_InterpolatorMap;
 		};
 
 

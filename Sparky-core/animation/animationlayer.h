@@ -24,13 +24,13 @@ namespace sparky
 			//std::vector<Interpolator<vec3>*> GetVec3Interpolator();
 			//std::vector<Interpolator<Quaternion>*> GetQuatInterpolator();
 
-			std::vector<InterpolatorBase*> GetInterPolator();
-		
+			//std::vector<InterpolatorBase*> GetInterPolator();
+			void Update(unsigned long elapse);
 		private:
 
 			std::vector<std::string>  m_PropertyName;
 
-			std::vector<KeyValueCollection*> m_KeyValueCollectionArray;
+			//std::vector<KeyValueCollection*> m_KeyValueCollectionArray;
 			std::vector<KeyValueNodeBase*> m_KeyValueNodeBaseArray;
 		/*	std::vector<KeyValueCollection*> m_FloatProperties;
 			std::vector<KeyValueCollection<Quaternion>*> 	m_QuatProperties;

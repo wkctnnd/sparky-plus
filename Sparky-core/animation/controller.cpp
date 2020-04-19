@@ -9,12 +9,12 @@ namespace sparky
 		void Controller::Initialize(std::vector<AnimationLayer*>& layers)
 		{
 			//m_Interpolators = layer->GetInterPolator();
-			for (unsigned int i = 0; i < layers.size(); i++)
+			/*for (unsigned int i = 0; i < layers.size(); i++)
 			{
 				const auto& temp = layers[i]->GetInterPolator();
 				for (unsigned int j = 0; j < temp.size(); j++)
 					m_InterpolatorMap.insert(std::make_pair(temp[i]->GetUniqueKey(), temp[j]));
-			}
+			}*/
 		}
 
 		void Controller::UpdateProperties(unsigned long elapse)
