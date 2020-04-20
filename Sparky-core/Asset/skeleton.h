@@ -20,6 +20,7 @@ namespace sparky
 
 			}
 			
+			int m_Id;
 			std::string bonename;
 			//wostd::string 
 			//vec3 position;
@@ -34,7 +35,12 @@ namespace sparky
 		};
 		struct Skeleton
 		{
+			void UpdateWorldMatrix();
 			std::vector<joint*> joints;
+			std::vector<mat4> WorldPose;
+
+		private:
+			void UpdateJoint(unsigned long elapse, joint* j);
 		};
 	}
 }

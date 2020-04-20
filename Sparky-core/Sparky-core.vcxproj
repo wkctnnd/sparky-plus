@@ -142,6 +142,8 @@
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
+    <ClCompile Include="Asset\skeletalmesh.cpp" />
+    <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
     <ClCompile Include="graphics\buffers\staticbuffer.cpp" />

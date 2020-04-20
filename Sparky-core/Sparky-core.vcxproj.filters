@@ -126,6 +126,12 @@
     <ClCompile Include="animation\keyvalue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Asset\skeletalmesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\skeleton.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
