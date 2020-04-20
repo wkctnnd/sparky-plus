@@ -9,13 +9,7 @@ namespace sparky
 {
 	namespace animation
 	{
-		enum KeyValueNodeType
-		{
-			Translate_Type,
-			Scale_Type,
-			Rotation_Type,
-
-		};
+		
 		
 		enum ComponentType
 		{
@@ -38,21 +32,21 @@ namespace sparky
 		class KeyValueNode:public KeyValueNodeBase
 		{
 		public:
-			KeyValueNode(KeyValueNodeType type) :m_Type(type) {}
+			KeyValueNode(PropertyType type) :m_Type(type) {}
 			KeyValueNode(KeyValueNode<T>& other)
 			{
 				m_Type = other.m_Type;
 				m_KeyValueCollectionMap = other.m_KeyValueCollectionMap;
 				m_PropertyId = other.m_PropertyId;
 			}
-			KeyValueNodeType GetType() { return m_Type; }
+			PropertyType GetType() { return m_Type; }
 			T Evaluate();
 			
 			void AddComponent(std::string CurveComponent, class KeyValueCollection*);
 
 			KeyValueNode<T> *CreateKeyValueNode();
 		private:
-			KeyValueNodeType m_Type;
+			PropertyType m_Type;
 			std::map<std::string, class KeyValueCollection*> m_KeyValueCollectionMap;
 			Property<T>* m_Property;
 			std::vector<InterpolatorBase *> m_Interpolators;

@@ -86,7 +86,7 @@ namespace sparky
 
 		void AnimationLayer::Update(unsigned long elapse)
 		{
-
+	
 		}
 	}
 }

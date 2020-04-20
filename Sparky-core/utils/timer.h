@@ -7,7 +7,7 @@ namespace sparky {
 		void Begin();
 		void Stop();
 
-		unsigned int GetElapsemillionseconds();
+		unsigned long GetElapsemillionseconds();
 		float GetElapseSeconds() const;
 	private:
 		long m_Start;

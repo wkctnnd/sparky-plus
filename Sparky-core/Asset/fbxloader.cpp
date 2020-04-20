@@ -4,6 +4,7 @@
 #include <list>
 #include "animation/keyvaluenode.h"
 #include "global.h"
+#include "animation/property.h"
 //https://blog.csdn.net/jxw167/article/details/81630899
 //https://blog.csdn.net/guizhidaoni/article/details/104940957
 using namespace sparky::maths;
@@ -670,9 +671,9 @@ namespace sparky {
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		{
 			
-			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Type);
-			KeyValueNode<vec3> *rotatekeyvaluenode = new KeyValueNode<vec3>(Rotation_Type);
-			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Type);
+			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
+			KeyValueNode<vec3> *rotatekeyvaluenode = new KeyValueNode<vec3>(Rotation_Property_Type);
+			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
 
 
 			// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                

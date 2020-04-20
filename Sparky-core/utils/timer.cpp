@@ -11,7 +11,7 @@ namespace sparky {
 			m_Elapse = m_End - m_Start;
 		}
 
-		unsigned int Timer::GetElapsemillionseconds()
+		unsigned long Timer::GetElapsemillionseconds()
 		{
 			return m_Elapse;
 		}

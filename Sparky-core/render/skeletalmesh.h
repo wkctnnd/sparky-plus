@@ -19,7 +19,7 @@ namespace sparky
 		private:
 			
 			class SkinMesh* m_SkinMesh;
-
+			class Skeleton* m_Skeleton;
 		};
 	}
 }

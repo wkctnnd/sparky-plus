@@ -1,6 +1,7 @@
 #pragma once
 #include "controller.h"
 #include "animation/animationlayer.h"
+#include "engine.h"
 namespace sparky
 {
 	namespace animation
@@ -17,11 +18,11 @@ namespace sparky
 			}*/
 		}
 
-		void Controller::UpdateProperties(unsigned long elapse)
+		void Controller::Update(unsigned long elapse)
 		{
 			/*for (unsigned int i = 0; i < m_FloatInterpolators.size(); i++)
 			{
-				m_FloatInterpolators[i]->Evaluate(elapse);
+				m_FloatInterpolators[i]->liubingliuEvaluate(elapse);
 			}
 
 			for (unsigned int i = 0;i<m_Vec3Interpolators.size();i++)
@@ -38,6 +39,13 @@ namespace sparky
 			{
 				m_Interpolators[i]->Evaluate(elapse);
 			}*/
+
+			//unsigned long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+
+			for (int i = 0; i < m_KeyValueCollectionArray.size(); i++)
+			{
+				m_KeyValueCollectionArray[i]->Update(elapse);
+			}
 		}
 
 	}

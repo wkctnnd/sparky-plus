@@ -16,7 +16,7 @@ namespace sparky
 		{
 		public:
 			void Initialize(std::vector<class AnimationLayer*>& layers);
-			void UpdateProperties(unsigned long elapse);
+			void Update(unsigned long elapse);
 
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
