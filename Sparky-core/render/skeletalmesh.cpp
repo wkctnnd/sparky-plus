@@ -1,7 +1,8 @@
 #pragma once
 #include "skeletalmesh.h"
 #include "animation/controller.h"
-
+#include "Asset/skeleton.h"
+#include "animation/animationstack.h"
 namespace sparky
 {
 	namespace render {
@@ -27,7 +28,14 @@ namespace sparky
 		}
 		void SkeletalMesh::BindProperty(AnimationStack* stack, Skeleton* skeleton)
 		{
-			
+			for (int i = 0; i < skeleton->joints.size(); i++)
+			{
+				for (int j = 0; j < stack->m_BlendLayers.size(); j++)
+				{
+
+				}
+				skeleton->joints[i]->m_Translation
+			}
 		}
  
 	}

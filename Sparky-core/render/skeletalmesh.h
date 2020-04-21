@@ -10,11 +10,20 @@ namespace sparky
 	{
 		class Controller;
 		class AnimationStack;
+		
+	}
+}
+
+namespace sparky
+{
+	namespace asset
+	{
 		class Skeleton;
 	}
 }
 using namespace sparky::graphics;
 using namespace sparky::animation;
+using namespace sparky::asset;
 namespace sparky
 {
 	namespace render {
