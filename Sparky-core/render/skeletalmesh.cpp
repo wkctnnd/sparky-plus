@@ -30,11 +30,12 @@ namespace sparky
 		{
 			for (int i = 0; i < skeleton->joints.size(); i++)
 			{
-				for (int j = 0; j < stack->m_BlendLayers.size(); j++)
+				for (int j = 0; j < stack->GetAnimationLayerCount(); j++)
 				{
-
+					AnimationLayer *layer = stack->GetAnimationLayer(j);
+					skeleton->joints[i]->m_Translation
 				}
-				skeleton->joints[i]->m_Translation
+				
 			}
 		}
  

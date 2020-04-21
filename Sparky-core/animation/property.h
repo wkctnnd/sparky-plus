@@ -20,6 +20,7 @@ namespace sparky
 				m_PropertyName = name;
 			}
 
+			void BindKeyValueNode(class KeyValueNode<datatype>* keyvaluenode);
 			//获得propterty得当前值，proptery对应多个keyvaluenode，通过权重混合
 			datatype EvaluateValue(unsigned long time);
 
@@ -50,7 +51,11 @@ namespace sparky
 			return result;
 		}
 
-
+		template<class datatype>
+		void Property<datatype>::BindKeyValueNode(class KeyValueNode<datatype>* keyvaluenode)
+		{
+			m_KeyValueNodeArray.push_back(keyvaluenode);
+		}
 
 		//template<class PropertyType, PropertyType type>
 		//class Property

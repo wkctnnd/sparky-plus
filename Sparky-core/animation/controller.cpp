@@ -44,14 +44,14 @@ namespace sparky
 
 			for (int i = 0; i < m_AnimationStackArray.size(); i++)
 			{
-				m_AnimationStackArray[i]->Update(elapse);
+				//m_AnimationStackArray[i]->Update(elapse);
 			}
 		}
 
-		AnimationStack* Controller::GetAnimationStack()
+		/*AnimationStack* Controller::GetAnimationStack()
 		{
 
-		}
+		}*/
 
 	}
 }

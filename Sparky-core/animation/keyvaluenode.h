@@ -29,7 +29,7 @@ namespace sparky
 
 		//实体与channel发生关系
 		template<class T>
-		class KeyValueNode:public KeyValueNodeBase
+		class KeyValueNode
 		{
 		public:
 			KeyValueNode(PropertyType type) :m_Type(type) {}
