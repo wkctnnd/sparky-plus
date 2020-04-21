@@ -18,11 +18,8 @@ namespace sparky
 		{
 		public:
 			const std::string& GetAnimationName() const;
-			bool GetLoop() const;
-			void SetLoop(bool loop);
-
-			void SetWeight(float weight);
-			bool GetWeight()const;
+	
+			void Update();
 
 			SkeletonPose* GetPose(unsigned int id, long duration);
 			int GetAnimationId(std::string& name);
@@ -32,6 +29,8 @@ namespace sparky
 			//std::map<std::string, unsigned int> m_ClipId;
 			static AnimationManager* m_AnimationManager;
 			AnimationManager() {}
+
+			std::vector<class Controller*> m_Controller;                          
 		};
 	}
 }

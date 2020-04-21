@@ -40,7 +40,7 @@ namespace sparky
 				m_Interpolators[i]->Evaluate(elapse);
 			}*/
 
-			//unsigned long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+		
 
 			for (int i = 0; i < m_KeyValueCollectionArray.size(); i++)
 			{

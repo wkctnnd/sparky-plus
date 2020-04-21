@@ -1,4 +1,6 @@
 #include "animationmanager.h"
+#include "controller.h"
+#include "engine.h"
 using namespace sparky::asset;
 namespace sparky
 {
@@ -30,6 +32,15 @@ namespace sparky
 				return m_ClipId[name];
 			}*/
 			return -1;
+		}
+
+		void AnimationManager::Update()
+		{
+			unsigned long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+			for (int i = 0; i < m_Controller.size(); i++)
+			{
+				m_Controller[i]->Update(elapse);
+			}
 		}
 	}
 }
