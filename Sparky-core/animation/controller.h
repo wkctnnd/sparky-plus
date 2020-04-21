@@ -17,8 +17,9 @@ namespace sparky
 		public:
 			void Initialize(std::vector<class AnimationLayer*>& layers);
 			void Update(unsigned long elapse);
-			int AnimationStackCount();
-			AnimationStack* GetAnimationStack();
+			int GetAnimationStackCount() { return m_AnimationStackArray.size(); };
+			AnimationStack* GetAnimationStack(int id) { return m_AnimationStackArray[id]; }
+		 
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
 			std::vector<Interpolator<vec3>*> m_Vec3Interpolators;

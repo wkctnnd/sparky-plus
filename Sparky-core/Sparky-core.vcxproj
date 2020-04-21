@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="animation\animationlayer.cpp" />
     <ClCompile Include="animation\animationmanager.cpp" />
+    <ClCompile Include="animation\animationstack.cpp" />
     <ClCompile Include="animation\controller.cpp" />
     <ClCompile Include="animation\keyvalue.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="animation\AnimationComponent.h" />
     <ClInclude Include="animation\animationlayer.h" />
     <ClInclude Include="animation\animationmanager.h" />
+    <ClInclude Include="animation\animationstack.h" />
     <ClInclude Include="animation\animationstate.h" />
     <ClInclude Include="animation\controller.h" />
     <ClInclude Include="animation\Interpolator.h" />
@@ -241,6 +243,7 @@
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="world\entity.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />

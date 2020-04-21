@@ -138,6 +138,9 @@
     <ClCompile Include="render\skeletalmesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="animation\animationstack.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -330,6 +333,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation\AnimationComponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\entity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="animation\animationstack.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

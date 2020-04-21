@@ -9,6 +9,7 @@ namespace sparky
 	namespace animation
 	{
 		class Controller;
+		class AnimationStack;
 		class Skeleton;
 	}
 }
@@ -31,7 +32,7 @@ namespace sparky
 		private:
 			
 			//ÔÝÊ±Ö»°ó¶¨¹Ç÷Àproperty
-			void BindProperty(class AnimationLayer* layer, Skeleton* skeleton);
+			void BindProperty(class AnimationStack* layer, Skeleton* skeleton);
 
 			class SkinMesh* m_SkinMesh;
 			class Skeleton* m_Skeleton;
