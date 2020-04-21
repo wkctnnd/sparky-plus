@@ -2,7 +2,7 @@
 #include <vector>
 #include <map>
 #include <string>
- 
+#include "Interpolator.h"
 //https://ppx209.com/videos/33278/av-fc2ppv-1202738/
 
 namespace sparky
@@ -40,7 +40,7 @@ namespace sparky
 				m_PropertyId = other.m_PropertyId;
 			}
 			PropertyType GetType() { return m_Type; }
-			T Evaluate();
+			T Evaluate(unsigned long elapse);
 			
 			void AddComponent(std::string CurveComponent, class KeyValueCollection*);
 
@@ -49,7 +49,7 @@ namespace sparky
 			PropertyType m_Type;
 			std::map<std::string, class KeyValueCollection*> m_KeyValueCollectionMap;
 			Property<T>* m_Property;
-			std::vector<InterpolatorBase *> m_Interpolators;
+			std::vector<class InterpolatorBase *> m_Interpolators;
 
 
 			//当动画应用到某个具体entity时，与对应id或名字的property关联
@@ -58,11 +58,11 @@ namespace sparky
 		};
 
 		template<class T>
-		T KeyValueNode<T>::Evaluate()
+		T KeyValueNode<T>::Evaluate(unsigned long elapse)
 		{
 			T value;
 			for(int i=0;i<m_Interpolators.size();i++)
-				m_Interpolators[i]->Evaluate();
+				m_Interpolators[i]->Evaluate(elapse);
 			return value;
 		}
 

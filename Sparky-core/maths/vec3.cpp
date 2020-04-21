@@ -68,6 +68,15 @@ namespace sparky {
 			return sqrt(x * x + y * y + z * z);
 		}
 
+		vec3& vec3:: operator+=(vec3 left)
+		{
+			x += left.x;
+			y += left.y;
+			z += left.z;
+			return *this;
+		}
+
+
 		std::ostream& operator<<(std::ostream& stream, const vec3& vector)
 		{
 			stream << "vec3: (" << vector.x << "," << vector.y <<","<<vector.z<< ")";

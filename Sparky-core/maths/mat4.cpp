@@ -1,5 +1,6 @@
 #include "mat4.h"
-#include<string.h>
+#include <string>
+#include "quaternion.h"
 namespace sparky {
 	namespace maths {
 		mat4::mat4()
@@ -124,6 +125,23 @@ namespace sparky {
 			return result * Translate(vec3(-camera.x, -camera.y, -camera.z));
 		}
 
+		mat4 mat4::rotation(class Quaternion& q)
+		{
+			mat4 result(1.0f);
+
+			result.elements[0] = 1 - 2 * q.Y()*q.Y() - 2 * q.Z()*q.Z();
+			result.elements[1] = 2 * q.X()*q.Y() - 2 * q.W()*q.Z();
+			result.elements[2] = 2 * q.X()*q.Z() + 2 * q.W()*q.Y();
+			result.elements[3] = 2 * q.X()*q.Y() + 2 * q.W()*q.Z();
+			result.elements[4] = 1 - 2 * q.X()*q.X() - 2 * q.Z()*q.Z();
+			result.elements[5] = 2 * q.Y()*q.Z() - 2 * q.W()*q.X();
+			result.elements[6] = 2 * q.X()*q.Z() - 2 * q.W()*q.Y();
+			result.elements[7] = 2 * q.Y()*q.Z() + 2 * q.W()*q.X();
+			result.elements[8] = 1 - 2 * q.X()*q.X() - 2 * q.Y()*q.Y();
+			
+
+			return result;
+		}
 		mat4 mat4::Translate(const vec3& translation)
 		{
 			mat4 result(1.0f);
@@ -135,6 +153,16 @@ namespace sparky {
 			return result;
 		}
 		
+		mat4 mat4::scale(const vec3& scale)
+		{
+			mat4 result(1.0);
+
+			result.elements[0] = scale.x;
+			result.elements[4] = scale.y;
+			result.elements[4] = scale.z;
+
+			return result;
+		}
 		mat4 operator*(mat4 left, const mat4& right)
 		{
 			return left.multiply(right);

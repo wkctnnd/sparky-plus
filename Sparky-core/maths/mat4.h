@@ -17,6 +17,7 @@ namespace sparky {
 			static mat4 LookAt(const vec3& camera, const vec3& object, const vec3& up);
 			//static mat4 translation(const vec3& translation);
 			static mat4 rotation(float angle, const vec3& axis);
+			static mat4 rotation(class Quaternion& q);
 			static mat4 scale(const vec3& scale);
 
 			static mat4 Translate(const vec3& translation);

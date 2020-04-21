@@ -19,7 +19,7 @@ namespace sparky
 		{
 		public:
 			InterpolatorBase(KeyValueCollection* keyvalues) :m_keyValues(keyvalues) {}
-			virtual void Evaluate(unsigned long duration) {};
+			virtual float Evaluate(unsigned long duration) { return 0; };
 
 			int GetUniqueKey()
 			{
@@ -39,9 +39,11 @@ namespace sparky
 		public:
 			LinearInterpolator(KeyValueCollection* keyvalues):InterpolatorBase(keyvalues)
 			{}
-			virtual void Evaluate(unsigned int currenttime)
+			float Evaluate(unsigned long currenttime)
 			{
-				 
+				float result = 0;
+
+				return result;
 			}
 
 		/*	static LinearInterpolator<T>* GetInterpolater(unsigned int properid)

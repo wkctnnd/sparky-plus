@@ -1,20 +1,14 @@
 #pragma once
-
-
+#include "global.h"
+#include "keyvaluenode.h"
 namespace sparky
 {
 	namespace animation
 	{
-		enum PropertyType
-		{
-			Translate_Property_Type,
-			Scale_Property_Type,
-			Rotation_Property_Type,
 
-		};
 
-		template<class T>
-		class KeyValueNode;
+		//template<class T>
+		//class KeyValueNode;
 
 		template<class datatype>
 		class Property

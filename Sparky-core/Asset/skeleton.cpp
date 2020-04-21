@@ -23,10 +23,10 @@ namespace sparky
 			Quaternion quat = j->m_Quat.EvaluateValue(elapes);
 
 			mat4 TranslateMat = mat4::Translate(translate);
-			mat4 RotateMat = quat.GetMatrix();
+			mat4 RotateMat = mat4::rotation(quat);
 			mat4 ScaleMat = mat4::scale(scale);
 			
-			WorldPose[j->m_Id] = TranslateMat * RotateMat*ScaleMat;
+			WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;
 
 			for (int i = 0; i < j->children.size(); i++)
 			{

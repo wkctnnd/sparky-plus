@@ -10,5 +10,16 @@ namespace sparky {
 			return result;
 		}
 	
+		Quaternion& Quaternion::operator +=(Quaternion left)
+		{
+			return *this;
+		}
+
+		Quaternion operator*(Quaternion left, float scale)
+		{
+			Quaternion result;
+
+			return result;
+		}
 	}
 }
