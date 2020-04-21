@@ -1,6 +1,6 @@
 #pragma once
 #include "controller.h"
-#include "animation/animationlayer.h"
+#include "animation/animationstack.h"
 #include "engine.h"
 namespace sparky
 {
@@ -42,10 +42,15 @@ namespace sparky
 
 		
 
-			for (int i = 0; i < m_KeyValueCollectionArray.size(); i++)
+			for (int i = 0; i < m_AnimationStackArray.size(); i++)
 			{
-				m_KeyValueCollectionArray[i]->Update(elapse);
+				m_AnimationStackArray[i]->Update(elapse);
 			}
+		}
+
+		AnimationStack* Controller::GetAnimationStack()
+		{
+
 		}
 
 	}

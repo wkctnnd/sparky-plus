@@ -171,11 +171,13 @@
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="render\skeletalmesh.cpp" />
     <ClCompile Include="render\skinmesh.cpp" />
     <ClCompile Include="render\skinmeshrender.cpp" />
     <ClCompile Include="utils\timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation\AnimationComponent.h" />
     <ClInclude Include="animation\animationlayer.h" />
     <ClInclude Include="animation\animationmanager.h" />
     <ClInclude Include="animation\animationstate.h" />
