@@ -20,15 +20,17 @@ namespace sparky
 				m_PropertyName = name;
 			}
 
-			void BindKeyValueNode(class KeyValueNode<datatype>* keyvaluenode);
+			void BindKeyValueNode(class KeyValueNodeBase* keyvaluenode);
 			//获得propterty得当前值，proptery对应多个keyvaluenode，通过权重混合
 			datatype EvaluateValue(unsigned long time);
 
 			void SetName(std::string name) { m_PropertyName = name; }
 			void SetPropertyType(PropertyType type) { m_PropertyType = type; }
+
+			PropertyType GetType() { return m_PropertyType; }
 		private:
 			//KeyValueNode<datatype> dta;
-			std::vector<KeyValueNode<datatype>*> m_KeyValueNodeArray;
+			std::vector<KeyValueNodeBase*> m_KeyValueNodeArray;
 			std::vector<float> m_WeightArray;
 			int m_PropertyId;
 			std::string m_PropertyName;
@@ -45,14 +47,14 @@ namespace sparky
 			datatype result;
 			for (int i = 0; i < m_KeyValueNodeArray.size(); i++)
 			{
-				result += m_KeyValueNodeArray[i]->Evaluate(time) * m_WeightArray[i];
+				result += ((KeyValueNode<datatype>*)(m_KeyValueNodeArray[i]))->Evaluate(time) * m_WeightArray[i];
 			}
 
 			return result;
 		}
 
 		template<class datatype>
-		void Property<datatype>::BindKeyValueNode(class KeyValueNode<datatype>* keyvaluenode)
+		void Property<datatype>::BindKeyValueNode(class KeyValueNodeBase* keyvaluenode)
 		{
 			m_KeyValueNodeArray.push_back(keyvaluenode);
 		}

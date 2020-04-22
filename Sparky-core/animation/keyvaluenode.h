@@ -23,30 +23,34 @@ namespace sparky
 
 		class KeyValueNodeBase
 		{
-
+		public:
+			KeyValueNodeBase(PropertyType type) { m_Type = type; }
+			PropertyType GetType() { return m_Type; }
+		protected:
+			PropertyType m_Type;
 		};
 
 
 		//实体与channel发生关系
 		template<class T>
-		class KeyValueNode
+		class KeyValueNode:public KeyValueNodeBase
 		{
 		public:
-			KeyValueNode(PropertyType type) :m_Type(type) {}
-			KeyValueNode(KeyValueNode<T>& other)
+			KeyValueNode(PropertyType type) :KeyValueNodeBase(type) {}
+			KeyValueNode(KeyValueNode<T>& other):KeyValueNodeBase(other.GetType())
 			{
-				m_Type = other.m_Type;
+				
 				m_KeyValueCollectionMap = other.m_KeyValueCollectionMap;
 				m_PropertyId = other.m_PropertyId;
 			}
-			PropertyType GetType() { return m_Type; }
+			
 			T Evaluate(unsigned long elapse);
 			
 			void AddComponent(std::string CurveComponent, class KeyValueCollection*);
 
 			KeyValueNode<T> *CreateKeyValueNode();
 		private:
-			PropertyType m_Type;
+			
 			std::map<std::string, class KeyValueCollection*> m_KeyValueCollectionMap;
 			Property<T>* m_Property;
 			std::vector<class InterpolatorBase *> m_Interpolators;

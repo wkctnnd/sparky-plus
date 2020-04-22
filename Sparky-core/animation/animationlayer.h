@@ -26,6 +26,8 @@ namespace sparky
 
 			//std::vector<InterpolatorBase*> GetInterPolator();
 			void Update(unsigned long elapse);
+			int GetKeyValueNodeCount() { return m_KeyValueNodeBaseArray.size(); }
+			KeyValueNodeBase* GetKeyValueNode(int id) { return m_KeyValueNodeBaseArray[id]; }
 		private:
 
 			std::vector<std::string>  m_PropertyName;

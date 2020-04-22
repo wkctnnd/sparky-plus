@@ -3,13 +3,15 @@
 #include "animation/controller.h"
 #include "Asset/skeleton.h"
 #include "animation/animationstack.h"
+#include "animation/animationlayer.h"
+#include "animation/property.h"
 namespace sparky
 {
 	namespace render {
 
 		SkinMesh* SkeletalMesh::GetRenderable()
 		{
-
+			return 0;
 		}
 		void SkeletalMesh::Update()
 		{
@@ -33,7 +35,19 @@ namespace sparky
 				for (int j = 0; j < stack->GetAnimationLayerCount(); j++)
 				{
 					AnimationLayer *layer = stack->GetAnimationLayer(j);
-					skeleton->joints[i]->m_Translation
+
+					auto& property = skeleton->joints[i]->m_Translation;
+					for (int i = 0; i < layer->GetKeyValueNodeCount(); i++)
+					{
+						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(i);
+						if (property.GetType() == layer->GetKeyValueNode(i)->GetType())
+						{
+							property.BindKeyValueNode(KeyValueNode);
+						}
+						
+						
+					}
+					
 				}
 				
 			}
