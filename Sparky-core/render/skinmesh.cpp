@@ -6,7 +6,7 @@
 using namespace sparky::asset;
 namespace sparky {
 	namespace render {
-		SkinMesh(RawSkinMesh* rawskinmesh)
+		SkinMesh::SkinMesh(RawSkinMesh* rawskinmesh)
 		{
 			Buffer* buffer = new StaticBuffer(&(rawskinmesh->m_Position[0].x), rawskinmesh->m_Position.size() * 3, 3);
 			Buffer* BoneWeightBuffer = new StaticBuffer(&(rawskinmesh->m_Weight[0].x), rawskinmesh->m_Weight.size() * 3, 3);
@@ -32,7 +32,7 @@ namespace sparky {
 			Buffer* BoneWeightBuffer = new StaticBuffer(&(rawskinmesh->m_Weight[0].x), rawskinmesh->m_Weight.size() * 3, 3);
 			Buffer* BoneIndexBuffer = new StaticBuffer(&(rawskinmesh->m_BoneIndex[0].x), rawskinmesh->m_BoneIndex.size() * 3, 3);
 			IndexBuffer* ibuffer = new IndexBuffer(&rawskinmesh->m_Faces[0], rawskinmesh->m_Faces.size());
-			SkinMesh* newmesh = new SkinMesh();
+			SkinMesh* newmesh = new SkinMesh(rawskinmesh);
 			newmesh->m_VAO.addBuffer(buffer, 0);
 			newmesh->m_VAO.addBuffer(BoneWeightBuffer, 1);
 			newmesh->m_VAO.addBuffer(BoneIndexBuffer, 2);
@@ -43,11 +43,11 @@ namespace sparky {
 		void SkinMesh::render()
 		{
 			m_VAO.bind();
-			if (vao.Indexed())
-				glDrawElements(GL_TRIANGLES, vao.Indexcount(), GL_UNSIGNED_SHORT, 0);
+			if (m_VAO.Indexed())
+				glDrawElements(GL_TRIANGLES, m_VAO.Indexcount(), GL_UNSIGNED_SHORT, 0);
 			else
 				glDrawArrays(GL_TRIANGLES, 0, 1);
-			vao.unBind();
+			m_VAO.unBind();
 		}
 	}
 }

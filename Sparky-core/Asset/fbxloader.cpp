@@ -28,13 +28,13 @@ namespace sparky {
 				{
 
 					RawMesh* mesh = new RawMesh();
-					for (unsigned int j=0;j<intermediatemeharray[i]->VertexArray.size();i++)
+					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); i++)
 					{
 						mesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j]->Position);
 						mesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j]->Normal);
 						mesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j]->Tangent);
 					}
-			
+
 					m_MeshAsset.push_back(mesh);
 				}
 				else
@@ -51,7 +51,7 @@ namespace sparky {
 				}
 			}
 		}
-		
+
 		FBXLoader::FBXLoader()
 		{
 			int a = 1;
@@ -62,7 +62,7 @@ namespace sparky {
 		void FBXLoader::LoadCacheRecursive(FbxNode * pNode, FbxAnimLayer * pAnimLayer, bool pSupportVBO)
 		{
 			// Bake material and hook as user data.
- 
+
 			FbxNodeAttribute* lNodeAttribute = pNode->GetNodeAttribute();
 			if (lNodeAttribute)
 			{
@@ -92,9 +92,9 @@ namespace sparky {
 		mat4 FBXLoader::ConvertFBXMatrix(FbxAMatrix& fbxmat)
 		{
 			mat4 matrix;
-			for (unsigned int i=0;i<4;i++)
+			for (unsigned int i = 0; i < 4; i++)
 			{
-				for (unsigned int j=0;j<4;j++)
+				for (unsigned int j = 0; j < 4; j++)
 				{
 					matrix.elements[i * 4 + j] = fbxmat.Get(i, j);
 				}
@@ -255,8 +255,8 @@ namespace sparky {
 					FbxSystemUnit::cm.ConvertScene(mScene);
 				}
 
-				
-			
+
+
 				mImporter->Destroy();
 
 
@@ -267,11 +267,11 @@ namespace sparky {
 
 		void FBXLoader::LoadResources()
 		{
-	/*		for (unsigned int i = 0; i < mScene->GetCharacterPoseCount(); i++)
-			{
-				FbxCharacterPose* pose = mScene->GetCharacterPose(i);
-			}*/
-		
+			/*		for (unsigned int i = 0; i < mScene->GetCharacterPoseCount(); i++)
+					{
+						FbxCharacterPose* pose = mScene->GetCharacterPose(i);
+					}*/
+
 			LoadAnimationData();
 			ProcessNode(mScene->GetRootNode());
 			LoadSkinData();
@@ -651,9 +651,9 @@ namespace sparky {
 						break;
 					}
 
-					for (int i = 0; i < keycount; i++)
+					for (int j = 0; j < keycount; j++)
 					{
-						FbxAnimCurveKey curvekey = Curve[i]->KeyGet(i);
+						FbxAnimCurveKey curvekey = Curve[i]->KeyGet(j);
 						float data = curvekey.GetValue();
 						FbxTime time = curvekey.GetTime();
 
@@ -670,7 +670,7 @@ namespace sparky {
 
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		{
-			
+
 			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
 			KeyValueNode<vec3> *rotatekeyvaluenode = new KeyValueNode<vec3>(Rotation_Property_Type);
 			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
@@ -680,29 +680,36 @@ namespace sparky {
 			// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
 			//pAnimationLayer->
 			FbxAnimCurve* Curve[3];
+
 			Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 			Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 			Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 			//pNode->LclTranslation.GetCurveNode()
 
+			if (Curve[0] != 0)
+			{
 
-
-			LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
-
-
+				LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
+				layer->AddKeyValueNode(translatekeyvaluenode);
+			}
 
 			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 			Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-
-			LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
-
-
+			if (Curve[0] != 0)
+			{
+				LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
+				layer->AddKeyValueNode(rotatekeyvaluenode);
+			}
 			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 			Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 			Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			if (Curve[0] != 0)
+			{
+				LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
+				layer->AddKeyValueNode(scalekeyvaluenode);
+			}
 
-			LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
 			/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
 
 						FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
@@ -718,9 +725,9 @@ namespace sparky {
 						//m_ClipAsset[i]->LocalPose.push_back(pose);
 						//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
 
-			layer->AddKeyValueNode(translatekeyvaluenode);
-			layer->AddKeyValueNode(rotatekeyvaluenode);
-			layer->AddKeyValueNode(scalekeyvaluenode);
+
+
+
 		}
 
 		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, AnimationLayer* layer, SkeletonClip** pose)
@@ -748,10 +755,10 @@ namespace sparky {
 					j = new joint(skeleton->joints[parentindex], pNode->GetName());
 					skeleton->joints[parentindex]->children.push_back(j);
 
-					
-					
+
+
 				}
-					
+
 				LoadNodeCurve(animationlayer, layer, pNode);
 
 				skeleton->joints.push_back(j);
@@ -773,8 +780,8 @@ namespace sparky {
 
 			for (int i = 0; i < pNode->GetChildCount(); ++i)
 			{
-				if(pNode->GetNodeAttribute()&& pNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
-					ProcessSkeleton(pNode->GetChild(i), skeleton, skeleton->joints.size()-1);
+				if (pNode->GetNodeAttribute() && pNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
+					ProcessSkeleton(pNode->GetChild(i), skeleton, skeleton->joints.size() - 1);
 			}
 
 		}
@@ -816,11 +823,7 @@ namespace sparky {
 
 		void FBXLoader::ReadIntemediateMesh(FbxMesh* pMesh, InterMediateMesh* rawstaticmesh)
 		{
-			if (pMesh->GetElementVertexColorCount() < 1)
-			{
-				return;
-			}
-
+	
 			int triangleCount = pMesh->GetPolygonCount();
 			int vertexCounter = 0;
 
@@ -856,15 +859,15 @@ namespace sparky {
 					{
 
 					}
-						/*			{
-										ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
-									}*/
+					/*			{
+									ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
+								}*/
 
-									// Read the normal of each vertex
-						//ReadNormal(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Normal[j]);
+								// Read the normal of each vertex
+					//ReadNormal(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Normal[j]);
 
-					// Read the tangent of each vertex
-					//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
+				// Read the tangent of each vertex
+				//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
 					if (rawstaticmesh->CtrlVertices.find(ctrlPointIndex) == rawstaticmesh->CtrlVertices.end())
 					{
 						rawstaticmesh->CtrlVertices.insert(std::pair<unsigned int, std::list<InterVertexData*>>(ctrlPointIndex, std::list<InterVertexData*>()));
@@ -1007,15 +1010,15 @@ namespace sparky {
 			}
 		}
 */
-	
-	/*	void FBXLoader::ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
-		{
 
-		}
-		void FBXLoader::ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
-		{
+/*	void FBXLoader::ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
+	{
 
-		}*/
+	}
+	void FBXLoader::ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter)
+	{
+
+	}*/
 		void FBXLoader::ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& position)
 		{
 			FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
@@ -1046,12 +1049,12 @@ namespace sparky {
 					ProcessMesh(pNode);
 					break;
 				case FbxNodeAttribute::eSkeleton:
-					Skeleton* skeleton = new Skeleton();
+					Skeleton * skeleton = new Skeleton();
 					//SkeletonClip* pose;
 					for (int i = 0; i < m_FBXAnimLayers.size(); i++)
-						ProcessSkeleton(pNode, skeleton , -1, m_FBXAnimLayers[i], m_AnimationLayers[i]);
+						ProcessSkeleton(pNode, skeleton, -1, m_FBXAnimLayers[i], m_AnimationLayers[i]);
 					m_SkeletalAsset.push_back(skeleton);
-			
+
 					return;
 					//case FbxNodeAttribute::e
 
@@ -1063,7 +1066,7 @@ namespace sparky {
 				ProcessNode(pNode->GetChild(i));
 			}
 
-		
+
 		}
 
 
@@ -1126,7 +1129,7 @@ namespace sparky {
 		//加载骨骼权重
 		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, InterMediateMesh* interskinmesh)
 		{
-			if (!pMesh || m_SkeletalAsset.size()!=0)
+			if (!pMesh || m_SkeletalAsset.size() != 0)
 			{
 				return;
 			}
@@ -1230,18 +1233,18 @@ namespace sparky {
 					{
 						for (auto iter = interskinmesh->CtrlVertices[ctrlPointIndex].begin(); iter != interskinmesh->CtrlVertices[ctrlPointIndex].end(); iter++)
 						{
-						 
-								if ((*iter)->CurrentIndex < 3)
-								{
-									(*iter)->CurrentIndex++;
-									(*iter)->BoneIndex[(*iter)->CurrentIndex] = jointIndex;
-									(*iter)->BoneWeight[(*iter)->CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
-								}
-							
-							
+
+							if ((*iter)->CurrentIndex < 3)
+							{
+								(*iter)->CurrentIndex++;
+								(*iter)->BoneIndex[(*iter)->CurrentIndex] = jointIndex;
+								(*iter)->BoneWeight[(*iter)->CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
+							}
+
+
 						}
 					}
-						
+
 				}
 			}
 		}
@@ -1253,7 +1256,7 @@ namespace sparky {
 			{
 				AssociateSkeletonWithCtrlPoint(m_FbxMeshProcessing[i], m_InterMeshArray[i]);
 			}
-		
+
 		}
 
 		void FBXLoader::LoadAnimationData()
@@ -1261,9 +1264,9 @@ namespace sparky {
 			FbxArray<FbxString*> AnimStackNameArray;
 			mScene->FillAnimStackNameArray(AnimStackNameArray);
 
-	
+
 			int numstacks = mScene->GetSrcObjectCount<FbxAnimStack>();
-	 
+
 			for (int i = 0; i < numstacks; i++)
 			{
 				FbxAnimStack* pAnimStack = FbxCast<FbxAnimStack>(mScene->GetSrcObject<FbxAnimStack>(i));
@@ -1276,7 +1279,7 @@ namespace sparky {
 					m_FBXAnimLayers.push_back(animationlayer);
 					m_AnimationLayers.push_back(layer);
 				}
-				
+
 			}
 
 			//for(int i=0;i<)
@@ -1313,12 +1316,12 @@ namespace sparky {
 		int FBXLoader::GetJointIndex(FbxString jointname)
 		{
 			//暂时默认，一个fbx只有一个骨骼
-			for (int i=0;i<m_SkeletalAsset[0]->joints.size();i++)
+			for (int i = 0; i < m_SkeletalAsset[0]->joints.size(); i++)
 			{
-			/*	if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
-				{
-					return i;
-				}*/
+				/*	if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
+					{
+						return i;
+					}*/
 			}
 			return 0;
 		}
