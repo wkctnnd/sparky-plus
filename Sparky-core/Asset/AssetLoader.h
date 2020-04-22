@@ -16,7 +16,8 @@ namespace sparky {
 			class RawMesh* GetRawStaticMesh(unsigned int id);
 			unsigned int GetRawStaticMeshCount();
 
-
+			class Skeleton* GetSkeleton(unsigned int id);
+			unsigned int GetSkeletonCount();
 			unsigned int GetClipCount();
 
 			class SkeletonClip* GetClip(unsigned int id);

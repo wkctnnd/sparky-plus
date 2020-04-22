@@ -6,13 +6,26 @@
 using namespace sparky::asset;
 namespace sparky {
 	namespace render {
+		SkinMesh(RawSkinMesh* rawskinmesh)
+		{
+			Buffer* buffer = new StaticBuffer(&(rawskinmesh->m_Position[0].x), rawskinmesh->m_Position.size() * 3, 3);
+			Buffer* BoneWeightBuffer = new StaticBuffer(&(rawskinmesh->m_Weight[0].x), rawskinmesh->m_Weight.size() * 3, 3);
+			Buffer* BoneIndexBuffer = new StaticBuffer(&(rawskinmesh->m_BoneIndex[0].x), rawskinmesh->m_BoneIndex.size() * 3, 3);
+			IndexBuffer* ibuffer = new IndexBuffer(&rawskinmesh->m_Faces[0], rawskinmesh->m_Faces.size());
+	
+			m_VAO.addBuffer(buffer, 0);
+			m_VAO.addBuffer(BoneWeightBuffer, 1);
+			m_VAO.addBuffer(BoneIndexBuffer, 2);
+			m_VAO.setIndexBuffer(ibuffer);
+		}
+
 		SkinMesh* SkinMesh::Load(const char* file)
 		{
 			
 			FBXLoader fbxloader;
 			fbxloader.LoadFile(file);
 			fbxloader.LoadResources();
-			
+
 			RawSkinMesh* rawskinmesh = fbxloader.GetRawSkinMesh(0);
 			
 			Buffer* buffer = new StaticBuffer(&(rawskinmesh->m_Position[0].x), rawskinmesh->m_Position.size() * 3, 3);
@@ -20,16 +33,16 @@ namespace sparky {
 			Buffer* BoneIndexBuffer = new StaticBuffer(&(rawskinmesh->m_BoneIndex[0].x), rawskinmesh->m_BoneIndex.size() * 3, 3);
 			IndexBuffer* ibuffer = new IndexBuffer(&rawskinmesh->m_Faces[0], rawskinmesh->m_Faces.size());
 			SkinMesh* newmesh = new SkinMesh();
-			newmesh->vao.addBuffer(buffer, 0);
-			newmesh->vao.addBuffer(BoneWeightBuffer, 1);
-			newmesh->vao.addBuffer(BoneIndexBuffer, 2);
-			newmesh->vao.setIndexBuffer(ibuffer);
+			newmesh->m_VAO.addBuffer(buffer, 0);
+			newmesh->m_VAO.addBuffer(BoneWeightBuffer, 1);
+			newmesh->m_VAO.addBuffer(BoneIndexBuffer, 2);
+			newmesh->m_VAO.setIndexBuffer(ibuffer);
 			return newmesh;
 		}
 
 		void SkinMesh::render()
 		{
-			vao.bind();
+			m_VAO.bind();
 			if (vao.Indexed())
 				glDrawElements(GL_TRIANGLES, vao.Indexcount(), GL_UNSIGNED_SHORT, 0);
 			else

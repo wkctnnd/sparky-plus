@@ -74,13 +74,13 @@ namespace sparky
 			SkeletonClip* m_ClipPose;
 		};
 
-		class AnimationStack
+	/*	class AnimationStack
 		{
 
 
 		private:
 			std::vector<AnimationClip*> m_Layers;
 			std::vector<float> m_BlendWeights;
-		};
+		};*/
 	}
 }

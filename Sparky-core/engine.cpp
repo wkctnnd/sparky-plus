@@ -11,6 +11,8 @@
 #include "Asset/AssetLoader.h"
 #include "Asset/rawskinmesh.h"
 #include "Asset/skeletalpose.h"
+#include "render/skeletalmesh.h"
+#include "render/skinmesh.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -33,7 +35,9 @@ namespace sparky
 		m_AssetLoader->LoadFile("humanoid.fbx");
 		RawSkinMesh* rawskinmesh = m_AssetLoader->GetRawSkinMesh(0);
 		SkeletonClip* skeletonpos = m_AssetLoader->GetClip(0);
-
+		Skeleton* skeleton = m_AssetLoader->GetSkeleton(0);
+		SkinMesh* skinmesh = new SkinMesh(rawskinmesh);
+		SkeletalMesh *skeletalmesh = new SkeletalMesh(skinmesh, skeleton);
 		m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();

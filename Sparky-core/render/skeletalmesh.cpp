@@ -9,6 +9,11 @@ namespace sparky
 {
 	namespace render {
 
+		SkeletalMesh::SkeletalMesh(class SkinMesh* skinmesh, class Skeleton * skeleton)
+		{
+			m_SkinMesh = skinmesh;
+			m_Skeleton = skeleton;
+		}
 		SkinMesh* SkeletalMesh::GetRenderable()
 		{
 			return 0;
@@ -53,5 +58,7 @@ namespace sparky
 			}
 		}
  
+		
+
 	}
 }

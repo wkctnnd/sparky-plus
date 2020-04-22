@@ -55,6 +55,15 @@ namespace sparky {
 			return m_FbxLoader->GetRawStaticMeshCount();
 		}
 
+		Skeleton* AssetLoader::GetSkeleton(unsigned int id)
+		{
+			return m_FbxLoader->GetSkeleton(id);
+		}
+		unsigned int AssetLoader::GetSkeletonCount()
+		{
+			return m_FbxLoader->GetSkeletonCount();
+		}
+
 		unsigned int AssetLoader::GetClipCount()
 		{
 			return m_FbxLoader->GetClipCount();

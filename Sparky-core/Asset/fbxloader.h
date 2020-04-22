@@ -110,6 +110,16 @@ namespace sparky {
 				return m_ClipAsset.size();
 			}
 
+			unsigned int GetSkeletonCount()
+			{
+				return m_SkeletalAsset.size();
+			}
+
+			Skeleton* GetSkeleton(unsigned int id)
+			{
+				return m_SkeletalAsset[id];
+			}
+
 			SkeletonClip* GetClip(unsigned int id)
 			{
 				return m_ClipAsset[id];
