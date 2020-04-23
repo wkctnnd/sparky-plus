@@ -21,7 +21,7 @@ namespace sparky
 		}
 		void SkeletalMesh::Update()
 		{
-
+			m_Skeleton->UpdateWorldMatrix();
 		}
 		void SkeletalMesh::Render()
 		{

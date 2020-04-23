@@ -54,7 +54,7 @@ namespace sparky
 	{
 		GlobalTimer.Begin();
 
-		m_ParticleManager->Update();
+		//m_ParticleManager->Update();
 		m_Renderer->Update();
 		GlobalTimer.Stop();
 		std::cout << GlobalTimer;

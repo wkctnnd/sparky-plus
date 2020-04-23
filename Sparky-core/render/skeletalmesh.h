@@ -47,7 +47,7 @@ namespace sparky
 			class SkinMesh* GetRenderable();
 			void Update();
 
-
+			class Skeleton* GetSkeleton() { return m_Skeleton; };
 
 			//暂时方案，加render(), 未来类似ue4，使用sceneproxy
 			void Render();
