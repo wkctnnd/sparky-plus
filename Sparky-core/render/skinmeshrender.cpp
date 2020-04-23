@@ -58,6 +58,10 @@ namespace sparky
 			m_SkinMeshShader->setUniformMat4v("BoneMatrix", &(m_SkeletalMesh->GetSkeleton()->WorldPose[0]), m_SkeletalMesh->GetSkeleton()->WorldPose.size());
 			m_SkinMeshShader->setUniformMat41("pr_matrix", mProjectionMatrix);
 			m_SkinMeshShader->setUniformMat41("vw_matrix", mViewMatrix);
+			m_SkinMeshShader->setUniform1i("BoneIndex0", 0);
+			m_SkinMeshShader->setUniform1i("BoneIndex1", 0);
+			m_SkinMeshShader->setUniform1i("BoneIndex2", 0);
+			m_SkinMeshShader->setUniform1i("BoneIndex3", 0);
 			//m_SkinMeshShader->setUniformMat4v("BoneMatrix", )
 
 			m_SkeletalMesh->Render();

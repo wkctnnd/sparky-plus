@@ -763,7 +763,7 @@ namespace sparky {
 				}
 
 				LoadNodeCurve(animationlayer, layer, pNode);
-
+				j->m_Id = skeleton->joints.size();
 				skeleton->joints.push_back(j);
 
 			}
@@ -1246,7 +1246,7 @@ namespace sparky {
 							{
 								(interskinmesh->VertexArray[*iter]).CurrentIndex++;
 								(interskinmesh->VertexArray[*iter]).BoneIndex[(interskinmesh->VertexArray[*iter]).CurrentIndex] = jointIndex;
-								(interskinmesh->VertexArray[*iter]).BoneWeight[(interskinmesh->VertexArray[*iter]).CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
+								(interskinmesh->VertexArray[*iter]).BoneWeight[(interskinmesh->VertexArray[*iter]).CurrentIndex] = pCtrlPointWeights[j];
 							}
 
 
@@ -1326,10 +1326,10 @@ namespace sparky {
 			//暂时默认，一个fbx只有一个骨骼
 			for (int i = 0; i < m_SkeletalAsset[0]->joints.size(); i++)
 			{
-				/*	if (m_SkeletalAsset[0]->joints[i]->name.compare(jointname) == 0)
+					if (m_SkeletalAsset[0]->joints[i]->bonename.compare(jointname) == 0)
 					{
 						return i;
-					}*/
+					}
 			}
 			return 0;
 		}

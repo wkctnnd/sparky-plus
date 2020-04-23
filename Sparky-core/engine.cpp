@@ -42,6 +42,7 @@ namespace sparky
 		SkeletalMesh *skeletalmesh = new SkeletalMesh(skinmesh, skeleton);
 
 		m_Renderer = new SkinMeshRenderer(skeletalmesh);
+		m_Renderer->Initialize();
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();*/
