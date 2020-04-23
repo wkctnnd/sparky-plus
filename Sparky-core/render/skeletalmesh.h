@@ -43,9 +43,14 @@ namespace sparky
 			//未来考虑挪到animation component中
 			void SetController(Controller* controller);
 
-
+			
 			class SkinMesh* GetRenderable();
 			void Update();
+
+
+
+			//暂时方案，加render(), 未来类似ue4，使用sceneproxy
+			void Render();
 		private:
 			
 			//暂时只绑定骨骼property

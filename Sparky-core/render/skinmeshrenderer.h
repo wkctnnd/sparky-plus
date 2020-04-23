@@ -22,16 +22,16 @@ namespace sparky {
 			GraphicsShader * m_SkinMeshShader;
 			//m_ParticleVertexShader
 		public:
-			SkinMeshRenderer();
+			SkinMeshRenderer(class SkeletalMesh* mesh);
 			void Initialize();
 			void Update();
 
 			void RenderScene();
 
-			void AddRenderable(Renderable* r);
+			//void AddRenderable(Renderable* r);
 
 		private:
-			vector<Renderable*> Particles;
+			SkeletalMesh * m_SkeletalMesh;
 		};
 	}
 }

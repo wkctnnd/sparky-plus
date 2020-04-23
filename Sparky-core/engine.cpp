@@ -29,7 +29,7 @@ namespace sparky
 		//render.Initialize();
 		//m_Renderer = new ParticleRenderer();
 		//m_Renderer->Initialize();
-		m_Renderer = new SkinMeshRenderer();
+		
 		m_AssetLoader = AssetLoader::INSTANCE();
 		m_AssetLoader->Initialize();
 		Mesh* smokemesh = Mesh::Load("autoload");
@@ -40,12 +40,14 @@ namespace sparky
 		Skeleton* skeleton = m_AssetLoader->GetSkeleton(0);
 		SkinMesh* skinmesh = new SkinMesh(rawskinmesh);
 		SkeletalMesh *skeletalmesh = new SkeletalMesh(skinmesh, skeleton);
+
+		m_Renderer = new SkinMeshRenderer(skeletalmesh);
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();*/
 
 		
-		m_Renderer->AddRenderable(skeletalmesh);
+		//m_Renderer->AddRenderable(skeletalmesh);
 		//render->AddSmokeVolume(smokemesh);
 	}
 	void Engine::Loop()

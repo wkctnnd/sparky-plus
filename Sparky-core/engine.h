@@ -4,6 +4,7 @@ namespace sparky{
 	namespace render {
 		class FluidRenderer;
 		class ParticleRenderer;
+		class SkinMeshRenderer;
 	}
 	namespace asset
 	{

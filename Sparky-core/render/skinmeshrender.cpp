@@ -8,15 +8,17 @@ using namespace sparky::maths;
 using namespace sparky::graphics;
 
 #include "glm/gtc/matrix_transform.hpp"
-
+#include "skeletalmesh.h"
 namespace sparky
 {
 	namespace render
 	{
-		SkinMeshRenderer::SkinMeshRenderer()
+		SkinMeshRenderer::SkinMeshRenderer(class SkeletalMesh* mesh)
 		{
+			m_SkeletalMesh = mesh;
 
 		}
+
 		void SkinMeshRenderer::Initialize()
 		{
 
@@ -57,18 +59,11 @@ namespace sparky
 			m_SkinMeshShader->setUniformMat41("vw_matrix", mViewMatrix);
 			//m_SkinMeshShader->setUniformMat4v("BoneMatrix", )
 
-			for (unsigned int i = 0; i < Particles.size(); i++)
-			{
-				Particles[i]->render();
-			}
+			m_SkeletalMesh->Render();
 
 			m_SkinMeshShader->disable();
 		}
-
-		void SkinMeshRenderer::AddRenderable(Renderable* r)
-		{
-			 
-		}
+ 
 
 
 	}

@@ -21,12 +21,12 @@ namespace sparky
 			SkinMesh(class RawSkinMesh* rawskinmesh);
 			void render();
 			static SkinMesh* Load(const char* file);
-			void SetCurrentPose(class SkeletonClip* pose);
+			//void SetCurrentPose(class SkeletonClip* pose);
 		private:
 			VertexArray  m_VAO;
 			
 			class RawSkinMesh *m_RawSkinMesh;
-			class SkeletonClip* m_Pose;
+			//class SkeletonClip* m_Pose;
 		};
 	}
 }

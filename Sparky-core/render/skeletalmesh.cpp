@@ -5,6 +5,7 @@
 #include "animation/animationstack.h"
 #include "animation/animationlayer.h"
 #include "animation/property.h"
+#include "skinmesh.h"
 namespace sparky
 {
 	namespace render {
@@ -21,6 +22,10 @@ namespace sparky
 		void SkeletalMesh::Update()
 		{
 
+		}
+		void SkeletalMesh::Render()
+		{
+			m_SkinMesh->render(); 
 		}
 		
 		void SkeletalMesh::SetController(Controller* controller)
