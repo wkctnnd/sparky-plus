@@ -28,7 +28,7 @@ namespace sparky
 		static Timer GlobalTimer;
 
 	private:
-		sparky::render::ParticleRenderer *m_Renderer;
+		sparky::render::SkinMeshRenderer *m_Renderer;
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
 	};

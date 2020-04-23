@@ -24,15 +24,16 @@ namespace sparky {
 		{
 			for (unsigned int i = 0; i < intermediatemeharray.size(); i++)
 			{
-				if (intermediatemeharray[i]->VertexArray[0]->CurrentIndex == -1)
+				if (intermediatemeharray[i]->VertexArray[0].CurrentIndex == -1)
 				{
 
 					RawMesh* mesh = new RawMesh();
-					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); i++)
+					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); j++)
 					{
-						mesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j]->Position);
-						mesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j]->Normal);
-						mesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j]->Tangent);
+						mesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j].Position);
+						mesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j].Normal);
+						mesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j].Tangent);
+						mesh->m_Faces.push_back(j);
 					}
 
 					m_MeshAsset.push_back(mesh);
@@ -40,12 +41,14 @@ namespace sparky {
 				else
 				{
 					RawSkinMesh* skinmesh = new RawSkinMesh();
-					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); i++)
+					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); j++)
 					{
-						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j]->Position);
-						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j]->Normal);
-						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j]->Tangent);
-						skinmesh->m_BoneIndex.push_back(vec4(intermediatemeharray[i]->VertexArray[j]->BoneIndex[0], intermediatemeharray[i]->VertexArray[j]->BoneIndex[1], intermediatemeharray[i]->VertexArray[j]->BoneIndex[2], intermediatemeharray[i]->VertexArray[j]->BoneIndex[3]));
+						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j].Position);
+						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j].Normal);
+						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j].Tangent);
+						skinmesh->m_BoneIndex.push_back(vec4(intermediatemeharray[i]->VertexArray[j].BoneIndex[0], intermediatemeharray[i]->VertexArray[j].BoneIndex[1], intermediatemeharray[i]->VertexArray[j].BoneIndex[2], intermediatemeharray[i]->VertexArray[j].BoneIndex[3]));
+						skinmesh->m_BoneWeight.push_back(vec4(intermediatemeharray[i]->VertexArray[j].BoneWeight[0], intermediatemeharray[i]->VertexArray[j].BoneWeight[1], intermediatemeharray[i]->VertexArray[j].BoneWeight[2], intermediatemeharray[i]->VertexArray[j].BoneWeight[3]));
+						skinmesh->m_Faces.push_back(j);
 					}
 					m_SkinMeshAsset.push_back(skinmesh);
 				}
@@ -793,8 +796,10 @@ namespace sparky {
 			{
 				return;
 			}
-
+			
 			const bool lHasSkin = pMesh->GetDeformerCount(FbxDeformer::eSkin) > 0;
+			if(lHasSkin)
+				m_FbxMeshProcessing.push_back(pMesh);
 			InterMediateMesh *intermesh = new InterMediateMesh();
 			ReadIntemediateMesh(pMesh, intermesh);
 			m_InterMeshArray.push_back(intermesh);
@@ -849,10 +854,10 @@ namespace sparky {
 					//pMesh->
 					rawstaticmesh->Faces.push_back(ctrlPointIndex);
 
-					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter]->Position);
+					ReadPosition(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter].Position);
 
 					// Read the color of each vertex
-					ReadColor(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter]->Color);
+					ReadColor(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter].Color);
 
 					// Read the UV of each vertex
 					for (int k = 0; k < 2; ++k)
@@ -870,9 +875,9 @@ namespace sparky {
 				//ReadTangent(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Tangent[j]);
 					if (rawstaticmesh->CtrlVertices.find(ctrlPointIndex) == rawstaticmesh->CtrlVertices.end())
 					{
-						rawstaticmesh->CtrlVertices.insert(std::pair<unsigned int, std::list<InterVertexData*>>(ctrlPointIndex, std::list<InterVertexData*>()));
+						rawstaticmesh->CtrlVertices.insert(std::pair<unsigned int, std::list<unsigned int>>(ctrlPointIndex, std::list<unsigned int>()));
 					}
-					rawstaticmesh->CtrlVertices[ctrlPointIndex].push_back(rawstaticmesh->VertexArray[vertexCounter]);
+					rawstaticmesh->CtrlVertices[ctrlPointIndex].push_back(vertexCounter);
 					vertexCounter++;
 				}
 
@@ -887,6 +892,7 @@ namespace sparky {
 		void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
 		{
 			FbxGeometryElementVertexColor* pVertexColor = pMesh->GetElementVertexColor(0);
+			if (!pVertexColor) return;
 			switch (pVertexColor->GetMappingMode())
 			{
 			case FbxGeometryElement::eByControlPoint:
@@ -1129,7 +1135,7 @@ namespace sparky {
 		//¼ÓÔØ¹Ç÷ÀÈ¨ÖØ
 		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxMesh* pMesh, InterMediateMesh* interskinmesh)
 		{
-			if (!pMesh || m_SkeletalAsset.size() != 0)
+			if (!pMesh || m_SkeletalAsset.size() == 0)
 			{
 				return;
 			}
@@ -1171,7 +1177,7 @@ namespace sparky {
 
 		void FBXLoader::AssociateSkeletonWithCtrlPoint(FbxSkin* pSkin, InterMediateMesh* interskinmesh)
 		{
-			if (!pSkin || m_SkeletalAsset.size() != 0 || !interskinmesh)
+			if (!pSkin || m_SkeletalAsset.size() == 0 || !interskinmesh)
 			{
 				return;
 			}
@@ -1234,11 +1240,11 @@ namespace sparky {
 						for (auto iter = interskinmesh->CtrlVertices[ctrlPointIndex].begin(); iter != interskinmesh->CtrlVertices[ctrlPointIndex].end(); iter++)
 						{
 
-							if ((*iter)->CurrentIndex < 3)
+							if ((interskinmesh->VertexArray[*iter]).CurrentIndex < 3)
 							{
-								(*iter)->CurrentIndex++;
-								(*iter)->BoneIndex[(*iter)->CurrentIndex] = jointIndex;
-								(*iter)->BoneWeight[(*iter)->CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
+								(interskinmesh->VertexArray[*iter]).CurrentIndex++;
+								(interskinmesh->VertexArray[*iter]).BoneIndex[(interskinmesh->VertexArray[*iter]).CurrentIndex] = jointIndex;
+								(interskinmesh->VertexArray[*iter]).BoneWeight[(interskinmesh->VertexArray[*iter]).CurrentIndex] = pCtrlPointWeights[ctrlPointIndex];
 							}
 
 

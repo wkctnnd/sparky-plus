@@ -13,6 +13,8 @@
 #include "Asset/skeletalpose.h"
 #include "render/skeletalmesh.h"
 #include "render/skinmesh.h"
+#include "render/skinmeshrenderer.h"
+
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -22,26 +24,28 @@ namespace sparky
 	void Engine::Initialize()
 	{
 
-		FluidRenderer::FluidParam param;
+		//FluidRenderer::FluidParam param;
 		//render(param);
 		//render.Initialize();
-		m_Renderer = new ParticleRenderer();
-		m_Renderer->Initialize();
-
+		//m_Renderer = new ParticleRenderer();
+		//m_Renderer->Initialize();
+		m_Renderer = new SkinMeshRenderer();
 		m_AssetLoader = AssetLoader::INSTANCE();
 		m_AssetLoader->Initialize();
 		Mesh* smokemesh = Mesh::Load("autoload");
 
 		m_AssetLoader->LoadFile("humanoid.fbx");
 		RawSkinMesh* rawskinmesh = m_AssetLoader->GetRawSkinMesh(0);
-		SkeletonClip* skeletonpos = m_AssetLoader->GetClip(0);
+		//SkeletonClip* skeletonpos = m_AssetLoader->GetClip(0);
 		Skeleton* skeleton = m_AssetLoader->GetSkeleton(0);
 		SkinMesh* skinmesh = new SkinMesh(rawskinmesh);
 		SkeletalMesh *skeletalmesh = new SkeletalMesh(skinmesh, skeleton);
-		m_ParticleManager = new ParticleManager();
+		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
-		m_ParticleManager->CreateParticleSystem();
-		m_Renderer->AddRenderable(m_ParticleManager->GetRenderable());
+		m_ParticleManager->CreateParticleSystem();*/
+
+		
+		m_Renderer->AddRenderable(skeletalmesh);
 		//render->AddSmokeVolume(smokemesh);
 	}
 	void Engine::Loop()

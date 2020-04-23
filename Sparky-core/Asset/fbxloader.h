@@ -44,8 +44,8 @@ namespace sparky {
 		struct InterMediateMesh
 		{
 			
-			std::map<unsigned int, std::list<InterVertexData*>> CtrlVertices;
-			std::vector<InterVertexData*> VertexArray;
+			std::map<unsigned int, std::list<unsigned int>> CtrlVertices;
+			std::vector<InterVertexData> VertexArray;
 			std::vector<unsigned short> Faces;
 
 			bool IsIndexed() { return Faces.size() > 0; }
