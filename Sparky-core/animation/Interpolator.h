@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+
 namespace sparky
 {
 	namespace animation
@@ -18,7 +19,7 @@ namespace sparky
 		class InterpolatorBase
 		{
 		public:
-			InterpolatorBase(KeyValueCollection* keyvalues) :m_keyValues(keyvalues) {}
+			InterpolatorBase(KeyValueCollection* keyvalues) :m_keyValues(keyvalues) { m_LastKey = 0; }
 			virtual float Evaluate(unsigned long duration) { return 0; };
 
 			int GetUniqueKey()
@@ -29,7 +30,7 @@ namespace sparky
 			
 		protected:
 		
-
+			int m_LastKey;
 			KeyValueCollection * m_keyValues;
 		};
 
@@ -39,13 +40,7 @@ namespace sparky
 		public:
 			LinearInterpolator(KeyValueCollection* keyvalues):InterpolatorBase(keyvalues)
 			{}
-			float Evaluate(unsigned long currenttime)
-			{
-				float result = 0;
-
-
-				return result;
-			}
+			float Evaluate(unsigned long currenttime);
 
 		/*	static LinearInterpolator<T>* GetInterpolater(unsigned int properid)
 			{

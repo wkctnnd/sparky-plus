@@ -51,6 +51,23 @@ namespace sparky
 			// float GetValue() { return m_Value; }
 			// void BindData(KeyValueSet<datatype>*  data);
 
+			inline void FindKey(int startpos, unsigned long elapsetime, int& key)
+			{
+				for (int i = startpos+1; i < m_KeyValues.size(); i++)
+				{
+					if (m_KeyValues[i].time > elapsetime)
+					{
+						key = i;
+						break;
+					}
+				}
+			}
+
+			inline KeyValue& GetKeyValue(int pos)
+			{
+				return m_KeyValues[pos];
+			}
+
 		private:
 			std::vector<KeyValue>  m_KeyValues;
 			InterpolatorType  m_Type;

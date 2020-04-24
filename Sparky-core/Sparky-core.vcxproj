@@ -139,6 +139,7 @@
     <ClCompile Include="animation\animationmanager.cpp" />
     <ClCompile Include="animation\animationstack.cpp" />
     <ClCompile Include="animation\controller.cpp" />
+    <ClCompile Include="animation\Interpolator.cpp" />
     <ClCompile Include="animation\keyvalue.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />

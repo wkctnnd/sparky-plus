@@ -138,6 +138,9 @@
     <ClCompile Include="animation\animationstack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="animation\Interpolator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">

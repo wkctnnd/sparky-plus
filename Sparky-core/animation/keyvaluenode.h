@@ -37,10 +37,10 @@ namespace sparky
 		class KeyValueNode :public KeyValueNodeBase
 		{
 		public:
-			KeyValueNode(PropertyType type) :KeyValueNodeBase(type) {}
+			KeyValueNode(PropertyType type) :KeyValueNodeBase(type) { m_LastTime = 0; }
 			KeyValueNode(KeyValueNode<T>& other) :KeyValueNodeBase(other.GetType())
 			{
-
+				m_LastTime = 0;
 				m_KeyValueCollectionMap = other.m_KeyValueCollectionMap;
 				m_PropertyId = other.m_PropertyId;
 			}
@@ -59,6 +59,7 @@ namespace sparky
 
 			//当动画应用到某个具体entity时，与对应id或名字的property关联
 			unsigned int m_PropertyId;
+			float m_LastTime;
 			//std::vector<>
 		};
 
@@ -68,11 +69,11 @@ namespace sparky
 		T KeyValueNode<T>::Evaluate(unsigned long elapse)
 		{
 			T value;
-			
+			m_LastTime += elapse;
 			float temp = 0;
 			for (int i = 0; i < m_Interpolators.size(); i++)
 			{
-				temp = m_Interpolators[i]->Evaluate(elapse);
+				temp = m_Interpolators[i]->Evaluate(m_LastTime);
 				value.SetElement(i, temp);
 			}
 			return value;
