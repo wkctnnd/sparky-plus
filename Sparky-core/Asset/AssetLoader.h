@@ -2,6 +2,14 @@
 #include <string>
 
 namespace sparky {
+	namespace animation
+	{
+		class AnimationLayer;
+	}
+}
+
+using namespace sparky::animation;
+namespace sparky {
 	namespace asset {
 		class AssetLoader
 		{
@@ -20,6 +28,8 @@ namespace sparky {
 			unsigned int GetSkeletonCount();
 			unsigned int GetClipCount();
 
+			unsigned int GetAnimationLayerCount();
+			AnimationLayer* GetAnimationLayer(unsigned int id);
 			class SkeletonClip* GetClip(unsigned int id);
 		private:
 			class objLoader *m_ObjLoader;

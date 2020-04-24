@@ -15,11 +15,11 @@ namespace sparky
 		class Controller
 		{
 		public:
-			void Initialize(std::vector<class AnimationLayer*>& layers);
+			void Initialize(std::vector<class AnimationStack*>& stacks);
 			void Update(unsigned long elapse);
 			int GetAnimationStackCount() { return m_AnimationStackArray.size(); };
 			class AnimationStack* GetAnimationStack(int id) { return m_AnimationStackArray[id]; }
-		 
+			//void AddAnimationStack() { m_AnimationStackArray.push_back(); }
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
 			std::vector<Interpolator<vec3>*> m_Vec3Interpolators;

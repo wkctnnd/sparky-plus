@@ -32,6 +32,15 @@ namespace sparky {
 			InterVertexData()
 			{
 				CurrentIndex = -1;
+				BoneWeight[0] = 0;
+				BoneWeight[1] = 0;
+				BoneWeight[2] = 0;
+				BoneWeight[3] = 0;
+
+				BoneIndex[0] = 0;
+				BoneIndex[1] = 0;
+				BoneIndex[2] = 0;
+				BoneIndex[3] = 0;
 			}
 			vec3 Position;
 			vec4 Color;
@@ -125,6 +134,9 @@ namespace sparky {
 				return m_ClipAsset[id];
 			}
 
+			unsigned int GetAnimationLayerCount() { return m_AnimationLayers.size(); }
+			AnimationLayer* GetAnimationLayer(int id) { return m_AnimationLayers[id]; }
+
 		private:
 			void ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
  
@@ -175,8 +187,7 @@ namespace sparky {
 			
 			void PostProcess();
 
-			unsigned int GetAnimationLayerCount() { return m_AnimationLayers.size(); }
-			AnimationLayer* GetAnimationLayer(int id) { return m_AnimationLayers[id]; }
+
 		private:
 			//std::vector<FbxString*> mAnimStackNameArray;
 			FbxManager * mSdkManager;

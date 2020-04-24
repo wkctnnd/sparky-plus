@@ -7,7 +7,7 @@ namespace sparky
 	namespace animation
 	{
 
-		void Controller::Initialize(std::vector<AnimationLayer*>& layers)
+		void Controller::Initialize(std::vector<AnimationStack*>& stacks)
 		{
 			//m_Interpolators = layer->GetInterPolator();
 			/*for (unsigned int i = 0; i < layers.size(); i++)
@@ -16,6 +16,7 @@ namespace sparky
 				for (unsigned int j = 0; j < temp.size(); j++)
 					m_InterpolatorMap.insert(std::make_pair(temp[i]->GetUniqueKey(), temp[j]));
 			}*/
+			m_AnimationStackArray = stacks;
 		}
 
 		void Controller::Update(unsigned long elapse)

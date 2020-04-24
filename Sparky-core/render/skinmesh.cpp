@@ -9,8 +9,8 @@ namespace sparky {
 		SkinMesh::SkinMesh(RawSkinMesh* rawskinmesh)
 		{
 			Buffer* buffer = new StaticBuffer(&(rawskinmesh->m_Position[0].x), rawskinmesh->m_Position.size() * 3, 3);
-			Buffer* BoneWeightBuffer = new StaticBuffer(&(rawskinmesh->m_BoneWeight[0].x), rawskinmesh->m_BoneWeight.size() * 3, 3);
-			Buffer* BoneIndexBuffer = new StaticBuffer(&(rawskinmesh->m_BoneIndex[0].x), rawskinmesh->m_BoneIndex.size() * 3, 3);
+			Buffer* BoneWeightBuffer = new StaticBuffer(&(rawskinmesh->m_BoneWeight[0].x), rawskinmesh->m_BoneWeight.size() * 4, 4);
+			Buffer* BoneIndexBuffer = new StaticBuffer(&(rawskinmesh->m_BoneIndex[0].x), rawskinmesh->m_BoneIndex.size() * 4, 4);
 			IndexBuffer* ibuffer = new IndexBuffer(&rawskinmesh->m_Faces[0], rawskinmesh->m_Faces.size());
 	
 			m_VAO.addBuffer(buffer, 0);

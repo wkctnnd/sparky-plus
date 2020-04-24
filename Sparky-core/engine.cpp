@@ -14,7 +14,8 @@
 #include "render/skeletalmesh.h"
 #include "render/skinmesh.h"
 #include "render/skinmeshrenderer.h"
-
+#include "animation/animationstack.h"
+#include "animation/controller.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -40,7 +41,19 @@ namespace sparky
 		Skeleton* skeleton = m_AssetLoader->GetSkeleton(0);
 		SkinMesh* skinmesh = new SkinMesh(rawskinmesh);
 		SkeletalMesh *skeletalmesh = new SkeletalMesh(skinmesh, skeleton);
+		unsigned int count = m_AssetLoader->GetAnimationLayerCount();
+		AnimationStack* animstack = new AnimationStack("");
+		for (unsigned int i = 0; i < 1; i++)
+		{
+			animstack->AddLayer(m_AssetLoader->GetAnimationLayer(i),1);
+		}
 
+		Controller *controller = new Controller();
+		std::vector<AnimationStack*> stacks;
+		stacks.push_back(animstack);
+		controller->Initialize(stacks);
+		skeletalmesh->SetController(controller);
+			
 		m_Renderer = new SkinMeshRenderer(skeletalmesh);
 		m_Renderer->Initialize();
 		/*m_ParticleManager = new ParticleManager();

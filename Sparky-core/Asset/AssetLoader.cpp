@@ -77,5 +77,14 @@ namespace sparky {
 	
 		
 
+		unsigned int AssetLoader::GetAnimationLayerCount()
+		{
+			return m_FbxLoader->GetAnimationLayerCount();
+		}
+ 
+		AnimationLayer* AssetLoader::GetAnimationLayer(unsigned int id)
+		{
+			return m_FbxLoader->GetAnimationLayer(id);
+		}
 	}
 }
