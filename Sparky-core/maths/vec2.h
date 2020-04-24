@@ -14,6 +14,8 @@ namespace sparky {
 			vec2& multipy(const vec2& other);
 			vec2& divide(const vec2& other);
 
+			void SetElement(unsigned int i, float value);
+
 			friend std::ostream& operator<<(std::ostream& stream, const vec2& vector);
 			
 		};

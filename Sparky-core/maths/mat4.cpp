@@ -129,15 +129,15 @@ namespace sparky {
 		{
 			mat4 result(1.0f);
 
-			result.elements[0] = 1 - 2 * q.Y()*q.Y() - 2 * q.Z()*q.Z();
-			result.elements[1] = 2 * q.X()*q.Y() - 2 * q.W()*q.Z();
-			result.elements[2] = 2 * q.X()*q.Z() + 2 * q.W()*q.Y();
-			result.elements[3] = 2 * q.X()*q.Y() + 2 * q.W()*q.Z();
-			result.elements[4] = 1 - 2 * q.X()*q.X() - 2 * q.Z()*q.Z();
-			result.elements[5] = 2 * q.Y()*q.Z() - 2 * q.W()*q.X();
-			result.elements[6] = 2 * q.X()*q.Z() - 2 * q.W()*q.Y();
-			result.elements[7] = 2 * q.Y()*q.Z() + 2 * q.W()*q.X();
-			result.elements[8] = 1 - 2 * q.X()*q.X() - 2 * q.Y()*q.Y();
+			result.elements[0] = 1 - 2 * q.y*q.y - 2 * q.z*q.z;
+			result.elements[1] = 2 * q.x*q.y - 2 * q.w*q.z;
+			result.elements[2] = 2 * q.x*q.z + 2 * q.w*q.y;
+			result.elements[3] = 2 * q.x*q.y + 2 * q.w*q.z;
+			result.elements[4] = 1 - 2 * q.x*q.x - 2 * q.z*q.z;
+			result.elements[5] = 2 * q.y*q.z - 2 * q.w*q.x;
+			result.elements[6] = 2 * q.x*q.z - 2 * q.w*q.y;
+			result.elements[7] = 2 * q.y*q.z + 2 * q.w*q.x;
+			result.elements[8] = 1 - 2 * q.x*q.x - 2 * q.y*q.y;
 			
 
 			return result;

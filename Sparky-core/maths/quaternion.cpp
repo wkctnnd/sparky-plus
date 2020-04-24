@@ -21,5 +21,11 @@ namespace sparky {
 
 			return result;
 		}
+
+		void Quaternion::SetElement(unsigned int i, float value)
+		{
+			float *v = &x;
+			*(v + i) = value;
+		}
 	}
 }

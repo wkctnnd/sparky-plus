@@ -68,6 +68,13 @@ namespace sparky {
 			return sqrt(x * x + y * y + z * z);
 		}
 
+		//给模板设值使用
+		void vec3::SetElement(unsigned int i, float value)
+		{
+			float *v = &x;
+			*(v + i) = value;
+		}
+
 		vec3& vec3:: operator+=(vec3 left)
 		{
 			x += left.x;

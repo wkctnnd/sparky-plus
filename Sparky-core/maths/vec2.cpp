@@ -45,6 +45,12 @@ namespace sparky {
 			return *this;
 		}
 
+		void vec2::SetElement(unsigned int i, float value)
+		{
+			float *v = &x;
+			*(v + i) = value;
+		}
+
 		std::ostream& operator<<(std::ostream& stream, const vec2& vector)
 		{
 			stream << "vec2: (" << vector.x << "," << vector.y << ")";

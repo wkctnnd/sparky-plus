@@ -52,7 +52,7 @@ namespace sparky
 						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(i);
 						if (property.GetType() == layer->GetKeyValueNode(i)->GetType())
 						{
-							property.BindKeyValueNode(KeyValueNode);
+							property.BindKeyValueNode(KeyValueNode, 1);
 						}
 						
 						

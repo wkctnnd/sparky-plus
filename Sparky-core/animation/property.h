@@ -20,7 +20,7 @@ namespace sparky
 				m_PropertyName = name;
 			}
 
-			void BindKeyValueNode(class KeyValueNodeBase* keyvaluenode);
+			void BindKeyValueNode(class KeyValueNodeBase* keyvaluenode, float weight);
 			//获得propterty得当前值，proptery对应多个keyvaluenode，通过权重混合
 			datatype EvaluateValue(unsigned long time);
 
@@ -54,9 +54,10 @@ namespace sparky
 		}
 
 		template<class datatype>
-		void Property<datatype>::BindKeyValueNode(class KeyValueNodeBase* keyvaluenode)
+		void Property<datatype>::BindKeyValueNode(class KeyValueNodeBase* keyvaluenode, float weight)
 		{
 			m_KeyValueNodeArray.push_back(keyvaluenode);
+			m_WeightArray.push_back(weight);
 		}
 
 		//template<class PropertyType, PropertyType type>
