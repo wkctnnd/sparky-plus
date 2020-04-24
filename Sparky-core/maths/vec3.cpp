@@ -5,7 +5,9 @@ namespace sparky {
 
 		vec3::vec3()
 		{
-
+			x = 0;
+			y = 0;
+			z = 0;
 		}
 
 		vec3::vec3(const float& x, const float& y, const float& z)
@@ -75,7 +77,7 @@ namespace sparky {
 			*(v + i) = value;
 		}
 
-		vec3& vec3:: operator+=(vec3 left)
+		vec3& vec3:: operator+=(const vec3& left)
 		{
 			x += left.x;
 			y += left.y;

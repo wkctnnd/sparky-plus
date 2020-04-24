@@ -22,7 +22,7 @@ namespace sparky {
 
 			friend std::ostream& operator<<(std::ostream& stream, const vec3& vector);
 
-			vec3& operator +=(vec3 left);
+			vec3& operator +=(const vec3& left);
 
 			friend vec3 operator+(vec3 left, const vec3& right);
 			friend vec3 operator-(vec3 left, const vec3& right);

@@ -5,7 +5,8 @@ namespace sparky {
 
 		vec2::vec2()
 		{
-
+			x = 0;
+			y = 0;
 		}
 
 		vec2::vec2(const float& x, const float& y)

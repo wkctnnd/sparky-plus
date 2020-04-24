@@ -15,9 +15,10 @@ namespace sparky {
 
 		const char * Curve_Component[]
 		{
-			"X",
-			"Y",
-			"Z"
+			"Component_X",
+			"Component_Y",
+			"Component_Z",
+			"Component_W"
 		};
 
 		void FBXEasyMeshPostProcess::Process(std::vector<InterMediateMesh*>& intermediatemeharray)

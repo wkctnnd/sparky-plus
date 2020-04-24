@@ -47,7 +47,8 @@ namespace sparky
 			datatype result;
 			for (int i = 0; i < m_KeyValueNodeArray.size(); i++)
 			{
-				result += ((KeyValueNode<datatype>*)(m_KeyValueNodeArray[i]))->Evaluate(time) * m_WeightArray[i];
+				datatype temp = ((KeyValueNode<datatype>*)(m_KeyValueNodeArray[i]))->Evaluate(time) * m_WeightArray[i];
+				result += temp;
 			}
 
 			return result;
