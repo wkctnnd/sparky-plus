@@ -47,23 +47,28 @@ namespace sparky
 					AnimationLayer *layer = stack->GetAnimationLayer(j);
 
 					auto& property = skeleton->joints[i]->m_Translation;
+					auto& property2 = skeleton->joints[i]->m_Translation;
+					auto& property3 = skeleton->joints[i]->m_Translation;
 					for (int i = 0; i < layer->GetKeyValueNodeCount(); i++)
 					{
 						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(i);
 						if (property.GetType() == layer->GetKeyValueNode(i)->GetType())
 						{
 							property.BindKeyValueNode(KeyValueNode, 1);
+			
+						}
+						if (property2.GetType() == layer->GetKeyValueNode(i)->GetType())
+						{
+							property2.BindKeyValueNode(KeyValueNode, 1);
 						}
 						
-						
+						if (property3.GetType() == layer->GetKeyValueNode(i)->GetType())
+						{
+							property3.BindKeyValueNode(KeyValueNode, 1);
+						}
 					}
-					
 				}
-				
 			}
 		}
- 
-		
-
 	}
 }
