@@ -47,8 +47,8 @@ namespace sparky
 					AnimationLayer *layer = stack->GetAnimationLayer(j);
 
 					auto& property = skeleton->joints[i]->m_Translation;
-					auto& property2 = skeleton->joints[i]->m_Translation;
-					auto& property3 = skeleton->joints[i]->m_Translation;
+					auto& property2 = skeleton->joints[i]->m_Quat;
+					auto& property3 = skeleton->joints[i]->m_Scale;
 					for (int i = 0; i < layer->GetKeyValueNodeCount(); i++)
 					{
 						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(i);

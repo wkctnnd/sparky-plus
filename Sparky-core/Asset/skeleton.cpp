@@ -18,9 +18,12 @@ namespace sparky
 		void Skeleton::UpdateJoint(unsigned long elapes, joint *j)
 		{
 			
-			vec3 translate = j->m_Translation.EvaluateValue(elapes);
-			vec3 scale = j->m_Scale.EvaluateValue(elapes);
-			Quaternion quat = j->m_Quat.EvaluateValue(elapes);
+			vec3 translate(0,0,0);
+			vec3 scale(1, 1, 1);
+			Quaternion quat(1, 0, 0, 0);
+			j->m_Translation.EvaluateValue(elapes, translate);
+			j->m_Scale.EvaluateValue(elapes, scale);
+			j->m_Quat.EvaluateValue(elapes, quat);
 
 			mat4 TranslateMat = mat4::Translate(translate);
 			mat4 RotateMat = mat4::rotation(quat);

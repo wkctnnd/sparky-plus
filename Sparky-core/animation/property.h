@@ -22,7 +22,7 @@ namespace sparky
 
 			void BindKeyValueNode(class KeyValueNodeBase* keyvaluenode, float weight);
 			//获得propterty得当前值，proptery对应多个keyvaluenode，通过权重混合
-			datatype EvaluateValue(unsigned long time);
+			void EvaluateValue(unsigned long time, datatype& value);
 
 			void SetName(std::string name) { m_PropertyName = name; }
 			void SetPropertyType(PropertyType type) { m_PropertyType = type; }
@@ -42,16 +42,19 @@ namespace sparky
 
 		//获得propterty得当前值，proptery对应多个keyvaluenode，通过权重混合
 		template<class datatype>
-		datatype Property<datatype>::EvaluateValue(unsigned long time)
+		void Property<datatype>::EvaluateValue(unsigned long time, datatype& value)
 		{
-			datatype result;
-			for (int i = 0; i < m_KeyValueNodeArray.size(); i++)
+			if (m_KeyValueNodeArray.size() != 0)
 			{
-				datatype temp = ((KeyValueNode<datatype>*)(m_KeyValueNodeArray[i]))->Evaluate(time) * m_WeightArray[i];
-				result += temp;
+				datatype result;
+				for (int i = 0; i < m_KeyValueNodeArray.size(); i++)
+				{
+					datatype temp = ((KeyValueNode<datatype>*)(m_KeyValueNodeArray[i]))->Evaluate(time) * m_WeightArray[i];
+					result += temp;
+				}
+				value = result;
 			}
 
-			return result;
 		}
 
 		template<class datatype>
