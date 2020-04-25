@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include "keyvalue.h"
 #include "Interpolator.h"
 //https://ppx209.com/videos/33278/av-fc2ppv-1202738/
 
