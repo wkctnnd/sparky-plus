@@ -142,7 +142,7 @@ namespace sparky {
  
 			void ProcessNode(FbxNode* node, FbxAnimLayer* animationlayer = 0);
 			void ProcessMesh(FbxNode* pNode, FbxAnimLayer* animationlayer = 0);
-			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, AnimationLayer *layer = 0, SkeletonClip** pose = 0);
+			void ProcessSkeleton(FbxNode* pNode, Skeleton* node, int parentindex, FbxAnimLayer* animationlayer = 0, AnimationLayer *layer = 0, bool LoadSkeleton = true);
 			void InitializeSdkObjects(FbxManager*& pManager, FbxScene*& pScene);
 
 			void ComputeDualQuaternionDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);

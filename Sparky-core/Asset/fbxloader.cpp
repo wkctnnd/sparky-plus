@@ -700,7 +700,7 @@ namespace sparky {
 			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 			Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-			if (Curve[0] != 0)
+			if (Curve[0] != 0&& Curve[1] == 0)
 			{
 				LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
@@ -734,7 +734,7 @@ namespace sparky {
 
 		}
 
-		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, AnimationLayer* layer, SkeletonClip** pose)
+		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex, FbxAnimLayer* animationlayer, AnimationLayer* layer, bool LoadSkeleton)
 		{
 
 			FbxSkeleton* lSkeleton = (FbxSkeleton*)pNode->GetNodeAttribute();
@@ -745,35 +745,40 @@ namespace sparky {
 			if (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode)
 			{
 				/*GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition);*/
-				joint* j = 0;
-				if (parentindex == -1)
+				if (LoadSkeleton)
 				{
-					j = new joint(0, pNode->GetName());
-					/*if (!animationlayer)
+					joint* j = 0;
+					if (parentindex == -1)
 					{
-						*pose = new SkeletonClip();
-					}*/
+						j = new joint(0, pNode->GetName());
+						/*if (!animationlayer)
+						{
+							*pose = new SkeletonClip();
+						}*/
+					}
+					else
+					{
+						j = new joint(skeleton->joints[parentindex], pNode->GetName());
+						skeleton->joints[parentindex]->children.push_back(j);
+
+
+
+					}
+					j->m_Id = skeleton->joints.size();
+					skeleton->joints.push_back(j);
 				}
-				else
-				{
-					j = new joint(skeleton->joints[parentindex], pNode->GetName());
-					skeleton->joints[parentindex]->children.push_back(j);
+				
 
-
-
-				}
-
-				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
-				{
-					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
-				}
+		/*		for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+				{*/
+					LoadNodeCurve(animationlayer, layer, pNode);
+			/*	}
+			*/
 			
-				j->m_Id = skeleton->joints.size();
-				skeleton->joints.push_back(j);
-				if (skeleton->joints.size() == 79)
-				{
-					int a = 1;
-				}
+				/*	if (skeleton->joints.size() == 79)
+					{
+						int a = 1;
+					}*/
 
 			}
 
@@ -1067,8 +1072,12 @@ namespace sparky {
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton * skeleton = new Skeleton();
 					//SkeletonClip* pose;
-					//for (int i = 0; i < m_FBXAnimLayers.size(); i++)
-						ProcessSkeleton(pNode, skeleton, -1/*, m_FBXAnimLayers[i], m_AnimationLayers[i]*/);
+					for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+					{
+						
+						ProcessSkeleton(pNode, skeleton, -1, m_FBXAnimLayers[i], m_AnimationLayers[i],i==0);
+					}
+						
 					skeleton->WorldPose.resize(skeleton->joints.size());
 					m_SkeletalAsset.push_back(skeleton);
 
