@@ -763,7 +763,11 @@ namespace sparky {
 
 				}
 
-				LoadNodeCurve(animationlayer, layer, pNode);
+				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+				{
+					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+				}
+			
 				j->m_Id = skeleton->joints.size();
 				skeleton->joints.push_back(j);
 				if (skeleton->joints.size() == 79)
@@ -1063,8 +1067,8 @@ namespace sparky {
 				case FbxNodeAttribute::eSkeleton:
 					Skeleton * skeleton = new Skeleton();
 					//SkeletonClip* pose;
-					for (int i = 0; i < m_FBXAnimLayers.size(); i++)
-						ProcessSkeleton(pNode, skeleton, -1, m_FBXAnimLayers[i], m_AnimationLayers[i]);
+					//for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+						ProcessSkeleton(pNode, skeleton, -1/*, m_FBXAnimLayers[i], m_AnimationLayers[i]*/);
 					skeleton->WorldPose.resize(skeleton->joints.size());
 					m_SkeletalAsset.push_back(skeleton);
 
