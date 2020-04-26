@@ -13,7 +13,7 @@ namespace sparky
 	{
 		struct joint
 		{
-			joint(joint* p, std::string n):m_Translation(Translate_Property_Type, "Translate"),m_Scale(Scale_Property_Type, "Scale"), m_Quat(Rotation_Property_Type, "Rotate")
+			joint(joint* p, std::string n):m_Translation(Translate_Property_Type, n),m_Scale(Scale_Property_Type, n), m_Quat(Rotation_Property_Type, n)
 			{
 				bonename = n;
 				parent = p;

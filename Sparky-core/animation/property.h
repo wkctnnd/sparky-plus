@@ -25,6 +25,8 @@ namespace sparky
 			void EvaluateValue(unsigned long time, datatype& value);
 
 			void SetName(std::string name) { m_PropertyName = name; }
+			std::string GetName() { return m_PropertyName; }
+
 			void SetPropertyType(PropertyType type) { m_PropertyType = type; }
 
 			PropertyType GetType() { return m_PropertyType; }
@@ -60,6 +62,13 @@ namespace sparky
 		template<class datatype>
 		void Property<datatype>::BindKeyValueNode(class KeyValueNodeBase* keyvaluenode, float weight)
 		{
+			if (keyvaluenode->m_AttachCount > 0)
+			{
+				int a = 1;
+			}
+			keyvaluenode->m_AttachCount++;
+			keyvaluenode->m_PropertyNames.push_back(m_PropertyName);
+			keyvaluenode->m_PropertyIDs.push_back(m_PropertyId);
 			m_KeyValueNodeArray.push_back(keyvaluenode);
 			m_WeightArray.push_back(weight);
 		}

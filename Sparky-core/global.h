@@ -7,7 +7,7 @@ static const char* AssetFilePath = "/../Assets/";
 
 enum PropertyType
 {
-	Translate_Property_Type,
+	Translate_Property_Type = 0,
 	Scale_Property_Type,
 	Rotation_Property_Type,
 

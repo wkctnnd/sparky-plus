@@ -46,27 +46,30 @@ namespace sparky
 				{
 					AnimationLayer *layer = stack->GetAnimationLayer(j);
 
+
 					auto& property = skeleton->joints[i]->m_Translation;
 					auto& property2 = skeleton->joints[i]->m_Quat;
 					auto& property3 = skeleton->joints[i]->m_Scale;
-					for (int i = 0; i < layer->GetKeyValueNodeCount(); i++)
-					{
-						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(i);
-						if (property.GetType() == layer->GetKeyValueNode(i)->GetType())
+		/*			for (int k = 0; k < layer->GetKeyValueNodeCount(); k++)
+					{*/
+						KeyValueNodeBase* KeyValueNode = layer->GetKeyValueNode(skeleton->joints[i]->bonename, property.GetType());
+						if (KeyValueNode != 0)
 						{
-							property.BindKeyValueNode(KeyValueNode, 1);
-			
+							property.BindKeyValueNode(KeyValueNode, 1);		
 						}
-						if (property2.GetType() == layer->GetKeyValueNode(i)->GetType())
+
+						KeyValueNode = layer->GetKeyValueNode(skeleton->joints[i]->bonename, property2.GetType());
+						if (KeyValueNode != 0)
 						{
 							property2.BindKeyValueNode(KeyValueNode, 1);
 						}
 						
-						if (property3.GetType() == layer->GetKeyValueNode(i)->GetType())
+						KeyValueNode = layer->GetKeyValueNode(skeleton->joints[i]->bonename, property3.GetType());
+						if (KeyValueNode != 0)
 						{
 							property3.BindKeyValueNode(KeyValueNode, 1);
 						}
-					}
+					/*}*/
 				}
 			}
 		}

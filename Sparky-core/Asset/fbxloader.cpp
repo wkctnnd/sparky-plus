@@ -694,7 +694,7 @@ namespace sparky {
 			{
 
 				LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
-				layer->AddKeyValueNode(translatekeyvaluenode);
+				layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
 			}
 
 			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
@@ -703,7 +703,7 @@ namespace sparky {
 			if (Curve[0] != 0)
 			{
 				LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
-				layer->AddKeyValueNode(rotatekeyvaluenode);
+				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
 			}
 			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
 			Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
@@ -711,7 +711,7 @@ namespace sparky {
 			if (Curve[0] != 0)
 			{
 				LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
-				layer->AddKeyValueNode(scalekeyvaluenode);
+				layer->AddKeyValueNode(pNode->GetName(), scalekeyvaluenode);
 			}
 
 			/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
@@ -766,6 +766,10 @@ namespace sparky {
 				LoadNodeCurve(animationlayer, layer, pNode);
 				j->m_Id = skeleton->joints.size();
 				skeleton->joints.push_back(j);
+				if (skeleton->joints.size() == 79)
+				{
+					int a = 1;
+				}
 
 			}
 

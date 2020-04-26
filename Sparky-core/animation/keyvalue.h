@@ -53,13 +53,25 @@ namespace sparky
 
 			inline void FindKey(int startpos, unsigned long elapsetime, int& key)
 			{
+				if (elapsetime > m_KeyValues[m_KeyValues.size()-1].time)
+				{
+					key = m_KeyValues.size() - 1;
+					return;
+				}
+
+				int find = 0;
 				for (int i = startpos+1; i < m_KeyValues.size(); i++)
 				{
 					if (m_KeyValues[i].time > elapsetime)
 					{
 						key = i;
+						find = 1;
 						break;
 					}
+				}
+				if (find == 0)
+				{
+					int a = 1;
 				}
 			}
 

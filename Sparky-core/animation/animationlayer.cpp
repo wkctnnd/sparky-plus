@@ -1,6 +1,6 @@
 #pragma once
 #include "animationlayer.h"
-
+#include "keyvaluenode.h"
 namespace sparky
 {
 	namespace animation
@@ -56,9 +56,34 @@ namespace sparky
 			}
 			return interpolator;
 		}*/
-		void AnimationLayer::AddKeyValueNode(KeyValueNodeBase* keyvaluenode)
+		void AnimationLayer::AddKeyValueNode(std::string name, KeyValueNodeBase* keyvaluenode)
 		{
 			m_KeyValueNodeBaseArray.push_back(keyvaluenode);
+			auto it = m_KeyValueNodeBaseMap.find(name);
+			if (it != m_KeyValueNodeBaseMap.end())
+			{
+				m_KeyValueNodeBaseMap.insert(std::make_pair(name, std::vector<KeyValueNodeBase*>()));
+			}
+
+			m_KeyValueNodeBaseMap[name].push_back(keyvaluenode);
+			//m_KeyValueNodeBaseMap.insert(make_pair(name, keyvaluenode));
+		}
+
+		KeyValueNodeBase* AnimationLayer::GetKeyValueNode(std::string name, PropertyType type)
+		{
+			auto it = m_KeyValueNodeBaseMap.find(name);
+			if (it == m_KeyValueNodeBaseMap.end())  return 0;
+			
+			auto& nodearray = it->second;
+			for (unsigned int i = 0; i < nodearray.size(); i++)
+			{
+				if (nodearray[i]->GetType() == type)
+				{
+					return nodearray[i];
+				}
+			}
+
+			return 0;
 		}
 
 		//std::vector<InterpolatorBase*> AnimationLayer::GetInterPolator()

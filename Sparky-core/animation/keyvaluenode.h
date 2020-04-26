@@ -26,10 +26,16 @@ namespace sparky
 		class KeyValueNodeBase
 		{
 		public:
-			KeyValueNodeBase(PropertyType type) { m_Type = type; }
+			KeyValueNodeBase(PropertyType type) { m_Type = type; m_AttachCount = 0; }
 			PropertyType GetType() { return m_Type; }
 		protected:
 			PropertyType m_Type;
+
+		public:
+			
+			int m_AttachCount; //debug use
+			std::vector<std::string>  m_PropertyNames; //debug use
+			std::vector<unsigned int>  m_PropertyIDs; //debug use
 		};
 
 
