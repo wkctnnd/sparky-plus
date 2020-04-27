@@ -661,6 +661,12 @@ namespace sparky {
 						{
 							FbxAnimCurveKey curvekey = Curve[i]->KeyGet(j);
 							float data = curvekey.GetValue();
+
+							//设置为米为单位
+							if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
+								data /= 1000;
+
+
 							FbxTime time = curvekey.GetTime();
 
 							KeyValue value(data, time.GetMilliSeconds());
@@ -670,7 +676,7 @@ namespace sparky {
 						keyvaluenode->AddComponent(Curve_Component[i], valuecollection);
 					}
 				}
-				
+
 
 			}
 		}
@@ -694,24 +700,30 @@ namespace sparky {
 			Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
 			Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 			//pNode->LclTranslation.GetCurveNode()
-
+			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+			{
 				LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
 				layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
+			}
 
-
-				Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-				Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+			Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+			{
 
 				LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
-
-				Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-				Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-				Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-
+			}
+			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+			Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+			Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+			{
 				LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
 				layer->AddKeyValueNode(pNode->GetName(), scalekeyvaluenode);
+
+			}
 
 
 			/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
@@ -747,34 +759,34 @@ namespace sparky {
 				/*GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition);*/
 				/*if (LoadSkeleton)
 				{*/
-					joint* j = 0;
-					if (parentindex == -1)
+				joint* j = 0;
+				if (parentindex == -1)
+				{
+					j = new joint(0, pNode->GetName());
+					/*if (!animationlayer)
 					{
-						j = new joint(0, pNode->GetName());
-						/*if (!animationlayer)
-						{
-							*pose = new SkeletonClip();
-						}*/
-					}
-					else
-					{
-						j = new joint(skeleton->joints[parentindex], pNode->GetName());
-						skeleton->joints[parentindex]->children.push_back(j);
+						*pose = new SkeletonClip();
+					}*/
+				}
+				else
+				{
+					j = new joint(skeleton->joints[parentindex], pNode->GetName());
+					skeleton->joints[parentindex]->children.push_back(j);
 
 
 
-					}
-					j->m_Id = skeleton->joints.size();
-					skeleton->joints.push_back(j);
+				}
+				j->m_Id = skeleton->joints.size();
+				skeleton->joints.push_back(j);
 				/*}*/
-				
+
 
 				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
 				{
 					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
 				}
-			
-			
+
+
 				/*	if (skeleton->joints.size() == 79)
 					{
 						int a = 1;
@@ -811,9 +823,9 @@ namespace sparky {
 			{
 				return;
 			}
-			
+
 			const bool lHasSkin = pMesh->GetDeformerCount(FbxDeformer::eSkin) > 0;
-			if(lHasSkin)
+			if (lHasSkin)
 				m_FbxMeshProcessing.push_back(pMesh);
 			InterMediateMesh *intermesh = new InterMediateMesh();
 			ReadIntemediateMesh(pMesh, intermesh);
@@ -843,7 +855,7 @@ namespace sparky {
 
 		void FBXLoader::ReadIntemediateMesh(FbxMesh* pMesh, InterMediateMesh* rawstaticmesh)
 		{
-	
+
 			int triangleCount = pMesh->GetPolygonCount();
 			int vertexCounter = 0;
 
@@ -1040,13 +1052,14 @@ namespace sparky {
 	{
 
 	}*/
+	//引擎以米为单位，猜测导入是毫米
 		void FBXLoader::ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& position)
 		{
 			FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
 
-			position.x = pCtrlPoint[ctrlPointIndex].mData[0];
-			position.y = pCtrlPoint[ctrlPointIndex].mData[1];
-			position.z = pCtrlPoint[ctrlPointIndex].mData[2];
+			position.x = pCtrlPoint[ctrlPointIndex].mData[0] / 1000.0f;
+			position.y = pCtrlPoint[ctrlPointIndex].mData[1] / 1000.0f;
+			position.z = pCtrlPoint[ctrlPointIndex].mData[2] / 1000.0f;
 		}
 
 
@@ -1075,10 +1088,11 @@ namespace sparky {
 	/*				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
 					{
 						*/
-						ProcessSkeleton(pNode, skeleton, -1);
+					ProcessSkeleton(pNode, skeleton, -1);
 					//}
-						
+
 					skeleton->WorldPose.resize(skeleton->joints.size());
+					skeleton->SkinMat.resize(skeleton->joints.size());
 					m_SkeletalAsset.push_back(skeleton);
 
 					return;
@@ -1249,6 +1263,14 @@ namespace sparky {
 				int     associatedCtrlPointCount = pCluster->GetControlPointIndicesCount();
 				int*    pCtrlPointIndices = pCluster->GetControlPointIndices();
 				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
+
+
+				FbxAMatrix mat;
+				pCluster->GetTransformLinkMatrix(mat);
+
+				pJoint->InvBoneMatrix = ConvertFBXMatrix(mat);
+
+
 				int     ctrlPointIndex;
 
 				// 遍历当前Cluster所影响到的每个Vertex，并将对相应的信息做记录以便Skinning时使用
@@ -1344,10 +1366,10 @@ namespace sparky {
 			//暂时默认，一个fbx只有一个骨骼
 			for (int i = 0; i < m_SkeletalAsset[0]->joints.size(); i++)
 			{
-					if (m_SkeletalAsset[0]->joints[i]->bonename.compare(jointname) == 0)
-					{
-						return i;
-					}
+				if (m_SkeletalAsset[0]->joints[i]->bonename.compare(jointname) == 0)
+				{
+					return i;
+				}
 			}
 			return 0;
 		}

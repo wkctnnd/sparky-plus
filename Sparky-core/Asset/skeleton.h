@@ -38,9 +38,11 @@ namespace sparky
 			void UpdateWorldMatrix();
 			std::vector<joint*> joints;
 			std::vector<mat4> WorldPose;
+			std::vector<mat4> SkinMat;
 
 		private:
 			void UpdateJoint(unsigned long elapse, joint* j);
+			void UpdateSkinMat();
 		};
 	}
 }

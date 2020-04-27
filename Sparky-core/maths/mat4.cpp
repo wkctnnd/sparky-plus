@@ -155,11 +155,15 @@ namespace sparky {
 		
 		mat4 mat4::scale(const vec3& scale)
 		{
-			mat4 result(1.0);
+			mat4 result(0.0);
 
 			result.elements[0] = scale.x;
-			result.elements[4] = scale.y;
-			result.elements[4] = scale.z;
+			result.elements[5] = scale.y;
+			result.elements[10] = scale.z;
+			result.elements[12] = 1;
+			result.elements[13] = 1;
+			result.elements[14] = 1;
+			result.elements[15] = 1;
 
 			return result;
 		}

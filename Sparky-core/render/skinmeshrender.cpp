@@ -55,7 +55,7 @@ namespace sparky
 			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -0.5f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
-			m_SkinMeshShader->setUniformMat4v("BoneMatrix", &(m_SkeletalMesh->GetSkeleton()->WorldPose[0]), m_SkeletalMesh->GetSkeleton()->WorldPose.size());
+			m_SkinMeshShader->setUniformMat4v("BoneMatrix", &(m_SkeletalMesh->GetSkeleton()->SkinMat[0]), m_SkeletalMesh->GetSkeleton()->SkinMat.size());
 			m_SkinMeshShader->setUniformMat41("pr_matrix", mProjectionMatrix);
 			m_SkinMeshShader->setUniformMat41("vw_matrix", mViewMatrix);
 			//m_SkinMeshShader->setUniform1i("BoneIndex0", 0);

@@ -2,6 +2,7 @@
 #include "Asset/skeleton.h"
 #include "engine.h"
 #include "maths/mat4.h"
+#include "Asset/skeleton.h"
 using namespace sparky::maths;
 using namespace sparky::animation;
 namespace sparky
@@ -30,8 +31,18 @@ namespace sparky
 			mat4 RotateMat = mat4::rotation(quat);
 			mat4 ScaleMat = mat4::scale(scale);
 			
-			WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;
+			
+			/*if(j->parent)
+				WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat * RotateMat * ScaleMat;
+			else 
+				WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;*/
 
+			if(j->parent)
+				WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat/* * RotateMat * ScaleMat*/;
+			else
+				WorldPose[j->m_Id] = TranslateMat/* * RotateMat * ScaleMat*/;
+			
+			SkinMat[j->m_Id] = WorldPose[j->m_Id] * joints[j->m_Id]->InvBoneMatrix;
 			for (int i = 0; i < j->children.size(); i++)
 			{
 				UpdateJoint(elapes, j->children[i]);

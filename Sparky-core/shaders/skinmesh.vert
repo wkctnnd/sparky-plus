@@ -15,7 +15,7 @@ varying vec3 worldposition;
 void main()
 {
  
-   vec4 pos = vec4(position.x*0.001,position.y*0.001,position.z*0.001,1);
+   vec4 pos = vec4(position.x,position.y,position.z,1);
 
 	mat4 FinalMatrix = (BoneWeight[0] * BoneMatrix[BoneIndex[0]] + BoneWeight[1]*BoneMatrix[BoneIndex[1]] + BoneWeight[2]*BoneMatrix[BoneIndex[2]] + BoneWeight[3]*BoneMatrix[BoneIndex[3]])/4;
 	gl_Position = pr_matrix  * vw_matrix  * FinalMatrix*pos;
