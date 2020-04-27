@@ -11,6 +11,7 @@ namespace sparky
 		void Skeleton::UpdateWorldMatrix()
 		{
 			long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+			std::cout << elapse<<std::endl;
 			UpdateJoint(elapse, joints[0]);
 
 		}

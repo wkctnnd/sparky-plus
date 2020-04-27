@@ -64,6 +64,10 @@ namespace sparky
 				{
 					if (m_KeyValues[i].time > elapsetime)
 					{
+						if (i == 22 && m_KeyValues.size() == 23)
+						{
+							int  a = 1;
+						}
 						key = i;
 						find = 1;
 						break;

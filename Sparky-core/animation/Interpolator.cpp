@@ -17,9 +17,9 @@ namespace sparky
 
 			unsigned long timeduration = endkey.time - startkey.time;
 			float t = (float)(currenttime - startkey.time) / float(timeduration);
-			result = t * startkey.value + (1 - t)*endkey.value;
+			result = (1 - t) * startkey.value + t * endkey.value;
 
-			m_LastKey = key;
+			m_LastKey = key - 1;
 			return result;
 		}
 

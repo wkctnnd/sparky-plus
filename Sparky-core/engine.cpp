@@ -16,6 +16,8 @@
 #include "render/skinmeshrenderer.h"
 #include "animation/animationstack.h"
 #include "animation/controller.h"
+#include <thread>
+#include <chrono>
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -70,9 +72,18 @@ namespace sparky
 
 		//m_ParticleManager->Update();
 		m_Renderer->Update();
-		GlobalTimer.Stop();
-		std::cout << GlobalTimer;
+	
+		
 		m_Renderer->RenderScene();
+		GlobalTimer.Stop();
+
+		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+		//long remain = 330 - elapse;
+		//if (remain > 0)
+		//	this_thread::sleep_for(chrono::milliseconds(remain));
+
+		//elapse = Engine::GlobalTimer.GetElapsemillionseconds();
+		//std::cout << elapse << std::endl;
 	}
 
 }
