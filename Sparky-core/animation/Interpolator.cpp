@@ -1,5 +1,8 @@
 #include "Interpolator.h"
 #include "keyvalue.h"
+#include "maths//util.h"
+//https://yuese87.com/videos/21966/ed1864ec153f9af779208c8e1bab4e0a/
+using namespace sparky::maths;
 namespace sparky
 {
 	namespace animation
@@ -17,6 +20,9 @@ namespace sparky
 
 			unsigned long timeduration = endkey.time - startkey.time;
 			float t = (float)(currenttime - startkey.time) / float(timeduration);
+
+			t = Util::Max<float>(t, 1);
+
 			result = (1 - t) * startkey.value + t * endkey.value;
 
 			m_LastKey = key - 1;

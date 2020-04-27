@@ -1,4 +1,5 @@
 #pragma once
+#include "maths/vec3.h"
 namespace sparky {
 	namespace maths {
 		class Util
@@ -16,6 +17,16 @@ namespace sparky {
 				float temp = (dis - src).Dot(dis - src);
 				temp = sqrt(temp);
 				return temp;
+			}
+
+			template<class T>
+			static T Max(T a, T b)
+			{
+				if (a > b)
+				{
+					return a;
+				}
+				return b;
 			}
 		};
 	}
