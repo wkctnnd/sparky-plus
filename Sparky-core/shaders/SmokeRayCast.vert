@@ -12,8 +12,8 @@ layout (location = 0) out vec4 worldPos;
 void main()
 {
  
-    gl_Position = pr_matrix  * vw_matrix * vec4(position.xyz, 1.0);
-	worldPos =  vec4(position.xyz, 1.0);
+    gl_Position = pr_matrix  * vw_matrix * float4(position.xyz, 1.0);
+	worldPos =  float4(position.xyz, 1.0);
 }
 
 

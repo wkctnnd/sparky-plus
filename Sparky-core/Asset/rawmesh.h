@@ -22,7 +22,7 @@ namespace sparky
 		struct RawMesh
 		{
 			std::vector<vec3> m_Position;
-			std::vector<vec4> m_Color;
+			std::vector<float4> m_Color;
 			std::vector<vec3> m_Normal;
 			std::vector<vec3> m_Tangent;
 

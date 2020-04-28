@@ -3,20 +3,26 @@
 #include <iostream>
 namespace sparky {
 	namespace maths {
+
+		template<class T>
 		struct vec4
 		{
-			float x, y, z, w;
+			T x, y, z, w;
 
 			vec4();
-			vec4(const float& x, const float& y, const float& z, const float& w);
+			vec4(const T& x, const T& y, const T& z, const T& w);
 
-			vec4& add(const vec4& other);
-			vec4& subtract(const vec4& other);
-			vec4& multipy(const vec4& other);
-			vec4& divide(const vec4& other);
+			vec4<T>& add(const vec4<T>& other);
+			vec4<T>& subtract(const vec4<T>& other);
+			vec4<T>& multipy(const vec4<T>& other);
+			vec4<T>& divide(const vec4<T>& other);
 
-			friend std::ostream& operator<<(std::ostream& stream, const vec4& vector);
+			friend std::ostream& operator<<(std::ostream& stream, const vec4<T>& vector);
 
 		};
+
+		typedef vec4<float> float4;
 	}
 }
+
+#include "vec4.inl"

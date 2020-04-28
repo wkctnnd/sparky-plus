@@ -42,9 +42,6 @@
     <ClCompile Include="graphics\buffers\vertexarray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="maths\vec4.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\shader\computshader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

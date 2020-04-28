@@ -43,7 +43,7 @@ namespace sparky {
 				BoneIndex[3] = 0;
 			}
 			vec3 Position;
-			vec4 Color;
+			float4 Color;
 			vec3 Normal;
 			vec3 Tangent;
 			float BoneWeight[4];
@@ -152,7 +152,7 @@ namespace sparky {
 			//void ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& tangent);
 			//void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& normal);
 			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& pos);
-			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color);
+			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
 
 			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer *layer, FbxNode* pNode);
@@ -177,7 +177,7 @@ namespace sparky {
 			void LoadCacheRecursive(FbxScene * pScene, FbxAnimLayer * pAnimLayer, const char * pFbxFileName, bool pSupportVBO);
 
 			mat4 ConvertFBXMatrix(FbxAMatrix& fbxmat);
-			vec4 ConvertFBXVec4(FbxVector4& fbxvec);
+			float4 ConvertFBXfloat4(FbxVector4& fbxvec);
 
 			void LoadSkinData();
 			void LoadAnimationData();

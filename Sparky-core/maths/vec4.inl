@@ -1,25 +1,23 @@
-#include "vec4.h"
-
 namespace sparky {
 	namespace maths {
-
-		vec4::vec4()
+		template<class T>
+		vec4<T>::vec4()
 		{
 			x = 0;
 			y = 0;
 			z = 0;
 			w = 0;
 		}
-
-		vec4::vec4(const float& x, const float& y, const float& z, const float& w)
+		template<class T>
+		vec4<T>::vec4(const T& x, const T& y, const T& z, const T& w)
 		{
 			this->x = x;
 			this->y = y;
 			this->z = z;
 			this->w = w;
 		}
-
-		vec4& vec4::add(const vec4& other)
+		template<class T>
+		vec4<T>& vec4<T>::add(const vec4<T>& other)
 		{
 			x += other.x;
 			y += other.y;
@@ -27,7 +25,8 @@ namespace sparky {
 			w += other.w;
 			return *this;
 		}
-		vec4& vec4::subtract(const vec4& other)
+		template<class T>
+		vec4<T>& vec4<T>::subtract(const vec4<T>& other)
 		{
 			x -= other.x;
 			y -= other.y;
@@ -35,8 +34,8 @@ namespace sparky {
 			w -= other.z;
 			return *this;
 		}
-
-		vec4& vec4::multipy(const vec4& other)
+		template<class T>
+		vec4<T>& vec4<T>::multipy(const vec4<T>& other)
 		{
 			x *= other.x;
 			y *= other.y;
@@ -45,7 +44,8 @@ namespace sparky {
 			return *this;
 		}
 
-		vec4& vec4::divide(const vec4& other)
+		template<class T>
+		vec4<T>& vec4<T>::divide(const vec4<T>& other)
 		{
 			x /= other.x;
 			y /= other.y;
@@ -54,7 +54,8 @@ namespace sparky {
 			return *this;
 		}
 
-		std::ostream& operator<<(std::ostream& stream, const vec4& vector)
+		template<class T>
+		std::ostream& operator<<(std::ostream& stream, const vec4<T>& vector)
 		{
 			stream << "vec4: (" << vector.x << "," << vector.y << "," << vector.z << vector<<")";
 			return stream;

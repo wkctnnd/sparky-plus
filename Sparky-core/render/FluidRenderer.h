@@ -38,7 +38,7 @@ namespace sparky {
 				
 					smokeAbsorption = 60;
 					ambientTemperature = 0.0f;
-					smokeColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
+					smokeColor = float4(1.0f, 0.0f, 0.0f, 1.0f);
 				}
 
 				int width;
@@ -55,11 +55,11 @@ namespace sparky {
 				float temperatureDissipation;
 				float velocityDissipation;
 				float inputRadius;
-				vec4 inputPos;
-				vec4 size;
+				float4 inputPos;
+				float4 size;
 				float  ambientTemperature;
 
-				vec4 smokeColor;
+				float4 smokeColor;
 				float smokeAbsorption;
 
 			};
@@ -104,10 +104,10 @@ namespace sparky {
 			float m_temperatureDissipation;
 			float m_velocityDissipation;
 			float m_inputRadius;
-			vec4 m_inputPos;
-			vec4 m_size;
+			float4 m_inputPos;
+			float4 m_size;
 			float m_ambientTemperature;
-			vec4 smokeColor;
+			float4 smokeColor;
 			float smokeAbsorption;
 
 			GraphicsShader *m_SmokeRaycastShader;

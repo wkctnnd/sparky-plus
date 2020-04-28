@@ -11,7 +11,8 @@ layout(location = 2) in ivec4 BoneIndex;
 
 varying vec3 worldposition;
 varying mat4 temp;
-varying vec4 temp2;
+varying ivec4 temp2;
+varying vec4 temp3;
 
 void main()
 {
@@ -24,6 +25,7 @@ void main()
 	worldposition = position;
 	temp = FinalMatrix;
 	temp2 = BoneIndex;
+	temp3 = BoneWeight;
 }
 
 

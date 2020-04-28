@@ -47,8 +47,8 @@ namespace sparky {
 						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j].Position);
 						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j].Normal);
 						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j].Tangent);
-						skinmesh->m_BoneIndex.push_back(vec4(intermediatemeharray[i]->VertexArray[j].BoneIndex[0], intermediatemeharray[i]->VertexArray[j].BoneIndex[1], intermediatemeharray[i]->VertexArray[j].BoneIndex[2], intermediatemeharray[i]->VertexArray[j].BoneIndex[3]));
-						skinmesh->m_BoneWeight.push_back(vec4(intermediatemeharray[i]->VertexArray[j].BoneWeight[0], intermediatemeharray[i]->VertexArray[j].BoneWeight[1], intermediatemeharray[i]->VertexArray[j].BoneWeight[2], intermediatemeharray[i]->VertexArray[j].BoneWeight[3]));
+						skinmesh->m_BoneIndex.push_back(float4(intermediatemeharray[i]->VertexArray[j].BoneIndex[0], intermediatemeharray[i]->VertexArray[j].BoneIndex[1], intermediatemeharray[i]->VertexArray[j].BoneIndex[2], intermediatemeharray[i]->VertexArray[j].BoneIndex[3]));
+						skinmesh->m_BoneWeight.push_back(float4(intermediatemeharray[i]->VertexArray[j].BoneWeight[0], intermediatemeharray[i]->VertexArray[j].BoneWeight[1], intermediatemeharray[i]->VertexArray[j].BoneWeight[2], intermediatemeharray[i]->VertexArray[j].BoneWeight[3]));
 						skinmesh->m_Faces.push_back(j);
 					}
 					m_SkinMeshAsset.push_back(skinmesh);
@@ -106,9 +106,9 @@ namespace sparky {
 			return matrix;
 		}
 
-		vec4 FBXLoader::ConvertFBXVec4(FbxVector4& fbxvec)
+		float4 FBXLoader::ConvertFBXfloat4(FbxVector4& fbxvec)
 		{
-			vec4 vec(fbxvec[0], fbxvec[1], fbxvec[2], fbxvec[3]);
+			float4 vec(fbxvec[0], fbxvec[1], fbxvec[2], fbxvec[3]);
 			return vec;
 		}
 
@@ -916,7 +916,7 @@ namespace sparky {
 
 		}
 
-		void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
+		void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color)
 		{
 			FbxGeometryElementVertexColor* pVertexColor = pMesh->GetElementVertexColor(0);
 			if (!pVertexColor) return;
@@ -980,7 +980,7 @@ namespace sparky {
 			break;
 			}
 		}
-		/*void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec4& color)
+		/*void FBXLoader::ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color)
 		{
 			FbxGeometryElementVertexColor* pVertexColor = pMesh->GetElementVertexColor(0);
 			switch (pVertexColor->GetMappingMode())

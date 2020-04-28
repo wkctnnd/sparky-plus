@@ -75,7 +75,7 @@ namespace sparky {
 
 		}
 
-		void Shader::setUniform4f(const GLchar* name, const vec4& vector)
+		void Shader::setUniform4f(const GLchar* name, const float4& vector)
 		{
 			GLint  Location = GetUniformLocation(name);
 			glUniform4f(Location, vector.x, vector.y, vector.z, vector.w);

@@ -46,7 +46,7 @@ namespace sparky
 			
 			//Put all dimension sizes in a vector for easy parsing to shader and also prevents user changing
 			//dimension sizes during play
-			//m_size = new vec4(m_width, m_height, m_depth, 0.0f);
+			//m_size = new float4(m_width, m_height, m_depth, 0.0f);
 
 			//Create all the buffers needed
 
@@ -206,7 +206,7 @@ namespace sparky
 		{
 			m_applyBuoyancy->enable();
 			m_applyBuoyancy->setUniform4f("Size", m_size);
-			m_applyBuoyancy->setUniform4f("Up",  vec4(0, 1, 0, 0));
+			m_applyBuoyancy->setUniform4f("Up",  float4(0, 1, 0, 0));
 			m_applyBuoyancy->setUniform1f("Buoyancy", m_densityBuoyancy);
 			m_applyBuoyancy->setUniform1f("AmbientTemperature", m_ambientTemperature);
 			m_applyBuoyancy->setUniform1f("Weight", m_densityWeight);
