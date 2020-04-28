@@ -39,7 +39,10 @@ namespace sparky {
 		Quaternion operator*(Quaternion left, float scale)
 		{
 			Quaternion result;
-
+			result.x = left.x;
+			result.y = left.y;
+			result.z = left.z;
+			result.w = left.w;
 			return result;
 		}
 

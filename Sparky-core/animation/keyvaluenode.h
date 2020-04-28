@@ -75,15 +75,17 @@ namespace sparky
 		template<class T>
 		T KeyValueNode<T>::Evaluate(unsigned long elapse)
 		{
-			T value;
-			m_LastTime += elapse;
-			float temp = 0;
-			for (int i = 0; i < m_Interpolators.size(); i++)
-			{
-				temp = m_Interpolators[i]->Evaluate(m_LastTime);
-				value.SetElement(i, temp);
-			}
-			return value;
+				T value;
+				m_LastTime += elapse;
+				float temp = 0;
+				for (int i = 0; i < m_Interpolators.size(); i++)
+				{
+					temp = m_Interpolators[i]->Evaluate(m_LastTime);
+					value.SetElement(i, temp);
+				}
+				return value;
+			
+			
 		}
 
 		template<class T>

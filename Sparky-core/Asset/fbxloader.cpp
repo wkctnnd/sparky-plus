@@ -691,9 +691,10 @@ namespace sparky {
 			
 		}
 
-		void FBXLoader::LoadRotationCurve(FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve)
+
+		void FBXLoader::LoadRotationCurve(KeyValueNode<Quaternion> *keyvaluenode, FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve)
 		{
-			for (curve  != 0)
+			if (curve != 0)
 			{
 				int keycount = curve->KeyGetCount();
 
@@ -751,7 +752,7 @@ namespace sparky {
 				}
 
 			}
-			rotproperty.EvaluateValue()
+			 
 		}
 
 
@@ -760,7 +761,7 @@ namespace sparky {
 		{
 
 			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
-			KeyValueNode<vec3> *rotatekeyvaluenode = new KeyValueNode<vec3>(Rotation_Property_Type);
+			KeyValueNode<Quaternion> *rotatekeyvaluenode = new KeyValueNode<Quaternion>(Rotation_Property_Type);
 			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
 
 
@@ -784,7 +785,7 @@ namespace sparky {
 			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
 			{
-				Curve* crv = 0;
+				FbxAnimCurve* crv = 0;
 				for (int i = 0; i < 3; i++)
 				{
 					if (Curve[i] != 0)
@@ -793,7 +794,7 @@ namespace sparky {
 						break;
 					}
 				}
-				LoadRotationCurve(pNode->LclRotation);
+				LoadRotationCurve(rotatekeyvaluenode, pNode->LclRotation, crv);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
 			}
 			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
