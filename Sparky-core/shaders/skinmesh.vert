@@ -3,7 +3,7 @@
 uniform mat4 pr_matrix;
 
 uniform mat4 vw_matrix;
-uniform mat4 BoneMatrix[30];
+uniform mat4 BoneMatrix[80];
 
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec4 BoneWeight;

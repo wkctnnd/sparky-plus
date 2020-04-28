@@ -4,7 +4,7 @@ namespace sparky
 {
 	namespace graphics
 	{
-		StaticBuffer::StaticBuffer(float* data, int count, unsigned int componentCount)
+		StaticBuffer::StaticBuffer(void* data, int count, unsigned int componentCount)
 		{
 			m_ComponentCount = componentCount;
 			glGenBuffers(1, &m_BufferID);

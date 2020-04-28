@@ -47,7 +47,7 @@ namespace sparky {
 						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j].Position);
 						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j].Normal);
 						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j].Tangent);
-						skinmesh->m_BoneIndex.push_back(float4(intermediatemeharray[i]->VertexArray[j].BoneIndex[0], intermediatemeharray[i]->VertexArray[j].BoneIndex[1], intermediatemeharray[i]->VertexArray[j].BoneIndex[2], intermediatemeharray[i]->VertexArray[j].BoneIndex[3]));
+						skinmesh->m_BoneIndex.push_back(int4(intermediatemeharray[i]->VertexArray[j].BoneIndex[0], intermediatemeharray[i]->VertexArray[j].BoneIndex[1], intermediatemeharray[i]->VertexArray[j].BoneIndex[2], intermediatemeharray[i]->VertexArray[j].BoneIndex[3]));
 						skinmesh->m_BoneWeight.push_back(float4(intermediatemeharray[i]->VertexArray[j].BoneWeight[0], intermediatemeharray[i]->VertexArray[j].BoneWeight[1], intermediatemeharray[i]->VertexArray[j].BoneWeight[2], intermediatemeharray[i]->VertexArray[j].BoneWeight[3]));
 						skinmesh->m_Faces.push_back(j);
 					}
@@ -637,48 +637,121 @@ namespace sparky {
 		template<class T>
 		void FBXLoader::LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** Curve, int count)
 		{
-			for (int i = 0; i < count; i++)
+			//对于旋转特殊处理，讲欧拉角转为四元数，默认每一个key的xyz三个角度都存在，且旋转顺序为xyz，在引擎内插值，可以使用fbx自带四元数插值器取值
+			if (keyvaluenode->GetType() == PropertyType::Rotation_Property_Type)
 			{
-				if (Curve[i])
+				
+			}
+
+			else
+			{
+				for (int i = 0; i < count; i++)
 				{
-					int keycount = Curve[i]->KeyGetCount();
-
-					if (keycount > 0)
+					if (Curve[i])
 					{
-						KeyValueCollection *valuecollection = new KeyValueCollection();
-						FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
+						int keycount = Curve[i]->KeyGetCount();
 
-						switch (fbxtype)
+						if (keycount > 0)
 						{
-						case FbxAnimCurveDef::eInterpolationLinear:
-							valuecollection->SetInterpolatorType(Linear_Type);
-						default:
-							valuecollection->SetInterpolatorType(Linear_Type);
-							break;
+							KeyValueCollection *valuecollection = new KeyValueCollection();
+							FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
+
+							switch (fbxtype)
+							{
+							case FbxAnimCurveDef::eInterpolationLinear:
+								valuecollection->SetInterpolatorType(Linear_Type);
+							default:
+								valuecollection->SetInterpolatorType(Linear_Type);
+								break;
+							}
+
+							for (int j = 0; j < keycount; j++)
+							{
+								FbxAnimCurveKey curvekey = Curve[i]->KeyGet(j);
+								float data = curvekey.GetValue();
+
+								//设置为米为单位
+								if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
+									data /= 1000;
+
+
+								FbxTime time = curvekey.GetTime();
+
+								KeyValue value(data, time.GetMilliSeconds());
+								valuecollection->AddKeyValue(value);
+							}
+
+							keyvaluenode->AddComponent(Curve_Component[i], valuecollection);
 						}
-
-						for (int j = 0; j < keycount; j++)
-						{
-							FbxAnimCurveKey curvekey = Curve[i]->KeyGet(j);
-							float data = curvekey.GetValue();
-
-							//设置为米为单位
-							if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
-								data /= 1000;
-
-
-							FbxTime time = curvekey.GetTime();
-
-							KeyValue value(data, time.GetMilliSeconds());
-							valuecollection->AddKeyValue(value);
-						}
-
-						keyvaluenode->AddComponent(Curve_Component[i], valuecollection);
 					}
+
+
+				}
+			}
+			
+		}
+
+		void FBXLoader::LoadRotationCurve(FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve)
+		{
+			for (curve  != 0)
+			{
+				int keycount = curve->KeyGetCount();
+
+				if (keycount > 0)
+				{
+					KeyValueCollection *valuecollectionx = new KeyValueCollection();
+					KeyValueCollection *valuecollectiony = new KeyValueCollection();
+					KeyValueCollection *valuecollectionz = new KeyValueCollection();
+					KeyValueCollection *valuecollectionw = new KeyValueCollection();
+
+					FbxAnimCurveDef::EInterpolationType fbxtype = curve->KeyGetInterpolation(0);
+
+					switch (fbxtype)
+					{
+					case FbxAnimCurveDef::eInterpolationLinear:
+						valuecollectionx->SetInterpolatorType(Linear_Type);
+						valuecollectiony->SetInterpolatorType(Linear_Type);
+						valuecollectionz->SetInterpolatorType(Linear_Type);
+						valuecollectionw->SetInterpolatorType(Linear_Type);
+					default:
+						valuecollectionx->SetInterpolatorType(Linear_Type);
+						valuecollectiony->SetInterpolatorType(Linear_Type);
+						valuecollectionz->SetInterpolatorType(Linear_Type);
+						valuecollectionw->SetInterpolatorType(Linear_Type);
+						break;
+					}
+
+					for (int j = 0; j < keycount; j++)
+					{
+
+
+						FbxAnimCurveKey curvekey = curve->KeyGet(j);
+						FbxTime time = curvekey.GetTime();
+		
+						FbxDouble3  data = rotproperty.EvaluateValue(time);
+						Quaternion quat = Quaternion::FromEulerXYZ(data.mData[0], data.mData[1], data.mData[2]);
+						
+
+						KeyValue valuex(quat.x, time.GetMilliSeconds());
+						KeyValue valuey(quat.y, time.GetMilliSeconds());
+						KeyValue valuez(quat.z, time.GetMilliSeconds());
+						KeyValue valuew(quat.w, time.GetMilliSeconds());
+
+						valuecollectionx->AddKeyValue(valuex);
+						valuecollectiony->AddKeyValue(valuey);
+						valuecollectionz->AddKeyValue(valuez);
+						valuecollectionw->AddKeyValue(valuew);
+ 
+					}
+
+					keyvaluenode->AddComponent(Curve_Component[0], valuecollectionx);
+					keyvaluenode->AddComponent(Curve_Component[1], valuecollectiony);
+					keyvaluenode->AddComponent(Curve_Component[2], valuecollectionz);
+					keyvaluenode->AddComponent(Curve_Component[3], valuecollectionw);
 				}
 
-
 			}
+			rotproperty.EvaluateValue()
 		}
 
 
@@ -711,8 +784,16 @@ namespace sparky {
 			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
 			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
 			{
-
-				LoadNodeCurveKeyCollection(rotatekeyvaluenode, Curve, 3);
+				Curve* crv = 0;
+				for (int i = 0; i < 3; i++)
+				{
+					if (Curve[i] != 0)
+					{
+						crv = Curve[i];
+						break;
+					}
+				}
+				LoadRotationCurve(pNode->LclRotation);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
 			}
 			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);

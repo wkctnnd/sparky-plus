@@ -1,5 +1,6 @@
 #pragma once
 #include "maths/vec3.h"
+#include <math.h>
 namespace sparky {
 	namespace maths {
 		class Util
@@ -27,6 +28,17 @@ namespace sparky {
 					return a;
 				}
 				return b;
+			}
+
+
+			static float Sin(float radian)
+			{
+				return sin(radian);
+			}
+
+			static float Cos(float radian)
+			{
+				return cos(radian);
 			}
 		};
 	}

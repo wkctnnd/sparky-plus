@@ -159,6 +159,10 @@ namespace sparky {
 
 			template<class T>
 			void LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
+
+
+			void LoadRotationCurve(FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve);
+
 			void FillPoseArray(FbxScene* pScene, FbxArray<FbxPose*>& pPoseArray)
 			{
 				const int lPoseCount = pScene->GetPoseCount();

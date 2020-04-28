@@ -22,6 +22,7 @@ namespace sparky {
 		};
 
 		typedef vec4<float> float4;
+		typedef vec4<int>   int4;
 	}
 }
 

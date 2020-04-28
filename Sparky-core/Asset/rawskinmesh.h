@@ -36,7 +36,7 @@ namespace sparky
 			std::vector<vec3> m_Tangent;
 			std::vector<vec3> m_Normal;
 			std::vector<float4> m_BoneWeight;
-			std::vector<float4> m_BoneIndex;
+			std::vector<int4> m_BoneIndex;
 			std::vector<unsigned short> m_Faces;
 			//Skeleton m_Skeleton;
 

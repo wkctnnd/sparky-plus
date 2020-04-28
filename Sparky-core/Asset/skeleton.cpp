@@ -19,7 +19,7 @@ namespace sparky
 
 		void Skeleton::UpdateJoint(unsigned long elapes, joint *j)
 		{
-			
+			elapes = 0;
 			vec3 translate(0,0,0);
 			vec3 scale(1, 1, 1);
 			Quaternion quat(1, 0, 0, 0);
@@ -32,16 +32,16 @@ namespace sparky
 			mat4 ScaleMat = mat4::scale(scale);
 			
 			
-			/*if(j->parent)
-				WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat * RotateMat * ScaleMat;
-			else 
-				WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;*/
+			//if(j->parent)
+			//	WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat * RotateMat * ScaleMat;
+			//else 
+			//	WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;
 
 			if(j->parent)
-				WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat/* * RotateMat * ScaleMat*/;
+				WorldPose[j->m_Id] = WorldPose[j->parent->m_Id] * TranslateMat * RotateMat * ScaleMat;
 			else
-				WorldPose[j->m_Id] = TranslateMat/* * RotateMat * ScaleMat*/;
-			
+				WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;
+			//* joints[j->m_Id]->InvBoneMatrix
 			SkinMat[j->m_Id] = WorldPose[j->m_Id] * joints[j->m_Id]->InvBoneMatrix;
 			for (int i = 0; i < j->children.size(); i++)
 			{

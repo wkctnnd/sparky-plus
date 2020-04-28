@@ -15,6 +15,7 @@ namespace sparky {
 			inline float W() { return m_Element.w; }*/
 			mat4 GetMatrix();
 			Quaternion& operator +=(Quaternion left);
+			static Quaternion FromEulerXYZ(float x, float y, float z);
 			friend Quaternion operator*(Quaternion left, float scale);
 		 
 			void SetElement(unsigned int i, float value);

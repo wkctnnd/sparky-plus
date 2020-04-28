@@ -8,7 +8,7 @@ namespace sparky
 		class StaticBuffer :public Buffer
 		{
 		public:
-			StaticBuffer(float* data, int count, unsigned int componentCount);
+			StaticBuffer(void* data, int count, unsigned int componentCount);
 
 	 
 		};
