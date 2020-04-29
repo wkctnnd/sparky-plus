@@ -16,6 +16,7 @@ namespace sparky {
 			vec4<T>& subtract(const vec4<T>& other);
 			vec4<T>& multipy(const vec4<T>& other);
 			vec4<T>& divide(const vec4<T>& other);
+			void NormalizeSelf() {};
 
 			friend std::ostream& operator<<(std::ostream& stream, const vec4<T>& vector);
 

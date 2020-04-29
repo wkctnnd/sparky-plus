@@ -5,6 +5,7 @@
 #include "animation/keyvaluenode.h"
 #include "global.h"
 #include "animation/property.h"
+#include "maths/util.h"
 //https://blog.csdn.net/jxw167/article/details/81630899
 //https://blog.csdn.net/guizhidaoni/article/details/104940957
 using namespace sparky::maths;
@@ -730,7 +731,7 @@ namespace sparky {
 						FbxTime time = curvekey.GetTime();
 		
 						FbxDouble3  data = rotproperty.EvaluateValue(time);
-						Quaternion quat = Quaternion::FromEulerXYZ(data.mData[0], data.mData[1], data.mData[2]);
+						Quaternion quat = Quaternion::FromEulerXYZ(Util::RadianFromDegree(data.mData[0]), Util::RadianFromDegree(data.mData[1]), Util::RadianFromDegree(data.mData[2]));
 						
 
 						KeyValue valuex(quat.x, time.GetMilliSeconds());
@@ -794,6 +795,7 @@ namespace sparky {
 						break;
 					}
 				}
+				EFbxRotationOrder order = pNode->RotationOrder.Get();
 				LoadRotationCurve(rotatekeyvaluenode, pNode->LclRotation, crv);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
 			}

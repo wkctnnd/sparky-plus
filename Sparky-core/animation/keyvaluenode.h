@@ -83,6 +83,9 @@ namespace sparky
 					temp = m_Interpolators[i]->Evaluate(m_LastTime);
 					value.SetElement(i, temp);
 				}
+
+				value.NormalizeSelf();
+
 				return value;
 			
 			

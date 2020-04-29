@@ -127,28 +127,34 @@ namespace sparky {
 
 		mat4 mat4::rotation(class Quaternion& q)
 		{
-			mat4 result(1.0f);
+			mat4 result(0.0f);
 
-			result.elements[0] = 1 - 2 * q.y*q.y - 2 * q.z*q.z;
+			result.elements[0] = 2 * q.y*q.y - 2 * q.z*q.z - 1;
 			result.elements[1] = 2 * q.x*q.y - 2 * q.w*q.z;
 			result.elements[2] = 2 * q.x*q.z + 2 * q.w*q.y;
-			result.elements[3] = 2 * q.x*q.y + 2 * q.w*q.z;
-			result.elements[4] = 1 - 2 * q.x*q.x - 2 * q.z*q.z;
-			result.elements[5] = 2 * q.y*q.z - 2 * q.w*q.x;
-			result.elements[6] = 2 * q.x*q.z - 2 * q.w*q.y;
-			result.elements[7] = 2 * q.y*q.z + 2 * q.w*q.x;
-			result.elements[8] = 1 - 2 * q.x*q.x - 2 * q.y*q.y;
-			
-
+			//result.elements[3] = 0;
+			result.elements[4] = 2 * q.x*q.y + 2 * q.w*q.z;
+			result.elements[5] = 2 * q.x*q.x - 2 * q.z*q.z - 1;
+			result.elements[6] = 2 * q.y*q.z - 2 * q.w*q.x;
+			//result.elements[7] = 0;
+			result.elements[8] = 2 * q.x*q.z - 2 * q.w*q.y;
+			result.elements[9] = 2 * q.y*q.z + 2 * q.w*q.x;
+			result.elements[10] = 2 * q.x*q.x - 2 * q.y*q.y - 1;
+			//result.elements[11] = 0;
+			result.elements[15] = 1;
 			return result;
 		}
 		mat4 mat4::Translate(const vec3& translation)
 		{
-			mat4 result(1.0f);
+			mat4 result(0.0f);
 
-			result.elements[3 + 0 * 4] = translation.x;
-			result.elements[3 + 1 * 4] = translation.y;
-			result.elements[3 + 2 * 4] = translation.z;
+			result.elements[0] = 1;
+			result.elements[5] = 1;
+			result.elements[10] = 1;
+			result.elements[15] = 1;
+			result.elements[12] = translation.x;
+			result.elements[13] = translation.y;
+			result.elements[14] = translation.z;
 
 			return result;
 		}
@@ -160,9 +166,7 @@ namespace sparky {
 			result.elements[0] = scale.x;
 			result.elements[5] = scale.y;
 			result.elements[10] = scale.z;
-			result.elements[12] = 1;
-			result.elements[13] = 1;
-			result.elements[14] = 1;
+
 			result.elements[15] = 1;
 
 			return result;

@@ -1,6 +1,8 @@
 #pragma once
 #include "maths/vec3.h"
 #include <math.h>
+
+#define Pi 3.1415026
 namespace sparky {
 	namespace maths {
 		class Util
@@ -40,6 +42,12 @@ namespace sparky {
 			{
 				return cos(radian);
 			}
+
+			static float RadianFromDegree(float degree)
+			{
+				return Pi * degree / 180.0f;
+			}
+
 		};
 	}
 }

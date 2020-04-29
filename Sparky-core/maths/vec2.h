@@ -13,7 +13,7 @@ namespace sparky {
 			vec2& subtract(const vec2& other);
 			vec2& multipy(const vec2& other);
 			vec2& divide(const vec2& other);
-
+			void NormalizeSelf() {};
 			void SetElement(unsigned int i, float value);
 
 			friend std::ostream& operator<<(std::ostream& stream, const vec2& vector);
