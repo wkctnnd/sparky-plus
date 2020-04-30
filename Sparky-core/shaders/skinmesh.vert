@@ -19,7 +19,7 @@ void main()
  
    vec4 pos = vec4(position.x,position.y,position.z,1);
 
-	mat4 FinalMatrix = (BoneWeight.x * BoneMatrix[BoneIndex.x] + BoneWeight.y*BoneMatrix[BoneIndex.y] + BoneWeight.z*BoneMatrix[BoneIndex.z] + BoneWeight.w*BoneMatrix[BoneIndex.w])/4;
+	mat4 FinalMatrix = (BoneWeight.x * BoneMatrix[BoneIndex.x] + BoneWeight.y*BoneMatrix[BoneIndex.y] + BoneWeight.z*BoneMatrix[BoneIndex.z] + BoneWeight.w*BoneMatrix[BoneIndex.w]);
 	gl_Position = pr_matrix  * vw_matrix  * FinalMatrix*pos;
 	
 	worldposition = position;

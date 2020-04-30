@@ -160,8 +160,11 @@ namespace sparky {
 			template<class T>
 			void LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
 
+			template<class T>
+			void LoadNodeCurveKeyCollectionTest(FbxNode* pNode, KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
 
 			void LoadRotationCurve(KeyValueNode<Quaternion> *keyvaluenode, FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve);
+			void LoadRotationCurveTest(FbxNode* pNode, KeyValueNode<Quaternion> *keyvaluenode, FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve);
 
 			void FillPoseArray(FbxScene* pScene, FbxArray<FbxPose*>& pPoseArray)
 			{

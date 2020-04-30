@@ -17,7 +17,7 @@ namespace sparky
 			{
 				bonename = n;
 				parent = p;
-
+				IsUpdated = false;;
 			}
 			
 			int m_Id;
@@ -25,6 +25,8 @@ namespace sparky
 			//wostd::string 
 			//vec3 position;
 			mat4 InvBoneMatrix;
+			mat4 TransMatrix;
+			mat4 InvTransMatrix;
 
 			Property<vec3> m_Translation;
 			Property<vec3> m_Scale;
@@ -32,6 +34,8 @@ namespace sparky
 			
 			joint* parent;
 			std::vector<joint*> children;
+
+			bool IsUpdated;
 		};
 		struct Skeleton
 		{
@@ -39,10 +43,20 @@ namespace sparky
 			std::vector<joint*> joints;
 			std::vector<mat4> WorldPose;
 			std::vector<mat4> SkinMat;
-
+			void Reset() { for (int i = 0; i < joints.size(); i++) joints[i]->IsUpdated = false; }
+			bool Check()
+			{
+				for (int i = 0; i < joints.size(); i++)
+					if (!joints[i]->IsUpdated)
+					{
+						return false;
+					}
+				return true;
+			}
 		private:
 			void UpdateJoint(unsigned long elapse, joint* j);
 			void UpdateSkinMat();
+			
 		};
 	}
 }

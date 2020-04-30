@@ -42,7 +42,8 @@ namespace sparky
 			else
 				WorldPose[j->m_Id] = TranslateMat * RotateMat * ScaleMat;
 			//* joints[j->m_Id]->InvBoneMatrix
-			SkinMat[j->m_Id] = WorldPose[j->m_Id] * joints[j->m_Id]->InvBoneMatrix;
+			SkinMat[j->m_Id] = joints[j->m_Id]->InvTransMatrix * WorldPose[j->m_Id] * joints[j->m_Id]->InvBoneMatrix * joints[j->m_Id]->TransMatrix;
+			j->IsUpdated = true;
 			for (int i = 0; i < j->children.size(); i++)
 			{
 				UpdateJoint(elapes, j->children[i]);

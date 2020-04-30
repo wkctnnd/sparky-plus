@@ -672,8 +672,8 @@ namespace sparky {
 								float data = curvekey.GetValue();
 
 								//设置为米为单位
-								if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
-									data /= 1000;
+							/*	if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
+									data /= 10000000;*/
 
 
 								FbxTime time = curvekey.GetTime();
@@ -692,6 +692,130 @@ namespace sparky {
 			
 		}
 
+
+
+		template<class T>
+		void FBXLoader::LoadNodeCurveKeyCollectionTest(FbxNode* pNode, KeyValueNode<T> *keyvaluenode, FbxAnimCurve** Curve, int count)
+		{
+			//对于旋转特殊处理，讲欧拉角转为四元数，默认每一个key的xyz三个角度都存在，且旋转顺序为xyz，在引擎内插值，可以使用fbx自带四元数插值器取值
+			if (keyvaluenode->GetType() == PropertyType::Rotation_Property_Type)
+			{
+
+			}
+
+			else
+			{
+				for (int i = 0; i < count; i++)
+				{
+					if (Curve[i])
+					{
+						int keycount = Curve[i]->KeyGetCount();
+
+						if (keycount > 0)
+						{
+							KeyValueCollection *valuecollection = new KeyValueCollection();
+							FbxAnimCurveDef::EInterpolationType fbxtype = Curve[i]->KeyGetInterpolation(0);
+
+							switch (fbxtype)
+							{
+							case FbxAnimCurveDef::eInterpolationLinear:
+								valuecollection->SetInterpolatorType(Linear_Type);
+							default:
+								valuecollection->SetInterpolatorType(Linear_Type);
+								break;
+							}
+
+						
+							for (int j = 0; j < keycount; j++)
+							{
+								FbxAnimCurveKey curvekey = Curve[i]->KeyGet(j);
+								float data = curvekey.GetValue();
+
+								//设置为米为单位
+							/*	if (keyvaluenode->GetType() == PropertyType::Translate_Property_Type)
+									data = /1000;*/
+
+						
+								FbxTime time = curvekey.GetTime();
+								FbxVector4 test = pNode->EvaluateLocalTranslation(time);
+								KeyValue value(data, time.GetMilliSeconds());
+								valuecollection->AddKeyValue(value);
+							}
+
+							keyvaluenode->AddComponent(Curve_Component[i], valuecollection);
+						}
+					}
+
+
+				}
+			}
+
+		}
+
+
+		void FBXLoader::LoadRotationCurveTest(FbxNode* pNode, KeyValueNode<Quaternion> *keyvaluenode, FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve)
+		{
+			if (curve != 0)
+			{
+				int keycount = curve->KeyGetCount();
+
+				if (keycount > 0)
+				{
+					KeyValueCollection *valuecollectionx = new KeyValueCollection();
+					KeyValueCollection *valuecollectiony = new KeyValueCollection();
+					KeyValueCollection *valuecollectionz = new KeyValueCollection();
+					KeyValueCollection *valuecollectionw = new KeyValueCollection();
+
+					FbxAnimCurveDef::EInterpolationType fbxtype = curve->KeyGetInterpolation(0);
+
+					switch (fbxtype)
+					{
+					case FbxAnimCurveDef::eInterpolationLinear:
+						valuecollectionx->SetInterpolatorType(Linear_Type);
+						valuecollectiony->SetInterpolatorType(Linear_Type);
+						valuecollectionz->SetInterpolatorType(Linear_Type);
+						valuecollectionw->SetInterpolatorType(Linear_Type);
+					default:
+						valuecollectionx->SetInterpolatorType(Linear_Type);
+						valuecollectiony->SetInterpolatorType(Linear_Type);
+						valuecollectionz->SetInterpolatorType(Linear_Type);
+						valuecollectionw->SetInterpolatorType(Linear_Type);
+						break;
+					}
+
+					for (int j = 0; j < keycount; j++)
+					{
+
+
+						FbxAnimCurveKey curvekey = curve->KeyGet(j);
+						FbxTime time = curvekey.GetTime();
+
+						FbxVector4 value = pNode->EvaluateLocalRotation(time);
+						//FbxVector4 globalvalue = pNode->Evaluateglo(time);
+						FbxDouble3  data = rotproperty.EvaluateValue(time);
+						Quaternion quat = Quaternion::FromEulerXYZ(Util::RadianFromDegree(data.mData[0]), Util::RadianFromDegree(data.mData[1]), Util::RadianFromDegree(data.mData[2]));
+
+
+						KeyValue valuex(quat.x, time.GetMilliSeconds());
+						KeyValue valuey(quat.y, time.GetMilliSeconds());
+						KeyValue valuez(quat.z, time.GetMilliSeconds());
+						KeyValue valuew(quat.w, time.GetMilliSeconds());
+
+						valuecollectionx->AddKeyValue(valuex);
+						valuecollectiony->AddKeyValue(valuey);
+						valuecollectionz->AddKeyValue(valuez);
+						valuecollectionw->AddKeyValue(valuew);
+
+					}
+
+					keyvaluenode->AddComponent(Curve_Component[0], valuecollectionx);
+					keyvaluenode->AddComponent(Curve_Component[1], valuecollectiony);
+					keyvaluenode->AddComponent(Curve_Component[2], valuecollectionz);
+					keyvaluenode->AddComponent(Curve_Component[3], valuecollectionw);
+				}
+
+			}
+		}
 
 		void FBXLoader::LoadRotationCurve(KeyValueNode<Quaternion> *keyvaluenode, FbxPropertyT<FbxDouble3>& rotproperty, FbxAnimCurve* curve)
 		{
@@ -778,6 +902,7 @@ namespace sparky {
 			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
 			{
 				LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
+				//LoadNodeCurveKeyCollectionTest(pNode, translatekeyvaluenode, Curve, 3);
 				layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
 			}
 
@@ -795,8 +920,10 @@ namespace sparky {
 						break;
 					}
 				}
+				//pNode->EvaluateLocalRotation()
 				EFbxRotationOrder order = pNode->RotationOrder.Get();
 				LoadRotationCurve(rotatekeyvaluenode, pNode->LclRotation, crv);
+				//LoadRotationCurveTest(pNode, rotatekeyvaluenode, pNode->LclRotation, crv);
 				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
 			}
 			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
@@ -868,6 +995,7 @@ namespace sparky {
 				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
 				{
 					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+					//LoadNodeCurveTest(pNode, m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
 				}
 
 
@@ -1141,9 +1269,9 @@ namespace sparky {
 		{
 			FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
 
-			position.x = pCtrlPoint[ctrlPointIndex].mData[0] / 1000.0f;
-			position.y = pCtrlPoint[ctrlPointIndex].mData[1] / 1000.0f;
-			position.z = pCtrlPoint[ctrlPointIndex].mData[2] / 1000.0f;
+			position.x = pCtrlPoint[ctrlPointIndex].mData[0] ;
+			position.y = pCtrlPoint[ctrlPointIndex].mData[1] ;
+			position.z = pCtrlPoint[ctrlPointIndex].mData[2] ;
 		}
 
 
@@ -1349,11 +1477,17 @@ namespace sparky {
 				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
 
 
-				FbxAMatrix mat;
-				pCluster->GetTransformLinkMatrix(mat);
+				FbxAMatrix linkmat;
+				FbxAMatrix transmat;
+				pCluster->GetTransformMatrix(transmat);
+				pCluster->GetTransformLinkMatrix(linkmat);
 
-				pJoint->InvBoneMatrix = ConvertFBXMatrix(mat);
-
+				FbxAMatrix temp = linkmat.Inverse();
+				pJoint->InvBoneMatrix = ConvertFBXMatrix(temp);
+				
+				pJoint->TransMatrix = ConvertFBXMatrix(transmat);
+				temp = transmat.Inverse();
+				pJoint->InvTransMatrix = ConvertFBXMatrix(temp);
 
 				int     ctrlPointIndex;
 
