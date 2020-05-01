@@ -33,11 +33,11 @@ namespace sparky
 		void SkeletalMesh::SetController(Controller* controller)
 		{
 			m_Controller = controller; 
-			for (int i = 0; i < m_Controller->GetAnimationStackCount(); i++)
-			{
-				AnimationStack * stack = m_Controller->GetAnimationStack(i);
+		/*	for (int i = 0; i < m_Controller->GetAnimationStackCount(); i++)
+			{*/
+				AnimationStack * stack = m_Controller->GetAnimationStack(2);
 				BindProperty(stack, m_Skeleton);
-			}
+			/*}*/
 
 		}
 		void SkeletalMesh::BindProperty(AnimationStack* stack, Skeleton* skeleton)

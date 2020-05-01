@@ -18,7 +18,8 @@ namespace sparky
 			void SetWeight(float weight);
 			bool GetWeight()const;
 
-
+			void SetName(std::string name) { m_Name = name; }
+			std::string GetName() { return m_Name; }
 			void AddKeyValueNode(std::string name, class KeyValueNodeBase* keyvaluenode);
 			//Property<float> GetFloatProperties();
 			//std::vector<Interpolator<float>*> GetFloatInterpolator();
@@ -48,7 +49,7 @@ namespace sparky
 			float m_BlendWeight;
 			bool m_Loop;
 
-			
+			std::string m_Name;
 		};
 
 

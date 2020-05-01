@@ -47,12 +47,24 @@ namespace sparky
 		AnimationStack* animstack = new AnimationStack("");
 		for (unsigned int i = 0; i < 1; i++)
 		{
-			animstack->AddLayer(m_AssetLoader->GetAnimationLayer(i),1);
+			animstack->AddLayer(m_AssetLoader->GetAnimationLayer(0),1);
+		}
+		AnimationStack* animstack2 = new AnimationStack("");
+		for (unsigned int i = 0; i < 1; i++)
+		{
+			animstack2->AddLayer(m_AssetLoader->GetAnimationLayer(1), 1);
+		}
+		AnimationStack* animstack3 = new AnimationStack("");
+		for (unsigned int i = 0; i < 1; i++)
+		{
+			animstack3->AddLayer(m_AssetLoader->GetAnimationLayer(2), 1);
 		}
 
 		Controller *controller = new Controller();
 		std::vector<AnimationStack*> stacks;
 		stacks.push_back(animstack);
+		stacks.push_back(animstack2);
+		stacks.push_back(animstack3);
 		controller->Initialize(stacks);
 		skeletalmesh->SetController(controller);
 			
