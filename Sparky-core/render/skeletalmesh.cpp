@@ -14,6 +14,7 @@ namespace sparky
 		{
 			m_SkinMesh = skinmesh;
 			m_Skeleton = skeleton;
+			/*m_Skeleton->*/
 		}
 		SkinMesh* SkeletalMesh::GetRenderable()
 		{

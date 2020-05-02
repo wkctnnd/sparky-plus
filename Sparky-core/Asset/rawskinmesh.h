@@ -39,7 +39,7 @@ namespace sparky
 			std::vector<int4> m_BoneIndex;
 			std::vector<unsigned short> m_Faces;
 			//Skeleton m_Skeleton;
-
+			//std::string m_RootBoneName;
 			bool Indexed() { return m_Faces.size() > 0; }
 		};
 	}

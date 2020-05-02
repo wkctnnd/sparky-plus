@@ -21,6 +21,7 @@ namespace sparky
 			SkinMesh(class RawSkinMesh* rawskinmesh);
 			void render();
 			static SkinMesh* Load(const char* file);
+			//std::string GetRootBoneName() { return m_RawSkinMesh->m_RootBoneName; }
 			//void SetCurrentPose(class SkeletonClip* pose);
 		private:
 			VertexArray  m_VAO;

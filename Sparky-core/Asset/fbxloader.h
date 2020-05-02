@@ -12,6 +12,7 @@
 #include "map"
 #include "list"
 #include "animation/animationlayer.h"
+#include <set>
 
 namespace sparky
 {
@@ -56,6 +57,7 @@ namespace sparky {
 			std::map<unsigned int, std::list<unsigned int>> CtrlVertices;
 			std::vector<InterVertexData> VertexArray;
 			std::vector<unsigned short> Faces;
+			std::set <std::string>  Bones;
 
 			bool IsIndexed() { return Faces.size() > 0; }
  
@@ -69,19 +71,30 @@ namespace sparky {
 			RawMesh* GetRawStaticMesh(unsigned int id) { return m_MeshAsset[id]; };
 			unsigned int GetRawStaticMeshCount() { return m_MeshAsset.size(); };
 		
-			virtual void Process(std::vector<InterMediateMesh*>& intermediatemeharray) {};
+			virtual void Process(std::vector<InterMediateMesh*>& intermediatemeharray, std::vector<Skeleton*>& skeletonasset) {};
+
+			unsigned int GetSkeletonCount()
+			{
+				return m_RealUsedSkeletalAsset.size();
+			}
+
+			Skeleton* GetSkeleton(unsigned int id)
+			{
+				return m_RealUsedSkeletalAsset[id];
+			}
 
 		protected:
 			std::vector<RawMesh*> m_MeshAsset;
 			std::vector<RawSkinMesh*> m_SkinMeshAsset;
-
+			void GenerateUsedSkeletonAsset(std::set <std::string>&  Bones, std::vector<Skeleton*>& skeletonasset);
+			std::vector<Skeleton*> m_RealUsedSkeletalAsset;
 		};
 
 
 		class FBXEasyMeshPostProcess:public FBXMeshPostProcess
 		{
 		public:
-			void Process(std::vector<InterMediateMesh*>& intermediatemeharray);
+			void Process(std::vector<InterMediateMesh*>& intermediatemeharray, std::vector<Skeleton*>& skeletonasset);
 
 
 		};
@@ -121,12 +134,12 @@ namespace sparky {
 
 			unsigned int GetSkeletonCount()
 			{
-				return m_SkeletalAsset.size();
+				return m_PostProcess->GetSkeletonCount();
 			}
 
 			Skeleton* GetSkeleton(unsigned int id)
 			{
-				return m_SkeletalAsset[id];
+				return m_PostProcess->GetSkeleton(id);
 			}
 
 			SkeletonClip* GetClip(unsigned int id)
@@ -193,7 +206,7 @@ namespace sparky {
 
 			
 			void PostProcess();
-
+			
 
 		private:
 			//std::vector<FbxString*> mAnimStackNameArray;
@@ -206,6 +219,9 @@ namespace sparky {
 			std::vector<FbxAnimStack*> m_AnimStacks;
 		
 			std::vector<Skeleton*> m_SkeletalAsset;
+			
+			//std::vector<std::vector<std::string>> m_US
+
 			std::vector<SkeletonClip*> m_ClipAsset;
 			std::vector<FbxTimeSpan> m_ClipInfos;
 

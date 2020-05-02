@@ -55,8 +55,9 @@ namespace sparky
 			}
 		private:
 			void UpdateJoint(unsigned long elapse, joint* j);
-			void UpdateSkinMat();
-			
+			void SetRoot(std::string rootname);
+
+			int m_Root;
 		};
 	}
 }

@@ -17,6 +17,17 @@ namespace sparky
 
 		}
 
+		void Skeleton::SetRoot(std::string rootname)
+		{
+			for (int i=0;i< joints.size();i++)
+			{
+				if (joints[i]->bonename.compare(rootname) == 0)
+				{
+					m_Root = i;
+				}
+			}
+		}
+
 		void Skeleton::UpdateJoint(unsigned long elapes, joint *j)
 		{
 			elapes = 0;

@@ -22,8 +22,9 @@ namespace sparky {
 			"Component_W"
 		};
 
-		void FBXEasyMeshPostProcess::Process(std::vector<InterMediateMesh*>& intermediatemeharray)
+		void FBXEasyMeshPostProcess::Process(std::vector<InterMediateMesh*>& intermediatemeharray, std::vector<Skeleton*>& skeletonasset)
 		{
+
 			for (unsigned int i = 0; i < intermediatemeharray.size(); i++)
 			{
 				if (intermediatemeharray[i]->VertexArray[0].CurrentIndex == -1)
@@ -43,8 +44,10 @@ namespace sparky {
 				else
 				{
 					RawSkinMesh* skinmesh = new RawSkinMesh();
+					GenerateUsedSkeletonAsset(intermediatemeharray[i]->Bones, skeletonasset);
 					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); j++)
 					{
+
 						skinmesh->m_Position.push_back(intermediatemeharray[i]->VertexArray[j].Position);
 						skinmesh->m_Normal.push_back(intermediatemeharray[i]->VertexArray[j].Normal);
 						skinmesh->m_Tangent.push_back(intermediatemeharray[i]->VertexArray[j].Tangent);
@@ -285,8 +288,27 @@ namespace sparky {
 
 		void FBXLoader::PostProcess()
 		{
-			m_PostProcess->Process(m_InterMeshArray);
+			m_PostProcess->Process(m_InterMeshArray, m_SkeletalAsset);
 		}
+
+		//默认skeletonasset中只有一个骨骼asset,暂时不考虑多个skinmesh会产生多个同样的骨骼资源，有冗余
+		void FBXMeshPostProcess::GenerateUsedSkeletonAsset(std::set <std::string>&  Bones, std::vector<Skeleton*>& skeletonasset)
+		{
+			Skeleton* skeleton = skeletonasset[0];
+			Skeleton* UsedSkeleton = new Skeleton();
+			UsedSkeleton->WorldPose.resize(Bones.size());
+			UsedSkeleton->SkinMat.resize(Bones.size());
+			m_RealUsedSkeletalAsset.push_back(UsedSkeleton);
+			for (int i = 0; i < skeleton->joints.size(); i++)
+			{
+				//此处bone指针有危险
+				if (Bones.find(skeleton->joints[i]->bonename) != Bones.end())
+				{
+					UsedSkeleton->joints.push_back(skeleton->joints[i]);
+				}
+			}
+		}
+
 
 		bool FBXLoader::LoadMesh(RawMesh& rmesh)
 		{
@@ -1447,10 +1469,19 @@ namespace sparky {
 				}
 				//double* weight = pCluster->GetControlPointWeights();
 				pLinkNode = pCluster->GetLink();
+				
+			
 
 				if (!pLinkNode)
 				{
 					continue;
+				}
+
+				//保存mesh关联的骨骼名字
+				auto it = interskinmesh->Bones.find(pLinkNode->GetName());
+				if (it == interskinmesh->Bones.end())
+				{
+					interskinmesh->Bones.insert(pLinkNode->GetName());
 				}
 
 				// 通过Skeleton管理器搜索到当前Cluster所对应的Skeleton，并与Cluster进行关联
