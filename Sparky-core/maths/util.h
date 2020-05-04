@@ -32,6 +32,16 @@ namespace sparky {
 				return b;
 			}
 
+			template<class T>
+			static T Min(T a, T b)
+			{
+				if (a < b)
+				{
+					return a;
+				}
+				return b;
+			}
+
 
 			static float Sin(float radian)
 			{

@@ -21,7 +21,7 @@ namespace sparky
 			unsigned long timeduration = endkey.time - startkey.time;
 			float t = (float)(currenttime - startkey.time) / float(timeduration);
 
-			t = Util::Max<float>(t, 1);
+			t = Util::Min<float>(t, 1);
 
 			result = (1 - t) * startkey.value + t * endkey.value;
 

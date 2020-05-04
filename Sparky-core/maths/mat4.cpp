@@ -58,7 +58,7 @@ namespace sparky {
 					for (int e = 0; e < 4; e++)
 					{
 						/*sum += elements[e + row * 4] * others.elements[col + e * 4];*/
-						sum += elements[e * 4 + row ] * others.elements[col * 4 + e ];
+						sum += elements[e * 4 + col] * others.elements[row * 4 + e ];
 					}
 					data[col + row * 4] = sum;
 				}
@@ -130,17 +130,17 @@ namespace sparky {
 		{
 			mat4 result(0.0f);
 
-			result.elements[0] = 2 * q.y*q.y - 2 * q.z*q.z - 1;
-			result.elements[1] = 2 * q.x*q.y - 2 * q.w*q.z;
-			result.elements[2] = 2 * q.x*q.z + 2 * q.w*q.y;
+			result.elements[0] = 2 * q.x*q.x + 2 * q.w*q.w - 1;
+			result.elements[4] = 2 * q.x*q.y - 2 * q.w*q.z;
+			result.elements[8] = 2 * q.x*q.z + 2 * q.w*q.y;
 			//result.elements[3] = 0;
-			result.elements[4] = 2 * q.x*q.y + 2 * q.w*q.z;
-			result.elements[5] = 2 * q.x*q.x - 2 * q.z*q.z - 1;
-			result.elements[6] = 2 * q.y*q.z - 2 * q.w*q.x;
+			result.elements[1] = 2 * q.x*q.y + 2 * q.w*q.z;
+			result.elements[5] = 2 * q.y*q.y + 2 * q.w*q.w - 1;
+			result.elements[9] = 2 * q.y*q.z - 2 * q.w*q.x;
 			//result.elements[7] = 0;
-			result.elements[8] = 2 * q.x*q.z - 2 * q.w*q.y;
-			result.elements[9] = 2 * q.y*q.z + 2 * q.w*q.x;
-			result.elements[10] = 2 * q.x*q.x - 2 * q.y*q.y - 1;
+			result.elements[2] = 2 * q.x*q.z - 2 * q.w*q.y;
+			result.elements[6] = 2 * q.y*q.z + 2 * q.w*q.x;
+			result.elements[10] = 2 * q.z*q.z + 2 * q.w*q.w - 1;
 			//result.elements[11] = 0;
 			result.elements[15] = 1;
 			return result;

@@ -14,7 +14,7 @@ namespace sparky
 		class Property
 		{
 		public:
-			Property(PropertyType type, std::string name)
+			Property(PropertyType type, std::string name = "")
 			{
 				m_PropertyType = type;
 				m_PropertyName = name;

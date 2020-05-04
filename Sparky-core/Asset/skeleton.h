@@ -19,6 +19,13 @@ namespace sparky
 				parent = p;
 				IsUpdated = false;;
 			}
+
+			joint(joint* p) :m_Translation(Translate_Property_Type), m_Scale(Scale_Property_Type), m_Quat(Rotation_Property_Type)
+			{
+				bonename = p->bonename;
+				parent = p;
+				IsUpdated = false;;
+			}
 			
 			int m_Id;
 			std::string bonename;
@@ -39,6 +46,15 @@ namespace sparky
 		};
 		struct Skeleton
 		{
+			Skeleton()
+			{
+
+			}
+			Skeleton(int size)
+			{
+				WorldPose.resize(size);
+				SkinMat.resize(size);
+			}
 			void UpdateWorldMatrix();
 			std::vector<joint*> joints;
 			std::vector<mat4> WorldPose;

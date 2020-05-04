@@ -44,7 +44,7 @@ namespace sparky {
 				else
 				{
 					RawSkinMesh* skinmesh = new RawSkinMesh();
-					GenerateUsedSkeletonAsset(intermediatemeharray[i]->Bones, skeletonasset);
+					//GenerateUsedSkeletonAsset(intermediatemeharray[i]->Bones, skeletonasset);
 					for (unsigned int j = 0; j < intermediatemeharray[i]->VertexArray.size(); j++)
 					{
 
@@ -291,24 +291,51 @@ namespace sparky {
 			m_PostProcess->Process(m_InterMeshArray, m_SkeletalAsset);
 		}
 
-		//默认skeletonasset中只有一个骨骼asset,暂时不考虑多个skinmesh会产生多个同样的骨骼资源，有冗余
+
+		//警告：只支持一个skinmesh转换成可用骨骼，每个骨骼需要保证都有绑定到skinmesh才会被导入引擎
+		//默认skeletonasset中只有一个骨骼asset,暂时不考虑多个skinmesh会产生多个同样的骨骼资源，有冗余,会重复操作
 		void FBXMeshPostProcess::GenerateUsedSkeletonAsset(std::set <std::string>&  Bones, std::vector<Skeleton*>& skeletonasset)
 		{
 			Skeleton* skeleton = skeletonasset[0];
-			Skeleton* UsedSkeleton = new Skeleton();
-			UsedSkeleton->WorldPose.resize(Bones.size());
-			UsedSkeleton->SkinMat.resize(Bones.size());
+			Skeleton* UsedSkeleton = new Skeleton(Bones.size());
+
 			m_RealUsedSkeletalAsset.push_back(UsedSkeleton);
-			for (int i = 0; i < skeleton->joints.size(); i++)
-			{
-				//此处bone指针有危险
-				if (Bones.find(skeleton->joints[i]->bonename) != Bones.end())
-				{
-					UsedSkeleton->joints.push_back(skeleton->joints[i]);
-				}
-			}
+
+			ProcessSkeleton(skeleton->joints[0], 0, Bones, UsedSkeleton);
+			//for (int i = 0; i < skeleton->joints.size(); i++)
+			//{
+			//	//此处bone指针有危险
+			//	if (Bones.find(skeleton->joints[i]->bonename) != Bones.end())
+			//	{
+			//		UsedSkeleton->joints.push_back(skeleton->joints[i]);
+			//	}
+			//}
 		}
 
+
+		void FBXMeshPostProcess::ProcessSkeleton(joint* jt, joint* parent, std::set <std::string>&  Bones, Skeleton* usedskeleton)
+		{
+			if (jt)
+			{
+			
+				if (Bones.find(jt->bonename) != Bones.end())
+				{
+					joint* newjoint = new joint(jt);
+					if (parent)
+					{
+						parent->children.push_back(newjoint);
+					}
+					usedskeleton->joints.push_back(newjoint);
+					newjoint->m_Id = usedskeleton->joints.size() - 1;
+					for (int i = 0; i < jt->children.size(); i++)
+					{
+						ProcessSkeleton(jt->children[i], newjoint, Bones, usedskeleton);
+					}
+						
+				}
+				
+			}
+		}
 
 		bool FBXLoader::LoadMesh(RawMesh& rmesh)
 		{
@@ -915,69 +942,178 @@ namespace sparky {
 			// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
 			// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
 			//pAnimationLayer->
-			FbxAnimCurve* Curve[3];
 
-			Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-			Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-			Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-			//pNode->LclTranslation.GetCurveNode()
-			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+			const FbxLongLong ANIMATION_STEP_30 = 30000000; // 30frames/seconds
+			const FbxLongLong ANIMATION_STEP_15 = 30000000; // 30frames/seconds
+			FbxTime step = ANIMATION_STEP_30;
+
+			std::string name = pNode->GetName();
+			if (name.compare("Humanoid:LeftFoot") == 0)
 			{
-				LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
-				//LoadNodeCurveKeyCollectionTest(pNode, translatekeyvaluenode, Curve, 3);
-				layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
+				int a = 1;
+			}
+			FbxTimeSpan timeSpan;
+			timeSpan = mScene->GetCurrentAnimationStack()->GetLocalTimeSpan();
+			FbxTime start = timeSpan.GetStart();
+			FbxTime end = timeSpan.GetStop();
+
+			KeyValueCollection *translatevaluecollectionX = new KeyValueCollection();
+			KeyValueCollection *translatevaluecollectionY = new KeyValueCollection();
+			KeyValueCollection *translatevaluecollectionZ = new KeyValueCollection();
+
+
+			KeyValueCollection *rotatevaluecollectionX = new KeyValueCollection();
+			KeyValueCollection *rotatevaluecollectionY = new KeyValueCollection();
+			KeyValueCollection *rotatevaluecollectionZ = new KeyValueCollection();
+			KeyValueCollection *rotatevaluecollectionW = new KeyValueCollection();
+
+			KeyValueCollection *scalevaluecollectionX = new KeyValueCollection();
+			KeyValueCollection *scalevaluecollectionY = new KeyValueCollection();
+			KeyValueCollection *scalevaluecollectionZ = new KeyValueCollection();
+			for (FbxTime i = start; i < end; i = i + step)
+			{
+				FbxAMatrix Combine = pNode->EvaluateLocalTransform(i);
+
+				FbxVector4 Tran = Combine.GetT();
+				FbxVector4 Rotat = Combine.GetR();
+				FbxQuaternion Quat = Combine.GetQ();
+				FbxVector4 Scale = Combine.GetS();
+
+				long long time = i.GetMilliSeconds() - start.GetMilliSeconds();
+
+
+ 
+				KeyValue tvalue(Tran.mData[0], time);
+				KeyValue tvalue2(Tran.mData[1], time);
+				KeyValue tvalue3(Tran.mData[2], time);
+				translatevaluecollectionX->AddKeyValue(tvalue);
+				translatevaluecollectionY->AddKeyValue(tvalue2);
+				translatevaluecollectionZ->AddKeyValue(tvalue3);
+
+
+				KeyValue qvalue(Quat.mData[0], time);
+				KeyValue qvalue2(Quat.mData[1], time);
+				KeyValue qvalue3(Quat.mData[2], time);
+				KeyValue qvalue4(Quat.mData[3], time);
+				rotatevaluecollectionX->AddKeyValue(qvalue);
+				rotatevaluecollectionY->AddKeyValue(qvalue2);
+				rotatevaluecollectionZ->AddKeyValue(qvalue3);
+				rotatevaluecollectionW->AddKeyValue(qvalue4);
+
+
+				KeyValue svalue(Scale.mData[0], time);
+				KeyValue svalue2(Scale.mData[1], time);
+				KeyValue svalue3(Scale.mData[2], time);
+	 
+				scalevaluecollectionX->AddKeyValue(svalue);
+				scalevaluecollectionY->AddKeyValue(svalue2);
+				scalevaluecollectionZ->AddKeyValue(svalue3);
+				 
 			}
 
-			Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-			Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-			Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
-			{
-				FbxAnimCurve* crv = 0;
-				for (int i = 0; i < 3; i++)
-				{
-					if (Curve[i] != 0)
-					{
-						crv = Curve[i];
-						break;
-					}
-				}
-				//pNode->EvaluateLocalRotation()
-				EFbxRotationOrder order = pNode->RotationOrder.Get();
-				LoadRotationCurve(rotatekeyvaluenode, pNode->LclRotation, crv);
-				//LoadRotationCurveTest(pNode, rotatekeyvaluenode, pNode->LclRotation, crv);
-				layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
-			}
-			Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
-			Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
-			Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
-			if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
-			{
-				LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
-				layer->AddKeyValueNode(pNode->GetName(), scalekeyvaluenode);
+			translatekeyvaluenode->AddComponent("Component_X", translatevaluecollectionX);
+			translatekeyvaluenode->AddComponent("Component_Y", translatevaluecollectionY);
+			translatekeyvaluenode->AddComponent("Component_Z", translatevaluecollectionZ);
 
-			}
+			rotatekeyvaluenode->AddComponent("Component_X", rotatevaluecollectionX);
+			rotatekeyvaluenode->AddComponent("Component_Y", rotatevaluecollectionY);
+			rotatekeyvaluenode->AddComponent("Component_Z", rotatevaluecollectionZ);
+			rotatekeyvaluenode->AddComponent("Component_W", rotatevaluecollectionW);
 
+			scalekeyvaluenode->AddComponent("Component_X", scalevaluecollectionX);
+			scalekeyvaluenode->AddComponent("Component_Y", scalevaluecollectionY);
+			scalekeyvaluenode->AddComponent("Component_Z", scalevaluecollectionZ);
 
-			/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+			layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
+			layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
+			layer->AddKeyValueNode(pNode->GetName(), scalekeyvaluenode);
+	
+}
 
-						FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
-						FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
-						FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
-
-						vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
-						vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
-						Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
-						*/
-						//需要修改成property
-						//SkeletonPose pose(translate,scale,quat);
-						//m_ClipAsset[i]->LocalPose.push_back(pose);
-						//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
+			
 
 
 
+		//根据存在的property加载cuve node，有可能出现一个curve有3个node，但不都都有数据
+		//void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
+		//{
 
-		}
+		//	KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
+		//	KeyValueNode<Quaternion> *rotatekeyvaluenode = new KeyValueNode<Quaternion>(Rotation_Property_Type);
+		//	KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
+
+
+		//	// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
+		//	// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
+		//	//pAnimationLayer->
+
+
+		////	pNode->EvaluateLocalTransform
+
+
+		//	FbxAnimCurve* Curve[3];
+
+		//	Curve[0] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+		//	Curve[1] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+		//	Curve[2] = pNode->LclTranslation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+		//	//pNode->LclTranslation.GetCurveNode()
+		//	if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+		//	{
+		//		LoadNodeCurveKeyCollection(translatekeyvaluenode, Curve, 3);
+		//		//LoadNodeCurveKeyCollectionTest(pNode, translatekeyvaluenode, Curve, 3);
+		//		layer->AddKeyValueNode(pNode->GetName(), translatekeyvaluenode);
+		//	}
+
+		//	Curve[0] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+		//	Curve[1] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+		//	Curve[2] = pNode->LclRotation.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+		//	if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+		//	{
+		//		FbxAnimCurve* crv = 0;
+		//		for (int i = 0; i < 3; i++)
+		//		{
+		//			if (Curve[i] != 0)
+		//			{
+		//				crv = Curve[i];
+		//				break;
+		//			}
+		//		}
+		//		//pNode->EvaluateLocalRotation()
+		//		EFbxRotationOrder order = pNode->RotationOrder.Get();
+		//		LoadRotationCurve(rotatekeyvaluenode, pNode->LclRotation, crv);
+		//		//LoadRotationCurveTest(pNode, rotatekeyvaluenode, pNode->LclRotation, crv);
+		//		layer->AddKeyValueNode(pNode->GetName(), rotatekeyvaluenode);
+		//	}
+		//	Curve[0] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_X);
+		//	Curve[1] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Y);
+		//	Curve[2] = pNode->LclScaling.GetCurve(pAnimationLayer, FBXSDK_CURVENODE_COMPONENT_Z);
+		//	if (Curve[0] != 0 || Curve[1] != 0 || Curve[2] != 0)
+		//	{
+		//		LoadNodeCurveKeyCollection(scalekeyvaluenode, Curve, 3);
+		//		layer->AddKeyValueNode(pNode->GetName(), scalekeyvaluenode);
+
+		//	}
+
+
+		//	/*			FbxAMatrix curveKeyGlobalMatrix = pNode->EvaluateGlobalTransform(keyTimer);
+
+		//				FbxVector4 curveKeyLocalTranslate = pNode->EvaluateLocalTranslation(keyTimer);
+		//				FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
+		//				FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
+
+		//				vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+		//				vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+		//				Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
+		//				*/
+		//				//需要修改成property
+		//				//SkeletonPose pose(translate,scale,quat);
+		//				//m_ClipAsset[i]->LocalPose.push_back(pose);
+		//				//m_ClipAsset[i]->WorldPose.push_back(ConvertFBXMatrix(curveKeyLocalMatrix));
+
+
+
+
+		//}
 
 		void FBXLoader::ProcessSkeleton(FbxNode* pNode, Skeleton* skeleton, int parentindex/*, FbxAnimLayer* animationlayer, AnimationLayer* layer, bool LoadSkeleton*/)
 		{
@@ -1013,12 +1149,27 @@ namespace sparky {
 				skeleton->joints.push_back(j);
 				/*}*/
 
+				for (int i = 0; i < m_AnimStacks.size(); i++)
+				{
+					mScene->SetCurrentAnimationStack(m_AnimStacks[i]);
+
+					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+				}
+
 
 				for (int i = 0; i < m_FBXAnimLayers.size(); i++)
 				{
-					LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+					
 					//LoadNodeCurveTest(pNode, m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
 				}
+
+
+
+				//for (int i = 0; i < m_FBXAnimLayers.size(); i++)
+				//{
+				//	LoadNodeCurve(m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+				//	//LoadNodeCurveTest(pNode, m_FBXAnimLayers[i], m_AnimationLayers[i], pNode);
+				//}
 
 
 				/*	if (skeleton->joints.size() == 79)
@@ -1041,11 +1192,12 @@ namespace sparky {
 			//	// Deform the vertex array with the skin deformer.
 			//	ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray, pPose);
 			//}
-
+			int parentid = skeleton->joints.size() - 1;
 			for (int i = 0; i < pNode->GetChildCount(); ++i)
 			{
+				
 				if (pNode->GetNodeAttribute() && pNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)
-					ProcessSkeleton(pNode->GetChild(i), skeleton, skeleton->joints.size() - 1/*, animationlayer, layer, LoadSkeleton*/);
+					ProcessSkeleton(pNode->GetChild(i), skeleton, parentid/*, animationlayer, layer, LoadSkeleton*/);
 			}
 
 		}
@@ -1494,6 +1646,12 @@ namespace sparky {
 					continue;
 				}
 
+				if (jointIndex == 0)
+				{
+
+					int a = 1;
+				}
+
 				pJoint = GetJoint(jointIndex);
 
 				// 得到每个Cluster（Skeleton）所对应的Transform和TransformLink矩阵，后面具体说明
@@ -1506,6 +1664,14 @@ namespace sparky {
 				int     associatedCtrlPointCount = pCluster->GetControlPointIndicesCount();
 				int*    pCtrlPointIndices = pCluster->GetControlPointIndices();
 				double* pCtrlPointWeights = pCluster->GetControlPointWeights();
+
+
+
+				std::string name = pLinkNode->GetName();
+				if (name.compare("Humanoid:LeftFoot") == 0)
+				{
+					int a = 1;
+				}
 
 
 				FbxAMatrix linkmat;

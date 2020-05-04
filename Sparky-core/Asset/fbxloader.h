@@ -87,6 +87,7 @@ namespace sparky {
 			std::vector<RawMesh*> m_MeshAsset;
 			std::vector<RawSkinMesh*> m_SkinMeshAsset;
 			void GenerateUsedSkeletonAsset(std::set <std::string>&  Bones, std::vector<Skeleton*>& skeletonasset);
+			void ProcessSkeleton(joint* jt, joint* parent, std::set <std::string>&  Bones, Skeleton* skeleton);
 			std::vector<Skeleton*> m_RealUsedSkeletalAsset;
 		};
 
@@ -134,12 +135,12 @@ namespace sparky {
 
 			unsigned int GetSkeletonCount()
 			{
-				return m_PostProcess->GetSkeletonCount();
+				return m_SkeletalAsset.size();
 			}
 
 			Skeleton* GetSkeleton(unsigned int id)
 			{
-				return m_PostProcess->GetSkeleton(id);
+				return m_SkeletalAsset[id];
 			}
 
 			SkeletonClip* GetClip(unsigned int id)
@@ -170,8 +171,13 @@ namespace sparky {
 
 			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer *layer, FbxNode* pNode);
 
+			void LoadNodeCurve(FbxNode* pNode);
+
 			template<class T>
 			void LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
+
+			//template<class T>
+			//void LoadNodeCurveKeyCollection(KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);
 
 			template<class T>
 			void LoadNodeCurveKeyCollectionTest(FbxNode* pNode, KeyValueNode<T> *keyvaluenode, FbxAnimCurve** curve, int count);

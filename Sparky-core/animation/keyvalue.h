@@ -20,7 +20,7 @@ namespace sparky
 				value = v;
 				time = t;
 			}
-			unsigned int time;//millisecond
+			long long time;//millisecond
 			float value;
 		};
 
@@ -38,7 +38,7 @@ namespace sparky
 		class KeyValueCollection  
 		{
 		public:
-
+			KeyValueCollection(InterpolatorType ty = InterpolatorType::Linear_Type) { m_Type = ty; }
 			//Interpolator<datatype>* GetInterpolator(KeyValueCollection<datatype>* property);
 
 			InterpolatorBase* GetInterpolator(KeyValueCollection* keyvalues);
