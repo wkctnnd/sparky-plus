@@ -37,7 +37,7 @@ namespace sparky
 		m_AssetLoader->Initialize();
 		Mesh* smokemesh = Mesh::Load("autoload");
 
-		m_AssetLoader->LoadFile("humanoid.fbx");
+		m_AssetLoader->LoadFile("JiaoTan.FBX");
 		RawSkinMesh* rawskinmesh = m_AssetLoader->GetRawSkinMesh(0);
 		//SkeletonClip* skeletonpos = m_AssetLoader->GetClip(0);
 		Skeleton* skeleton = m_AssetLoader->GetSkeleton(0);
@@ -49,7 +49,7 @@ namespace sparky
 		{
 			animstack->AddLayer(m_AssetLoader->GetAnimationLayer(0),1);
 		}
-		AnimationStack* animstack2 = new AnimationStack("");
+	/*	AnimationStack* animstack2 = new AnimationStack("");
 		for (unsigned int i = 0; i < 1; i++)
 		{
 			animstack2->AddLayer(m_AssetLoader->GetAnimationLayer(1), 1);
@@ -58,13 +58,13 @@ namespace sparky
 		for (unsigned int i = 0; i < 1; i++)
 		{
 			animstack3->AddLayer(m_AssetLoader->GetAnimationLayer(2), 1);
-		}
+		}*/
 
 		Controller *controller = new Controller();
 		std::vector<AnimationStack*> stacks;
 		stacks.push_back(animstack);
-		stacks.push_back(animstack2);
-		stacks.push_back(animstack3);
+		//stacks.push_back(animstack2);
+		//stacks.push_back(animstack3);
 		controller->Initialize(stacks);
 		skeletalmesh->SetController(controller);
 			

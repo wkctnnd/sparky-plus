@@ -1123,7 +1123,7 @@ namespace sparky {
 
 			// Only draw the skeleton if it's a limb node and if 
 			// the parent also has an attribute of type skeleton.
-			if (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode)
+			if (lSkeleton && (lSkeleton->GetSkeletonType() == FbxSkeleton::eLimbNode|| lSkeleton->GetSkeletonType()==FbxSkeleton::eRoot))
 			{
 				/*GlDrawLimbNode(pParentGlobalPosition, pGlobalPosition);*/
 				/*if (LoadSkeleton)
@@ -1193,7 +1193,8 @@ namespace sparky {
 			//	ComputeSkinDeformation(pGlobalPosition, lMesh, pTime, lVertexArray, pPose);
 			//}
 			int parentid = skeleton->joints.size() - 1;
-			for (int i = 0; i < pNode->GetChildCount(); ++i)
+			int count = pNode->GetChildCount();
+			for (int i = 0; i < count; ++i)
 			{
 				
 				if (pNode->GetNodeAttribute() && pNode->GetNodeAttribute()->GetAttributeType() == FbxNodeAttribute::eSkeleton)

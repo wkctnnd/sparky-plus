@@ -36,7 +36,7 @@ namespace sparky
 			m_Controller = controller; 
 		/*	for (int i = 0; i < m_Controller->GetAnimationStackCount(); i++)
 			{*/
-				AnimationStack * stack = m_Controller->GetAnimationStack(2);
+				AnimationStack * stack = m_Controller->GetAnimationStack(0);
 				BindProperty(stack, m_Skeleton);
 			/*}*/
 
