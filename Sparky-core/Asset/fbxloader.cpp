@@ -943,8 +943,8 @@ namespace sparky {
 			// 局部矩阵对于Skeleton是必需的，因需要使用它来计算父子Skeleton之间的空间关系 
 			//pAnimationLayer->
 
-			const FbxLongLong ANIMATION_STEP_30 = 30000000; // 30frames/seconds
-			const FbxLongLong ANIMATION_STEP_15 = 30000000; // 30frames/seconds
+			const FbxLongLong ANIMATION_STEP_30 = 1000000; // 30frames/seconds
+			const FbxLongLong ANIMATION_STEP_15 = 1000000; // 30frames/seconds
 			FbxTime step = ANIMATION_STEP_30;
 
 			std::string name = pNode->GetName();
@@ -1647,7 +1647,7 @@ namespace sparky {
 					continue;
 				}
 
-				if (jointIndex == 0)
+				if (jointIndex == 0|| jointIndex == 4 || jointIndex == 6|| jointIndex == 28|| jointIndex == 32|| jointIndex == 36|| jointIndex == 40|| jointIndex == 44.)
 				{
 
 					int a = 1;
