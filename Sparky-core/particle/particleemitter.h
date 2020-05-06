@@ -42,21 +42,21 @@ namespace sparky
 			void UpdateParticleState();
 
 			void Initialize(ParticleSystem* o ,EmitType type);
-			void GetParticlesVertex(vec3*);
+			void GetParticlesVertex(float3*);
 			void GenVertices();
 			unsigned int GetParicleCount() { return m_Particles.size(); }
-			vec3 GetPosition() { return m_Position; }
+			float3 GetPosition() { return m_Position; }
 			float Distance2Camera();
 		protected:
 			std::list<Particle*> m_Particles;
 			Material* m_Material;
 
-			vec3 m_Direction;
-			vec3 m_Position;
-			vec3 m_Speed;
+			float3 m_Direction;
+			float3 m_Position;
+			float3 m_Speed;
 
 			//PerEmitterVertex*  m_QuadVertices;
-			vec3* m_Vertices;
+			float3* m_Vertices;
 			unsigned int m_MaxSize;
 			unsigned int m_ActiveCount;
 

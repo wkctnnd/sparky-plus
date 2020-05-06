@@ -671,8 +671,8 @@ namespace sparky {
 		//			FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
 		//			FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
 
-		//			vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
-		//			vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+		//			float3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+		//			float3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
 		//			Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
 		//			
 		//			//需要修改成property
@@ -934,9 +934,9 @@ namespace sparky {
 		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		{
 
-			KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
+			KeyValueNode<float3> *translatekeyvaluenode = new KeyValueNode<float3>(Translate_Property_Type);
 			KeyValueNode<Quaternion> *rotatekeyvaluenode = new KeyValueNode<Quaternion>(Rotation_Property_Type);
-			KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
+			KeyValueNode<float3> *scalekeyvaluenode = new KeyValueNode<float3>(Scale_Property_Type);
 
 
 			// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
@@ -1038,9 +1038,9 @@ namespace sparky {
 		//void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
 		//{
 
-		//	KeyValueNode<vec3> *translatekeyvaluenode = new KeyValueNode<vec3>(Translate_Property_Type);
+		//	KeyValueNode<float3> *translatekeyvaluenode = new KeyValueNode<float3>(Translate_Property_Type);
 		//	KeyValueNode<Quaternion> *rotatekeyvaluenode = new KeyValueNode<Quaternion>(Rotation_Property_Type);
-		//	KeyValueNode<vec3> *scalekeyvaluenode = new KeyValueNode<vec3>(Scale_Property_Type);
+		//	KeyValueNode<float3> *scalekeyvaluenode = new KeyValueNode<float3>(Scale_Property_Type);
 
 
 		//	// 计算得到当前结点在当前时刻下所对应的空间局部和全局矩阵                
@@ -1101,8 +1101,8 @@ namespace sparky {
 		//				FbxVector4 curveKeyLocalScale = pNode->EvaluateLocalScaling(keyTimer);
 		//				FbxVector4 curveKeyLocalRotate = pNode->EvaluateLocalRotation(keyTimer);
 
-		//				vec3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
-		//				vec3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
+		//				float3 translate(curveKeyLocalTranslate.mData[0], curveKeyLocalTranslate.mData[1], curveKeyLocalTranslate.mData[2]);
+		//				float3 scale(curveKeyLocalScale.mData[0], curveKeyLocalScale.mData[1], curveKeyLocalScale.mData[2]);
 		//				Quaternion quat(curveKeyLocalRotate.mData[0], curveKeyLocalRotate.mData[1], curveKeyLocalRotate.mData[2], curveKeyLocalRotate.mData[3]);
 		//				*/
 		//				//需要修改成property
@@ -1440,7 +1440,7 @@ namespace sparky {
 
 	}*/
 	//引擎以米为单位，猜测导入是毫米
-		void FBXLoader::ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& position)
+		void FBXLoader::ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float3& position)
 		{
 			FbxVector4* pCtrlPoint = pMesh->GetControlPoints();
 

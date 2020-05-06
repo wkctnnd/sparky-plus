@@ -41,7 +41,7 @@ namespace sparky
 			//	m_QuadVertices[i] = new float[perparticlecount];
 			//}
 			//m_QuadVertices[DEFAULT_NUM_MEMORY_POOLS - 1] = new float[DEFAULT_MAX_MEMORY_MANAGER_PARTICLES - perparticlecount * (DEFAULT_NUM_MEMORY_POOLS - 1)];
-			m_ParticleMesh = new ParticleMesh(DEFAULT_NUM_MEMORY_POOLS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLES*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS, vec3(0, 0, 0));
+			m_ParticleMesh = new ParticleMesh(DEFAULT_NUM_MEMORY_POOLS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLES*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_EMITTERS*DEFAULT_MAX_MEMORY_MANAGER_PARTICLE_SYSTEMS, float3(0, 0, 0));
 		}
 
 		void ParticleManager::CreateParticleSystem()
@@ -65,7 +65,7 @@ namespace sparky
 
 						if (m_QuadVertices[i][j].vertices != 0)
 						{
-							m_QuadVertices[i][j].vertices = new vec3[6 * emittor->GetParicleCount()];
+							m_QuadVertices[i][j].vertices = new float3[6 * emittor->GetParicleCount()];
 							m_QuadVertices[i][j].count = 6 * emittor->GetParicleCount();
 							m_QuadVertices[i][j].emitter = emittor;
 						}
@@ -90,7 +90,7 @@ namespace sparky
 
 						if (m_QuadVertices[i][j].vertices != 0)
 						{
-							m_QuadVertices[i][j].vertices = new vec3[6 * emittor->GetParicleCount()];
+							m_QuadVertices[i][j].vertices = new float3[6 * emittor->GetParicleCount()];
 							m_QuadVertices[i][j].count = 6 * emittor->GetParicleCount();
 							m_QuadVertices[i][j].emitter = emittor;
 						}

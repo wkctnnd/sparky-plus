@@ -26,9 +26,9 @@ namespace sparky
 				m_FloatInterpolators[i]->liubingliuEvaluate(elapse);
 			}
 
-			for (unsigned int i = 0;i<m_Vec3Interpolators.size();i++)
+			for (unsigned int i = 0;i<m_float3Interpolators.size();i++)
 			{
-				m_Vec3Interpolators[i]->Evaluate(elapse);
+				m_float3Interpolators[i]->Evaluate(elapse);
 			}
 
 			for (unsigned int i = 0;i<m_QuatInterpolators.size();i++)

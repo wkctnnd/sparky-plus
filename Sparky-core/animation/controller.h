@@ -22,7 +22,7 @@ namespace sparky
 			//void AddAnimationStack() { m_AnimationStackArray.push_back(); }
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
-			std::vector<Interpolator<vec3>*> m_Vec3Interpolators;
+			std::vector<Interpolator<float3>*> m_float3Interpolators;
 			std::vector<Interpolator<Quaternion>*> m_QuatInterpolators;*/
 
 			std::vector<class AnimationStack*>  m_AnimationStackArray;

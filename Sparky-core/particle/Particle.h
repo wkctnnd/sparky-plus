@@ -19,13 +19,13 @@ namespace sparky
 
 			void Reset();
 	 
-			vec3 m_Speed;
+			float3 m_Speed;
 			float m_Life;
 			float m_Duration;
-			vec3 m_Color;
-			vec3 m_Scale;
+			float3 m_Color;
+			float3 m_Scale;
 
-			vec3 m_position;
+			float3 m_position;
 		};
 
 

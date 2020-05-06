@@ -30,13 +30,13 @@ namespace sparky
 			int m_Id;
 			std::string bonename;
 			//wostd::string 
-			//vec3 position;
+			//float3 position;
 			mat4 InvBoneMatrix;
 			mat4 TransMatrix;
 			mat4 InvTransMatrix;
 
-			Property<vec3> m_Translation;
-			Property<vec3> m_Scale;
+			Property<float3> m_Translation;
+			Property<float3> m_Scale;
 			Property<Quaternion> m_Quat;
 			
 			joint* parent;

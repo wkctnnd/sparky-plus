@@ -7,14 +7,14 @@ namespace sparky {
 	namespace asset {
 		bool objLoader::LoadMesh(const char* file, RawMesh& rmesh)
 		{
-			rmesh.m_Position.push_back(vec3(-1,-1,-1));
-			rmesh.m_Position.push_back(vec3(-1, -1, 1));
-			rmesh.m_Position.push_back(vec3(-1, 1, 1));
-			rmesh.m_Position.push_back(vec3(-1, 1, 1));
-			rmesh.m_Position.push_back(vec3(1, -1, -1));
-			rmesh.m_Position.push_back(vec3(1, -1, 1));
-			rmesh.m_Position.push_back(vec3(1, 1, 1));
-			rmesh.m_Position.push_back(vec3(1, 1, 1));
+			rmesh.m_Position.push_back(float3(-1,-1,-1));
+			rmesh.m_Position.push_back(float3(-1, -1, 1));
+			rmesh.m_Position.push_back(float3(-1, 1, 1));
+			rmesh.m_Position.push_back(float3(-1, 1, 1));
+			rmesh.m_Position.push_back(float3(1, -1, -1));
+			rmesh.m_Position.push_back(float3(1, -1, 1));
+			rmesh.m_Position.push_back(float3(1, 1, 1));
+			rmesh.m_Position.push_back(float3(1, 1, 1));
 
 			rmesh.m_Faces.push_back(0);
 			rmesh.m_Faces.push_back(1);

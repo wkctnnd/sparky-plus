@@ -14,14 +14,14 @@ namespace sparky
 	{
 		//struct SkeletonPose
 		//{
-		//	SkeletonPose(vec3 t, vec3 s, Quaternion q)
+		//	SkeletonPose(float3 t, float3 s, Quaternion q)
 		//	{
 		//		translate = t;
 		//		scale = s;
 		//		quat = q;
 		//	}
-		//	vec3 translate;
-		//	vec3 scale;
+		//	float3 translate;
+		//	float3 scale;
 		//	Quaternion quat;
 		//};
 
@@ -31,8 +31,8 @@ namespace sparky
 			//{
 
 			//}
-			//Property<vec3> Translate;
-			//Property<vec3> scale;
+			//Property<float3> Translate;
+			//Property<float3> scale;
 			//Property<Quaternion> quat;
 		};
 

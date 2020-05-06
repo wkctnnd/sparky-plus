@@ -43,10 +43,10 @@ namespace sparky {
 				BoneIndex[2] = 0;
 				BoneIndex[3] = 0;
 			}
-			vec3 Position;
+			float3 Position;
 			float4 Color;
-			vec3 Normal;
-			vec3 Tangent;
+			float3 Normal;
+			float3 Tangent;
 			float BoneWeight[4];
 			int BoneIndex[4];
 			int CurrentIndex;
@@ -163,9 +163,9 @@ namespace sparky {
 			void ComputeLinearDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
 			//void ReadRawStaticMesh(FbxMesh* pMesh, InterMediateMesh* rawstaticmesh);
 			void ReadIntemediateMesh(FbxMesh* pMesh, InterMediateMesh* rawskinmesh);
-			//void ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& tangent);
-			//void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, vec3& normal);
-			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, vec3& pos);
+			//void ReadTangent(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, float3& tangent);
+			//void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, float3& normal);
+			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float3& pos);
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
 

@@ -225,7 +225,7 @@ namespace sparky
 		void FluidRenderer::ApplyAdvection(float dt, float dissipation, float decay, ComputeBuffer* buffer[2], float forward)
 		{
 			m_applyAdvect->enable();
-			m_applyAdvect->setUniform3f("Size", vec3(m_size.x, m_size.y,m_size.z));
+			m_applyAdvect->setUniform3f("Size", float3(m_size.x, m_size.y,m_size.z));
 			m_applyAdvect->setUniform1f("DeltaTime", dt);
 			m_applyAdvect->setUniform1f("Dissipate", dissipation);
 			m_applyAdvect->setUniform1f("Forward", forward);
@@ -304,7 +304,7 @@ namespace sparky
 		void FluidRenderer::ApplyAdvectionVelocity(float dt)
 		{
 			m_applyAdvectVelocity->enable();
-			m_applyAdvectVelocity->setUniform3f("Size", vec3(m_size.x, m_size.y, m_size.z));
+			m_applyAdvectVelocity->setUniform3f("Size", float3(m_size.x, m_size.y, m_size.z));
 			m_applyAdvectVelocity->setUniform1f("DeltaTime", dt);
 			m_applyAdvectVelocity->setUniform1f("Dissipate", m_velocityDissipation);
 			m_applyAdvectVelocity->setUniform1f("Forward", 1.0f);
@@ -406,7 +406,7 @@ namespace sparky
 			m_SmokeRaycastShader->enable();
 
 			mat4 projmat;// = mat4::perspective(130, 1, 0.1, 1000);
-			mat4 viewmat;// = mat4::LookAt(vec3(0, 0, -20), vec3(0, 0, 0), vec3(0, 1, 0));
+			mat4 viewmat;// = mat4::LookAt(float3(0, 0, -20), float3(0, 0, 0), float3(0, 1, 0));
 			mat4 worldmat = mat4::identity();
 
 			
@@ -420,11 +420,11 @@ namespace sparky
 			//m_SmokeRaycastShader->setUniformMat4("pr_matrix", projmat); 
 			//m_SmokeRaycastShader->setUniformMat4("vw_matrix", viewmat*worldmat);
 	 
-			m_SmokeRaycastShader->setUniform3f("WorldSpaceCameraPos", vec3(0, 0.25f, -0.5f));
+			m_SmokeRaycastShader->setUniform3f("WorldSpaceCameraPos", float3(0, 0.25f, -0.5f));
 				//float3 _Translate, _Scale, _Size;
-			m_SmokeRaycastShader->setUniform3f("Translate", vec3(0.0f, 0.0f, 0.0f));
-			m_SmokeRaycastShader->setUniform3f("Scale", vec3(1.0f,1.0f,1.0f));
-			m_SmokeRaycastShader->setUniform3f("Size", vec3(m_size.x, m_size.y, m_size.z));
+			m_SmokeRaycastShader->setUniform3f("Translate", float3(0.0f, 0.0f, 0.0f));
+			m_SmokeRaycastShader->setUniform3f("Scale", float3(1.0f,1.0f,1.0f));
+			m_SmokeRaycastShader->setUniform3f("Size", float3(m_size.x, m_size.y, m_size.z));
 			
 			m_SmokeRaycastShader->setUniform4f("SmokeColor", smokeColor);
 			m_SmokeRaycastShader->setUniform1f("SmokeAbsorption", smokeAbsorption);

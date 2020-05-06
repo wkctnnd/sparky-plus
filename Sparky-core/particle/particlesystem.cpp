@@ -25,7 +25,7 @@ namespace sparky
 			}
 		}
 
-		void ParticleSystem::Initialize(vec3 campos)
+		void ParticleSystem::Initialize(float3 campos)
 		{
 			m_CameraPos = campos;
 		}
@@ -44,7 +44,7 @@ namespace sparky
 			for (auto iterator = m_Emitters.begin(); iterator < m_Emitters.end(); iterator++)
 			{
 
-				vec3 temp = (*iterator)->GetPosition() - m_CameraPos;
+				float3 temp = (*iterator)->GetPosition() - m_CameraPos;
 				float lengthtest = temp.length();
 				if (length - lengthtest < 0)
 				{

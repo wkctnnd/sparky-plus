@@ -3,6 +3,7 @@
 #include <iostream>
 namespace sparky {
 	namespace maths {
+		template<class T>
 		struct vec3
 		{
 			float x, y ,z;
@@ -10,26 +11,47 @@ namespace sparky {
 			vec3();
 			vec3(const float& x, const float& y, const float& z);
 
-			vec3& add(const vec3& other);
-			vec3& subtract(const vec3& other);
-			vec3& multipy(const vec3& other);
-			vec3& divide(const vec3& other);
-			vec3 Cross(const vec3& other) const;
-			float Dot(const vec3& other) const;
-			vec3 Normalize()const;
+			vec3<T>& add(const vec3<T>& other);
+			vec3<T>& subtract(const vec3<T>& other);
+			vec3<T>& multipy(const vec3<T>& other);
+			vec3<T>& divide(const vec3<T>& other);
+			vec3 Cross(const vec3<T>& other) const;
+			float Dot(const vec3<T>& other) const;
+			vec3<T> Normalize()const;
 			float length() const;
 			void SetElement(unsigned int i, float value);
 			void NormalizeSelf() {};
-			friend std::ostream& operator<<(std::ostream& stream, const vec3& vector);
+			friend std::ostream& operator<<(std::ostream& stream, const vec3<T>& vector);
 
-			vec3& operator +=(const vec3& left);
+			vec3<T>& operator +=(const vec3<T>& left);
 
-			friend vec3 operator+(vec3 left, const vec3& right);
-			friend vec3 operator-(vec3 left, const vec3& right);
-			friend vec3 operator*(vec3 left, const vec3& right);
-			friend vec3 operator*(vec3 left, const float right);
+			friend vec3<T> operator+(vec3<T> left, const vec3<T>& right)
+			{
+				return left.add(right);
+			}
+			friend vec3<T> operator-(vec3<T> left, const vec3<T>& right)
+			{
+				return left.subtract(right);
+			}
+			friend vec3<T> operator*(vec3<T> left, const vec3<T>& right)
+			{
+				return left.multipy(right);
+			}
+			friend vec3<T> operator*(vec3<T> left, const float right)
+			{
+				left.x *= right;
+				left.y *= right;
+				left.z *= right;
+				return left;
+			}
 
 			
 		};
+
+	
+
+		typedef vec3<float> float3;
+		typedef vec3<int>   int3;
 	}
 }
+#include "vec3.inl"

@@ -15,7 +15,7 @@ namespace sparky {
 				return t;
 			}
 
-			static float DistanceTo(vec3 src, vec3 dis)
+			static float DistanceTo(float3 src, float3 dis)
 			{
 				float temp = (dis - src).Dot(dis - src);
 				temp = sqrt(temp);

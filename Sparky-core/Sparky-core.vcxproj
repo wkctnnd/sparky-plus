@@ -167,7 +167,6 @@
     <ClCompile Include="graphics\window.cpp" />
     <ClCompile Include="maths\mat4.cpp" />
     <ClCompile Include="maths\vec2.cpp" />
-    <ClCompile Include="maths\vec3.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
     <ClCompile Include="engine.cpp" />
@@ -217,6 +216,7 @@
     <ClInclude Include="render\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
+    <ClInclude Include="render\PrimitiveSceneProxy.h" />
     <ClInclude Include="render\renderable.h" />
     <ClInclude Include="graphics\buffers\buffer.h" />
     <ClInclude Include="graphics\buffers\indexbuffer.h" />
@@ -239,6 +239,7 @@
     <ClInclude Include="render\skeletalmesh.h" />
     <ClInclude Include="render\skinmesh.h" />
     <ClInclude Include="render\skinmeshrenderer.h" />
+    <ClInclude Include="render\View.h" />
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />

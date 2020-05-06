@@ -31,7 +31,7 @@ namespace sparky {
 			void setUniform1f(const GLchar* name, float value);
 			void setUniform1i(const GLchar* name, int value);
 			void setUniform2f(const GLchar* name, const vec2& vector);
-			void setUniform3f(const GLchar* name, const vec3& vector);
+			void setUniform3f(const GLchar* name, const float3& vector);
 			void setUniform4f(const GLchar* name, const float4& vector);
 			void setBuffer(const GLchar* name, const ComputeBuffer& cb);
 			//void setUniform4f(const GLchar* name, const float4& vector);

@@ -30,9 +30,6 @@
     <ClCompile Include="maths\mat4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="maths\vec3.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\buffers\buffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -336,6 +333,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="animation\animationstack.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\View.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\PrimitiveSceneProxy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

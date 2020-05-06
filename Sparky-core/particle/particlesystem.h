@@ -20,7 +20,7 @@ namespace sparky
 			friend ParticleEmitter;
 			friend ParticleMesh;
 		public:
-			void Initialize(vec3 camera);
+			void Initialize(float3 camera);
 			void AddEmitter();
 			void Update();
 			void SetPoolId(unsigned int id) { m_MemoryPoolId = id; }
@@ -34,7 +34,7 @@ namespace sparky
 			void Insert(ParticleEmitter* e);
 			unsigned int m_MemoryPoolId;
 
-			vec3 m_CameraPos;
+			float3 m_CameraPos;
 		};
 	}
 }

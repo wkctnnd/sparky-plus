@@ -23,7 +23,7 @@ namespace sparky
 			void AddKeyValueNode(std::string name, class KeyValueNodeBase* keyvaluenode);
 			//Property<float> GetFloatProperties();
 			//std::vector<Interpolator<float>*> GetFloatInterpolator();
-			//std::vector<Interpolator<vec3>*> GetVec3Interpolator();
+			//std::vector<Interpolator<float3>*> Getfloat3Interpolator();
 			//std::vector<Interpolator<Quaternion>*> GetQuatInterpolator();
 
 			//std::vector<InterpolatorBase*> GetInterPolator();
@@ -45,7 +45,7 @@ namespace sparky
 			std::map<std::string, std::vector<KeyValueNodeBase*>> m_KeyValueNodeBaseMap;
 		/*	std::vector<KeyValueCollection*> m_FloatProperties;
 			std::vector<KeyValueCollection<Quaternion>*> 	m_QuatProperties;
-			std::vector<KeyValueCollection<vec3>*> m_Vec3Properties;*/
+			std::vector<KeyValueCollection<float3>*> m_float3Properties;*/
 			float m_BlendWeight;
 			bool m_Loop;
 

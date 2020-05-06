@@ -66,7 +66,7 @@ namespace sparky {
 			GLenum  Error = glGetError();
 			assert(Error == GL_NO_ERROR);
 		}
-		void Shader::setUniform3f(const GLchar* name, const vec3& vector)
+		void Shader::setUniform3f(const GLchar* name, const float3& vector)
 		{
 			GLint  Location = GetUniformLocation(name);
 			glUniform3f(Location, vector.x, vector.y, vector.z);

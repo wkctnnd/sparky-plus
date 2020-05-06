@@ -27,7 +27,7 @@ namespace sparky
 		struct PerEmitterVertex
 		{
 			ParticleEmitter* emitter;
-			vec3* vertices;
+			float3* vertices;
 			unsigned int count;
 
 		};
@@ -41,7 +41,7 @@ namespace sparky
 		class ParticleMesh:public Renderable
 		{
 		public:
-			ParticleMesh(unsigned int size, vec3 cameraposition);
+			ParticleMesh(unsigned int size, float3 cameraposition);
 			void Update(PerEmitterVertex**  m_QuadVertices, unsigned int* emittersize, unsigned int poolsize);
 
 		private:
@@ -61,8 +61,8 @@ namespace sparky
 
 			VertexArray  m_Vao;
 			std::vector<PerEmitterVertex>  m_EmitterParticle;
-			//float DistanceToCamera(vec3 pos);
-			vec3 m_CameraPosition;
+			//float DistanceToCamera(float3 pos);
+			float3 m_CameraPosition;
 			//sort for emitter position
 			std::vector<PerEmitterVertex*> m_SortEmitterParticles;
 

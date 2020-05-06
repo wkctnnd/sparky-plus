@@ -20,7 +20,7 @@ namespace sparky
 
 		//	}
 		//	std::string name;
-		//	vec3 position;
+		//	float3 position;
 		//	joint* parent;
 		//	std::vector<joint*> children;
 		//};
@@ -31,10 +31,10 @@ namespace sparky
 
 		struct RawSkinMesh
 		{
-			std::vector<vec3> m_Position;
+			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;
-			std::vector<vec3> m_Tangent;
-			std::vector<vec3> m_Normal;
+			std::vector<float3> m_Tangent;
+			std::vector<float3> m_Normal;
 			std::vector<float4> m_BoneWeight;
 			std::vector<int4> m_BoneIndex;
 			std::vector<unsigned short> m_Faces;

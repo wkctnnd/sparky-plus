@@ -6,7 +6,7 @@
 namespace sparky{
 	namespace render
 	{
-		ParticleMesh::ParticleMesh(unsigned int size, vec3 cameraposition)
+		ParticleMesh::ParticleMesh(unsigned int size, float3 cameraposition)
 		{
 			m_CameraPosition = cameraposition;
 			m_MaxSize = size;

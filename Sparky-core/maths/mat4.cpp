@@ -104,12 +104,12 @@ namespace sparky {
 		}
 
 
-		mat4 mat4::LookAt(const vec3& camera, const vec3& object, const vec3& up)
+		mat4 mat4::LookAt(const float3& camera, const float3& object, const float3& up)
 		{
 			mat4 result = identity();
-			vec3 f = (object-camera).Normalize();
-			vec3 s = f.Cross(up.Normalize());
-			vec3 u = s.Cross(f);
+			float3 f = (object-camera).Normalize();
+			float3 s = f.Cross(up.Normalize());
+			float3 u = s.Cross(f);
 
 			result.elements[0 + 0 * 4] = s.x;
 			result.elements[0 + 1 * 4] = s.y;
@@ -123,7 +123,7 @@ namespace sparky {
 			result.elements[2 + 1 * 4] = -f.y;
 			result.elements[2 + 2 * 4] = -f.z;
 
-			return result * Translate(vec3(-camera.x, -camera.y, -camera.z));
+			return result * Translate(float3(-camera.x, -camera.y, -camera.z));
 		}
 
 		mat4 mat4::rotation(class Quaternion& q)
@@ -145,7 +145,7 @@ namespace sparky {
 			result.elements[15] = 1;
 			return result;
 		}
-		mat4 mat4::Translate(const vec3& translation)
+		mat4 mat4::Translate(const float3& translation)
 		{
 			mat4 result(0.0f);
 
@@ -160,7 +160,7 @@ namespace sparky {
 			return result;
 		}
 		
-		mat4 mat4::scale(const vec3& scale)
+		mat4 mat4::scale(const float3& scale)
 		{
 			mat4 result(0.0);
 

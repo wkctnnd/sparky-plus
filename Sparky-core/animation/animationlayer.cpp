@@ -37,12 +37,12 @@ namespace sparky
 			return interpolator;
 		}
 
-		std::vector<Interpolator<vec3>*>  AnimationLayer::GetVec3Interpolator()
+		std::vector<Interpolator<float3>*>  AnimationLayer::Getfloat3Interpolator()
 		{
-			std::vector<Interpolator<vec3>*> interpolator;
-			for (unsigned int i = 0; i < m_Vec3Properties.size(); i++)
+			std::vector<Interpolator<float3>*> interpolator;
+			for (unsigned int i = 0; i < m_float3Properties.size(); i++)
 			{
-				interpolator.push_back(m_Vec3Properties[i]->GetInterpolator(m_Vec3Properties[i]));
+				interpolator.push_back(m_float3Properties[i]->GetInterpolator(m_float3Properties[i]));
 			}
 			return interpolator;
 		}
@@ -97,7 +97,7 @@ namespace sparky
  
 		//	//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)
 		//	//{
-		//	//	//interpolator.push_back(m_Vec3Properties[i]->GetInterpolator(m_QuatProperties[i]));
+		//	//	//interpolator.push_back(m_float3Properties[i]->GetInterpolator(m_QuatProperties[i]));
 		//	//}
  
 		//	//for (unsigned int i = 0; i < m_QuatProperties.size(); i++)

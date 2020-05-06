@@ -39,8 +39,8 @@ namespace sparky
 			}
 
 			//elapes = 0;
-			vec3 translate(0,0,0);
-			vec3 scale(1, 1, 1);
+			float3 translate(0,0,0);
+			float3 scale(1, 1, 1);
 			Quaternion quat(1, 0, 0, 0);
 			j->m_Translation.EvaluateValue(elapes, translate);
 			j->m_Scale.EvaluateValue(elapes, scale);

@@ -18,7 +18,7 @@ namespace sparky
 			m_EmitType = type;
 			m_Owner = o;
 			m_MaxSize = ParticleManager::m_MaxParticleCount;
-			m_Vertices = new vec3[m_MaxSize];
+			m_Vertices = new float3[m_MaxSize];
 			m_ActiveCount = 0;
 		}
 		void ParticleEmitter::GenerateParticles()
@@ -35,7 +35,7 @@ namespace sparky
 				{
 					Particle* newparticle = pool->GetParticle();
 					newparticle->m_Life = 1.0;
-					newparticle->m_Speed = vec3(temp[0], temp[1], temp[2]);
+					newparticle->m_Speed = float3(temp[0], temp[1], temp[2]);
 					//m_Particles.push_back(0);
 					m_Particles.push_back(newparticle);
 				}
@@ -48,11 +48,11 @@ namespace sparky
 			return (m_Position - m_Owner->m_CameraPos).length(); 
 		}
 
-		void ParticleEmitter::GetParticlesVertex(vec3* vertexarray)
+		void ParticleEmitter::GetParticlesVertex(float3* vertexarray)
 		{
 			unsigned int offset = 0;
-			vec3 right(1,0,0);
-			vec3 up(0,1,0);
+			float3 right(1,0,0);
+			float3 up(0,1,0);
 			for (auto particle = m_Particles.begin(); particle!=m_Particles.end();particle++)
 			{	vertexarray[offset++] = (*particle)->m_position + right * (*particle)->m_Scale + up * (*particle)->m_Scale;
 				vertexarray[offset++] = (*particle)->m_position + right * (*particle)->m_Scale - up * (*particle)->m_Scale;
@@ -66,8 +66,8 @@ namespace sparky
 		void ParticleEmitter::GenVertices()
 		{
 			unsigned int m_ActiveCount = 0;
-			vec3 right(1, 0, 0);
-			vec3 up(0, 1, 0);
+			float3 right(1, 0, 0);
+			float3 up(0, 1, 0);
 			for (auto particle = m_Particles.begin(); particle != m_Particles.end(); particle++)
 			{		
 					m_Vertices[m_ActiveCount++] = (*particle)->m_position + right * (*particle)->m_Scale + up * (*particle)->m_Scale;
