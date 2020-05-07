@@ -1,10 +1,9 @@
 #pragma once
-
 namespace sparky
 {
-	namespace world
+	namespace ecs
 	{
-		class Entity
+		class ISystem
 		{
 
 		};

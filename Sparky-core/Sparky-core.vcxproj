@@ -145,6 +145,7 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
     <ClCompile Include="graphics\buffers\staticbuffer.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
     <ClInclude Include="graphics\buffers\staticbuffer.h" />
@@ -244,6 +246,7 @@
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
     <ClInclude Include="world\entity.h" />
+    <ClInclude Include="world\scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />
