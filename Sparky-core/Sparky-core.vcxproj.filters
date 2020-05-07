@@ -332,9 +332,6 @@
     <ClInclude Include="animation\AnimationComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="world\entity.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="animation\animationstack.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -348,6 +345,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\component.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\entity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\system.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

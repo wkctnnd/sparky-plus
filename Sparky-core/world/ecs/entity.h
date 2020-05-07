@@ -12,6 +12,9 @@ namespace sparky
 			unsigned int m_EntityId;
 
 			std::vector<unsigned int>  m_ComponentArray;
+
+			template<class T>
+			std::vector<T> m_
 		};
 	}
 }

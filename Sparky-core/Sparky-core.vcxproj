@@ -245,7 +245,9 @@
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
-    <ClInclude Include="world\entity.h" />
+    <ClInclude Include="world\ecs\component.h" />
+    <ClInclude Include="world\ecs\entity.h" />
+    <ClInclude Include="world\ecs\system.h" />
     <ClInclude Include="world\scene.h" />
   </ItemGroup>
   <ItemGroup>
