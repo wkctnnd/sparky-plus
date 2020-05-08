@@ -19,7 +19,7 @@ int main()
 	using namespace sparky::render;
 	Window window("Sparky!", 800, 600);
 	 
-	vec2 vector(1.0, 2.0);
+	float2 vector(1.0, 2.0);
 
 	/*std::string file = FileUtile::read_file("main.cpp");
 	std::cout << file << std::endl;*/

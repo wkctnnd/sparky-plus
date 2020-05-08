@@ -1274,13 +1274,13 @@ namespace sparky {
 					ReadColor(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->VertexArray[vertexCounter].Color);
 
 					// Read the UV of each vertex
-					for (int k = 0; k < 2; ++k)
-					{
 
+					int uvcount = pMesh->GetTextureUVCount();
+					for (int k = 0; k < uvcount; ++k)
+					{
+						ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, (rawstaticmesh->VertexArray[vertexCounter].Texcoord[k]));
 					}
-					/*			{
-									ReadUV(pMesh, ctrlPointIndex, pMesh->GetTextureUVIndex(i, j), k, &(uv[j][k]));
-								}*/
+							
 
 								// Read the normal of each vertex
 					//ReadNormal(pMesh, ctrlPointIndex, vertexCounter, rawstaticmesh->m_Normal[j]);
@@ -1450,9 +1450,56 @@ namespace sparky {
 		}
 
 
-		void FBXLoader::ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount)
+		void FBXLoader::ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int uvindex, int uvLayer, float2& uv)
 		{
+ 
+			FbxGeometryElementUV* pVertexUV = pMesh->GetElementUV(uvLayer);
 
+			switch (pVertexUV->GetMappingMode())
+			{
+			case FbxGeometryElement::eByControlPoint:
+			{
+				switch (pVertexUV->GetReferenceMode())
+				{
+				case FbxGeometryElement::eDirect:
+				{
+					uv.x = pVertexUV->GetDirectArray().GetAt(ctrlPointIndex).mData[0];
+					uv.y = pVertexUV->GetDirectArray().GetAt(ctrlPointIndex).mData[1];
+				}
+				break;
+
+				case FbxGeometryElement::eIndexToDirect:
+				{
+					int id = pVertexUV->GetIndexArray().GetAt(ctrlPointIndex);
+					uv.x = pVertexUV->GetDirectArray().GetAt(id).mData[0];
+					uv.y = pVertexUV->GetDirectArray().GetAt(id).mData[1];
+				}
+				break;
+
+				default:
+					break;
+				}
+			}
+			break;
+
+			case FbxGeometryElement::eByPolygonVertex:
+			{
+				switch (pVertexUV->GetReferenceMode())
+				{
+				case FbxGeometryElement::eDirect:
+				case FbxGeometryElement::eIndexToDirect:
+				{
+					uv.x = pVertexUV->GetDirectArray().GetAt(uvindex).mData[0];
+					uv.y = pVertexUV->GetDirectArray().GetAt(uvindex).mData[1];
+				}
+				break;
+
+				default:
+					break;
+				}
+			}
+			break;
+			}
 
 		}
 

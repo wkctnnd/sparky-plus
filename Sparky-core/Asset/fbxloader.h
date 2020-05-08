@@ -7,6 +7,7 @@
 #include <fbxsdk/fileio/fbxiosettings.h>
 #include "maths/vec3.h"
 #include "maths/vec4.h"
+#include "maths/vec2.h"
 #include "asset/skeleton.h"
 #include "skeletalpose.h"
 #include "map"
@@ -47,6 +48,11 @@ namespace sparky {
 			float4 Color;
 			float3 Normal;
 			float3 Tangent;
+
+			std::vector<float2> Texcoord;
+			 
+
+
 			float BoneWeight[4];
 			int BoneIndex[4];
 			int CurrentIndex;
@@ -167,7 +173,7 @@ namespace sparky {
 			//void ReadNormal(FbxMesh* pMesh, int ctrlPointIndex, int vertexCounter, float3& normal);
 			void ReadPosition(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float3& pos);
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color);
-			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
+			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int uvIndex, int uvlayer, float2& uv);
 
 			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer *layer, FbxNode* pNode);
 

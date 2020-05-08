@@ -10,7 +10,7 @@ namespace sparky
 		class IComponent
 		{
 		public:
-
+			virtual void Register() = 0;
 
 			
 		};

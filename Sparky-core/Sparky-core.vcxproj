@@ -145,6 +145,7 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="render\sceneproxy.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
@@ -167,7 +168,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graphics\window.cpp" />
     <ClCompile Include="maths\mat4.cpp" />
-    <ClCompile Include="maths\vec2.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
     <ClCompile Include="engine.cpp" />
@@ -196,6 +196,7 @@
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="render\sceneproxy.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
@@ -248,7 +249,7 @@
     <ClInclude Include="world\ecs\component.h" />
     <ClInclude Include="world\ecs\entity.h" />
     <ClInclude Include="world\ecs\system.h" />
-    <ClInclude Include="world\scene.h" />
+    <ClInclude Include="render\scene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />

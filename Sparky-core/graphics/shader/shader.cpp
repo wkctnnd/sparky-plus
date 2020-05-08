@@ -60,7 +60,7 @@ namespace sparky {
 			GLenum  Error = glGetError();
 			assert(Error == GL_NO_ERROR);
 		}
-		void Shader::setUniform2f(const GLchar* name, const vec2& vector)
+		void Shader::setUniform2f(const GLchar* name, const float2& vector)
 		{
 			glUniform2f(GetUniformLocation(name), vector.x, vector.y);
 			GLenum  Error = glGetError();

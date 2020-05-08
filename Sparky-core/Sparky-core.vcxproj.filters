@@ -24,9 +24,6 @@
     <ClCompile Include="graphics\window.cpp">
       <Filter>源文件\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="maths\vec2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="maths\mat4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -136,6 +133,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="utils\container\bitarray.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\sceneproxy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -344,9 +344,6 @@
     <ClInclude Include="utils\container\bitarray.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="world\scene.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\ecs\component.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -354,6 +351,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\ecs\system.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\scene.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\sceneproxy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
