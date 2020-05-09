@@ -10,7 +10,7 @@ namespace sparky
 		class TransformComponent : public IComponent
 		{
 		public:
-			void Register();
+			
 
 			void SetPosition(float3& position);
 			void SetRotation(Quaternion& q);

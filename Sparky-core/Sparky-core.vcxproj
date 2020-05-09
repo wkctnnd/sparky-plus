@@ -196,6 +196,9 @@
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="graphics\shader\uniformbuffer.h" />
+    <ClInclude Include="render\MobileRenderer.h" />
+    <ClInclude Include="render\Renderer.h" />
     <ClInclude Include="render\sceneproxy.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
@@ -246,10 +249,14 @@
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
+    <ClInclude Include="world\ecs\cameracomponent.h" />
     <ClInclude Include="world\ecs\component.h" />
     <ClInclude Include="world\ecs\entity.h" />
+    <ClInclude Include="world\ecs\EntityManager.h" />
     <ClInclude Include="world\ecs\system.h" />
     <ClInclude Include="render\scene.h" />
+    <ClInclude Include="world\ecs\transformcomponent.h" />
+    <ClInclude Include="world\ecs\world.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />
