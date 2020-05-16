@@ -8,6 +8,8 @@ namespace sparky
 		class SceneProxy
 		{
 
+
+		
 		};
 
 	}

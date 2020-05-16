@@ -13,6 +13,7 @@ namespace sparky
 			 
 		private:
 			std::vector<class SceneProxy*> m_SceneProxyArray;
+			class Renderer* m_Renderer;
 		};
 	}
 }

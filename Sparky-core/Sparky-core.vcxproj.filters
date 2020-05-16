@@ -359,6 +359,30 @@
     <ClInclude Include="render\sceneproxy.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\shader\uniformbuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\light\light.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\MobileRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\Renderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\cameracomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\EntityManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\transformcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\ecs\world.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />
@@ -383,5 +407,6 @@
     <None Include="animation\keyvalue.inl">
       <Filter>头文件</Filter>
     </None>
+    <None Include="shaders\pbrLighting.frag" />
   </ItemGroup>
 </Project>
