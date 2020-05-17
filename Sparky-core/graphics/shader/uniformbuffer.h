@@ -12,6 +12,18 @@ namespace sparky {
 		class UniformBuffer
 		{
 
+
+
+		public:
+			//Buffer(GLfloat* data, GLsizei count, GLuint componentCount);
+
+			GLuint GetComponentCount() const;
+			void bind() const;
+			void unBind() const;
+
+			virtual void* Lock(unsigned int offset, unsigned int size) const;
+			virtual void unLock() const;
+
 		};
 	}
 }

@@ -12,7 +12,7 @@ namespace sparky
 		
 
 		private:
-			class Material *m_Material;
+			class MaterialProxy *m_Material;
 		};
 
 	}
