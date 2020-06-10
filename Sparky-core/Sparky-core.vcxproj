@@ -145,6 +145,8 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="render\rendergraph\pass\meshpass.cpp" />
+    <ClCompile Include="render\rendergraph\rendergraph.cpp" />
     <ClCompile Include="render\sceneproxy.cpp" />
     <ClCompile Include="render\view.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
@@ -198,6 +200,10 @@
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
     <ClInclude Include="graphics\shader\uniformbuffer.h" />
+    <ClInclude Include="graphics\texture.h" />
+    <ClInclude Include="render\rendergraph\pass\MobileBasePass.h" />
+    <ClInclude Include="render\rendergraph\pass\pass.h" />
+    <ClInclude Include="render\rendergraph\rendergraph.h" />
     <ClInclude Include="world\light\light.h" />
     <ClInclude Include="render\MobileRenderer.h" />
     <ClInclude Include="render\Renderer.h" />
