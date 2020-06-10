@@ -356,6 +356,12 @@
     <ClInclude Include="world\ecs\system.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="subsystem\subsystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="subsystem\memorysystem.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

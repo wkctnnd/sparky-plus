@@ -1,5 +1,24 @@
 #pragma once
+#include <cstdlib>
+ 
 static const char* AssetFilePath = "/../Assets/";
+#define  MEMORY_DEBUG
+
+#ifdef MEMORY_DEBUG
+	
+void *operator new(size_t size)
+{
+
+}
+
+
+void operator delete(void* ptr)
+{
+
+}
+
+#endif
+
 
 #define Curve_Component_X "X"
 #define Curve_Component_Y "Y"
