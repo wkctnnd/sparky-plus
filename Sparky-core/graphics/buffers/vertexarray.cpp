@@ -70,5 +70,12 @@ namespace sparky {
 			}
 			return 0;
 		}
+
+		void VertexArray::updateBuffer(unsigned int id, void* newdata, unsigned int size)
+		{
+			void* data = m_Buffer[id]->Lock(0, size);
+			memcpy(data, newdata, size);
+			m_Buffer[id]->unLock();
+		}
 	}
 }

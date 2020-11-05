@@ -26,6 +26,7 @@ namespace sparky
 			unsigned int Indexcount();
 			unsigned int Vertexcout();
 			bool Indexed();
+			void updateBuffer(unsigned int id, void* data, unsigned int size);
 		};
 	}
 }

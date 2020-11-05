@@ -138,6 +138,12 @@
     <ClCompile Include="utils\container\bitarray.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="render\OceanRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\dynamicmesh.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -354,6 +360,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\ecs\system.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\OceanRender.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

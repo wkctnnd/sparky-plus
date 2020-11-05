@@ -1,6 +1,8 @@
 #pragma once
 #include <gl/glew.h>
 #include "buffer.h"
+#include "maths/vec3.h"
+
 namespace sparky
 {
 	namespace graphics

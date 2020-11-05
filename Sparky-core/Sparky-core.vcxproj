@@ -145,6 +145,8 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="render\dynamicmesh.cpp" />
+    <ClCompile Include="render\OceanRender.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
@@ -196,6 +198,7 @@
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="render\OceanRender.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
