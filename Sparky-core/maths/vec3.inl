@@ -73,6 +73,16 @@ namespace sparky {
 		}
 
 		template<class T>
+		void vec3<T>::NormalizeSelf()
+		{
+			float length = sqrt(x * x + y * y + z * z);
+			x /= length;
+			y /= length;
+			z /= length;
+ 
+		}
+
+		template<class T>
 		float vec3<T>::length()const
 		{
 			return sqrt(x * x + y * y + z * z);
