@@ -5,6 +5,9 @@ namespace sparky{
 		class FluidRenderer;
 		class ParticleRenderer;
 		class SkinMeshRenderer;
+		class OceanRenderer;
+		class PhyxRenderer;
+		
 	}
 	namespace asset
 	{
@@ -13,6 +16,11 @@ namespace sparky{
 	namespace particle
 	{
 		class ParticleManager;
+	}
+
+	namespace phyx
+	{
+		class PxWorld;
 	}
 }
 namespace sparky
@@ -29,8 +37,10 @@ namespace sparky
 		static Timer GlobalTimer;
 
 	private:
-		sparky::render::SkinMeshRenderer *m_Renderer;
+		//sparky::render::SkinMeshRenderer *m_Renderer;
+		sparky::render::PhyxRenderer *m_Renderer;
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
+		PxWorld* m_Pxworld;
 	};
 }
