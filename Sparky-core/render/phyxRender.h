@@ -14,6 +14,10 @@ using namespace std;
 
 
 namespace sparky {
+	namespace phyx
+	{
+		class PxObject;
+	}
 	namespace render {
 
 		class DynamicMesh;
@@ -29,16 +33,16 @@ namespace sparky {
 		public:
 			PhyxRenderer();
 			void Initialize();
-			void Update();
+			void Update(sparky::phyx::PxObject* object);
 
 			void RenderScene();
 
 			void AddRenderable(Renderable* r);
 
 		private:
-			DynamicMesh* SoftMesh;
+			DynamicMesh* m_SoftMesh;
 			 
-		 
+			
 		 
 	 
 

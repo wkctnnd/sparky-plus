@@ -20,7 +20,10 @@ namespace sparky
 
 		void PxWorld::FetchResult(std::vector<PxObject *> &objects)
 		{
-
+			for (int i=0;i<m_Objects.size();i++)
+			{
+				objects.push_back(m_Objects[i]);
+			}
 		}
 	}
 }

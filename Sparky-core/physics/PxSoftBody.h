@@ -56,6 +56,7 @@ namespace sparky
 			void Simulate(float time);
 			void AddMass(float mass, float3 pos, float3 vec, float3 acc);
 			void AddSpring(float k, float len, int m1, int m2);
+			void GetRenderData(std::vector<float3> &vertexarray);
 		private:
 			Mass* FindNearestMass(float3 position);
 

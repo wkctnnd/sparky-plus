@@ -5,7 +5,7 @@
 #include "render/dynamicmesh.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "utils/fileutils.h"
- 
+#include "physics/PxObject.h"
 using namespace sparky::maths;
 using namespace sparky::graphics;
 
@@ -27,15 +27,16 @@ namespace sparky
 
 			m_OceanShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
 
-	 
+			m_SoftMesh = new DynamicMesh();
+			m_SoftMesh->CreateMesh(24);
 			
 		}
 
 
 
-		void PhyxRenderer::Update()
+		void PhyxRenderer::Update(sparky::phyx::PxObject* object)
 		{
-
+			
 		}
 
 		void PhyxRenderer::RenderScene()

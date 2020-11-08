@@ -92,6 +92,16 @@ namespace sparky
 			return newmesh;
 		}
 
+		DynamicMesh* DynamicMesh::CreateMesh(int vertexcount)
+		{
+			Buffer* buffer = new DynamicBuffer(0, vertexcount * 3, 3);
+			DynamicMesh* newmesh = new DynamicMesh();
+			newmesh->vao.addBuffer(buffer, 0);
+			//Buffer* buffer2 = new DynamicBuffer(&normalarray[0].x, normalarray.size() * 3, 3);
+			return newmesh;
+		}
+
+
 		void DynamicMesh::render()
 		{
 			vao.bind();

@@ -16,6 +16,7 @@ namespace sparky
 		public:
 			void render();
 			static DynamicMesh* CreatePlaneMesh(unsigned int w, unsigned int h, float xsplit, float ysplit);
+			static DynamicMesh* CreateMesh(int vertexcount);
 			static float3 CaculateNormal(float3 a, float3 b, float3 c);
 		
 			void Update(unsigned int bufferid, std::vector<float3> newdata);

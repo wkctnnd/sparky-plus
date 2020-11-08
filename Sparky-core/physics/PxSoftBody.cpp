@@ -177,5 +177,10 @@ namespace sparky
 			 }
 			 return res;
 		 }
+
+		 void PxSoftBody::GetRenderData(std::vector<float3> &vertexarray)
+		 {
+
+		 }
 	}
 }
