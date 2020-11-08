@@ -41,6 +41,6 @@ namespace sparky
 		sparky::render::PhyxRenderer *m_Renderer;
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
-		PxWorld* m_Pxworld;
+		sparky::phyx::PxWorld* m_Pxworld;
 	};
 }

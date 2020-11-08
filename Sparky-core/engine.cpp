@@ -19,7 +19,7 @@
 #include "animation/controller.h"
 #include <thread>
 #include <chrono>
-#include <render/phyxRender.h>
+#include "render/phyxRender.h"
 #include "physics/PxWorld.h"
 #include "physics/PxSoftBody.h"
 using namespace sparky::render;
@@ -78,7 +78,7 @@ namespace sparky
 
 		m_Renderer = new PhyxRenderer();
 		m_Renderer->Initialize();
-
+		
 		m_Pxworld = new PxWorld();
 
 		
@@ -97,8 +97,13 @@ namespace sparky
 		//m_ParticleManager->Update();
 		m_Renderer->Update();
 	
+		PxSoftBody *body = PxSoftBody::CreateDefaultCube(0);
+		m_Pxworld->AddObject(body);
 		m_Pxworld->Simulate(GlobalTimer.GetElapsemillionseconds());
-		m_Pxworld->FetchResult();
+
+		
+		std::vector<PxObject*> result;
+		m_Pxworld->FetchResult(result);
 
 		m_Renderer->Update();
 		m_Renderer->RenderScene();

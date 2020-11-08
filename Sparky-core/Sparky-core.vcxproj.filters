@@ -144,6 +144,21 @@
     <ClCompile Include="render\dynamicmesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="physics\PxObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\PxSoftBody.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\PxWorld.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\phyxRender.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="maths\AABox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -363,6 +378,30 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="render\OceanRender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxMassSpringSimulator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxRigidBody.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxSimulator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxSoftBody.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxWorld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\phyxRender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\AABox.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

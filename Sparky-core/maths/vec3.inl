@@ -52,7 +52,15 @@ namespace sparky {
 
 			return *this;
 		}
+		template<class T>
+		vec3<T>& vec3<T>::divide(float scale)
+		{
+			x /= scale;
+			y /= scale;
+			z /= scale;
 
+			return *this;
+		}
 		template<class T>
 		vec3<T> vec3<T>::Cross(const vec3& other) const
 		{

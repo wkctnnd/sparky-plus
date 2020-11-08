@@ -15,6 +15,7 @@ namespace sparky {
 			vec3<T>& subtract(const vec3<T>& other);
 			vec3<T>& multipy(const vec3<T>& other);
 			vec3<T>& divide(const vec3<T>& other);
+			vec3<T>& divide(float scale);
 			vec3 Cross(const vec3<T>& other) const;
 			float Dot(const vec3<T>& other) const;
 			vec3<T> Normalize()const;
@@ -36,6 +37,11 @@ namespace sparky {
 			friend vec3<T> operator*(vec3<T> left, const vec3<T>& right)
 			{
 				return left.multipy(right);
+			}
+			friend vec3<T> operator/(vec3<T> left, float right)
+			{
+				return left.divide(right);
+
 			}
 			friend vec3<T> operator*(vec3<T> left, const float right)
 			{

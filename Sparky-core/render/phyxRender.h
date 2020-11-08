@@ -36,12 +36,11 @@ namespace sparky {
 			void AddRenderable(Renderable* r);
 
 		private:
-			DynamicMesh* OceanMesh;
+			DynamicMesh* SoftMesh;
 			 
-			ifstream File;
 		 
-			float oceangirdsize = 10;
-			std::vector<float3> posarray;
+		 
+	 
 
 
  

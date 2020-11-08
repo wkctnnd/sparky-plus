@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8CA744EE-0BF2-405E-B510-B27C942E1540}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -145,8 +145,13 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="maths\AABox.cpp" />
+    <ClCompile Include="physics\PxObject.cpp" />
+    <ClCompile Include="physics\PxSoftBody.cpp" />
+    <ClCompile Include="physics\PxWorld.cpp" />
     <ClCompile Include="render\dynamicmesh.cpp" />
     <ClCompile Include="render\OceanRender.cpp" />
+    <ClCompile Include="render\phyxRender.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
@@ -198,7 +203,15 @@
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="maths\AABox.h" />
+    <ClInclude Include="physics\PxMassSpringSimulator.h" />
+    <ClInclude Include="physics\PxObject.h" />
+    <ClInclude Include="physics\PxRigidBody.h" />
+    <ClInclude Include="physics\PxSimulator.h" />
+    <ClInclude Include="physics\PxSoftBody.h" />
+    <ClInclude Include="physics\PxWorld.h" />
     <ClInclude Include="render\OceanRender.h" />
+    <ClInclude Include="render\phyxRender.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
