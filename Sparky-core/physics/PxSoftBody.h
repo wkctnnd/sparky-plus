@@ -39,10 +39,11 @@ namespace sparky
 				this->len = len;
 				this->m1 = m1;
 				this->m2 = m2;
+				this->oriL = len;
 			}
 			float k;       //constriant
 			float len;      //rest length
-			//float oriL;
+			float oriL;
 			int m1;
 			int m2;
 
@@ -57,6 +58,7 @@ namespace sparky
 			static PxSoftBody* CreateDefaultCube(int c);
 			virtual void ApplyForce(std::vector<Force>& force);
 			void Simulate(float time);
+			void Update(float time);
 			void AddMass(float mass, float3 pos, float3 vec, float3 acc);
 			void AddSpring(float k, float len, int m1, int m2);
 			void GetRenderData(std::vector<float3> &vertexarray);

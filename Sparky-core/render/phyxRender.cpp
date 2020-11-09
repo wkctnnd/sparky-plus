@@ -25,10 +25,10 @@ namespace sparky
 		void PhyxRenderer::Initialize()
 		{
 
-			m_OceanShader = new GraphicsShader("shaders/particle.vert", "shaders/particle.frag");
+			m_OceanShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
 
 			DynamicMesh* newsoftmesh = new DynamicMesh();
-			newsoftmesh= DynamicMesh::CreateMesh(24);
+			newsoftmesh= DynamicMesh::CreateMesh(36);
 			m_SoftMesh.push_back(newsoftmesh);
 		}
 
@@ -42,17 +42,19 @@ namespace sparky
 		void PhyxRenderer::RenderScene()
 		{
 
-			glEnable(GL_BLEND);
+			//glEnable(GL_BLEND);
 			/*glEnable(GL_CULL_FACE);
 			glCullFace(GL_FRONT_FACE);*/
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			/*glDisable(GL_CULL_FACE);*/
 			//glEnable(GL_DEPTH_TEST);
+			//glEnable(GL_CULL_FACE);
+			glEnable(GL_DEPTH_TEST);
 			m_OceanShader->enable();
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -0.5f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -20.0f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
 

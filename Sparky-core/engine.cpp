@@ -39,19 +39,19 @@ namespace sparky
 		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(2);
 		m_Pxlink.push_back(2);
-		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(3);
+		m_Pxlink.push_back(0);
 	 
 		m_Pxlink.push_back(4);
-		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
+		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(4);
 		m_Pxlink.push_back(7);
 		 
 		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(5);
+		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(4);
@@ -60,11 +60,11 @@ namespace sparky
 		m_Pxlink.push_back(2);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(3);
 		m_Pxlink.push_back(7);
+		m_Pxlink.push_back(3);
 		 
-		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(4);
+		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(7);
 		m_Pxlink.push_back(7);
 		m_Pxlink.push_back(0);
@@ -73,8 +73,8 @@ namespace sparky
 		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(1);
+		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(2);
 		PxSoftBody *body = PxSoftBody::CreateDefaultCube(0);
 
@@ -97,7 +97,7 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
-		
+		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 
 		
@@ -107,7 +107,7 @@ namespace sparky
 		{
 			PxSoftBody* softbody = (PxSoftBody*)(result[i]);
 			std::vector<float3> pos;
-			for (int j=0;j<24;j++)
+			for (int j=0;j< m_Pxlink.size();j++)
 			{
 				pos.push_back(softbody->m_Mass[m_Pxlink[j]]->pos);
 			}
@@ -117,7 +117,7 @@ namespace sparky
 		//m_Renderer->Update();
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();
-
+		
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
 		//if (remain > 0)

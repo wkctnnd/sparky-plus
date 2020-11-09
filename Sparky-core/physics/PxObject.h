@@ -26,6 +26,7 @@ namespace sparky
 			virtual PxObjectType GetType() = 0;
 			virtual void ApplyForce(std::vector<Force>& force) = 0;
 			virtual void Simulate(float time) = 0;
+			virtual void Update(float time) = 0;
 			//virtual void GetRenderData() = 0;
 		private:
  

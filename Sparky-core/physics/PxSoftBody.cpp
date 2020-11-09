@@ -92,7 +92,7 @@ namespace sparky
 
 			PxSoftBody * body = new PxSoftBody();
 			init_mass(body, 0.1, 10, originalx, originaly, originalz, c);
-			init_spring(body, 0.1, 10);
+			init_spring(body, 1, 10);
 			return body;
 			
 		}
@@ -106,6 +106,15 @@ namespace sparky
 			 }
 		 }
 
+		 void PxSoftBody::Update(float time)
+		 {
+			 for (int i=0;i<m_Spring.size();i++)
+			 {
+				 m_Spring[i]->len = m_Spring[i]->oriL+sin(time);
+			 }
+		 }
+
+
 		 void PxSoftBody::Simulate(float time)
 		 {
 			 time /= 1000;
@@ -117,7 +126,7 @@ namespace sparky
 
 				 float tensionforce = m_Spring[i]->k*len / m_Spring[i]->len;
 
-				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce;
+				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce*0.9;
 			 }
 
 			 //更新mass受到的力
@@ -126,7 +135,19 @@ namespace sparky
 				float3 force(0, 0, 0);
 				  for (int j = 0; j < m_Mass[i]->Springs.size(); j++)
 				 {
-					 force += m_Mass[i]->Springs[j]->force;
+					  if (m_Mass[i]->Springs[j]->force.length() != 0)
+					  {
+						  if (i == m_Mass[i]->Springs[j]->m1)
+						  {
+							  force += m_Mass[i]->Springs[j]->force * -1;
+						  }
+						  else
+						  {
+							  force += m_Mass[i]->Springs[j]->force;
+						  }
+					  }
+				
+					
 				 }
 				 force.y += m_Grvavity*m_Mass[i]->mass;
 
@@ -135,7 +156,17 @@ namespace sparky
 				 m_Mass[i]->nextpos = m_Mass[i]->pos + (m_Mass[i]->vec + m_Mass[i]->nextvec) / 2 * time;
 				 
 			 }
-
+			 float3 temp(0, 0, 0);
+			 for (int i = 0; i < m_Mass.size(); i++)
+			 {
+				 
+				 temp += m_Mass[i]->acc - float3(0,m_Grvavity,0);
+				
+			 }
+			 if (temp.length() >0.001)
+			 {
+				 int a = 1;
+			 }
 			 //碰撞地面
 
 			 //交换

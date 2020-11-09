@@ -8,6 +8,7 @@ namespace sparky
 		class PxWorld
 		{
 		public:
+			void Update(float time);
 			void Simulate(float time);
 			void FetchResult(std::vector<PxObject*>& objects);
 			void AddObject(PxObject* object);

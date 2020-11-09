@@ -18,6 +18,14 @@ namespace sparky
 			}
 		}
 
+		void PxWorld::Update(float time)
+		{
+			for (int i = 0; i < m_Objects.size(); i++)
+			{
+				m_Objects[i]->Update(time);
+			}
+		}
+
 		void PxWorld::FetchResult(std::vector<PxObject *> &objects)
 		{
 			for (int i=0;i<m_Objects.size();i++)
