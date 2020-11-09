@@ -110,7 +110,7 @@ namespace sparky
 		 {
 			 time /= 1000;
 			 //更新spring的tension力
-			/* for (int i=0;i<m_Spring.size();i++)
+			 for (int i=0;i<m_Spring.size();i++)
 			 {
 				 float3 tensionvec = m_Mass[m_Spring[i]->m1]->pos - m_Mass[m_Spring[i]->m2]->pos;
 				 float len = tensionvec.length() - m_Spring[i]->len;
@@ -118,16 +118,16 @@ namespace sparky
 				 float tensionforce = m_Spring[i]->k*len / m_Spring[i]->len;
 
 				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce;
-			 }*/
+			 }
 
 			 //更新mass受到的力
 			 for (int i=0;i<m_Mass.size();i++)
 			 {
 				float3 force(0, 0, 0);
-				/*  for (int j = 0; j < m_Mass[i]->Springs.size(); j++)
+				  for (int j = 0; j < m_Mass[i]->Springs.size(); j++)
 				 {
 					 force += m_Mass[i]->Springs[j]->force;
-				 }*/
+				 }
 				 force.y += m_Grvavity*m_Mass[i]->mass;
 
 				 m_Mass[i]->acc = force / m_Mass[i]->mass;
@@ -145,6 +145,11 @@ namespace sparky
 				 m_Mass[i]->vec = m_Mass[i]->nextvec + m_Mass[i]->acc*time;
 				 m_Mass[i]->pos = m_Mass[i]->nextpos;
 
+				 if (m_Mass[i]->pos.y < m_Ground)
+				 {
+					 m_Mass[i]->pos.y = m_Ground;
+					 m_Mass[i]->vec = m_Mass[i]->vec*-1;
+				 }
 			 }
 		 }
 

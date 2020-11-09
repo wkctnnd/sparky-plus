@@ -52,7 +52,7 @@ namespace sparky
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(40, 60.0f, 40), glm::vec3(128, 0, 128), glm::vec3(0, 1, 0));
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -0.5f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
 

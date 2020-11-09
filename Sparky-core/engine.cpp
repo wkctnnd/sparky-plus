@@ -46,7 +46,7 @@ namespace sparky
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(5);
+		m_Pxlink.push_back(4);
 		m_Pxlink.push_back(7);
 		 
 		m_Pxlink.push_back(0);
@@ -98,7 +98,7 @@ namespace sparky
 		//m_Renderer->Update();
 	
 		
-		m_Pxworld->Simulate(GlobalTimer.GetElapsemillionseconds());
+		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 
 		
 		std::vector<PxObject*> result;

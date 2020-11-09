@@ -52,6 +52,7 @@ namespace sparky
 		class PxSoftBody:public PxObject
 		{
 		public:
+			PxSoftBody() { m_Grvavity = -1; }
 			PxObjectType GetType() { return SOFT_BODY; }
 			static PxSoftBody* CreateDefaultCube(int c);
 			virtual void ApplyForce(std::vector<Force>& force);
@@ -68,7 +69,9 @@ namespace sparky
 			
 
 			AABox m_BoundBox;
-			float m_Grvavity = 1.0;
+			float m_Grvavity = -1.0;
+
+			float m_Ground = -10;
 			//void *UpdateDelegate(int);
 		};
 	}
