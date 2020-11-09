@@ -13,8 +13,8 @@ namespace sparky
 
 			std::vector<unsigned int>  m_ComponentArray;
 
-			template<class T>
-			std::vector<T> m_
+			//template<class T>
+			//std::vector<T> m_
 		};
 	}
 }

@@ -25,18 +25,18 @@ namespace sparky
 		void PhyxRenderer::Initialize()
 		{
 
-			m_OceanShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
+			m_OceanShader = new GraphicsShader("shaders/particle.vert", "shaders/particle.frag");
 
-			m_SoftMesh = new DynamicMesh();
-			m_SoftMesh->CreateMesh(24);
-			
+			DynamicMesh* newsoftmesh = new DynamicMesh();
+			newsoftmesh= DynamicMesh::CreateMesh(24);
+			m_SoftMesh.push_back(newsoftmesh);
 		}
 
 
 
-		void PhyxRenderer::Update(sparky::phyx::PxObject* object)
+		void PhyxRenderer::Update(int i, std::vector<float3> pos)
 		{
-			
+			m_SoftMesh[i]->Update(0, pos);
 		}
 
 		void PhyxRenderer::RenderScene()
@@ -59,8 +59,11 @@ namespace sparky
 			m_OceanShader->setUniformMat41("pr_matrix", mProjectionMatrix);
 			m_OceanShader->setUniformMat41("vw_matrix", mViewMatrix);
 			m_OceanShader->setUniform3f("campos", float3(40, 60, 40));
- 
-
+			for (int i=0;i<m_SoftMesh.size();i++)
+			{
+				m_SoftMesh[i]->render();
+			}
+			
 			m_OceanShader->disable();
 		}
 

@@ -404,6 +404,9 @@
     <ClInclude Include="maths\AABox.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="world\Cube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

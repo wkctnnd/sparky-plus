@@ -33,14 +33,14 @@ namespace sparky {
 		public:
 			PhyxRenderer();
 			void Initialize();
-			void Update(sparky::phyx::PxObject* object);
+			void Update(int i, std::vector<float3> pos);
 
 			void RenderScene();
 
 			void AddRenderable(Renderable* r);
 
 		private:
-			DynamicMesh* m_SoftMesh;
+			std::vector<DynamicMesh*> m_SoftMesh;
 			 
 			
 		 

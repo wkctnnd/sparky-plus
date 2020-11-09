@@ -59,7 +59,7 @@ namespace sparky {
 
 		unsigned int VertexArray::Vertexcout()
 		{
-			return 0;
+			return m_Buffer[0]->GetCount();
 		}
 
 		unsigned int VertexArray::Indexcount()

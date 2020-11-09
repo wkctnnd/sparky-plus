@@ -30,6 +30,12 @@ namespace sparky {
 			return m_ComponentCount;
 		}
 
+		int Buffer::GetCount()const
+		{
+			return m_Count;
+		}
+
+
 		void* Buffer::Lock(unsigned int offset, unsigned int size) const
 		{
 			std::cout << "not supported dynamic update" <<std::endl;

@@ -59,14 +59,16 @@ namespace sparky
 			void AddMass(float mass, float3 pos, float3 vec, float3 acc);
 			void AddSpring(float k, float len, int m1, int m2);
 			void GetRenderData(std::vector<float3> &vertexarray);
-		private:
-			Mass* FindNearestMass(float3 position);
 
 			std::vector<Mass*> m_Mass;
 			std::vector<Spring*> m_Spring;
+		private:
+			Mass* FindNearestMass(float3 position);
+
+			
 
 			AABox m_BoundBox;
-			float m_Grvavity;
+			float m_Grvavity = 1.0;
 			//void *UpdateDelegate(int);
 		};
 	}
