@@ -97,7 +97,7 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
-		m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
+		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 
 		
