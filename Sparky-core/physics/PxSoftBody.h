@@ -53,7 +53,7 @@ namespace sparky
 		class PxSoftBody:public PxObject
 		{
 		public:
-			PxSoftBody() { m_Grvavity = -1; }
+			PxSoftBody() { m_Grvavity = -10; }
 			PxObjectType GetType() { return SOFT_BODY; }
 			static PxSoftBody* CreateDefaultCube(int c);
 			virtual void ApplyForce(std::vector<Force>& force);

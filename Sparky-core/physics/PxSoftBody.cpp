@@ -91,8 +91,8 @@ namespace sparky
 			double originalz = 10;
 
 			PxSoftBody * body = new PxSoftBody();
-			init_mass(body, 0.1, 10, originalx, originaly, originalz, c);
-			init_spring(body, 1, 10);
+			init_mass(body, 0.2, 10, originalx, originaly, originalz, c);
+			init_spring(body, 30, 10);
 			return body;
 			
 		}
@@ -126,7 +126,7 @@ namespace sparky
 
 				 float tensionforce = m_Spring[i]->k*len / m_Spring[i]->len;
 
-				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce*0.9;
+				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce;
 			 }
 
 			 //更新mass受到的力
@@ -149,10 +149,10 @@ namespace sparky
 				
 					
 				 }
-				 force.y += m_Grvavity*m_Mass[i]->mass;
+				// force.y += m_Grvavity*m_Mass[i]->mass;
 
 				 m_Mass[i]->acc = force / m_Mass[i]->mass;
-				 m_Mass[i]->nextvec = m_Mass[i]->vec + m_Mass[i]->acc*time;
+				 m_Mass[i]->nextvec = (m_Mass[i]->vec + m_Mass[i]->acc*time)*0.95;
 				 m_Mass[i]->nextpos = m_Mass[i]->pos + (m_Mass[i]->vec + m_Mass[i]->nextvec) / 2 * time;
 				 
 			 }
