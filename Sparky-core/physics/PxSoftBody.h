@@ -40,7 +40,9 @@ namespace sparky
 				this->m1 = m1;
 				this->m2 = m2;
 				this->oriL = len;
+			 
 			}
+		 
 			float k;       //constriant
 			float len;      //rest length
 			float oriL;

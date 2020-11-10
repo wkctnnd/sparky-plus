@@ -92,7 +92,7 @@ namespace sparky
 
 			PxSoftBody * body = new PxSoftBody();
 			init_mass(body, 0.2, 10, originalx, originaly, originalz, c);
-			init_spring(body, 30, 10);
+			init_spring(body, 20, 10);
 			return body;
 			
 		}
@@ -123,9 +123,11 @@ namespace sparky
 			 {
 				 float3 tensionvec = m_Mass[m_Spring[i]->m1]->pos - m_Mass[m_Spring[i]->m2]->pos;
 				 float len = tensionvec.length() - m_Spring[i]->len;
-
-				 float tensionforce = m_Spring[i]->k*len / m_Spring[i]->len;
-
+				
+				 float tensionforce;
+			 
+					 tensionforce = m_Spring[i]->k*len / m_Spring[i]->len;
+			 
 				 m_Spring[i]->force = tensionvec.Normalize()*tensionforce;
 			 }
 
@@ -149,7 +151,7 @@ namespace sparky
 				
 					
 				 }
-				// force.y += m_Grvavity*m_Mass[i]->mass;
+				 force.y += m_Grvavity*m_Mass[i]->mass;
 
 				 m_Mass[i]->acc = force / m_Mass[i]->mass;
 				 m_Mass[i]->nextvec = (m_Mass[i]->vec + m_Mass[i]->acc*time)*0.95;
