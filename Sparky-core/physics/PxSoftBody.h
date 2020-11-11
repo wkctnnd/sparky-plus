@@ -33,22 +33,25 @@ namespace sparky
 
 		class Spring {
 		public:
-			Spring(float k, float len, int m1, int m2)
+			Spring(float ks, float kd, float len, int m1, int m2)
 			{
-				this->k = k;
+				this->ks = ks;
+				this->kd = kd;
 				this->len = len;
 				this->m1 = m1;
 				this->m2 = m2;
 				this->oriL = len;
 			 
 			}
-		 
-			float k;       //constriant
+			
+			float kd;
+			float ks;       //constriant
 			float len;      //rest length
 			float oriL;
 			int m1;
 			int m2;
 
+			float damping;
 			float3 force;
 		};
 
@@ -62,7 +65,7 @@ namespace sparky
 			void Simulate(float time);
 			void Update(float time);
 			void AddMass(float mass, float3 pos, float3 vec, float3 acc);
-			void AddSpring(float k, float len, int m1, int m2);
+			void AddSpring(float ks, float kd, float len, int m1, int m2);
 			void GetRenderData(std::vector<float3> &vertexarray);
 
 			std::vector<Mass*> m_Mass;
