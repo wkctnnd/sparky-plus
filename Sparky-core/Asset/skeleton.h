@@ -38,6 +38,11 @@ namespace sparky
 			Property<float3> m_Translation;
 			Property<float3> m_Scale;
 			Property<Quaternion> m_Quat;
+
+			//for simple use, for now it is for kinect
+			float3 m_SimpleTranslation;
+			float3 m_SimpleScale;
+			Quaternion m_SimpleQuat;
 			
 			joint* parent;
 			std::vector<joint*> children;
@@ -56,6 +61,9 @@ namespace sparky
 				SkinMat.resize(size);
 			}
 			void UpdateWorldMatrix();
+
+			//for simple use
+			void ManualUpdateWorldMatrix();
 			std::vector<joint*> joints;
 			std::vector<mat4> WorldPose;
 			std::vector<mat4> SkinMat;
@@ -71,6 +79,7 @@ namespace sparky
 			}
 		private:
 			void UpdateJoint(unsigned long elapse, joint* j);
+			void ManualUpdateJoint( joint* j);
 			void SetRoot(std::string rootname);
 
 			int m_Root;

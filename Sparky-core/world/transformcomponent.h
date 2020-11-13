@@ -25,10 +25,17 @@ namespace sparky
 
 
 			void RotateFromQuat(Quaternion quat);
+
+			void AttachTo(TransformComponent& component);
+			void DetachTo(TransformComponent& component);
+			void SetParent(TransformComponent& component);
 		private:
 			float3 m_Position;
 			Quaternion m_Rotation;
 			float3 m_Scale;
+
+			std::vector<TransformComponent*> m_Children;
+			TransformComponent* m_Parent;
 		};
 	}
 }
