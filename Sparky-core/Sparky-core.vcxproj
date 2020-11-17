@@ -145,6 +145,7 @@
     <ClCompile Include="Asset\fbxloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
+    <ClCompile Include="Asset\stlloader.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />
     <ClCompile Include="physics\PxSoftBody.cpp" />
@@ -182,6 +183,8 @@
     <ClCompile Include="render\skinmesh.cpp" />
     <ClCompile Include="render\skinmeshrender.cpp" />
     <ClCompile Include="utils\timer.cpp" />
+    <ClCompile Include="world\actor.cpp" />
+    <ClCompile Include="world\scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation\AnimationComponent.h" />
@@ -198,11 +201,18 @@
     <ClInclude Include="Asset\AssetLoader.h" />
     <ClInclude Include="Asset\AssetManager.h" />
     <ClInclude Include="Asset\fbxloader.h" />
+    <ClInclude Include="Asset\imagedata.h" />
+    <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
+    <ClInclude Include="Asset\stb_image.h" />
+    <ClInclude Include="Asset\stlloader.h" />
+    <ClInclude Include="graphics\texture\rendertexture.h" />
+    <ClInclude Include="graphics\texture\texture.h" />
+    <ClInclude Include="graphics\texture\texture2d.h" />
     <ClInclude Include="maths\AABox.h" />
     <ClInclude Include="physics\PxMassSpringSimulator.h" />
     <ClInclude Include="physics\PxObject.h" />

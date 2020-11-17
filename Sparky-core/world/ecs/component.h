@@ -13,11 +13,14 @@ namespace sparky
 		{
 		public:
 			void AttachTo();
-			Actor* GetOwnerActor();
-			Component GetParentComponent();
-		private:
-			std::vector<Component*> m_Children;
-
+			Actor* GetOwner() 
+			{
+				return m_Owner;
+			}
+			//Component GetParentComponent();
+		protected:
+			//std::vector<Component*> m_Children;
+			Actor* m_Owner;
 			
 		};
 	}

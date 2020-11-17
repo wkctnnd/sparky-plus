@@ -8,6 +8,7 @@ namespace sparky
 {
 	namespace world
 	{
+		class Actor;
 		class TransformComponent :public Component
 		{
 			mat4 GetLocalTransform();
@@ -25,7 +26,7 @@ namespace sparky
 
 
 			void RotateFromQuat(Quaternion quat);
-
+			
 			void AttachTo(TransformComponent& component);
 			void DetachTo(TransformComponent& component);
 			void SetParent(TransformComponent& component);
@@ -36,6 +37,8 @@ namespace sparky
 
 			std::vector<TransformComponent*> m_Children;
 			TransformComponent* m_Parent;
+
+			
 		};
 	}
 }

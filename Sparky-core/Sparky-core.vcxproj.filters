@@ -159,6 +159,15 @@
     <ClCompile Include="maths\AABox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="world\actor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\scene.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\stlloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -405,6 +414,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\Cube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\actor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\cameracomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\transformcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\stlloader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

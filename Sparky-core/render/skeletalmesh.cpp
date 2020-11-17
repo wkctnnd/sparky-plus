@@ -22,9 +22,18 @@ namespace sparky
 		}
 		void SkeletalMesh::Update()
 		{
-			m_Skeleton->Reset();
-			m_Skeleton->UpdateWorldMatrix();
-			m_Skeleton->Check();
+			if (m_Controller)
+			{
+				m_Skeleton->Reset();
+				m_Skeleton->ManualUpdateWorldMatrix();
+				m_Skeleton->Check();
+			}
+			else
+			{
+				m_Skeleton->Reset();
+				m_Skeleton->UpdateWorldMatrix();
+				m_Skeleton->Check();
+			}
 		}
 		void SkeletalMesh::Render()
 		{
@@ -33,12 +42,16 @@ namespace sparky
 		
 		void SkeletalMesh::SetController(Controller* controller)
 		{
-			m_Controller = controller; 
-		/*	for (int i = 0; i < m_Controller->GetAnimationStackCount(); i++)
-			{*/
+			if (controller)
+			{
+				m_Controller = controller;
+				/*	for (int i = 0; i < m_Controller->GetAnimationStackCount(); i++)
+					{*/
 				AnimationStack * stack = m_Controller->GetAnimationStack(0);
 				BindProperty(stack, m_Skeleton);
-			/*}*/
+				/*}*/
+			}
+			
 
 		}
 		void SkeletalMesh::BindProperty(AnimationStack* stack, Skeleton* skeleton)

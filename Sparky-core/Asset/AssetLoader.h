@@ -34,7 +34,8 @@ namespace sparky {
 		private:
 			class objLoader *m_ObjLoader;
 			class FBXLoader *m_FbxLoader;
-
+			class stlLoader *m_StlLoader;
+			class ImageLoader *m_ImageLoader;
 			static AssetLoader* m_Instance;
 		private:
 			AssetLoader() {};

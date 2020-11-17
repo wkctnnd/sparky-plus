@@ -36,6 +36,14 @@ namespace sparky {
 				m_FbxLoader->LoadFile(fullrelativepath.c_str());
 				m_FbxLoader->LoadResources();
 			}
+			else if (extension.compare("stl") == 0)
+			{
+
+			}
+			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))
+			{
+				m_ImageLoader->
+			}
 		}
 
 		RawSkinMesh* AssetLoader::GetRawSkinMesh(unsigned int id)

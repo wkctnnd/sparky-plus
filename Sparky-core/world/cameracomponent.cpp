@@ -5,11 +5,15 @@ namespace sparky
 {
 	namespace world
 	{
-		class CameraComponnet :public Component
+		mat4 CameraComponnet::GetViewMatrix()
 		{
 
+		}
 
 
-		};
+		mat4 CameraComponnet::GetProjectionMatrix()
+		{
+
+		}
 	}
 }
