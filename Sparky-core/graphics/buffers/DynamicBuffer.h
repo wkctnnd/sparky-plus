@@ -1,5 +1,5 @@
 #pragma once
-#include <gl/glew.h>
+#include "GL/glew.h"
 #include "buffer.h"
 #include "maths/vec3.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "ecs/component.h"
+#include "component.h"
 #include "maths/mat4.h"
 using namespace sparky::maths;
 namespace sparky

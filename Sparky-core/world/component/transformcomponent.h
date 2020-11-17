@@ -1,6 +1,6 @@
 #pragma once
 #include "maths/vec3.h"
-#include "ecs/component.h"
+#include "component.h"
 #include "maths/quaternion.h"
 #include "maths/mat4.h"
 using namespace sparky::maths;

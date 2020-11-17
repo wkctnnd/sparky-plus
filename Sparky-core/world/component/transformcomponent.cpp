@@ -1,5 +1,6 @@
 #pragma once
 #include "transformcomponent.h"
+
 using namespace sparky::maths;
 namespace sparky
 {

@@ -168,6 +168,12 @@
     <ClCompile Include="Asset\stlloader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="world\component\cameracomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\component\transformcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -377,9 +383,6 @@
     <ClInclude Include="world\scene.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="world\ecs\component.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\ecs\entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -422,13 +425,34 @@
     <ClInclude Include="world\camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="world\cameracomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="world\transformcomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Asset\stlloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\imagedata.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\imageloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\stb_image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\texture\rendertexture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\texture\texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\texture\texture2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\transformcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\cameracomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\component.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
