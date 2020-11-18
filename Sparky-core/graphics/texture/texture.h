@@ -24,6 +24,7 @@ namespace sparky
 			virtual void* Lock(unsigned int offset, unsigned int size) const;
 			virtual void unLock() const;
 
+			void Save
 		protected:
 			int m_TexId;
 			int m_Width;
