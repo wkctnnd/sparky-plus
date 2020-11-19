@@ -1,5 +1,6 @@
 #pragma once
 #include <gl/glew.h>
+#include <string>
 namespace sparky
 {
 	namespace graphics
@@ -13,18 +14,26 @@ namespace sparky
 			DXT2,
 			DXT5
 		};
+
+
+
+		enum WarpMode
+		{
+			RPEAT,
+			CLAMP
+		};
 		class Texture
 		{
 		public:
 
 		 
-			void Bind() const;
-			void unBind() const;
+			virtual void Bind() const;
+			virtual void UnBind() const;
 			 
 			virtual void* Lock(unsigned int offset, unsigned int size) const;
 			virtual void unLock() const;
 
-			void Save
+			void SaveToDisk(std::string file);
 		protected:
 			int m_TexId;
 			int m_Width;

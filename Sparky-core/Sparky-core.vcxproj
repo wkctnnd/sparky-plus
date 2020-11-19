@@ -212,6 +212,8 @@
     <ClInclude Include="Asset\skeleton.h" />
     <ClInclude Include="Asset\stb_image.h" />
     <ClInclude Include="Asset\stlloader.h" />
+    <ClInclude Include="core\spobject.h" />
+    <ClInclude Include="graphics\rendertarget.h" />
     <ClInclude Include="graphics\texture\rendertexture.h" />
     <ClInclude Include="graphics\texture\texture.h" />
     <ClInclude Include="graphics\texture\texture2d.h" />
