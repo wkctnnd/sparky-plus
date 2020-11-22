@@ -24,9 +24,6 @@
     <ClCompile Include="graphics\window.cpp">
       <Filter>源文件\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="maths\vec2.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="maths\mat4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -172,6 +169,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="world\component\transformcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\fileutils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\texture\texture2d.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -455,6 +461,21 @@
     <ClInclude Include="world\component\component.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="core\spobject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\rendertarget.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\File.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\texture\sampler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\texture\rendertexture2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />
@@ -477,6 +498,9 @@
     <None Include="shaders\skinmesh.frag" />
     <None Include="shaders\skinmesh.vert" />
     <None Include="animation\keyvalue.inl">
+      <Filter>头文件</Filter>
+    </None>
+    <None Include="maths\vec2.inl">
       <Filter>头文件</Filter>
     </None>
   </ItemGroup>

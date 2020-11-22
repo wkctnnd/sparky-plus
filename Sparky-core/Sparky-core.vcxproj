@@ -146,6 +146,7 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
+    <ClCompile Include="graphics\texture\texture2d.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />
     <ClCompile Include="physics\PxSoftBody.cpp" />
@@ -175,13 +176,14 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graphics\window.cpp" />
     <ClCompile Include="maths\mat4.cpp" />
-    <ClCompile Include="maths\vec2.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="render\skeletalmesh.cpp" />
     <ClCompile Include="render\skinmesh.cpp" />
     <ClCompile Include="render\skinmeshrender.cpp" />
+    <ClCompile Include="utils\file.cpp" />
+    <ClCompile Include="utils\fileutils.cpp" />
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="world\actor.cpp" />
     <ClCompile Include="world\component\cameracomponent.cpp" />
@@ -215,6 +217,8 @@
     <ClInclude Include="core\spobject.h" />
     <ClInclude Include="graphics\rendertarget.h" />
     <ClInclude Include="graphics\texture\rendertexture.h" />
+    <ClInclude Include="graphics\texture\rendertexture2d.h" />
+    <ClInclude Include="graphics\texture\sampler.h" />
     <ClInclude Include="graphics\texture\texture.h" />
     <ClInclude Include="graphics\texture\texture2d.h" />
     <ClInclude Include="maths\AABox.h" />
@@ -272,6 +276,7 @@
     <ClInclude Include="render\skinmesh.h" />
     <ClInclude Include="render\skinmeshrenderer.h" />
     <ClInclude Include="render\View.h" />
+    <ClInclude Include="utils\File.h" />
     <ClInclude Include="utils\fileutils.h" />
     <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\timer.h" />
@@ -287,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />
+    <None Include="maths\vec2.inl" />
     <None Include="shaders\ApplyAdvection.comp" />
     <None Include="shaders\ApplyAdvectionVelocity.comp" />
     <None Include="shaders\ApplyBuoyancy.comp" />

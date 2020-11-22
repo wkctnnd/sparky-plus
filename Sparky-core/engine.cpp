@@ -22,10 +22,17 @@
 #include "render/phyxRender.h"
 #include "physics/PxWorld.h"
 #include "physics/PxSoftBody.h"
+#include "world/scene.h"
+#include "world/actor.h"
+#include "world/component/cameracomponent.h"
+#include "graphics/rendertarget.h"
+#include "graphics/texture/texture.h"
+#include "graphics/texture/rendertexture2d.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
 using namespace sparky::phyx;
+using namespace sparky::world;
 namespace sparky
 {
 	Timer Engine::GlobalTimer;
@@ -81,7 +88,24 @@ namespace sparky
 
 
 		m_Pxworld->AddObject(body);
-		
+
+		m_Scene = new sparky::world::Scene();
+		m_Scene->Initialize();
+
+		Actor* camera = new Actor();
+		CameraComponnet* cameracomponet = camera->AddComponent<CameraComponnet>();
+		m_Scene->AddActor(camera);
+
+		ColorRenderTarget  crt;
+		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGB);
+		crt.action = Clear_Store;
+		std::vector<ColorRenderTarget*> crts;
+		crts.push_back(&crt);
+
+		DepthStencilRenderTarget dsrt;
+		dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
+		dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24);
+		cameracomponet->SetRenderTarget(crts, &dsrt);
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();*/
@@ -89,6 +113,13 @@ namespace sparky
 		
 		//m_Renderer->AddRenderable(skeletalmesh);
 		//render->AddSmokeVolume(smokemesh);
+
+		std::vector<CameraComponent*> cameras = m_Scene->GetRoot()->GetChildrenComponents<CameraComponnet>();
+		if (cameras.size() > 0)
+		{
+			m_CameraComponent = cameras[0];
+		}
+
 	}
 	void Engine::Loop()
 	{
@@ -97,9 +128,11 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
+
+		
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
-
+		m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
 		
 		std::vector<PxObject*> result;
 		m_Pxworld->FetchResult(result);

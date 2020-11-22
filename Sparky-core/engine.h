@@ -23,6 +23,12 @@ namespace sparky{
 	{
 		class PxWorld;
 	}
+
+	namespace world
+	{
+		class Scene;
+		class CameraComponent;
+	}
 }
 namespace sparky
 {
@@ -43,7 +49,8 @@ namespace sparky
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
 		sparky::phyx::PxWorld* m_Pxworld;
+		sparky::world::CameraComponent* m_CameraComponent;
+		sparky::world::Scene* m_Scene;
 
-		
 	};
 }

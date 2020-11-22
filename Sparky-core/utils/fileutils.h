@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <direct.h>
+#include <fstream>
 #define  MAX_PATH 1000
 namespace sparky {
 	class FileUtile
@@ -38,6 +39,12 @@ namespace sparky {
 			str = ch;
 			return str;
 		}
+
+		void OpenFile(std::string path);
+
+		std::string GetLine();
+	private:
+		std::ifstream m_FileIn;
 	};
 	
 }

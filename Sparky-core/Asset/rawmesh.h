@@ -25,10 +25,12 @@ namespace sparky
 			std::vector<float4> m_Color;
 			std::vector<float3> m_Normal;
 			std::vector<float3> m_Tangent;
+			std::vector<float2> m_Texcoord;
 
 			std::vector<unsigned short> m_Faces;
 
 			bool Indexed() { return m_Faces.size() > 0; }
+			void Optimize() {};
 		};
 	}
 }

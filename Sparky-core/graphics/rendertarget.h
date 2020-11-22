@@ -6,35 +6,42 @@ namespace sparky
 	{
 		class RenderTexture;
 
-		enum RenderTargetAction
+		enum ColorRenderTargetAction
 		{
 			Load_Store,
 			DontLoad_DontStore,
-			Clear_DontStore
+			Clear_DontStore,
+			Clear_Store
 		};
 
-		enum DepthStencilTargetAction
+
+		enum DepthStencilRenderTargetAction
 		{
-
+			DepthClearDontStore_StecilClearDontStore,
+	 
 		};
 
+	 
 		class ColorRenderTarget
 		{
+		public:
 			RenderTexture *texture;
-			RenderTargetAction action;
+			ColorRenderTargetAction action;
 			int slice;
 			int mipmap;
 		};
 
 		class DepthStencilRenderTarget
 		{
+		public:
 			RenderTexture* texture;
-			RenderTargetAction action;
+			DepthStencilRenderTargetAction action;
 		};
 		class RenderTargetInfo
 		{
 		public:
-
+			void SetColorRenderTarget(int index, ColorRenderTarget* crt);
+			void SetDepthRenderTarget(DepthStencilRenderTarget* dsrt);
 		private:
 			ColorRenderTarget  m_ColorTargets[MAXMRTNUM];
 			DepthStencilRenderTarget m_DepthStencilTarget;

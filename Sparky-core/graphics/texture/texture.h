@@ -12,7 +12,10 @@ namespace sparky
 			RGB,
 			DXT1,
 			DXT2,
-			DXT5
+			DXT5,
+
+			DEPTH24,
+			DEPTH24STENCILl8,
 		};
 
 
@@ -26,19 +29,25 @@ namespace sparky
 		{
 		public:
 
-		 
+			Texture(int w, int h, int depth, Format f);
 			virtual void Bind() const;
 			virtual void UnBind() const;
 			 
 			virtual void* Lock(unsigned int offset, unsigned int size) const;
 			virtual void unLock() const;
+			virtual void LoadMipData(int miplevel, int3 offset, int3 rect, void* data);
 
 			void SaveToDisk(std::string file);
 		protected:
-			int m_TexId;
+			unsigned int m_TexId;
 			int m_Width;
 			int m_Height;
 			int m_Depth;
+			Format m_Formt;
+			WarpMode m_WarpMode;
+
+			int m_MipMap;
+			int m_Border;
 		};
 
 	}
