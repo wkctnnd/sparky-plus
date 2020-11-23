@@ -8,9 +8,9 @@ namespace sparky {
 		public:
 			RenderTexture2D(int width, int height, Format format);
 
+			void SaveToDisk(std::string file);
 
-
-
+			void ReadPixel(int offsetx, int offsety, int width, int height, void* data);
 		};
 
 	}

@@ -38,6 +38,8 @@ namespace sparky
 			virtual void LoadMipData(int miplevel, int3 offset, int3 rect, void* data);
 
 			void SaveToDisk(std::string file);
+
+			unsigned int GetTextureID() { return m_TexId; }
 		protected:
 			unsigned int m_TexId;
 			int m_Width;

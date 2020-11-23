@@ -42,6 +42,11 @@ namespace sparky
 		public:
 			void SetColorRenderTarget(int index, ColorRenderTarget* crt);
 			void SetDepthRenderTarget(DepthStencilRenderTarget* dsrt);
+
+			RenderTexture* GetColorRenderTexture(int index)
+			{
+				return m_ColorTargets[index].texture;
+			}
 		private:
 			ColorRenderTarget  m_ColorTargets[MAXMRTNUM];
 			DepthStencilRenderTarget m_DepthStencilTarget;

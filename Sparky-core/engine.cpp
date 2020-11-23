@@ -93,7 +93,7 @@ namespace sparky
 		m_Scene->Initialize();
 
 		Actor* camera = new Actor();
-		CameraComponnet* cameracomponet = camera->AddComponent<CameraComponnet>();
+		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
 		m_Scene->AddActor(camera);
 
 		ColorRenderTarget  crt;
@@ -150,6 +150,8 @@ namespace sparky
 		//m_Renderer->Update();
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();
+		
+		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;

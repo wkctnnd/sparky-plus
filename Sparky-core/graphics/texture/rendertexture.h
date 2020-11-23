@@ -8,8 +8,12 @@ namespace sparky {
 		public:
 			RenderTexture(int width, int height, Format format);
 
-		 
- 
+
+			virtual void ReadPixel(int offsetx, int offsety, int width, int height, void* data) = 0;
+
+			virtual void SaveToDisk(std::string file) = 0;
+		protected:
+			Texture* m_Texture;
 
 		};
 
