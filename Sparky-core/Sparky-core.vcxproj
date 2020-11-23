@@ -146,6 +146,7 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
+    <ClCompile Include="graphics\texture\rendertexture2d.cpp" />
     <ClCompile Include="graphics\texture\texture2d.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />

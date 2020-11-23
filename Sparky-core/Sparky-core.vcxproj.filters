@@ -180,6 +180,9 @@
     <ClCompile Include="graphics\texture\texture2d.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\texture\rendertexture2d.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
