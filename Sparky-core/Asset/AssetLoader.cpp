@@ -42,7 +42,7 @@ namespace sparky {
 			}
 			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))
 			{
-				m_ImageLoader->
+				//m_ImageLoader->
 			}
 		}
 

@@ -17,7 +17,6 @@ namespace sparky
 		class Component
 		{
 		public:
-			void AttachTo();
 			Actor* GetOwner() 
 			{
 				return m_Owner;

@@ -1,18 +1,23 @@
 #include "stlloader.h"
-#include "utils/fileutils.h"
+#include "utils/file.h"
 #include "Asset/rawmesh.h"
 #include <string>
+#include <sstream>
+#include "Asset/rawmesh.h"
 using namespace sparky::maths;
 namespace sparky {
 
 	namespace asset {
 		bool stlLoader::LoadMesh(const char* file, RawMesh& rmesh)
 		{
+			File f(file);
+			std::string linestr = f.GetLine();
+			float a, b, c;
+			std::string temp0, temp1;
+			std::vector<float3> normal;
+			std::vector<float3> position;
 
-			std::string filestr = FileUtile::read_file(file);
-			int begin= 0;
-			int end = filestr.find("/0", begin);
-			std::string linestr = filestr.substr(begin, end);
+			 
 			while (!linestr.empty())
 			{
 
@@ -20,27 +25,24 @@ namespace sparky {
 				{
 					if (linestr.find("facet normal") != -1)
 					{
-						float a, b, c;
-						sscanf(str, "%*s %*s %f %f %f", &a, &b, &c);
-						o.AddNormal(a, b, c);
-						o.AddNormal(a, b, c);
-						o.AddNormal(a, b, c);
+						
+						std::istringstream in(linestr);
+						in >> temp0 >> temp1 >> a >> b >> c;
+						rmesh.m_Normal.emplace_back(a, b, c);
 					 
 					}
 					else
 					{
-						float a, b, c;
-						sscanf(str, "%*s  %f %f %f", &a, &b, &c);
-						/* verts.push_back(a);
-						 verts.push_back(b);
-						 verts.push_back(c);*/
-						o.AddPosition(a, b, c);
+						std::istringstream in(linestr);
+						in >> temp0 >> temp1 >> a >> b >> c;
+				 
+						rmesh.m_Position.emplace_back(a, b, c);
 
 					}
 
 				}
 			}
-			Objects.push_back(o);
+	 
 
 
 			

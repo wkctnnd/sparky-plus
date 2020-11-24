@@ -70,7 +70,7 @@ namespace sparky
 			
 		};
 
-		ComponentType CameraComponnet::TYPE = ComponentType::TRANSFORM_TYPE;
+		ComponentType TransformComponent::TYPE = ComponentType::TRANSFORM_TYPE;
 	}
 }
 

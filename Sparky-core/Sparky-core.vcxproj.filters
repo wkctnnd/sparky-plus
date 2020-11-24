@@ -183,6 +183,9 @@
     <ClCompile Include="graphics\texture\rendertexture2d.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Asset\imageloader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -477,6 +480,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="graphics\texture\rendertexture2d.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\stb_image_write.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="miniheader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

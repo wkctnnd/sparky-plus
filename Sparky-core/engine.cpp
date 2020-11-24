@@ -114,7 +114,7 @@ namespace sparky
 		//m_Renderer->AddRenderable(skeletalmesh);
 		//render->AddSmokeVolume(smokemesh);
 
-		std::vector<CameraComponent*> cameras = m_Scene->GetRoot()->GetChildrenComponents<CameraComponnet>();
+		std::vector<CameraComponent*> cameras = m_Scene->GetRoot()->GetChildrenComponents<CameraComponent>();
 		if (cameras.size() > 0)
 		{
 			m_CameraComponent = cameras[0];

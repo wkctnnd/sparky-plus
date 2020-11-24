@@ -143,6 +143,7 @@
     <ClCompile Include="animation\keyvalue.cpp" />
     <ClCompile Include="Asset\AssetLoader.cpp" />
     <ClCompile Include="Asset\fbxloader.cpp" />
+    <ClCompile Include="Asset\imageloader.cpp" />
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
@@ -209,11 +210,13 @@
     <ClInclude Include="Asset\imagedata.h" />
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="miniheader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
     <ClInclude Include="Asset\skeletalpose.h" />
     <ClInclude Include="Asset\skeleton.h" />
     <ClInclude Include="Asset\stb_image.h" />
+    <ClInclude Include="Asset\stb_image_write.h" />
     <ClInclude Include="Asset\stlloader.h" />
     <ClInclude Include="core\spobject.h" />
     <ClInclude Include="graphics\rendertarget.h" />
