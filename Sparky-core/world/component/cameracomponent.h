@@ -10,6 +10,7 @@ namespace sparky
 		class ColorRenderTarget;
 		class DepthStencilRenderTarget;
 		class RenderTargetInfo;
+		class RenderTexture;
 	}
 	namespace world
 	{
@@ -23,10 +24,8 @@ namespace sparky
 			{
 				return ComponentType::CAMER_TYPE;
 			}
-			graphics::RenderTexture* GetColorRenderTexture(int index)
-			{
-				return m_RtInfo->GetColorRenderTexture(index);
-			}
+			graphics::RenderTexture* GetColorRenderTexture(int index);
+		
 			void SetRenderTarget(std::vector<graphics::ColorRenderTarget*> crt, graphics::DepthStencilRenderTarget* dsrt);
 		private:
 			float m_Fov;

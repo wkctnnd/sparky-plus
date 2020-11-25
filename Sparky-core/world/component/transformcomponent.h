@@ -59,13 +59,18 @@ namespace sparky
 			Quaternion m_Rotation;
 			float3 m_Scale;
 
+			void UpdateChain();
+			void UpdateChainAsyn();
+
 			std::vector<TransformComponent*> m_Children;
 			TransformComponent* m_Parent;
 
 			float3 m_Forward;
 			float3 m_Up;
 			float3 m_Right;
-
+			
+			mat4 m_WorldMatrix;
+			mat4 m_LocalTransform;
 			bool m_Dirty;
 			
 		};

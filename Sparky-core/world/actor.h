@@ -15,7 +15,9 @@ namespace sparky
 			template<class T>
 			T* AddComponent()
 			{
-				m_Components.push_back(new T());
+				T* comp = new T();
+				m_Components.push_back(T);
+				return comp;
 			}
 			void Attach(Component* component);
 			void Attach(Actor* actor);

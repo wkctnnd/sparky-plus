@@ -25,6 +25,7 @@
 #include "world/scene.h"
 #include "world/actor.h"
 #include "world/component/cameracomponent.h"
+#include "world/component/transformcomponent.h"
 #include "graphics/rendertarget.h"
 #include "graphics/texture/texture.h"
 #include "graphics/texture/rendertexture2d.h"

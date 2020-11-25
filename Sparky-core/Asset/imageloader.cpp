@@ -9,6 +9,7 @@ namespace sparky
 		bool ImageLoader::LoadFile(const char* file)
 		{
 
+			return true;
 		}
 
 

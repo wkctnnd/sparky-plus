@@ -12,7 +12,7 @@ namespace sparky
 	namespace graphics
 	{
 
-		RenderTexture2D::RenderTexture2D(int width, int height, Format format)
+		RenderTexture2D::RenderTexture2D(int width, int height, Format format):RenderTexture(width,height,format)
 		{
 
 		}

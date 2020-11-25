@@ -12,7 +12,9 @@ namespace sparky {
 			static mat4 identity();
 			mat4& multiply(const mat4& others);
 			mat4 Inverse();
-
+			float3 GetTranslate();
+			float3 GetScale();
+			Quaternion GetRotation();
 			static mat4 orthographic(float left, float right, float top, float bottom, float near, float far);
 			static mat4 perspective(float fov, float aspectRatio, float near, float far);
 			static mat4 LookAt(const float3& camera, const float3& object, const float3& up);

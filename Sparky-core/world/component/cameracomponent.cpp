@@ -3,6 +3,9 @@
 #include "graphics/rendertarget.h"
 #include "world/actor.h"
 #include "transformcomponent.h"
+#include "graphics/texture/rendertexture.h"
+#include "graphics/rendertarget.h"
+using namespace sparky::graphics;
 namespace sparky
 {
 	namespace world
@@ -37,6 +40,11 @@ namespace sparky
 
 			m_RtInfo->SetDepthRenderTarget(dsrt);
 			
+		}
+
+		RenderTexture* CameraComponent::GetColorRenderTexture(int index)
+		{
+			return m_RtInfo->GetColorRenderTexture(index);
 		}
 	}
 }
