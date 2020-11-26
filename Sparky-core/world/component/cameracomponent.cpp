@@ -10,6 +10,8 @@ namespace sparky
 {
 	namespace world
 	{
+		ComponentType CameraComponent::TYPE = ComponentType::CAMER_TYPE;
+
 		mat4 CameraComponent::GetViewMatrix()
 		{
 			mat4 result = m_Owner->GetTransform()->GetWorldTransform().Inverse();

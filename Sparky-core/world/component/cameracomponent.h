@@ -37,6 +37,6 @@ namespace sparky
 			graphics::RenderTargetInfo* m_RtInfo;
 		};
 
-		ComponentType CameraComponent::TYPE = ComponentType::CAMER_TYPE;
+		
 	}
 }

@@ -75,7 +75,7 @@ namespace sparky
 			
 		};
 
-		ComponentType TransformComponent::TYPE = ComponentType::TRANSFORM_TYPE;
+		
 	}
 }
 
