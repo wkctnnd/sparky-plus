@@ -19,24 +19,24 @@ namespace sparky
 
 		float3 TransformComponent::GetWorldPosition()
 		{
-
+			return float3(0, 0, 0);
 		}
 		float3 TransformComponent::GetWorldRotation()
 		{
-
+			return float3(0, 0, 0);
 		}
 		float3 TransformComponent::GetWorldScale()
 		{
-
+			return float3(0, 0, 0);
 		}
 
 		void TransformComponent::Translate(float3 T)
 		{
-
+			m_Position += T;
 		}
 		void TransformComponent::RotateXAxis(float angle)
 		{
-
+			m_Rotation
 		}
 		void TransformComponent::RotateYAxis(float angle)
 		{
