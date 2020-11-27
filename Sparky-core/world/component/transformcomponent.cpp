@@ -6,7 +6,7 @@ namespace sparky
 {
 	namespace world
 	{
-
+		ComponentType TransformComponent::TYPE = ComponentType::TRANSFORM_TYPE;
 		mat4 TransformComponent::GetLocalTransform()
 		{
 			return m_LocalTransform;

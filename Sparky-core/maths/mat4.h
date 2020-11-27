@@ -1,7 +1,9 @@
 #pragma once
 #include "vec3.h"
+ 
 namespace sparky {
 	namespace maths {
+		class Quaternion;
 		struct mat4
 		{
 			float elements[4 * 4];
@@ -11,10 +13,15 @@ namespace sparky {
 
 			static mat4 identity();
 			mat4& multiply(const mat4& others);
-			mat4 Inverse();
-			float3 GetTranslate();
-			float3 GetScale();
-			Quaternion GetRotation();
+			mat4 Inverse() 
+			{ 
+				mat4 invmat;
+				return invmat;
+			}
+			Quaternion* GetRotation();
+			float3 GetTranslate() { float3 result; return result; }
+			float3 GetScale() { float3 result; return result; }
+			
 			static mat4 orthographic(float left, float right, float top, float bottom, float near, float far);
 			static mat4 perspective(float fov, float aspectRatio, float near, float far);
 			static mat4 LookAt(const float3& camera, const float3& object, const float3& up);
