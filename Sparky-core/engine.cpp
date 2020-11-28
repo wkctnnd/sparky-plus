@@ -29,6 +29,8 @@
 #include "graphics/rendertarget.h"
 #include "graphics/texture/texture.h"
 #include "graphics/texture/rendertexture2d.h"
+
+#include "utils/fileutils.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -129,12 +131,13 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
-
+		
 		
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
-		
+
+ 
 		std::vector<PxObject*> result;
 		m_Pxworld->FetchResult(result);
 		for (int i=0;i<result.size();i++)
@@ -153,7 +156,9 @@ namespace sparky
 		GlobalTimer.Stop();
 		
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
-		
+		std::string time = GlobalTimer.GetCurrentTime();
+		string path = FileUtile::GetCurrentWorkingDirectory();
+		rt->SaveToDisk(path);
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
 		//if (remain > 0)

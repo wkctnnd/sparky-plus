@@ -27,6 +27,15 @@ namespace sparky {
 			return ((float)m_Elapse)/ CLOCKS_PER_SEC;
 		}
 
-	 
+		std::string Timer::GetCurrentTime() const
+		{
+			time_t tt = time(NULL);
+			tm* t = localtime(&tt);
+			std::string hourstr = std::to_string(t->tm_hour);
+			std::string secstr = std::to_string(t->tm_sec);
+			std::string minstr = std::to_string(t->tm_min);
+			std::string ct = hourstr+std::string(":")+minstr + std::string(":") + secstr;
+			return ct;
+		}
 	
 }

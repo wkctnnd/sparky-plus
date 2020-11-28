@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 namespace sparky {
 	class Timer
 	{
@@ -9,6 +10,7 @@ namespace sparky {
 
 		unsigned long GetElapsemillionseconds();
 		float GetElapseSeconds() const;
+		std::string GetCurrentTime() const;
 	private:
 		long m_Start;
 		long m_End;

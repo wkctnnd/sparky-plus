@@ -40,6 +40,13 @@ namespace sparky {
 			return str;
 		}
 
+		static std::string GetOutputDirectory()
+		{
+			std::string str = GetCurrentWorkingDirectory();
+			str = str + std::string("../Assets/output");
+			return str;
+		}
+
 		void OpenFile(std::string path);
 
 		std::string GetLine();

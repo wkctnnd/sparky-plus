@@ -27,6 +27,7 @@ namespace sparky
 			graphics::RenderTexture* GetColorRenderTexture(int index);
 		
 			void SetRenderTarget(std::vector<graphics::ColorRenderTarget*> crt, graphics::DepthStencilRenderTarget* dsrt);
+			//RenderTexture* GetRenderTexture(int index);
 		private:
 			float m_Fov;
 			float m_Aspect;
