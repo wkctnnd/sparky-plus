@@ -1,5 +1,6 @@
 #pragma once
 #define MAXMRTNUM 5
+#include <gl/glew.h>
 namespace sparky
 {
 	namespace graphics
@@ -40,9 +41,13 @@ namespace sparky
 		class RenderTargetInfo
 		{
 		public:
+			RenderTargetInfo();
 			void SetColorRenderTarget(int index, ColorRenderTarget* crt);
 			void SetDepthRenderTarget(DepthStencilRenderTarget* dsrt);
 
+			//temp use
+			void Bind();
+			void UnBind();
 			RenderTexture* GetColorRenderTexture(int index)
 			{
 				return m_ColorTargets[index].texture;
@@ -51,6 +56,7 @@ namespace sparky
 			ColorRenderTarget  m_ColorTargets[MAXMRTNUM];
 			DepthStencilRenderTarget m_DepthStencilTarget;
 
+			GLuint m_FrameBufferId;
 		};
 	}
 }
