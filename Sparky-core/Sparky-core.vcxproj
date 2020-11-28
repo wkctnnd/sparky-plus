@@ -100,6 +100,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\Sparky-core\Sparky-core;D:\Sparky-core\Dependencies\GLFW\include;D:\Sparky-core\Dependencies\GLEW\include;D:\Sparky-core\Dependencies\glm-0.9.9.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLEW\lib;D:\Sparky-core\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
