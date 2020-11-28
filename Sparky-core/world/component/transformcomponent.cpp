@@ -36,7 +36,7 @@ namespace sparky
 		}
 		void TransformComponent::RotateXAxis(float angle)
 		{
-			m_Rotation
+			//m_Rotation
 		}
 		void TransformComponent::RotateYAxis(float angle)
 		{

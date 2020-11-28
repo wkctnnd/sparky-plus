@@ -32,14 +32,14 @@ namespace sparky
 		public:
 
 			Texture(int w, int h, int depth, Format f);
-			virtual void Bind() const;
-			virtual void UnBind() const;
+			virtual void Bind() const = 0;
+			virtual void UnBind() const = 0;
 			 
-			virtual void* Lock(unsigned int offset, unsigned int size) const;
-			virtual void unLock() const;
-			virtual void LoadMipData(int miplevel, int3 offset, int3 rect, void* data);
+			virtual void* Lock(unsigned int offset, unsigned int size) const = 0;
+			virtual void unLock() const = 0;
+			virtual void LoadMipData(int miplevel, int3 offset, int3 rect, void* data) = 0;
 
-			void SaveToDisk(std::string file);
+			virtual void SaveToDisk(std::string file) = 0;
 			int Width() { return m_Width; }
 			int Height() { return m_Height; }
 			int Depth() { return m_Depth; }

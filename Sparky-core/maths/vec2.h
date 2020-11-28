@@ -25,3 +25,4 @@ namespace sparky {
 		typedef vec2<int>   int2;
 	}
 }
+#include "vec2.inl"

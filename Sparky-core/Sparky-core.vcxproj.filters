@@ -186,6 +186,15 @@
     <ClCompile Include="Asset\imageloader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\texture\rendertexture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\texture\texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\texture\rendertarget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
