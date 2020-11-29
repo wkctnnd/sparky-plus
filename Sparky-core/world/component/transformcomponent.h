@@ -18,6 +18,7 @@ namespace sparky
 			mat4 GetLocalTransform();
 			mat4 GetWorldTransform();
 
+			
 
 			float3 GetWorldPosition();
 			float3 GetWorldRotation();

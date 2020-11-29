@@ -16,6 +16,8 @@ namespace sparky {
 			Quaternion& operator +=(Quaternion left);
 			static Quaternion FromEulerXYZ(float x, float y, float z);
 			friend Quaternion operator*(Quaternion left, float scale);
+
+			Quaternion& operator *=(Quaternion& left);
 			void NormalizeSelf() { float len = Length(); x /= len; y /= len; z /= len; w /= len; };
 			float Length() { return sqrt(x * x + y * y + z * z + w * w); }
 			void SetElement(unsigned int i, float value);
@@ -42,6 +44,8 @@ namespace sparky {
 
 				return angles;
 			}
+
+			//friend Quaternion& operator*=(Quaternion& left, const Quaternion& right);
 
 			float x;
 			float y;

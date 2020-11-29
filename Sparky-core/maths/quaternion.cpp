@@ -58,5 +58,11 @@ namespace sparky {
 			float *v = &x;
 			*(v + i) = value;
 		}
+	 
+		Quaternion& Quaternion::operator *=(Quaternion& left)
+		{
+			left ;
+			return left;
+		}
 	}
 }
