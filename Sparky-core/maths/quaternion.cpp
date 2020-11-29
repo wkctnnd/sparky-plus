@@ -59,10 +59,20 @@ namespace sparky {
 			*(v + i) = value;
 		}
 	 
-		Quaternion& Quaternion::operator *=(Quaternion& left)
+		//https://blog.csdn.net/shenshen211/article/details/78492055
+		Quaternion& Quaternion::operator *=(Quaternion& other)
 		{
-			left ;
-			return left;
+			 this->w = this->w*other.w-this->x*other.x-this->y*other.y-this->z*other.z;
+			 this->x= this->w*other.w + this->x*other.x + this->y*other.y - this->z*other.z;
+			 this->y = this->w*other.w - this->x*other.x + this->y*other.y + this->z*other.z;
+			 this->z = this->w*other.w + this->x*other.x - this->y*other.y + this->z*other.z;
+
+			 return *this;
+			/*q1 * q2 =
+				(w1*w2 - x1 * x2 - y1 * y2 - z1 * z2) +
+				(w1*x2 + x1 * w2 + y1 * z2 - z1 * y2) i +
+				(w1*y2 - x1 * z2 + y1 * w2 + z1 * x2) j +
+				(w1*z2 + x1 * y2 - y1 * x2 + z1 * w2) k*/
 		}
 	}
 }
