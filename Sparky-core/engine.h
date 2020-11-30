@@ -51,6 +51,6 @@ namespace sparky
 		sparky::phyx::PxWorld* m_Pxworld;
 		sparky::world::CameraComponent* m_CameraComponent;
 		sparky::world::Scene* m_Scene;
-
+		/*sparky::render::ph*/
 	};
 }

@@ -12,7 +12,8 @@ namespace sparky
 		enum ComponentType
 		{
 			CAMER_TYPE,
-			TRANSFORM_TYPE
+			TRANSFORM_TYPE,
+			STATICMESHRENDERER_TYPE
 		};
 		class Component
 		{
@@ -22,7 +23,9 @@ namespace sparky
 				return m_Owner;
 			}
 			virtual ComponentType GetType() = 0;
-
+			virtual void PreUpdate() = 0;
+			virtual void Update() = 0;
+			virtual void PostUpdate() = 0;
 			//Component GetParentComponent();
 		protected:
 			//std::vector<Component*> m_Children;

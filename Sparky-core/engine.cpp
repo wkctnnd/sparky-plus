@@ -29,7 +29,7 @@
 #include "graphics/rendertarget.h"
 #include "graphics/texture/texture.h"
 #include "graphics/texture/rendertexture2d.h"
-
+#include "world/component/staticmeshrenderercomponent.h"
 #include "utils/fileutils.h"
 using namespace sparky::render;
 using namespace sparky::particle;
@@ -98,7 +98,16 @@ namespace sparky
 		Actor* camera = new Actor();
 		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
 		m_Scene->AddActor(camera);
+		Actor* photoedActor = new Actor();
+		sparky::world::StaticMeshRendererComponent* staticmeshcom = photoedActor->AddComponent<sparky::world::StaticMeshRendererComponent>();
 
+		m_AssetLoader->LoadFile("test.obj");
+		int rawsectioncount = m_AssetLoader->GetRawStaticMeshCount();
+		for (int i=0;i<rawsectioncount;i++)
+		{
+			staticmeshcom->AddStaticMesh(m_AssetLoader->GetRawStaticMesh(i));
+		}
+		
 		ColorRenderTarget  crt;
 		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGB);
 		crt.action = Clear_Store;
