@@ -159,6 +159,7 @@
     <ClCompile Include="physics\PxWorld.cpp" />
     <ClCompile Include="render\dynamicmesh.cpp" />
     <ClCompile Include="render\OceanRender.cpp" />
+    <ClCompile Include="render\photorenderer.cpp" />
     <ClCompile Include="render\phyxRender.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="physics\PxSoftBody.h" />
     <ClInclude Include="physics\PxWorld.h" />
     <ClInclude Include="render\OceanRender.h" />
+    <ClInclude Include="render\photorenderer.h" />
     <ClInclude Include="render\phyxRender.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />

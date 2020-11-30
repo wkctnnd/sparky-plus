@@ -26,6 +26,8 @@ namespace sparky
 			}
 			graphics::RenderTexture* GetColorRenderTexture(int index);
 		
+			//temp use for simple
+			graphics::RenderTargetInfo* GetRenderTargetInfo() { return m_RtInfo; }
 			void SetRenderTarget(std::vector<graphics::ColorRenderTarget*> crt, graphics::DepthStencilRenderTarget* dsrt);
 			//RenderTexture* GetRenderTexture(int index);
 		private:

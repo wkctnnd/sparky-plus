@@ -112,7 +112,8 @@ namespace sparky
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
 		m_ParticleManager->CreateParticleSystem();*/
-
+ 
+		Mesh *m = Mesh::Load("test.obj");
 		
 		//m_Renderer->AddRenderable(skeletalmesh);
 		//render->AddSmokeVolume(smokemesh);
@@ -131,7 +132,7 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
-		
+		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
@@ -152,10 +153,11 @@ namespace sparky
 			m_Renderer->Update(i, pos);
 		}
 		//m_Renderer->Update();
+		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();
+		m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		
-		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		std::string time = GlobalTimer.GetCurrentTime();
 		string path = FileUtile::GetCurrentWorkingDirectory();
 		rt->SaveToDisk(path);

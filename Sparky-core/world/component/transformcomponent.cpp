@@ -37,16 +37,19 @@ namespace sparky
 		void TransformComponent::RotateXAxis(float angle)
 		{
 			Quaternion r = Quaternion::FromEulerXYZ(angle, 0, 0);
-			
+			m_Rotation *= r;
 			//m_Rotation
 		}
 		void TransformComponent::RotateYAxis(float angle)
 		{
-
+			Quaternion r = Quaternion::FromEulerXYZ(0, angle, 0);
+			m_Rotation *= r;
 		}
 		void TransformComponent::RotateZAxis(float angle)
 		{
-
+			Quaternion r = Quaternion::FromEulerXYZ(0, 0, angle);
+			m_Rotation *= r;
+			
 		}
 
 

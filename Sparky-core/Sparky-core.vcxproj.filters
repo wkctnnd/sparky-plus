@@ -192,7 +192,10 @@
     <ClCompile Include="graphics\texture\texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\texture\rendertarget.cpp">
+    <ClCompile Include="graphics\rendertarget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\photorenderer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -495,6 +498,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="miniheader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\photorenderer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
