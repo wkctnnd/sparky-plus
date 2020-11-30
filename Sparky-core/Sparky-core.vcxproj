@@ -194,6 +194,7 @@
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="world\actor.cpp" />
     <ClCompile Include="world\component\cameracomponent.cpp" />
+    <ClCompile Include="world\component\staticmeshrenderercomponent.cpp" />
     <ClCompile Include="world\component\transformcomponent.cpp" />
     <ClCompile Include="world\scene.cpp" />
   </ItemGroup>
@@ -240,6 +241,8 @@
     <ClInclude Include="render\OceanRender.h" />
     <ClInclude Include="render\photorenderer.h" />
     <ClInclude Include="render\phyxRender.h" />
+    <ClInclude Include="render\renderpath\SceneRenderer.h" />
+    <ClInclude Include="render\renderpath\SimpleRenderer.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />
@@ -293,6 +296,7 @@
     <ClInclude Include="world\actor.h" />
     <ClInclude Include="world\camera.h" />
     <ClInclude Include="world\component\cameracomponent.h" />
+    <ClInclude Include="world\component\staticmeshrenderercomponent.h" />
     <ClInclude Include="world\Cube.h" />
     <ClInclude Include="world\component\component.h" />
     <ClInclude Include="world\ecs\entity.h" />
