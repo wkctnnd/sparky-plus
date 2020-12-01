@@ -7,7 +7,12 @@
 using namespace sparky::maths;
 using namespace sparky::graphics;
 using namespace std;
-
+namespace sparky {
+	namespace world
+	{
+		class Scene;
+	}
+}
 
 namespace sparky {
 	namespace render {
@@ -27,12 +32,14 @@ namespace sparky {
 			void Update();
 
 			void RenderScene();
-
+			void PostUpdate();
 			void AddRenderable(Renderable* r);
 
 		private:
 			vector<Renderable*> PhotoObjects;
 			GraphicsShader * m_PhotoShader;
+
+			world::Scene* m_Scene;
 		};
 	}
 }

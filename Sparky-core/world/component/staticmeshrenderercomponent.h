@@ -17,6 +17,7 @@ namespace sparky
 
 		class Truck
 		{
+		public:
 			RawMesh *staticmesh;
 			int materialid;
 		};
@@ -30,8 +31,11 @@ namespace sparky
 
 			void AddStaticMesh(RawMesh* mesh);
 			void SetMaterial(int index, Material& mat);
-			Mesh GetRenderable();
-			void PostUpdate();
+			Renderable* GetRenderable();
+	 
+			virtual void PreUpdate() {}
+			virtual void Update() {}
+			virtual void PostUpdate();
 			ComponentType GetType()
 			{
 				return ComponentType::STATICMESHRENDERER_TYPE;

@@ -1,6 +1,6 @@
 #pragma once
 #include "staticmeshrenderercomponent.h"
-#include ""
+#include "render/mesh.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -16,6 +16,13 @@ namespace sparky
 		void StaticMeshRendererComponent::AddStaticMesh(RawMesh* mesh)
 		{
 
+		}
+
+		Renderable* StaticMeshRendererComponent::GetRenderable()
+		{
+			 
+			Mesh* m = Mesh::Load(*(m_Trunks[0].staticmesh));
+			return m;
 		}
 	}
 }

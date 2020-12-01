@@ -1,12 +1,12 @@
 #pragma once
 #include <vector>
-
+#include "world/component/transformcomponent.h"
 namespace sparky
 {
 	namespace world
 	{
 		class Component;
-		class TransformComponent;
+		 
 		class Scene;
 		class Actor
 		{
@@ -19,6 +19,7 @@ namespace sparky
 				m_Components.push_back(comp);
 				return comp;
 			}
+			Actor();
 			void Attach(Component* component);
 			void Attach(Actor* actor);
 			TransformComponent* GetTransform() { return (TransformComponent*)m_Components[0]; }

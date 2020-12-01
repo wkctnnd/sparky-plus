@@ -29,7 +29,9 @@ namespace sparky
 			void RotateYAxis(float angle);
 			void RotateZAxis(float angle);
 
-
+			virtual void PreUpdate() {}
+			void Update();
+			virtual void PostUpdate() {}
 			void RotateFromQuat(Quaternion quat);
 			
 			void AttachTo(TransformComponent& component);
@@ -50,7 +52,7 @@ namespace sparky
 				return m_Up;
 			}
 			
-			void Update();
+			 
 			ComponentType GetType()
 			{
 				return ComponentType::TRANSFORM_TYPE;

@@ -1,12 +1,25 @@
 #include "photorenderer.h"
-#include ""
+#include "world/component/staticmeshrenderercomponent.h"
+#include "world/scene.h"
+#include "world/actor.h"
+using namespace sparky::world;
 namespace sparky
 {
 	namespace render
 	{
 		void  PhotoRenderer::AddRenderable(Renderable* r)
 		{
-			PhotoObjects.push_back(r);
+			
+		}
+
+		void PhotoRenderer::PostUpdate()
+		{
+			std::vector<StaticMeshRendererComponent*> comps = m_Scene->GetRoot()->GetChildrenComponents<StaticMeshRendererComponent>();
+			for (int i = 0; i < comps.size(); i++)
+			{
+				Renderable* r = comps[i]->GetRenderable();
+				PhotoObjects.push_back(r);
+			}
 		}
 
 		void PhotoRenderer::Initialize()
@@ -40,7 +53,7 @@ namespace sparky
 			
 			for (int i = 0;i<PhotoObjects.size();i++)
 			{
-				//PhotoObjects[i]->render();
+				PhotoObjects[i]->render();
 			}
 			m_PhotoShader->disable();
 		}

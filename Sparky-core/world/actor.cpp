@@ -13,7 +13,10 @@ namespace sparky
 
 		}
 
-		
+		Actor::Actor()
+		{
+			m_Components.push_back(new TransformComponent());
+		}
 
 
 	}

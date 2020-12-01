@@ -8,7 +8,7 @@ namespace sparky{
 		class SkinMeshRenderer;
 		class OceanRenderer;
 		class PhyxRenderer;
-		
+		class PhotoRenderer;
 	}
 	namespace asset
 	{
@@ -45,7 +45,7 @@ namespace sparky
 
 	private:
 		std::vector<int> m_Pxlink;
-		sparky::render::PhyxRenderer *m_Renderer;
+		sparky::render::PhotoRenderer *m_Renderer;
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
 		sparky::phyx::PxWorld* m_Pxworld;

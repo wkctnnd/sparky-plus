@@ -3,7 +3,7 @@
 #include "Asset/objloader.h"
 #include "graphics/buffers/staticbuffer.h"
 #include "graphics/buffers/indexbuffer.h"
-#include "Asset/rawmesh.h"
+
 using namespace sparky::asset;
 namespace sparky {
 	namespace render {
@@ -11,6 +11,13 @@ namespace sparky {
 		{
 			RawMesh rawmesh;
 			objLoader::LoadMesh(file, rawmesh);
+			Mesh* newmesh = Mesh::Load(rawmesh);
+
+			return newmesh;
+		}
+
+		Mesh* Mesh::Load(RawMesh& rawmesh)
+		{
 			Buffer* buffer = new StaticBuffer(&(rawmesh.m_Position[0].x), rawmesh.m_Position.size() * 3, 3);
 			IndexBuffer* ibuffer = new IndexBuffer(&rawmesh.m_Faces[0], rawmesh.m_Faces.size());
 			Mesh* newmesh = new Mesh();
@@ -18,7 +25,6 @@ namespace sparky {
 			newmesh->vao.setIndexBuffer(ibuffer);
 			return newmesh;
 		}
-
 		void Mesh::render()
 		{
 			vao.bind();

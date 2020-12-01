@@ -31,6 +31,7 @@
 #include "graphics/texture/rendertexture2d.h"
 #include "world/component/staticmeshrenderercomponent.h"
 #include "utils/fileutils.h"
+#include "render/photorenderer.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -144,24 +145,25 @@ namespace sparky
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
-		m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
+		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
 
  
-		std::vector<PxObject*> result;
-		m_Pxworld->FetchResult(result);
-		for (int i=0;i<result.size();i++)
-		{
-			PxSoftBody* softbody = (PxSoftBody*)(result[i]);
-			std::vector<float3> pos;
-			for (int j=0;j< m_Pxlink.size();j++)
-			{
-				pos.push_back(softbody->m_Mass[m_Pxlink[j]]->pos);
-			}
-		 
-			m_Renderer->Update(i, pos);
-		}
+		//std::vector<PxObject*> result;
+		//m_Pxworld->FetchResult(result);
+		//for (int i=0;i<result.size();i++)
+		//{
+		//	PxSoftBody* softbody = (PxSoftBody*)(result[i]);
+		//	std::vector<float3> pos;
+		//	for (int j=0;j< m_Pxlink.size();j++)
+		//	{
+		//		pos.push_back(softbody->m_Mass[m_Pxlink[j]]->pos);
+		//	}
+		// 
+		//	//m_Renderer->Update(i, pos);
+		//}
 		//m_Renderer->Update();
+		m_Renderer->PostUpdate();
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();

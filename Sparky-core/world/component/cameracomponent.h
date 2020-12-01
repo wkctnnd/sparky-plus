@@ -20,6 +20,9 @@ namespace sparky
 			static ComponentType TYPE;
 			mat4 GetProjectionMatrix();
 			mat4 GetViewMatrix();
+			virtual void PreUpdate(){}
+			virtual void Update() {}
+			virtual void PostUpdate() {}
 			ComponentType GetType()
 			{
 				return ComponentType::CAMER_TYPE;
