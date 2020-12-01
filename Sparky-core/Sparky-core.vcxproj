@@ -296,6 +296,7 @@
     <ClInclude Include="world\actor.h" />
     <ClInclude Include="world\camera.h" />
     <ClInclude Include="world\component\cameracomponent.h" />
+    <ClInclude Include="world\component\staticmesh.h" />
     <ClInclude Include="world\component\staticmeshrenderercomponent.h" />
     <ClInclude Include="world\Cube.h" />
     <ClInclude Include="world\component\component.h" />

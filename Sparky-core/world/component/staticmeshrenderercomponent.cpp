@@ -12,6 +12,11 @@ namespace sparky
 		{
 
 		}
+
+		void StaticMeshRendererComponent::AddStaticMesh(RawMesh* mesh)
+		{
+
+		}
 	}
 }
 

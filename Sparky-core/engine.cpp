@@ -41,9 +41,9 @@ namespace sparky
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
-		m_Renderer = new PhyxRenderer();
+		/*m_Renderer = new PhyxRenderer();
 		m_Renderer->Initialize();
-		
+
 		m_Pxworld = new PxWorld();
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(1);
@@ -51,46 +51,46 @@ namespace sparky
 		m_Pxlink.push_back(2);
 		m_Pxlink.push_back(3);
 		m_Pxlink.push_back(0);
-	 
+
 		m_Pxlink.push_back(4);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(4);
 		m_Pxlink.push_back(7);
-		 
+
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(4);
-		 
+
 		m_Pxlink.push_back(3);
 		m_Pxlink.push_back(2);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(7);
 		m_Pxlink.push_back(3);
-		 
+
 		m_Pxlink.push_back(4);
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(7);
 		m_Pxlink.push_back(7);
 		m_Pxlink.push_back(0);
 		m_Pxlink.push_back(3);
- 
+
 		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(5);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(1);
 		m_Pxlink.push_back(6);
 		m_Pxlink.push_back(2);
-		PxSoftBody *body = PxSoftBody::CreateDefaultCube(0);
+		PxSoftBody *body = PxSoftBody::CreateDefaultCube(0);*/
 
 
 
-		m_Pxworld->AddObject(body);
+	//	m_Pxworld->AddObject(body);
 
 		m_Scene = new sparky::world::Scene();
 		m_Scene->Initialize();

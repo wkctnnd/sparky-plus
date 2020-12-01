@@ -17,7 +17,7 @@ namespace sparky
 
 		class Truck
 		{
-			Mesh *staticmesh;
+			RawMesh *staticmesh;
 			int materialid;
 		};
 
