@@ -18,6 +18,8 @@ namespace sparky
 
 		}
 
+	 
+
 		Renderable* StaticMeshRendererComponent::GetRenderable()
 		{
 			 

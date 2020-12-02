@@ -1,8 +1,14 @@
 #include "actor.h"
 #include "scene.h"
 #include "component/transformcomponent.h"
+#include "render/renderpath/SceneRenderer.h"
+
 namespace sparky
 {
+	namespace render
+	{
+		class StaticMeshRendererComponent;
+	}
 	namespace world
 	{
 		void Actor::Attach(Actor* actor)
@@ -18,6 +24,12 @@ namespace sparky
 			m_Components.push_back(new TransformComponent());
 		}
 
-
+		void Actor::AddToScene(Scene* scene)
+		{
+			//将可渲染组件放入scene中，最后放入renderer渲染
+			render::StaticMeshRendererComponent *comp = GetComponent<render::StaticMeshRendererComponent>();
+			render::SceneRenderer* renderer = scene->GetRenderer();
+			renderer->
+		}
 	}
 }

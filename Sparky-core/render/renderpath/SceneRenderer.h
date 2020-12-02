@@ -20,7 +20,7 @@ namespace sparky {
 		{
 		public:
 			virtual void Render() = 0;
-
+			virtual void AddSceneProxy() = 0;
 
 		};
 	}

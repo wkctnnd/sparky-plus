@@ -25,12 +25,36 @@ namespace sparky
 			TransformComponent* GetTransform() { return (TransformComponent*)m_Components[0]; }
 			int GetComponentCount() { return m_Components.size(); }
 			Component* GetComponent(int i) { return m_Components[i]; }
+
+			template<class T>
+			T* GetComponent();
 			template<class T>
 			std::vector<T*> GetChildrenComponents();
+
+			void AddToScene(Scene* scene);
 		private:
 			//0号元素默认为transform组件，所以m_components的size>=1
 			std::vector<Component*> m_Components;
 		};
+
+	
+
+
+
+		template<class T>
+		T* Actor::GetComponent()
+		{
+			 
+			for (int i = 0; i < m_Components.size(); i++)
+			{
+				if (m_Components[i]->GetType() == T::TYPE)
+				{
+					return m_Components[i];
+				}
+			}
+			
+			return 0;
+		}
 
 
 		template<class T>

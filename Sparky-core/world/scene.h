@@ -1,6 +1,12 @@
 #pragma once
 #include <vector>
-
+namespace sparky
+{
+	namespace render
+	{
+		class Renderer;
+	}
+}
 
 namespace sparky
 {
@@ -15,6 +21,7 @@ namespace sparky
 			void AddActor(Actor* atr);
 			void Update(float t);
 
+			render::SceneRenderer* GetRenderer() { return m_SceneRenderer; }
 			Actor* GetRoot() { return m_RootActor; }
 			static Scene* GetCurrentScene() { return m_CurrentScene; };
 		private:
@@ -23,6 +30,7 @@ namespace sparky
 			std::vector<Actor*> m_AllActors;
 			
 			Actor* m_RootActor;
+			render::SceneRenderer* m_SceneRenderer;
 		};
 	}
 }

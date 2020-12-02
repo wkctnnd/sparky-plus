@@ -31,6 +31,7 @@ namespace sparky
 
 			void AddStaticMesh(RawMesh* mesh);
 			void SetMaterial(int index, Material& mat);
+			
 			Renderable* GetRenderable();
 	 
 			virtual void PreUpdate() {}
