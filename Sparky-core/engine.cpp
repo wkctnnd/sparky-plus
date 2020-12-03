@@ -117,14 +117,14 @@ namespace sparky
 		objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
 		staticmeshcom->AddStaticMesh(mesh);
 		ColorRenderTarget  crt;
-		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGB);
+		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
 		crt.action = Clear_Store;
 		std::vector<ColorRenderTarget*> crts;
 		crts.push_back(&crt);
 
 		DepthStencilRenderTarget dsrt;
 		dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
-		dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24);
+		//dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24);
 		cameracomponet->SetRenderTarget(crts, &dsrt);
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
@@ -171,10 +171,10 @@ namespace sparky
 		//}
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
-		//m_CameraComponent->GetRenderTargetInfo()->Bind();
+		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();
-		//m_CameraComponent->GetRenderTargetInfo()->UnBind();
+		m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		
 		std::string time = GlobalTimer.GetCurrentTime();
 		string path = FileUtile::GetCurrentWorkingDirectory();

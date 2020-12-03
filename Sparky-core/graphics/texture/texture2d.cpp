@@ -11,7 +11,44 @@ namespace sparky
 		{
 			glGenTextures(1, &m_TexId);
 			Bind();
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			GLenum texformat;
+			GLenum textype;
+			GLenum srctype;
+			switch (format)
+			{
+			case sparky::graphics::RGBA:
+				texformat = GL_RGBA;
+				textype = GL_UNSIGNED_BYTE;
+				srctype = GL_RGBA;
+				break;
+			case sparky::graphics::RGB:
+				texformat = GL_RGB;
+				textype = GL_UNSIGNED_BYTE;
+				srctype = GL_RGB8;
+				break;
+			case sparky::graphics::DXT1:
+				break;
+			case sparky::graphics::DXT2:
+				break;
+			case sparky::graphics::DXT5:
+				break;
+			case sparky::graphics::DEPTH24:
+				texformat = GL_DEPTH;
+				textype = GL_DEPTH_COMPONENT;
+				srctype = GL_DEPTH_COMPONENT24;
+				break;
+			case sparky::graphics::DEPTH24STENCILl8:
+				texformat = GL_DEPTH24_STENCIL8;
+				textype = GL_FLOAT;
+				break;
+			default:
+				break;
+			}
+			glTexImage2D(GL_TEXTURE_2D, 0, srctype, width, height, 0, texformat, textype, data);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			UnBind();
 			
 		}

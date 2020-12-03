@@ -34,7 +34,10 @@ namespace sparky
 			Texture(int w, int h, int depth, Format f);
 			virtual void Bind() const = 0;
 			virtual void UnBind() const = 0;
-			GLuint GetRealId() { return m_TexId; }
+			GLuint GetRealId() 
+			{ 
+				return m_TexId; 
+			}
 			virtual void* Lock(unsigned int offset, unsigned int size) const = 0;
 			virtual void unLock() const = 0;
 			virtual void LoadMipData(int miplevel, int3 offset, int3 rect, void* data) = 0;
