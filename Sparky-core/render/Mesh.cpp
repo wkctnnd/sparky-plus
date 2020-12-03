@@ -37,7 +37,7 @@ namespace sparky {
 			if (vao.Indexed())
 				glDrawElements(GL_TRIANGLES, vao.Indexcount(), GL_UNSIGNED_SHORT, 0);
 			else
-				glDrawArrays(GL_TRIANGLES, 0, 1);
+				glDrawArrays(GL_TRIANGLES, 0, vao.Vertexcout()/3);
 			vao.unBind();
 		}
 	}

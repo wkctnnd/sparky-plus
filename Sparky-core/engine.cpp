@@ -102,6 +102,7 @@ namespace sparky
 		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
 		m_Scene->AddActor(camera);
 		Actor* photoedActor = new Actor();
+		m_Scene->AddActor(photoedActor);
 		sparky::world::StaticMeshRendererComponent* staticmeshcom = photoedActor->AddComponent<sparky::world::StaticMeshRendererComponent>();
 
 		//m_AssetLoader->LoadFile("model//hanoi.obj");
@@ -112,7 +113,7 @@ namespace sparky
 		//}
 		//
 		RawMesh* mesh = new RawMesh();
-		std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//hanoi.obj";
+		std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//ucp201.obj";
 		objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
 		staticmeshcom->AddStaticMesh(mesh);
 		ColorRenderTarget  crt;
