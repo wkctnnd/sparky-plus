@@ -14,4 +14,9 @@ namespace sparky
 		m_FileIn.getline(str, LINE_LENGTH);
 		return std::string(str);
 	}
+
+	bool File::IsEnd()
+	{
+		return m_FileIn.eof();
+	}
 }

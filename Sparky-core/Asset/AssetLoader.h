@@ -37,6 +37,8 @@ namespace sparky {
 			class stlLoader *m_StlLoader;
 			class ImageLoader *m_ImageLoader;
 			static AssetLoader* m_Instance;
+
+			class meshLoader* m_MeshLoader;
 		private:
 			AssetLoader() {};
 		};

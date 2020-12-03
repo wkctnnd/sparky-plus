@@ -4,7 +4,7 @@ namespace sparky
 {
 	namespace render
 	{
-		class Renderer;
+		class SceneRenderer;
 	}
 }
 

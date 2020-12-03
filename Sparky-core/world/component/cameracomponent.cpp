@@ -18,7 +18,10 @@ namespace sparky
 			return result;
 		}
 
-
+		CameraComponent::CameraComponent(Actor *owner):Component(owner)
+		{
+			m_RtInfo = new graphics::RenderTargetInfo();
+		}
 		mat4 CameraComponent::GetProjectionMatrix()
 		{
 			TransformComponent* tc = m_Owner->GetTransform();

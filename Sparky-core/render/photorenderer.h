@@ -27,7 +27,7 @@ namespace sparky {
 			GraphicsShader * m_ParticleShader;
 			//m_ParticleVertexShader
 		public:
-			PhotoRenderer();
+			PhotoRenderer(world::Scene* scene);
 			void Initialize();
 			void Update();
 

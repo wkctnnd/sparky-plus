@@ -18,11 +18,17 @@ namespace sparky {
 
 		Mesh* Mesh::Load(RawMesh& rawmesh)
 		{
-			Buffer* buffer = new StaticBuffer(&(rawmesh.m_Position[0].x), rawmesh.m_Position.size() * 3, 3);
-			IndexBuffer* ibuffer = new IndexBuffer(&rawmesh.m_Faces[0], rawmesh.m_Faces.size());
 			Mesh* newmesh = new Mesh();
+			Buffer* buffer = new StaticBuffer(&(rawmesh.m_Position[0].x), rawmesh.m_Position.size() * 3, 3);
+			if (rawmesh.Indexed())
+			{
+				IndexBuffer* ibuffer = new IndexBuffer(&rawmesh.m_Faces[0], rawmesh.m_Faces.size());
+				newmesh->vao.setIndexBuffer(ibuffer);
+			}
+				
+			
 			newmesh->vao.addBuffer(buffer, 0);
-			newmesh->vao.setIndexBuffer(ibuffer);
+			
 			return newmesh;
 		}
 		void Mesh::render()

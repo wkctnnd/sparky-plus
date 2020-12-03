@@ -18,6 +18,7 @@ namespace sparky
 		{
 		public:
 			static ComponentType TYPE;
+			CameraComponent(Actor *owner);
 			mat4 GetProjectionMatrix();
 			mat4 GetViewMatrix();
 			virtual void PreUpdate(){}

@@ -21,15 +21,15 @@ namespace sparky
 
 		Actor::Actor()
 		{
-			m_Components.push_back(new TransformComponent());
+			m_Components.push_back(new TransformComponent(this));
 		}
 
 		void Actor::AddToScene(Scene* scene)
 		{
 			//将可渲染组件放入scene中，最后放入renderer渲染
-			render::StaticMeshRendererComponent *comp = GetComponent<render::StaticMeshRendererComponent>();
+			world::StaticMeshRendererComponent *comp = (world::StaticMeshRendererComponent *)GetComponent<world::StaticMeshRendererComponent>();
 			render::SceneRenderer* renderer = scene->GetRenderer();
-			renderer->
+			//renderer->
 		}
 	}
 }

@@ -18,6 +18,10 @@ namespace sparky
 		class Component
 		{
 		public:
+			Component(Actor* owner)
+			{
+				m_Owner = owner;
+			}
 			Actor* GetOwner() 
 			{
 				return m_Owner;

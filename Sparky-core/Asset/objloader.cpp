@@ -18,10 +18,14 @@ namespace sparky {
 			std::vector<float2> texcoords;
 			std::vector<unsigned short> faces;
 			//std::vector<float2> texcoords;
-			while (!linestr.empty())
+			while (!f.IsEnd())
 			{
 
-				if (linestr.length() < 2)continue;
+				if (linestr.length() < 2)
+				{
+					linestr = f.GetLine();
+					continue;
+				}
 				if (linestr[0] == 'v') {
 					if (linestr[1] == 't') {//vt 0.581151 0.979929 ÎÆÀí
 						std::istringstream in(linestr);
@@ -85,6 +89,8 @@ namespace sparky {
 					
 
 				}
+
+				linestr = f.GetLine();
 			}
 
 			//create box

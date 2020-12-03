@@ -931,7 +931,7 @@ namespace sparky {
 
 
 		//根据存在的property加载cuve node，有可能出现一个curve有3个node，但不都都有数据
-		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer* layer, FbxNode* pNode)
+		void FBXLoader::LoadNodeCurve(FbxAnimLayer* pAnimationLayer, animation::AnimationLayer* layer, FbxNode* pNode)
 		{
 
 			KeyValueNode<float3> *translatekeyvaluenode = new KeyValueNode<float3>(Translate_Property_Type);
@@ -1739,7 +1739,7 @@ namespace sparky {
 				for (int j = 0; j < layernum; j++)
 				{
 					FbxAnimLayer *animationlayer = pAnimStack->GetMember<FbxAnimLayer>(i);
-					AnimationLayer  *layer = new AnimationLayer();
+					animation::AnimationLayer  *layer = new animation::AnimationLayer();
 					m_FBXAnimLayers.push_back(animationlayer);
 					m_AnimationLayers.push_back(layer);
 				}

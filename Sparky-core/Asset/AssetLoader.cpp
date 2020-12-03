@@ -4,6 +4,7 @@
 #include "global.h"
 #include <direct.h>
 #include "utils/fileutils.h"
+#include "objloader.h"
 namespace sparky {
 	namespace asset {
 
@@ -18,9 +19,9 @@ namespace sparky {
 		}
 		bool AssetLoader::Initialize()
 		{
- 			m_FbxLoader = new FBXLoader();
+ 			//m_FbxLoader = new FBXLoader();
 
-			m_FbxLoader->Initialize();
+			//m_FbxLoader->Initialize();
 
 			return true;
 		}
@@ -32,13 +33,23 @@ namespace sparky {
 			transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
 			if (extension.compare("fbx") == 0)
 			{
+				m_MeshLoader =  new FBXLoader();
+				m_MeshLoader->Initialize();
 				//RawMesh mesh;
-				m_FbxLoader->LoadFile(fullrelativepath.c_str());
-				m_FbxLoader->LoadResources();
+				m_MeshLoader->LoadFile(fullrelativepath.c_str());
+				m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("stl") == 0)
 			{
 
+			}
+			else if (extension.compare("obj") == 0)
+			{
+				//m_MeshLoader = new objLoader();
+				//m_MeshLoader->Initialize();
+				////RawMesh mesh;
+				//m_MeshLoader->LoadFile(fullrelativepath.c_str());
+				//m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))
 			{
@@ -48,38 +59,38 @@ namespace sparky {
 
 		RawSkinMesh* AssetLoader::GetRawSkinMesh(unsigned int id)
 		{
-			return m_FbxLoader->GetRawSkinMesh(id);
+			return m_MeshLoader->GetRawSkinMesh(id);
 		}
 		unsigned int AssetLoader::GetRawSkinMeshCount()
 		{
-			return m_FbxLoader->GetRawSkinMeshCount();
+			return m_MeshLoader->GetRawSkinMeshCount();
 		}
 		class RawMesh* AssetLoader::GetRawStaticMesh(unsigned int id)
 		{
-			return m_FbxLoader->GetRawStaticMesh(id);
+			return m_MeshLoader->GetRawStaticMesh(id);
 		}
 		unsigned int AssetLoader::GetRawStaticMeshCount()
 		{
-			return m_FbxLoader->GetRawStaticMeshCount();
+			return m_MeshLoader->GetRawStaticMeshCount();
 		}
 
 		Skeleton* AssetLoader::GetSkeleton(unsigned int id)
 		{
-			return m_FbxLoader->GetSkeleton(id);
+			return m_MeshLoader->GetSkeleton(id);
 		}
 		unsigned int AssetLoader::GetSkeletonCount()
 		{
-			return m_FbxLoader->GetSkeletonCount();
+			return m_MeshLoader->GetSkeletonCount();
 		}
 
 		unsigned int AssetLoader::GetClipCount()
 		{
-			return m_FbxLoader->GetClipCount();
+			return m_MeshLoader->GetClipCount();
 		}
 
 		class SkeletonClip* AssetLoader::GetClip(unsigned int id)
 		{
-			return m_FbxLoader->GetClip(id);
+			return m_MeshLoader->GetClip(id);
 			
 		}
 	
@@ -87,12 +98,12 @@ namespace sparky {
 
 		unsigned int AssetLoader::GetAnimationLayerCount()
 		{
-			return m_FbxLoader->GetAnimationLayerCount();
+			return m_MeshLoader->GetAnimationLayerCount();
 		}
  
 		AnimationLayer* AssetLoader::GetAnimationLayer(unsigned int id)
 		{
-			return m_FbxLoader->GetAnimationLayer(id);
+			return m_MeshLoader->GetAnimationLayer(id);
 		}
 	}
 }

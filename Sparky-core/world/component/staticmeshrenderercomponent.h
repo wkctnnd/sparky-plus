@@ -28,7 +28,7 @@ namespace sparky
 		public:
 
 			static ComponentType TYPE;
-
+			StaticMeshRendererComponent(Actor* owner);
 			void AddStaticMesh(RawMesh* mesh);
 			void SetMaterial(int index, Material& mat);
 			
@@ -46,7 +46,7 @@ namespace sparky
 			std::vector<Truck> m_Trunks;
 			std::vector<Material> m_Materials;
 			bool m_Dirty;
-
+			render::Mesh* m_RenderMesh;
 		};
 
 

@@ -22,6 +22,10 @@ namespace sparky
 			}
 		}
 
+		PhotoRenderer::PhotoRenderer(world::Scene* scene)
+		{
+			m_Scene = scene;
+		}
 		void PhotoRenderer::Initialize()
 		{
 			m_PhotoShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
@@ -32,10 +36,10 @@ namespace sparky
 
 		void PhotoRenderer::RenderScene()
 		{
-			glEnable(GL_BLEND);
+			//glEnable(GL_BLEND);
 			/*glEnable(GL_CULL_FACE);
 			glCullFace(GL_FRONT_FACE);*/
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			/*glDisable(GL_CULL_FACE);*/
 			//glEnable(GL_DEPTH_TEST);
 			m_PhotoShader->enable();
@@ -51,10 +55,10 @@ namespace sparky
 			m_PhotoShader->setUniform3f("campos", float3(40, 60, 40));
 			//m_OceanShader->setUniform3f("lightdir", )
 			
-			for (int i = 0;i<PhotoObjects.size();i++)
+		/*	for (int i = 0;i<PhotoObjects.size();i++)
 			{
 				PhotoObjects[i]->render();
-			}
+			}*/
 			m_PhotoShader->disable();
 		}
 	}

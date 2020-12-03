@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "world/component/transformcomponent.h"
+#include "world/component/staticmeshrenderercomponent.h"
 namespace sparky
 {
 	namespace world
@@ -15,7 +16,7 @@ namespace sparky
 			template<class T>
 			T* AddComponent()
 			{
-				T* comp = new T();
+				T* comp = new T(this);
 				m_Components.push_back(comp);
 				return comp;
 			}
@@ -27,7 +28,7 @@ namespace sparky
 			Component* GetComponent(int i) { return m_Components[i]; }
 
 			template<class T>
-			T* GetComponent();
+			Component* GetComponent();
 			template<class T>
 			std::vector<T*> GetChildrenComponents();
 
@@ -42,7 +43,7 @@ namespace sparky
 
 
 		template<class T>
-		T* Actor::GetComponent()
+		Component* Actor::GetComponent()
 		{
 			 
 			for (int i = 0; i < m_Components.size(); i++)
@@ -73,7 +74,7 @@ namespace sparky
 			for (int i = 0; i < trans->GetChildCount(); i++)
 			{
 				std::vector<T*> temp = trans->GetChild(i)->GetOwner()->GetChildrenComponents<T>();
-				result.resize(result.size() + temp.size());
+				//result.resize(result.size() + temp.size());
 				for (int j = 0; j < temp.size(); j++)
 				{
 					result.push_back(temp[j]);

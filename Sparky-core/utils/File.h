@@ -12,7 +12,7 @@ namespace sparky {
 			OpenFile(path);
 		}
 		void OpenFile(std::string path);
-
+		bool IsEnd();
 		std::string GetLine();
 	private:
 		std::ifstream m_FileIn;

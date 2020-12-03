@@ -5,6 +5,7 @@
 #include "gl/glew.h"
 #include "texture.h"
 #include "Asset/imageloader.h"
+#include "texture2d.h"
 using namespace sparky::maths;
 using namespace sparky::asset;
 namespace sparky
@@ -14,7 +15,7 @@ namespace sparky
 
 		RenderTexture2D::RenderTexture2D(int width, int height, Format format):RenderTexture(width,height,format)
 		{
-
+			m_Texture = new Texture2D(width, height, format, 0);
 		}
 
 

@@ -12,7 +12,7 @@ namespace sparky
 		class TransformComponent :public Component
 		{
 		public:
-
+			TransformComponent(Actor* owner) :Component(owner) {}
 			static ComponentType TYPE;
 
 			mat4 GetLocalTransform();

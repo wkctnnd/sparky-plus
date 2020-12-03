@@ -102,7 +102,7 @@ namespace sparky {
 
 
 
-		class FBXLoader 
+		class FBXLoader:public meshLoader
 		{
 		public:
 			FBXLoader();
@@ -149,7 +149,7 @@ namespace sparky {
 			}
 
 			unsigned int GetAnimationLayerCount() { return m_AnimationLayers.size(); }
-			AnimationLayer* GetAnimationLayer(int id) { return m_AnimationLayers[id]; }
+			animation::AnimationLayer* GetAnimationLayer(int id) { return m_AnimationLayers[id]; }
 
 		private:
 			void ComputeSkinDeformation(FbxAMatrix& pGlobalPosition, FbxMesh* pMesh, FbxTime& pTime, FbxVector4* pVertexArray, FbxPose* pPose);
@@ -169,7 +169,7 @@ namespace sparky {
 			void ReadColor(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount, float4& color);
 			void ReadUV(FbxMesh* pMesh, int ctrlPointIndex, int vertexCount);
 
-			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, AnimationLayer *layer, FbxNode* pNode);
+			void LoadNodeCurve(FbxAnimLayer* pAnimationLayer, animation::AnimationLayer *layer, FbxNode* pNode);
 
 			void LoadNodeCurve(FbxNode* pNode);
 
@@ -233,7 +233,7 @@ namespace sparky {
 
 			std::vector<InterMediateMesh*> m_InterMeshArray;
 			std::vector<FbxMesh*> m_FbxMeshProcessing;
-			std::vector<AnimationLayer *> m_AnimationLayers;
+			std::vector<animation::AnimationLayer *> m_AnimationLayers;
 			std::vector<FbxAnimLayer*> m_FBXAnimLayers;
 			FBXMeshPostProcess *m_PostProcess;
 			
