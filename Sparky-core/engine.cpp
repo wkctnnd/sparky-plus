@@ -150,7 +150,7 @@ namespace sparky
 		//m_Renderer->Update();
 	
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
-		
+		graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
@@ -177,8 +177,31 @@ namespace sparky
 		m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		glFlush();
 		std::string time = GlobalTimer.GetCurrentTime();
-		string path = FileUtile::GetCurrentWorkingDirectory();
-		//rt->SaveToDisk(path);
+		std::string path = FileUtile::GetCurrentWorkingDirectory()+string("\\..\\Assets\\output\\");
+		std::string temp = GlobalTimer.GetCurrentTime();
+
+		string::iterator it;
+
+		for (it = temp.begin(); it < temp.end(); it++)
+
+		{
+
+			if (*it == ':')
+
+			{
+
+				temp.erase(it);
+
+				it--;
+ 
+
+			}
+
+		}
+
+		path = path+ temp + ".bmp";
+		rt->SaveToDisk(path);
+		drt->SaveToDisk(path);
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
 		//if (remain > 0)

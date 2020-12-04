@@ -51,5 +51,10 @@ namespace sparky
 		{
 			return m_RtInfo->GetColorRenderTexture(index);
 		}
+
+		RenderTexture* CameraComponent::GetDepthStencilRenderTexture()
+		{
+			return m_RtInfo->GetDepthStencilRenderTexture();
+		}
 	}
 }

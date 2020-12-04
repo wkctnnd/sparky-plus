@@ -32,10 +32,15 @@ namespace sparky
 				break;
 			case sparky::graphics::DXT5:
 				break;
+			case sparky::graphics::DEPTH32:
+				texformat = GL_DEPTH;
+				textype = GL_RED_INTEGER;
+				srctype = GL_DEPTH_COMPONENT32;
+				break;
 			case sparky::graphics::DEPTH24:
 				texformat = GL_DEPTH;
-				textype = GL_DEPTH_COMPONENT;
-				srctype = GL_DEPTH_COMPONENT24;
+				textype = GL_RED_INTEGER;
+				srctype = GL_DEPTH_COMPONENT32;
 				break;
 			case sparky::graphics::DEPTH24STENCILl8:
 				texformat = GL_DEPTH_STENCIL;

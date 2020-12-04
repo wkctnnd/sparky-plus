@@ -29,7 +29,7 @@ namespace sparky
 				return ComponentType::CAMER_TYPE;
 			}
 			graphics::RenderTexture* GetColorRenderTexture(int index);
-		
+			graphics::RenderTexture* GetDepthStencilRenderTexture();
 			//temp use for simple
 			graphics::RenderTargetInfo* GetRenderTargetInfo() { return m_RtInfo; }
 			void SetRenderTarget(std::vector<graphics::ColorRenderTarget*> crt, graphics::DepthStencilRenderTarget* dsrt);

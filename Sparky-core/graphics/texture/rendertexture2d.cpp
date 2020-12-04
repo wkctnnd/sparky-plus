@@ -21,9 +21,15 @@ namespace sparky
 
 		void RenderTexture2D::SaveToDisk(std::string file)
 		{
+			int width = m_Texture->Width();
+			int height = m_Texture->Height();
 			void *data = new char[m_Texture->Width()*m_Texture->Height()*m_Texture->GetElementSize()];
 			ReadPixel(0, 0, m_Texture->Width(), m_Texture->Height(), data);
-
+			if (m_Texture->TexFormat() == DEPTH24STENCILl8)
+			{
+				void* outputdata = new char[width*height * 4];
+				ConvertDepthData(data, outputdata, width, height);
+			}
 			ImageLoader loader;
 			loader.SaveToBmp(data, m_Texture->Width(), m_Texture->Height(), 4, file);
 		}
@@ -43,6 +49,25 @@ namespace sparky
 			m_Texture->UnBind();
 
 			
+		}
+
+
+		void RenderTexture2D::ConvertDepthData(void* inputdata, void* outputdata, int width, int height)
+		{
+			float* data = (float*)inputdata;
+			if (data)
+			{
+				for (int i=0;i<height;i++)
+				{
+					for (int  j = 0; j < width; j++)
+					{
+						float a = data[i*width+j];
+						//a = a >> 8;
+
+					}
+				}
+
+			}
 		}
 	}
 }

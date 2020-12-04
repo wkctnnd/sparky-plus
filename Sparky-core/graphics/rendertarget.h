@@ -52,6 +52,11 @@ namespace sparky
 			{
 				return m_ColorTargets[index].texture;
 			}
+
+			RenderTexture* GetDepthStencilRenderTexture()
+			{
+				return m_DepthStencilTarget.texture;
+			}
 		private:
 			ColorRenderTarget  m_ColorTargets[MAXMRTNUM];
 			DepthStencilRenderTarget m_DepthStencilTarget;

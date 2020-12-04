@@ -16,6 +16,7 @@ namespace sparky
 			DXT2,
 			DXT5,
 
+			DEPTH32,
 			DEPTH24,
 			DEPTH24STENCILl8,
 		};
@@ -46,7 +47,7 @@ namespace sparky
 			int Width() { return m_Width; }
 			int Height() { return m_Height; }
 			int Depth() { return m_Depth; }
-
+			Format TexFormat() { return m_Formt; }
 			int GetElementSize()
 			{
 				int size = 0;

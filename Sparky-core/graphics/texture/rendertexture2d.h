@@ -11,6 +11,9 @@ namespace sparky {
 			void SaveToDisk(std::string file);
 
 			void ReadPixel(int offsetx, int offsety, int width, int height, void* data);
+
+		private:
+			void ConvertDepthData(void* inputdata, void* outputdata, int width, int height);
 		};
 
 	}
