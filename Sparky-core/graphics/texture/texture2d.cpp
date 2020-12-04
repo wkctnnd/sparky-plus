@@ -38,8 +38,9 @@ namespace sparky
 				srctype = GL_DEPTH_COMPONENT24;
 				break;
 			case sparky::graphics::DEPTH24STENCILl8:
-				texformat = GL_DEPTH24_STENCIL8;
-				textype = GL_FLOAT;
+				texformat = GL_DEPTH_STENCIL;
+				textype = GL_UNSIGNED_INT_24_8;
+				srctype = GL_DEPTH24_STENCIL8;
 				break;
 			default:
 				break;

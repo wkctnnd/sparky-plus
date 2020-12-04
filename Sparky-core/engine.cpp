@@ -124,7 +124,7 @@ namespace sparky
 
 		DepthStencilRenderTarget dsrt;
 		dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
-		//dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24);
+		dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24STENCILl8);
 		cameracomponet->SetRenderTarget(crts, &dsrt);
 		/*m_ParticleManager = new ParticleManager();
 		m_ParticleManager->Initialize();
@@ -175,7 +175,7 @@ namespace sparky
 		m_Renderer->RenderScene();
 		GlobalTimer.Stop();
 		m_CameraComponent->GetRenderTargetInfo()->UnBind();
-		
+		glFlush();
 		std::string time = GlobalTimer.GetCurrentTime();
 		string path = FileUtile::GetCurrentWorkingDirectory();
 		//rt->SaveToDisk(path);

@@ -14,6 +14,7 @@ namespace sparky
 
 		void PhotoRenderer::PostUpdate()
 		{
+			PhotoObjects.clear();
 			std::vector<StaticMeshRendererComponent*> comps = m_Scene->GetRoot()->GetChildrenComponents<StaticMeshRendererComponent>();
 			for (int i = 0; i < comps.size(); i++)
 			{
@@ -36,7 +37,14 @@ namespace sparky
 
 		void PhotoRenderer::RenderScene()
 		{
+	
+
 			glEnable(GL_DEPTH_TEST);
+
+
+			glClearColor(0, 0, 0, 1);
+			glClearDepth(1);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			m_PhotoShader->enable();
 
 
