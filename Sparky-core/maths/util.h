@@ -42,6 +42,10 @@ namespace sparky {
 				return b;
 			}
 
+			static float ArcSin(float value)
+			{
+				return std::asin(value);
+			}
 
 			static float Sin(float radian)
 			{

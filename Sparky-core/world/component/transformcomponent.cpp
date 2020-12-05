@@ -1,6 +1,6 @@
 #pragma once
 #include "transformcomponent.h"
-
+#include "maths/util.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -51,7 +51,25 @@ namespace sparky
 			m_Rotation *= r;
 			
 		}
+		void TransformComponent::Rotate(float angle, float3 Axis)
+		{
+			Quaternion r = Quaternion::FromEulerAnyAxis(angle, Axis);
+			m_Rotation *= r;
+		}
 
+		void TransformComponent::RotateForwardTo(float3 Axis)
+		{
+			float3 nAxis = Axis.Normalize();
+			float3 rotateAxis = m_Forward.Cross(Axis);
+			float angle = maths::Util::ArcSin(m_Forward.Dot(nAxis));
+			Rotate(angle, rotateAxis);
+			 
+		}
+
+		void TransformComponent::SetWorldPosition(float3 wp)
+		{
+			m_Position = wp;
+		}
 
 		void TransformComponent::RotateFromQuat(Quaternion quat)
 		{

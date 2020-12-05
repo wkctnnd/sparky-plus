@@ -15,6 +15,7 @@ namespace sparky {
 			mat4 GetMatrix();
 			Quaternion& operator +=(Quaternion left);
 			static Quaternion FromEulerXYZ(float x, float y, float z);
+			static Quaternion FromEulerAnyAxis(float angle, float3 axis);
 			friend Quaternion operator*(Quaternion left, float scale);
 
 			Quaternion& operator *=(Quaternion& left);

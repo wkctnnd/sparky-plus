@@ -25,6 +25,18 @@ namespace sparky {
 			return Quaternion(a, b, c, d);
 		}
 
+		//https://www.cnblogs.com/hjlweilong/p/6018213.html
+		//q=((x,y,z)sin¦È2, cos¦È2) 
+		Quaternion Quaternion::FromEulerAnyAxis(float angle, float3 Axis)
+		{
+			float x = Axis.x * maths::Util::Sin(angle);
+			float y = Axis.y * maths::Util::Sin(angle);
+			float z = Axis.z * maths::Util::Sin(angle);
+			float w = maths::Util::Cos(angle);
+			return Quaternion(x, y, z, w);
+		}
+
+
 		mat4 Quaternion::GetMatrix()
 		{
 			mat4 result;

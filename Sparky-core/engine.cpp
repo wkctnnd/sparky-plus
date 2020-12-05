@@ -33,6 +33,7 @@
 #include "utils/fileutils.h"
 #include "render/photorenderer.h"
 #include "Asset/objloader.h"
+#include "maths/util.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -142,6 +143,14 @@ namespace sparky
 		}
 
 	}
+
+	float angleA = 0;
+	float angleB = 0;
+	float angleC = 0;
+	float angleD = 0;
+	float radius = 100;
+	
+
 	void Engine::Loop()
 	{
 		GlobalTimer.Begin();
@@ -149,6 +158,26 @@ namespace sparky
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
 	
+		Actor *camera = m_CameraComponent->GetOwner();
+		TransformComponent* component = camera->GetTransform();
+
+		float3 lookatpoistion(0, 0, 0);
+		float3 cameraposition;
+		if (angleA < 2 * 3.1415926)
+			angleA += 0.1;
+		if (component)
+		{
+			cameraposition.x = radius * Util::Sin(angleA);
+			cameraposition.z = radius * Util::Cos(angleA);
+			cameraposition.y = radius * Util::Sin(angleB);
+			component->SetWorldPosition(cameraposition);
+
+			float3 direction = cameraposition - lookatpoistion;
+			component->RotateForwardTo(direction);
+
+
+		}
+
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());

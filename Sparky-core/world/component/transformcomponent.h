@@ -18,7 +18,7 @@ namespace sparky
 			mat4 GetLocalTransform();
 			mat4 GetWorldTransform();
 
-			
+			void SetWorldPosition(float3 wp);
 
 			float3 GetWorldPosition();
 			float3 GetWorldRotation();
@@ -28,7 +28,8 @@ namespace sparky
 			void RotateXAxis(float angle);
 			void RotateYAxis(float angle);
 			void RotateZAxis(float angle);
-
+			void Rotate(float angle, float3 Axis);
+			void RotateForwardTo(float3 Axis);
 			virtual void PreUpdate() {}
 			void Update();
 			virtual void PostUpdate() {}
