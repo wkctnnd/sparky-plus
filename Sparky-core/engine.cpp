@@ -173,9 +173,10 @@ namespace sparky
 		m_Renderer->PostUpdate();
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		m_Renderer->RenderScene();
+		
+		
 		GlobalTimer.Stop();
-		m_CameraComponent->GetRenderTargetInfo()->UnBind();
-		glFlush();
+		
 		std::string time = GlobalTimer.GetCurrentTime();
 		std::string path = FileUtile::GetCurrentWorkingDirectory()+string("\\..\\Assets\\output\\");
 		std::string temp = GlobalTimer.GetCurrentTime();
@@ -198,10 +199,17 @@ namespace sparky
 			}
 
 		}
+		
+		std::string colorpath = path + temp + "color.bmp";
+		rt->SaveToDisk(colorpath);
 
-		path = path+ temp + ".bmp";
-		rt->SaveToDisk(path);
-		drt->SaveToDisk(path);
+		m_CameraComponent->GetRenderTargetInfo()->Bind();
+		std::string depthpath = path + temp + "depth.bmp";
+		m_Renderer->RenderSceneDepth();
+		rt->SaveToDisk(depthpath);
+		
+		m_CameraComponent->GetRenderTargetInfo()->UnBind();
+		glFlush();
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
 		//if (remain > 0)

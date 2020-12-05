@@ -21,7 +21,11 @@ namespace sparky
 			DEPTH24STENCILl8,
 		};
 
-
+		enum Type
+		{
+			UNSIGNED_BYTE,
+			UNSIGNED_INT_24_8
+		};
 
 		enum WarpMode
 		{
@@ -48,6 +52,7 @@ namespace sparky
 			int Height() { return m_Height; }
 			int Depth() { return m_Depth; }
 			Format TexFormat() { return m_Formt; }
+			Type TexType() { return m_Type; }
 			int GetElementSize()
 			{
 				int size = 0;
@@ -81,6 +86,7 @@ namespace sparky
 			int m_Height;
 			int m_Depth;
 			Format m_Formt;
+			Type m_Type;
 			WarpMode m_WarpMode;
 
 			int m_MipMap;

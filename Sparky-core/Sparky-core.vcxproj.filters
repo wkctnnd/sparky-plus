@@ -515,6 +515,12 @@
     <ClInclude Include="render\renderpath\SimpleRenderer.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="world\component\staticmesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\errorreport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />
@@ -542,5 +548,7 @@
     <None Include="maths\vec2.inl">
       <Filter>头文件</Filter>
     </None>
+    <None Include="shaders\depth.frag" />
+    <None Include="shaders\depth.vert" />
   </ItemGroup>
 </Project>

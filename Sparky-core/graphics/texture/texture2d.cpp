@@ -20,6 +20,7 @@ namespace sparky
 				texformat = GL_RGBA;
 				textype = GL_UNSIGNED_BYTE;
 				srctype = GL_RGBA;
+				m_Type = UNSIGNED_INT_24_8;
 				break;
 			case sparky::graphics::RGB:
 				texformat = GL_RGB;
@@ -46,6 +47,7 @@ namespace sparky
 				texformat = GL_DEPTH_STENCIL;
 				textype = GL_UNSIGNED_INT_24_8;
 				srctype = GL_DEPTH24_STENCIL8;
+				m_Type = UNSIGNED_INT_24_8;
 				break;
 			default:
 				break;

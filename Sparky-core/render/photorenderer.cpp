@@ -30,7 +30,7 @@ namespace sparky
 		void PhotoRenderer::Initialize()
 		{
 			m_PhotoShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
-
+			m_DepthShader = new GraphicsShader("shaders/depth.vert", "shaders/depth.frag");
 		 
 		}
 
@@ -41,7 +41,7 @@ namespace sparky
 
 			glEnable(GL_DEPTH_TEST);
 
-
+			glDepthFunc(GL_LESS);
 			glClearColor(0, 0, 0, 1);
 			glClearDepth(1);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -67,6 +67,41 @@ namespace sparky
 				PhotoObjects[i]->render();
 			}
 			m_PhotoShader->disable();
+		}
+
+
+		void PhotoRenderer::RenderSceneDepth()
+		{
+
+
+			glEnable(GL_DEPTH_TEST);
+
+			glDepthFunc(GL_EQUAL);
+			//glClearColor(0, 0, 0, 1);
+			//glClearDepth(1);
+			//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			m_DepthShader->enable();
+
+
+
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -80.0f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
+
+
+
+
+
+
+			m_DepthShader->setUniformMat41("pr_matrix", mProjectionMatrix);
+			m_DepthShader->setUniformMat41("vw_matrix", mViewMatrix);
+			m_DepthShader->setUniform3f("campos", float3(40, 60, 40));
+			//m_OceanShader->setUniform3f("lightdir", )
+
+			for (int i = 0; i < PhotoObjects.size(); i++)
+			{
+				PhotoObjects[i]->render();
+			}
+			m_DepthShader->disable();
 		}
 	}
 }

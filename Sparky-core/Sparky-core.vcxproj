@@ -216,6 +216,7 @@
     <ClInclude Include="Asset\imagedata.h" />
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="graphics\errorreport.h" />
     <ClInclude Include="miniheader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
@@ -318,6 +319,8 @@
     <None Include="shaders\ComputeObstacles.comp" />
     <None Include="shaders\ComputeProjection.comp" />
     <None Include="shaders\ComputeVorticity.comp" />
+    <None Include="shaders\depth.frag" />
+    <None Include="shaders\depth.vert" />
     <None Include="shaders\generate-spirv.bat" />
     <None Include="shaders\particle.frag" />
     <None Include="shaders\particle.vert" />
