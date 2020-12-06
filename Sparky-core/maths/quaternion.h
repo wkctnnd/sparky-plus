@@ -9,7 +9,7 @@ namespace sparky {
 		class Quaternion
 		{
 		public:
-			Quaternion() { x = 0; y = 0; z = 0; w = 0; }
+			Quaternion() { x = 0; y = 0; z = 0; w = 1; }
 			Quaternion(float x, float y, float z, float w) { this->x = x; this->y = y; this->z = z; this->w = w; }
 	 
 			mat4 GetMatrix();

@@ -10,14 +10,18 @@ namespace sparky {
 
 			mat4();
 			mat4(float diagnal);
-
+			mat4(const mat4& other);
+			mat4(const mat4&& other);
 			static mat4 identity();
 			mat4& multiply(const mat4& others);
+			/*void operator = (const mat4& others)*/
 			mat4 Inverse() 
 			{ 
 				mat4 invmat;
 				return invmat;
 			}
+
+			mat4& operator = (const mat4& other);
 			Quaternion* GetRotation();
 			float3 GetTranslate() { float3 result; return result; }
 			float3 GetScale() { float3 result; return result; }

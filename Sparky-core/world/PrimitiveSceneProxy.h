@@ -19,7 +19,10 @@ namespace sparky
 		public:
 			PrimitiveSceneProxy(render::Renderable* rb, mat4 wm);
 			render::Renderable* getRenderable() { return m_Mesh; };
-			mat4 GetWorldMatrix() { return m_WorldMatrix; }
+			mat4 GetWorldMatrix() 
+			{ 
+				return m_WorldMatrix; 
+			}
 
 		protected:
 

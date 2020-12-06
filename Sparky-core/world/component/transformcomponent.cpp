@@ -7,6 +7,12 @@ namespace sparky
 	namespace world
 	{
 		ComponentType TransformComponent::TYPE = ComponentType::TRANSFORM_TYPE;
+
+		TransformComponent::TransformComponent(Actor* owner) :Component(owner),m_LocalPosition(0,0,0),m_LocalRotation(0,0,0,1),m_LocalScale(1,1,1)
+		{
+			
+		}
+
 		mat4 TransformComponent::GetLocalTransform()
 		{
 			return m_LocalTransform;
@@ -32,29 +38,29 @@ namespace sparky
 
 		void TransformComponent::Translate(float3 T)
 		{
-			m_Position += T;
+			m_LocalPosition += T;
 		}
 		void TransformComponent::RotateXAxis(float angle)
 		{
 			Quaternion r = Quaternion::FromEulerXYZ(angle, 0, 0);
-			m_Rotation *= r;
+			m_LocalRotation *= r;
 			//m_Rotation
 		}
 		void TransformComponent::RotateYAxis(float angle)
 		{
 			Quaternion r = Quaternion::FromEulerXYZ(0, angle, 0);
-			m_Rotation *= r;
+			m_LocalRotation *= r;
 		}
 		void TransformComponent::RotateZAxis(float angle)
 		{
 			Quaternion r = Quaternion::FromEulerXYZ(0, 0, angle);
-			m_Rotation *= r;
+			m_LocalRotation *= r;
 			
 		}
 		void TransformComponent::Rotate(float angle, float3 Axis)
 		{
 			Quaternion r = Quaternion::FromEulerAnyAxis(angle, Axis);
-			m_Rotation *= r;
+			m_LocalRotation *= r;
 		}
 
 		void TransformComponent::RotateForwardTo(float3 Axis)
@@ -66,9 +72,25 @@ namespace sparky
 			 
 		}
 
+
+		void TransformComponent::SetLocalPosition(float3 position)
+		{
+			m_LocalPosition = position;
+		}
+		void TransformComponent::SetLocalRotation(float3 rotate)
+		{
+			m_LocalRotation = Quaternion::FromEulerXYZ(rotate.x, rotate.y, rotate.z);
+ 
+		}
+		void TransformComponent::SetLocalScale(float3 scale)
+		{
+			m_LocalScale = scale;
+		}
+
+
 		void TransformComponent::SetWorldPosition(float3 wp)
 		{
-			m_Position = wp;
+			m_WorldPosition = wp;
 		}
 
 		void TransformComponent::RotateFromQuat(Quaternion quat)
@@ -120,7 +142,7 @@ namespace sparky
 
 		void TransformComponent::UpdateChain()
 		{
-			m_LocalTransform = mat4::Translate(m_Position)*mat4::rotation(m_Rotation)*mat4::scale(m_Scale);
+			m_LocalTransform = mat4::Translate(m_LocalPosition)*mat4::rotation(m_LocalRotation)*mat4::scale(m_LocalScale);
 			if (m_Parent == 0)
 			{
 			

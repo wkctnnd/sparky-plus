@@ -571,5 +571,7 @@
     </None>
     <None Include="shaders\depth.frag" />
     <None Include="shaders\depth.vert" />
+    <None Include="shaders\test.frag" />
+    <None Include="shaders\test.vert" />
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ namespace sparky
 		class TransformComponent :public Component
 		{
 		public:
-			TransformComponent(Actor* owner) :Component(owner) {}
+			TransformComponent(Actor* owner);
 			static ComponentType TYPE;
 
 			mat4 GetLocalTransform();
@@ -23,6 +23,14 @@ namespace sparky
 			float3 GetWorldPosition();
 			float3 GetWorldRotation();
 			float3 GetWorldScale();
+
+			float3 GetLocalPosition();
+			float3 GetLocalRotation();
+			float3 GetLocalScale();
+
+			void SetLocalPosition(float3 position);
+			void SetLocalRotation(float3 rotate);
+			void SetLocalScale(float3 scale);
 
 			void Translate(float3 T);
 			void RotateXAxis(float angle);
@@ -63,9 +71,14 @@ namespace sparky
 			}
 
 		private:
-			float3 m_Position;
-			Quaternion m_Rotation;
-			float3 m_Scale;
+			float3 m_WorldPosition;
+			Quaternion m_WorldRotation;
+			float3 m_WorldScale;
+
+
+			float3 m_LocalPosition;
+			Quaternion m_LocalRotation;
+			float3 m_LocalScale;
 
 			
 

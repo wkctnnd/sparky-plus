@@ -35,12 +35,14 @@ namespace sparky {
 			void RenderScene();
 			void RenderSceneDepth();
 			void PostUpdate();
+			void RenderSceneTest();
 			void AddRenderable(Renderable* r);
 
 		private:
 			vector<Renderable*> PhotoObjects;
 			GraphicsShader * m_PhotoShader;
 			GraphicsShader* m_DepthShader;
+			GraphicsShader* m_TestShader;
 			world::Scene* m_Scene;
 
 			vector<world::PrimitiveSceneProxy*> m_PrimitiveSceneProxy;

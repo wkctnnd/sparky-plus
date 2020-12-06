@@ -174,7 +174,7 @@ namespace sparky
 			cameraposition.x = radius * Util::Sin(angleA);
 			cameraposition.z = radius * Util::Cos(angleA);
 			cameraposition.y = radius * Util::Sin(angleB);
-			component->SetWorldPosition(cameraposition);
+			component->SetLocalPosition(cameraposition);
 
 			float3 direction = cameraposition - lookatpoistion;
 			component->RotateForwardTo(direction);
@@ -206,9 +206,9 @@ namespace sparky
 		//}
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
-		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		m_Renderer->RenderScene();
-		
+	//	m_CameraComponent->GetRenderTargetInfo()->Bind();
+		//m_Renderer->RenderScene();
+		m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
 		
@@ -235,15 +235,15 @@ namespace sparky
 
 		}
 		
-		std::string colorpath = path + temp + "color.bmp";
-		rt->SaveToDisk(colorpath);
+		//std::string colorpath = path + temp + "color.bmp";
+		//rt->SaveToDisk(colorpath);
 
-		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		std::string depthpath = path + temp + "depth.bmp";
-		m_Renderer->RenderSceneDepth();
-		rt->SaveToDisk(depthpath);
+		//m_CameraComponent->GetRenderTargetInfo()->Bind();
+		//std::string depthpath = path + temp + "depth.bmp";
+		//m_Renderer->RenderSceneDepth();
+		//rt->SaveToDisk(depthpath);
 		
-		m_CameraComponent->GetRenderTargetInfo()->UnBind();
+		//m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		glFlush();
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;

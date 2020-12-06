@@ -24,11 +24,36 @@ namespace sparky {
 			elements[3 + 3 * 4] = diagnal;
 		}
 
+
+		mat4::mat4(const mat4& other)
+		{
+			for (int i=0;i<16;i++)
+			{
+				elements[i] = other.elements[i];;
+			}
+		}
+
+		mat4::mat4(const mat4&& other)
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				elements[i] = other.elements[i];;
+			}
+		}
+
+
 		mat4 mat4::identity()
 		{
 			return mat4(1);
 		}
-
+		mat4& mat4::operator = (const mat4& other)
+		{
+			for (int i = 0; i < 16; i++)
+			{
+				elements[i] = other.elements[i];;
+			}
+			return *this;
+		}
 		mat4& mat4::multiply(const mat4& others)
 		{
 			/*mat4 result;
