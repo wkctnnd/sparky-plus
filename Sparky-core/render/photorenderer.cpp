@@ -2,6 +2,7 @@
 #include "world/component/staticmeshrenderercomponent.h"
 #include "world/scene.h"
 #include "world/actor.h"
+#include "world/PrimitiveSceneProxy.h"
 using namespace sparky::world;
 namespace sparky
 {
@@ -9,18 +10,26 @@ namespace sparky
 	{
 		void  PhotoRenderer::AddRenderable(Renderable* r)
 		{
-			
+
 		}
 
 		void PhotoRenderer::PostUpdate()
 		{
 			PhotoObjects.clear();
+			m_PrimitiveSceneProxy.clear();
 			std::vector<StaticMeshRendererComponent*> comps = m_Scene->GetRoot()->GetChildrenComponents<StaticMeshRendererComponent>();
-			for (int i = 0; i < comps.size(); i++)
+			/*for (int i = 0; i < comps.size(); i++)
 			{
 				Renderable* r = comps[i]->GetRenderable();
 				PhotoObjects.push_back(r);
+			}*/
+
+			for (int i = 0; i < comps.size(); i++)
+			{
+				PrimitiveSceneProxy* r = (PrimitiveSceneProxy*)comps[i]->GetSceneProxy();
+				m_PrimitiveSceneProxy.push_back(r);
 			}
+
 		}
 
 		PhotoRenderer::PhotoRenderer(world::Scene* scene)
@@ -31,13 +40,13 @@ namespace sparky
 		{
 			m_PhotoShader = new GraphicsShader("shaders/ocean.vert", "shaders/ocean.frag");
 			m_DepthShader = new GraphicsShader("shaders/depth.vert", "shaders/depth.frag");
-		 
+
 		}
 
 
 		void PhotoRenderer::RenderScene()
 		{
-	
+
 
 			glEnable(GL_DEPTH_TEST);
 
@@ -51,7 +60,7 @@ namespace sparky
 
 			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -80.0f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
-		
+
 
 
 
@@ -61,12 +70,21 @@ namespace sparky
 			m_PhotoShader->setUniformMat41("vw_matrix", mViewMatrix);
 			m_PhotoShader->setUniform3f("campos", float3(40, 60, 40));
 			//m_OceanShader->setUniform3f("lightdir", )
-			
-			for (int i = 0;i<PhotoObjects.size();i++)
+
+		/*	for (int i = 0;i<PhotoObjects.size();i++)
 			{
 				PhotoObjects[i]->render();
+			}*/
+
+			for (int i = 0; i < m_PrimitiveSceneProxy.size(); i++)
+			{
+				mat4 worldmat = m_PrimitiveSceneProxy[i]->GetWorldMatrix();
+				m_PhotoShader->setUniformMat4("w_matrix", worldmat);
+				Renderable* rb = m_PrimitiveSceneProxy[i]->getRenderable();
+				rb->render();
 			}
-			m_PhotoShader->disable();
+
+
 		}
 
 

@@ -100,7 +100,6 @@ namespace sparky
 		//更新worldmat和forward right up的向量
 		void TransformComponent::Update()
 		{
-			
 			if (m_Dirty)
 			{
 				mat4 worldtrans = GetWorldTransform();

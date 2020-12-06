@@ -33,6 +33,9 @@ namespace sparky
 			virtual void PreUpdate() {}
 			void Update();
 			virtual void PostUpdate() {}
+
+			void UpdateChain();
+			void UpdateChainAsyn();
 			void RotateFromQuat(Quaternion quat);
 			
 			void AttachTo(TransformComponent& component);
@@ -58,13 +61,13 @@ namespace sparky
 			{
 				return ComponentType::TRANSFORM_TYPE;
 			}
+
 		private:
 			float3 m_Position;
 			Quaternion m_Rotation;
 			float3 m_Scale;
 
-			void UpdateChain();
-			void UpdateChainAsyn();
+			
 
 			std::vector<TransformComponent*> m_Children;
 			TransformComponent* m_Parent;

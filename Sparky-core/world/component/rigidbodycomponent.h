@@ -20,11 +20,11 @@ namespace sparky
 	}
 	namespace world
 	{
-		class CameraComponent :public Component
+		class RigidBodyComponent :public Component
 		{
 		public:
 			static ComponentType TYPE;
-			CameraComponent(Actor *owner);
+			RigidBodyComponent(Actor *owner);
 			mat4 GetProjectionMatrix();
 			mat4 GetViewMatrix();
 			virtual void PreUpdate(){}

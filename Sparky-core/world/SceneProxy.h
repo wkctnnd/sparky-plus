@@ -1,13 +1,11 @@
 #pragma once
-
 namespace sparky
 {
-	namespace render
+	namespace world
 	{
-		class PrimitiveSceneProxy
+		class SceneProxy
 		{
 
 		};
-
 	}
 }

@@ -149,6 +149,7 @@
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
+    <ClCompile Include="graphics\shader\uniformbuffer.cpp" />
     <ClCompile Include="graphics\texture\rendertexture.cpp" />
     <ClCompile Include="graphics\texture\rendertexture2d.cpp" />
     <ClCompile Include="graphics\texture\texture.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="render\OceanRender.cpp" />
     <ClCompile Include="render\photorenderer.cpp" />
     <ClCompile Include="render\phyxRender.cpp" />
+    <ClCompile Include="world\primitivesceneproxy.cpp" />
+    <ClCompile Include="render\view.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
     <ClCompile Include="graphics\buffers\buffer.cpp" />
     <ClCompile Include="graphics\buffers\DynamicBuffer.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="utils\timer.cpp" />
     <ClCompile Include="world\actor.cpp" />
     <ClCompile Include="world\component\cameracomponent.cpp" />
+    <ClCompile Include="world\component\rigidbodycomponent.cpp" />
     <ClCompile Include="world\component\staticmeshrenderercomponent.cpp" />
     <ClCompile Include="world\component\transformcomponent.cpp" />
     <ClCompile Include="world\scene.cpp" />
@@ -217,6 +221,7 @@
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="graphics\errorreport.h" />
+    <ClInclude Include="graphics\shader\uniformbuffer.h" />
     <ClInclude Include="miniheader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
@@ -266,7 +271,7 @@
     <ClInclude Include="render\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
-    <ClInclude Include="render\PrimitiveSceneProxy.h" />
+    <ClInclude Include="world\PrimitiveSceneProxy.h" />
     <ClInclude Include="render\renderable.h" />
     <ClInclude Include="graphics\buffers\buffer.h" />
     <ClInclude Include="graphics\buffers\indexbuffer.h" />
@@ -297,6 +302,7 @@
     <ClInclude Include="world\actor.h" />
     <ClInclude Include="world\camera.h" />
     <ClInclude Include="world\component\cameracomponent.h" />
+    <ClInclude Include="world\component\rigidbodycomponent.h" />
     <ClInclude Include="world\component\staticmesh.h" />
     <ClInclude Include="world\component\staticmeshrenderercomponent.h" />
     <ClInclude Include="world\Cube.h" />
@@ -305,6 +311,7 @@
     <ClInclude Include="world\ecs\system.h" />
     <ClInclude Include="world\scene.h" />
     <ClInclude Include="world\component\transformcomponent.h" />
+    <ClInclude Include="world\SceneProxy.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />

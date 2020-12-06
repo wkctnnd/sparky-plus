@@ -100,6 +100,9 @@ namespace sparky
 		m_Renderer = new sparky::render::PhotoRenderer(m_Scene);
 		m_Renderer->Initialize();
 		Actor* camera = new Actor();
+		sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
+		
+
 		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
 		m_Scene->AddActor(camera);
 		Actor* photoedActor = new Actor();
@@ -117,6 +120,7 @@ namespace sparky
 		std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//ucp201.obj";
 		objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
 		staticmeshcom->AddStaticMesh(mesh);
+		camerameshcomponent->AddStaticMesh(mesh);
 		ColorRenderTarget  crt;
 		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
 		crt.action = Clear_Store;
@@ -157,7 +161,7 @@ namespace sparky
 
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
-	
+		
 		Actor *camera = m_CameraComponent->GetOwner();
 		TransformComponent* component = camera->GetTransform();
 
@@ -178,11 +182,13 @@ namespace sparky
 
 		}
 
+		m_Scene->UpdateTransform();
+
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
-		m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
+		//m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
 
  
 		//std::vector<PxObject*> result;

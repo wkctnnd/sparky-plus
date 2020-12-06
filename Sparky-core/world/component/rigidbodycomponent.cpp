@@ -1,5 +1,5 @@
 #pragma once
-#include "cameracomponent.h"
+#include "rigidbodycomponent.h"
 #include "graphics/rendertarget.h"
 #include "world/actor.h"
 #include "transformcomponent.h"
@@ -12,19 +12,19 @@ namespace sparky
 {
 	namespace world
 	{
-		ComponentType CameraComponent::TYPE = ComponentType::CAMER_TYPE;
+		ComponentType RigidBodyComponent::TYPE = ComponentType::CAMER_TYPE;
 
-		mat4 CameraComponent::GetViewMatrix()
+		mat4 RigidBodyComponent::GetViewMatrix()
 		{
 			mat4 result = m_Owner->GetTransform()->GetWorldTransform().Inverse();
 			return result;
 		}
 
-		CameraComponent::CameraComponent(Actor *owner):Component(owner)
+		RigidBodyComponent::RigidBodyComponent(Actor *owner):Component(owner)
 		{
 			m_RtInfo = new graphics::RenderTargetInfo();
 		}
-		mat4 CameraComponent::GetProjectionMatrix()
+		mat4 RigidBodyComponent::GetProjectionMatrix()
 		{
 			TransformComponent* tc = m_Owner->GetTransform();
 			float3 camerforward = tc->Forward();
@@ -32,7 +32,7 @@ namespace sparky
 			return mat4::LookAt(tc->GetWorldPosition(), destination, tc->Up());
 		}
 
-		void CameraComponent::SetRenderTarget(std::vector<graphics::ColorRenderTarget *> crt, graphics::DepthStencilRenderTarget* dsrt)
+		void RigidBodyComponent::SetRenderTarget(std::vector<graphics::ColorRenderTarget *> crt, graphics::DepthStencilRenderTarget* dsrt)
 		{
 	 
 			for (int i = 0; i < crt.size(); i++)
@@ -49,20 +49,19 @@ namespace sparky
 			
 		}
 
-		RenderTexture* CameraComponent::GetColorRenderTexture(int index)
+		RenderTexture* RigidBodyComponent::GetColorRenderTexture(int index)
 		{
 			return m_RtInfo->GetColorRenderTexture(index);
 		}
 
-		RenderTexture* CameraComponent::GetDepthStencilRenderTexture()
+		RenderTexture* RigidBodyComponent::GetDepthStencilRenderTexture()
 		{
 			return m_RtInfo->GetDepthStencilRenderTexture();
 		}
 
-		View* CameraComponent::CreateView()
+		View* RigidBodyComponent::CreateView()
 		{
 			View* view = new View();
-
 			return view;
 		}
 	}

@@ -33,7 +33,7 @@ namespace sparky
 			void SetMaterial(int index, Material& mat);
 			
 			Renderable* GetRenderable();
-	 
+			class SceneProxy* GetSceneProxy();
 			virtual void PreUpdate() {}
 			virtual void Update() {}
 			virtual void PostUpdate();

@@ -22,5 +22,10 @@ namespace sparky
 			
 			}
 		}
+
+		void Scene::UpdateTransform()
+		{
+			m_RootActor->GetTransform()->UpdateChain();
+		}
 	}
 }

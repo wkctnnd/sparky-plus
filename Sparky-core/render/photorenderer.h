@@ -11,6 +11,7 @@ namespace sparky {
 	namespace world
 	{
 		class Scene;
+		class PrimitiveSceneProxy;
 	}
 }
 
@@ -41,6 +42,8 @@ namespace sparky {
 			GraphicsShader * m_PhotoShader;
 			GraphicsShader* m_DepthShader;
 			world::Scene* m_Scene;
+
+			vector<world::PrimitiveSceneProxy*> m_PrimitiveSceneProxy;
 		};
 	}
 }

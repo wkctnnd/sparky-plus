@@ -24,6 +24,7 @@ namespace sparky
 			render::SceneRenderer* GetRenderer() { return m_SceneRenderer; }
 			Actor* GetRoot() { return m_RootActor; }
 			static Scene* GetCurrentScene() { return m_CurrentScene; };
+			void UpdateTransform();
 		private:
 
 			static Scene* m_CurrentScene;

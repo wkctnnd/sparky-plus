@@ -201,6 +201,18 @@
     <ClCompile Include="world\component\staticmeshrenderercomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\shader\uniformbuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\view.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\component\rigidbodycomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\primitivesceneproxy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -401,9 +413,6 @@
     <ClInclude Include="render\View.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="render\PrimitiveSceneProxy.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="utils\container\bitarray.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -519,6 +528,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="graphics\errorreport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\uniformbuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\rigidbodycomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\PrimitiveSceneProxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\SceneProxy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
