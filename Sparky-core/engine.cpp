@@ -100,9 +100,9 @@ namespace sparky
 		m_Renderer = new sparky::render::PhotoRenderer(m_Scene);
 		m_Renderer->Initialize();
 		Actor* camera = new Actor();
-		sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
+		//sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
 		
-
+		//camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
 		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
 		m_Scene->AddActor(camera);
 		Actor* photoedActor = new Actor();
@@ -120,7 +120,7 @@ namespace sparky
 		std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//ucp201.obj";
 		objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
 		staticmeshcom->AddStaticMesh(mesh);
-		camerameshcomponent->AddStaticMesh(mesh);
+		//camerameshcomponent->AddStaticMesh(mesh);
 		ColorRenderTarget  crt;
 		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
 		crt.action = Clear_Store;
@@ -149,7 +149,7 @@ namespace sparky
 	}
 
 	float angleA = 0;
-	float angleB = 0;
+	float angleB = -3.1415926/2;
 	float angleC = 0;
 	float angleD = 0;
 	float radius = 100;
@@ -169,10 +169,15 @@ namespace sparky
 		float3 cameraposition;
 		if (angleA < 2 * 3.1415926)
 			angleA += 0.1;
+		else
+		{
+			angleA = angleA - (2 * 3.1415926);
+			angleB += 0.1f;
+		}
 		if (component)
 		{
-			cameraposition.x = radius * Util::Sin(angleA);
-			cameraposition.z = radius * Util::Cos(angleA);
+			cameraposition.x = radius * Util::Cos(angleB)*Util::Sin(angleA);
+			cameraposition.z = radius * Util::Cos(angleB)*Util::Cos(angleA);
 			cameraposition.y = radius * Util::Sin(angleB);
 			component->SetLocalPosition(cameraposition);
 
@@ -206,9 +211,9 @@ namespace sparky
 		//}
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
-	//	m_CameraComponent->GetRenderTargetInfo()->Bind();
-		//m_Renderer->RenderScene();
-		m_Renderer->RenderSceneTest();
+		m_CameraComponent->GetRenderTargetInfo()->Bind();
+		m_Renderer->RenderScene(cameraposition);
+		//m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
 		
@@ -235,15 +240,15 @@ namespace sparky
 
 		}
 		
-		//std::string colorpath = path + temp + "color.bmp";
-		//rt->SaveToDisk(colorpath);
+		std::string colorpath = path + temp + "color.bmp";
+		rt->SaveToDisk(colorpath);
 
-		//m_CameraComponent->GetRenderTargetInfo()->Bind();
-		//std::string depthpath = path + temp + "depth.bmp";
-		//m_Renderer->RenderSceneDepth();
-		//rt->SaveToDisk(depthpath);
+		m_CameraComponent->GetRenderTargetInfo()->Bind();
+		std::string depthpath = path + temp + "depth.bmp";
+		m_Renderer->RenderSceneDepth(cameraposition);
+		rt->SaveToDisk(depthpath);
 		
-		//m_CameraComponent->GetRenderTargetInfo()->UnBind();
+		m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		glFlush();
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;

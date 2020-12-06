@@ -87,7 +87,7 @@ namespace sparky
 
 
 		}
-		void PhotoRenderer::RenderScene()
+		void PhotoRenderer::RenderScene(float3 position)
 		{
 
 
@@ -101,7 +101,7 @@ namespace sparky
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -80.0f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
 
@@ -130,7 +130,7 @@ namespace sparky
 
 		}
 
-		void PhotoRenderer::RenderSceneDepth()
+		void PhotoRenderer::RenderSceneDepth(float3 position)
 		{
 
 
@@ -144,7 +144,7 @@ namespace sparky
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(0, 0.25f, -80.0f), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
 
@@ -157,9 +157,12 @@ namespace sparky
 			m_DepthShader->setUniform3f("campos", float3(40, 60, 40));
 			//m_OceanShader->setUniform3f("lightdir", )
 
-			for (int i = 0; i < PhotoObjects.size(); i++)
+			for (int i = 0; i < m_PrimitiveSceneProxy.size(); i++)
 			{
-				PhotoObjects[i]->render();
+				mat4 worldmat = m_PrimitiveSceneProxy[i]->GetWorldMatrix();
+				m_DepthShader->setUniformMat4("w_matrix", worldmat);
+				Renderable* rb = m_PrimitiveSceneProxy[i]->getRenderable();
+				rb->render();
 			}
 			m_DepthShader->disable();
 		}
