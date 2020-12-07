@@ -38,6 +38,8 @@ namespace sparky {
 			static mat4 Translate(const float3& translation);
 
 			friend mat4 operator*(mat4 left, const mat4& right);
+
+			/*friend float4 operator*()*/
 		};
 		
 	}

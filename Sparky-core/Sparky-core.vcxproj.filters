@@ -213,6 +213,18 @@
     <ClCompile Include="world\primitivesceneproxy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="gameinstance.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\mygameinstance.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\playercomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\robotcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -540,6 +552,42 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\SceneProxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gameinstance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\mygameinstance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Playercomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\robotcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\robot.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\lobby.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\inputcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Controller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\controller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\playercontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\aicontroller.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,6 +14,7 @@ namespace sparky {
 		class AssetLoader
 		{
 		public:
+			AssetLoader() {};
 			bool Initialize();
 			void LoadFile(std::string filename);
 			static AssetLoader* INSTANCE();
@@ -40,7 +41,7 @@ namespace sparky {
 
 			class meshLoader* m_MeshLoader;
 		private:
-			AssetLoader() {};
+			
 		};
 
 		

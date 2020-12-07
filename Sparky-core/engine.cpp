@@ -26,14 +26,18 @@
 #include "world/actor.h"
 #include "world/component/cameracomponent.h"
 #include "world/component/transformcomponent.h"
+#include "world/component/staticmeshrenderercomponent.h"
 #include "graphics/rendertarget.h"
 #include "graphics/texture/texture.h"
 #include "graphics/texture/rendertexture2d.h"
-#include "world/component/staticmeshrenderercomponent.h"
+
 #include "utils/fileutils.h"
 #include "render/photorenderer.h"
 #include "Asset/objloader.h"
 #include "maths/util.h"
+#include "maths/mat4.h"
+
+#include "gameinstance.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -154,9 +158,10 @@ namespace sparky
 	float angleD = 0;
 	float radius = 100;
 	
-
+	
 	void Engine::Loop()
 	{
+		
 		GlobalTimer.Begin();
 
 		//m_ParticleManager->Update();
@@ -167,13 +172,23 @@ namespace sparky
 
 		float3 lookatpoistion(0, 0, 0);
 		float3 cameraposition;
-		if (angleA < 2 * 3.1415926)
-			angleA += 0.1;
+
+		if (angleC < 2 * 3.1415926)
+		{
+			angleC += 0.1;
+		}
 		else
 		{
-			angleA = angleA - (2 * 3.1415926);
-			angleB += 0.1f;
+			angleC = angleC - (2 * 3.1415926);
+			if (angleA < 2 * 3.1415926)
+				angleA += 0.1;
+			else
+			{
+				angleA = angleA - (2 * 3.1415926);
+				angleB += 0.1f;
+			}
 		}
+		
 		if (component)
 		{
 			cameraposition.x = radius * Util::Cos(angleB)*Util::Sin(angleA);
@@ -181,12 +196,19 @@ namespace sparky
 			cameraposition.y = radius * Util::Sin(angleB);
 			component->SetLocalPosition(cameraposition);
 
-			float3 direction = cameraposition - lookatpoistion;
-			component->RotateForwardTo(direction);
+			
+			//Quaternion q = Quaternion::FromEulerAnyAxis(angleC, axis);
+			//maths::mat4 mat = q.GetMatrix();
 
 
+
+			//float3 up = mat * float4(0,1,0,1)
+			//	glm::mat
+			//component->RotateForwardTo(direction);
+
+			//glm::rotate()
 		}
-
+		float3 axis = (cameraposition - lookatpoistion).Normalize();
 		m_Scene->UpdateTransform();
 
 		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
@@ -212,7 +234,7 @@ namespace sparky
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		m_Renderer->RenderScene(cameraposition);
+		m_Renderer->RenderScene(cameraposition, axis, angleC);
 		//m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
@@ -245,7 +267,7 @@ namespace sparky
 
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		std::string depthpath = path + temp + "depth.bmp";
-		m_Renderer->RenderSceneDepth(cameraposition);
+		m_Renderer->RenderSceneDepth(cameraposition,axis, angleC);
 		rt->SaveToDisk(depthpath);
 		
 		m_CameraComponent->GetRenderTargetInfo()->UnBind();
@@ -257,6 +279,8 @@ namespace sparky
 
 		//elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//std::cout << elapse << std::endl;
+
+		
 	}
 
 }

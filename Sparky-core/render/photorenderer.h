@@ -32,8 +32,8 @@ namespace sparky {
 			void Initialize();
 			void Update();
 
-			void RenderScene(float3 position);
-			void RenderSceneDepth(float3 position);
+			void RenderScene(float3 position,float3 axis, float angle);
+			void RenderSceneDepth(float3 position, float3 axis, float angle);
 			void PostUpdate();
 			void RenderSceneTest();
 			void AddRenderable(Renderable* r);

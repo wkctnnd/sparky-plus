@@ -19,6 +19,7 @@ namespace sparky
 		public:
 			void Initialize();
 			void AddActor(Actor* atr);
+			Actor* AddActor();
 			void Update(float t);
 
 			render::SceneRenderer* GetRenderer() { return m_SceneRenderer; }
@@ -33,5 +34,7 @@ namespace sparky
 			Actor* m_RootActor;
 			render::SceneRenderer* m_SceneRenderer;
 		};
+
+		static Scene* GScene;
 	}
 }

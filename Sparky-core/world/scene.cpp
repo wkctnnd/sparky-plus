@@ -6,6 +6,7 @@ namespace sparky
 	{
 		void Scene::Initialize() 
 		{
+			GScene = this;
 			m_RootActor = new Actor();
 		}
 
@@ -13,6 +14,13 @@ namespace sparky
 		{
 			m_RootActor->Attach(atr);
 			 
+		}
+
+		Actor * Scene::AddActor()
+		{
+			Actor *atr = new Actor();
+			m_RootActor->Attach(atr);
+			return atr;
 		}
 
 		void Scene::Update(float t)

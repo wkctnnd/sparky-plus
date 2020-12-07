@@ -29,6 +29,11 @@ namespace sparky{
 		class Scene;
 		class CameraComponent;
 	}
+
+	namespace game
+	{
+		class GameInstance;
+	}
 }
 namespace sparky
 {
@@ -42,7 +47,7 @@ namespace sparky
 	public:
 
 		static Timer GlobalTimer;
-
+		
 	private:
 		std::vector<int> m_Pxlink;
 		sparky::render::PhotoRenderer *m_Renderer;
@@ -51,6 +56,13 @@ namespace sparky
 		sparky::phyx::PxWorld* m_Pxworld;
 		sparky::world::CameraComponent* m_CameraComponent;
 		sparky::world::Scene* m_Scene;
+
+
+		//这么写,目前单线程
+		game::GameInstance* m_GameInstance;
 		/*sparky::render::ph*/
 	};
+
+
+	static Engine* GEngine;
 }

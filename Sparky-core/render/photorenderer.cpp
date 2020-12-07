@@ -87,7 +87,7 @@ namespace sparky
 
 
 		}
-		void PhotoRenderer::RenderScene(float3 position)
+		void PhotoRenderer::RenderScene(float3 position, float3 axis, float angle)
 		{
 
 
@@ -101,7 +101,13 @@ namespace sparky
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+ 
+
+			glm::mat4 trans = glm::mat4(1.0f);
+			trans = glm::rotate(trans, angle, glm::vec3(axis.x, axis.y, axis.z));
+			glm::vec3 up = trans * glm::vec4(0, 1, 0, 0);
+
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), up);
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
 
@@ -130,7 +136,7 @@ namespace sparky
 
 		}
 
-		void PhotoRenderer::RenderSceneDepth(float3 position)
+		void PhotoRenderer::RenderSceneDepth(float3 position, float3 axis, float angle)
 		{
 
 
@@ -144,14 +150,14 @@ namespace sparky
 
 
 
-			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+			
 			glm::mat4 mProjectionMatrix = glm::perspective(90.0, 1.0, 0.1, 1000.0);
 
-
-
-
-
-
+			glm::mat4 trans = glm::mat4(1.0f);
+			trans = glm::rotate(trans, angle, glm::vec3(axis.x, axis.y, axis.z));
+			glm::vec3 up = trans * glm::vec4(0, 1, 0,0);
+			 
+			glm::mat4 mViewMatrix = glm::lookAt(glm::vec3(position.x, position.y, position.z), glm::vec3(0, 0, 0), up);
 			m_DepthShader->setUniformMat41("pr_matrix", mProjectionMatrix);
 			m_DepthShader->setUniformMat41("vw_matrix", mViewMatrix);
 			m_DepthShader->setUniform3f("campos", float3(40, 60, 40));

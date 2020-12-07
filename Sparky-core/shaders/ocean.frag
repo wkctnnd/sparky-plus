@@ -11,7 +11,8 @@ void main()
 {
 	vec3 n = normalize(cross(dFdx(worldposition), dFdy(worldposition)));
 	 vec3 light = normalize(vec3(0,1,1));
-	float nl = clamp(dot(light,-n),0,1);
+	//float nl = clamp(dot(light,-n),0,1);
+	float nl = abs(dot(light,-n));
 	color =  vec4(nl,nl,nl,1);
 	
 

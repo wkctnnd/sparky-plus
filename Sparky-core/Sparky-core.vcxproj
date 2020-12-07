@@ -148,6 +148,8 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
+    <ClCompile Include="game\playercomponent.cpp" />
+    <ClCompile Include="game\robotcomponent.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\uniformbuffer.cpp" />
     <ClCompile Include="graphics\texture\rendertexture.cpp" />
@@ -201,6 +203,8 @@
     <ClCompile Include="world\component\staticmeshrenderercomponent.cpp" />
     <ClCompile Include="world\component\transformcomponent.cpp" />
     <ClCompile Include="world\scene.cpp" />
+    <ClCompile Include="gameinstance.cpp" />
+    <ClCompile Include="game\mygameinstance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="animation\AnimationComponent.h" />
@@ -220,6 +224,14 @@
     <ClInclude Include="Asset\imagedata.h" />
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="game\aicontroller.h" />
+    <ClInclude Include="game\controller.h" />
+    <ClInclude Include="game\lobby.h" />
+    <ClInclude Include="game\player.h" />
+    <ClInclude Include="game\Playercomponent.h" />
+    <ClInclude Include="game\playercontroller.h" />
+    <ClInclude Include="game\robot.h" />
+    <ClInclude Include="game\robotcomponent.h" />
     <ClInclude Include="graphics\errorreport.h" />
     <ClInclude Include="graphics\shader\uniformbuffer.h" />
     <ClInclude Include="miniheader.h" />
@@ -271,6 +283,7 @@
     <ClInclude Include="render\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
+    <ClInclude Include="world\component\inputcomponent.h" />
     <ClInclude Include="world\PrimitiveSceneProxy.h" />
     <ClInclude Include="render\renderable.h" />
     <ClInclude Include="graphics\buffers\buffer.h" />
@@ -312,6 +325,8 @@
     <ClInclude Include="world\scene.h" />
     <ClInclude Include="world\component\transformcomponent.h" />
     <ClInclude Include="world\SceneProxy.h" />
+    <ClInclude Include="gameinstance.h" />
+    <ClInclude Include="game\mygameinstance.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />
