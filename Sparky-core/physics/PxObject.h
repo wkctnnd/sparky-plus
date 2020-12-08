@@ -5,6 +5,10 @@
 using namespace sparky::maths;
 namespace sparky
 {
+	namespace world
+	{
+		class ScriptComponent;
+	}
 	namespace phyx
 	{
 		class Mass;
@@ -23,6 +27,7 @@ namespace sparky
 		class PxObject
 		{
 		public:
+			PxObject(world::ScriptComponent* sc) :m_ScriptComponent(sc) {}
 			virtual PxObjectType GetType() = 0;
 			virtual void ApplyForce(std::vector<Force>& force) = 0;
 			virtual void Simulate(float time) = 0;
@@ -31,7 +36,8 @@ namespace sparky
 		private:
  
 
-
+		protected:
+			world::ScriptComponent* m_ScriptComponent;
 		};
 	}
 }

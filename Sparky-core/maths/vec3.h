@@ -21,7 +21,7 @@ namespace sparky {
 			vec3<T> Normalize()const;
 			float length() const;
 			void SetElement(unsigned int i, float value);
-			void NormalizeSelf();
+			vec3<T>& NormalizeSelf();
 			friend std::ostream& operator<<(std::ostream& stream, const vec3<T>& vector);
 
 			vec3<T>& operator +=(const vec3<T>& left);

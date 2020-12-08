@@ -10,6 +10,8 @@
 #include "utils/timer.h"
 #include "engine.h"
 
+#include "input/input.h"
+
 int main()
 {
 	using namespace sparky;
@@ -43,9 +45,22 @@ int main()
 		//std::cout << vector;
 		if (window.isKeyPress(GLFW_KEY_W))
 		{
-			std::cout << "press w!";
+			Input.SetKey(KEY_W)
 		}
 
+		else if (window.isKeyPress(GLFW_KEY_A))
+		{
+			Input.SetKey(KEY_A)
+		}
+		else if (window.isKeyPress(GLFW_KEY_S))
+		{
+			Input.SetKey(KEY_S)
+		}
+		else if (window.isKeyPress(GLFW_KEY_D))
+		{
+			Input.SetKey(KEY_D)
+		}
+	
 		if (window.isMouseButtonPress(GLFW_MOUSE_BUTTON_LEFT))
 		{
 			std::cout << "mouse press!";

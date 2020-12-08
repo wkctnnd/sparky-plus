@@ -1,26 +1,32 @@
 #pragma once
-#pragma once
+ 
 #include "maths/vec3.h"
 #include <vector>
 #include "maths/AABox.h"
 #include "PxObject.h"
- 
+
 namespace sparky
 {
 	namespace phyx
 	{
-		class PxRigidBody :public PxObject
+		enum ShapeType
+		{
+			Shere_Shape,
+			AABB_Shape,
+			OBB_Shadpe,
+		};
+		class PxShape  
 		{
 		public:
-			PxRigidBody(world::ScriptComponent* sc):PxObject(sc) {   }
-			PxObjectType GetType() { return SOFT_BODY; }
 			 
+			ShapeType GetType() { return m_ShapeType; }
+
 
  
-		private:
-		 
-			
-			//AABox m_BoundBox;
+		protected:
+
+			ShapeType m_ShapeType;
+			 
 
 			//void *UpdateDelegate(int);
 		};

@@ -5,7 +5,14 @@ namespace sparky
 	{
 		class Controller
 		{
+		public:
+			void SetController(Actor* owner)
+			{
+				m_Owner = owner;
+			}
 
+		protected:
+			Actor *m_Owner;
 		};
 	}
 }

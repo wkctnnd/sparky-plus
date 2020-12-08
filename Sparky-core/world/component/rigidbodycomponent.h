@@ -5,19 +5,6 @@ using namespace sparky::maths;
 namespace sparky
 {
 
-	namespace graphics
-	{
-		class ColorRenderTarget;
-		class DepthStencilRenderTarget;
-		class RenderTargetInfo;
-		class RenderTexture;
-		
-	}
-
-	namespace render
-	{
-		class View;
-	}
 	namespace world
 	{
 		class RigidBodyComponent :public Component
@@ -25,22 +12,8 @@ namespace sparky
 		public:
 			static ComponentType TYPE;
 			RigidBodyComponent(Actor *owner);
-			mat4 GetProjectionMatrix();
-			mat4 GetViewMatrix();
-			virtual void PreUpdate(){}
-			virtual void Update() {}
-			virtual void PostUpdate() {}
-			render::View* CreateView();
-			ComponentType GetType()
-			{
-				return ComponentType::CAMER_TYPE;
-			}
-			graphics::RenderTexture* GetColorRenderTexture(int index);
-			graphics::RenderTexture* GetDepthStencilRenderTexture();
-			//temp use for simple
-			graphics::RenderTargetInfo* GetRenderTargetInfo() { return m_RtInfo; }
-			void SetRenderTarget(std::vector<graphics::ColorRenderTarget*> crt, graphics::DepthStencilRenderTarget* dsrt);
-			//RenderTexture* GetRenderTexture(int index);
+		
+
 		private:
 			float m_Fov;
 			float m_Aspect;

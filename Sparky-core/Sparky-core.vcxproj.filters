@@ -219,10 +219,19 @@
     <ClCompile Include="game\mygameinstance.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\playercomponent.cpp">
+    <ClCompile Include="game\playercontroller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\robotcomponent.cpp">
+    <ClCompile Include="game\robot.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="input\input.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\robotcontroller.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\movementcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -560,12 +569,6 @@
     <ClInclude Include="game\mygameinstance.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\Playercomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\robotcomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="game\player.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -588,6 +591,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="game\aicontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="input\input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\robotcontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\movementcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\scriptcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\pxShape.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxAABBShape.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
