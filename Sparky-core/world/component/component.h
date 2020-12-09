@@ -13,7 +13,8 @@ namespace sparky
 		{
 			CAMER_TYPE,
 			TRANSFORM_TYPE,
-			STATICMESHRENDERER_TYPE
+			STATICMESHRENDERER_TYPE,
+			RIGIDBODY_TYPE
 		};
 		class Component
 		{

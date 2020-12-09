@@ -12,6 +12,9 @@ namespace sparky
 			void Simulate(float time);
 			void FetchResult(std::vector<PxObject*>& objects);
 			void AddObject(PxObject* object);
+
+
+			void Notify();
 		private:
 
 			std::vector<PxObject*> m_Objects;

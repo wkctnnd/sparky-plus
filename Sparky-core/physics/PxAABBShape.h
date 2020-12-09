@@ -9,21 +9,19 @@ namespace sparky
 {
 	namespace phyx
 	{
-		enum ShapeType
-		{
-			Shere_Shape,
-			AABB_Shape,
-			OBB_Shadpe,
-		};
-		class PxShape
+ 
+		class PxAABBShape:public PxShape
 		{
 		public:
- 
-
+			virtual bool Collide(PxShape* othershape, HitResult& result);
+			 
 		protected:
 
 			AABox m_BoundBox;
 			//void *UpdateDelegate(int);
 		};
+
+
+	
 	}
 }

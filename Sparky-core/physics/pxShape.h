@@ -15,13 +15,21 @@ namespace sparky
 			AABB_Shape,
 			OBB_Shadpe,
 		};
+
+
+		class HitResult
+		{
+
+		};
+
+
 		class PxShape  
 		{
 		public:
 			 
 			ShapeType GetType() { return m_ShapeType; }
 
-
+			virtual bool Collide(PxShape* shape, HitResult& result) = 0;
  
 		protected:
 

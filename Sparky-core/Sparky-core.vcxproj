@@ -99,7 +99,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Sparky-core\Sparky-core;D:\Sparky-core\Dependencies\GLFW\include;D:\Sparky-core\Dependencies\GLEW\include;D:\Sparky-core\Dependencies\glm-0.9.9.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>
+      </AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -160,7 +161,9 @@
     <ClCompile Include="graphics\texture\texture2d.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
+    <ClCompile Include="physics\PxAABBShape.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />
+    <ClCompile Include="physics\PxRigidBody.cpp" />
     <ClCompile Include="physics\PxSoftBody.cpp" />
     <ClCompile Include="physics\PxWorld.cpp" />
     <ClCompile Include="render\dynamicmesh.cpp" />

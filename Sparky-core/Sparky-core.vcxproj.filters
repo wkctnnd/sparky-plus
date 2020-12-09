@@ -234,6 +234,12 @@
     <ClCompile Include="game\movementcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="physics\PxAABBShape.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\PxRigidBody.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
