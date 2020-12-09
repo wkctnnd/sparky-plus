@@ -14,7 +14,7 @@ namespace sparky
 		{
 		public:
 			virtual bool Collide(PxShape* othershape, HitResult& result);
-			 
+			PxAABBShape(RawMesh* mesh);
 		protected:
 
 			AABox m_BoundBox;

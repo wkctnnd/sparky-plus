@@ -24,6 +24,12 @@ namespace sparky
 			{
 				m_Objects[i]->Update(time);
 			}
+
+
+
+
+
+
 		}
 
 		void PxWorld::FetchResult(std::vector<PxObject *> &objects)
