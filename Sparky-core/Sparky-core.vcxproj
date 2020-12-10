@@ -152,6 +152,7 @@
     <ClCompile Include="game\movementcomponent.cpp" />
     <ClCompile Include="game\playercontroller.cpp" />
     <ClCompile Include="game\robot.cpp" />
+    <ClCompile Include="game\robotcomponent.cpp" />
     <ClCompile Include="game\robotcontroller.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\uniformbuffer.cpp" />
@@ -232,6 +233,8 @@
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="game\aicontroller.h" />
     <ClInclude Include="game\controller.h" />
+    <ClInclude Include="game\Playercomponent.h" />
+    <ClInclude Include="game\robotcomponent.h" />
     <ClInclude Include="game\robotcontroller.h" />
     <ClInclude Include="input\input.h" />
     <ClInclude Include="game\lobby.h" />
@@ -271,6 +274,8 @@
     <ClInclude Include="render\phyxRender.h" />
     <ClInclude Include="render\renderpath\SceneRenderer.h" />
     <ClInclude Include="render\renderpath\SimpleRenderer.h" />
+    <ClInclude Include="shaders\toon.vert" />
+    <ClInclude Include="shaders\toon.frag" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />

@@ -17,7 +17,7 @@ namespace sparky
 		public:
 			static ComponentType TYPE;
 			RigidBodyComponent(Actor *owner) :Component(owner) {};
-		
+			ComponentType GetType() { return PxObjectType::RIGID_BODY; }
 			phyx::ShapeType m_Type;
 
 #ifdef EDITOR_USE

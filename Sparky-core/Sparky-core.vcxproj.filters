@@ -231,13 +231,16 @@
     <ClCompile Include="game\robotcontroller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\movementcomponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="physics\PxAABBShape.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="physics\PxRigidBody.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\robotcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\movementcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -605,9 +608,6 @@
     <ClInclude Include="game\robotcontroller.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\movementcomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\component\scriptcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -618,6 +618,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="physics\CollisionHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\robotcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="shaders\toon.vert">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="shaders\toon.frag">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\Playercomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\movementcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

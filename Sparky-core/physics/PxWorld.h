@@ -24,7 +24,7 @@ namespace sparky
 			void Notify();
 		private:
 
-			std::vector<NotifyInfo*> m_NotifyObjects;
+			std::vector<HitResult> m_NotifyObjects;
 			std::vector<PxObject*> m_Objects;
 		};
 	}

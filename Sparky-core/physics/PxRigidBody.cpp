@@ -14,13 +14,13 @@ namespace sparky
 			switch (m_ShapeType)
 			{
 			case sparky::phyx::Shere_Shape:
-				m_Shape = new PxAABBShape();
+				m_Shape = new PxAABBShape(mesh);
 				break;
 			case sparky::phyx::AABB_Shape:
-				m_Shape = new PxAABBShape();
+				m_Shape = new PxAABBShape(mesh);
 				break;
 			case sparky::phyx::OBB_Shadpe:
-				m_Shape = new PxAABBShape();
+				m_Shape = new PxAABBShape(mesh);
 				break;
 			default:
 				break;

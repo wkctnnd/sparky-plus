@@ -16,6 +16,11 @@ namespace sparky
 
 			}
 
+			ComponentType GetType()
+			{
+				return ComponentType::CAMER_TYPE;
+			}
+
 			void MoveUp()
 			{
 				m_Owner->GetTransform()->Translate(float3(0,0, m_Speed));
@@ -46,6 +51,11 @@ namespace sparky
 			void SetSpeed(float speed)
 			{
 				m_Speed = speed;
+			}
+
+			float3 GetDirection()
+			{
+				return m_Direction;
 			}
 
 		private:

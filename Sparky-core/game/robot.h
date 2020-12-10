@@ -1,10 +1,12 @@
 #pragma once
-#pragma once
+ 
 #include "world/actor.h"
 #include "world/scene.h"
 #include "world/component/staticmeshrenderercomponent.h"
 #include "world/component/rigidbodycomponent.h"
 #include "robotcomponent.h"
+#include "movementcomponent.h"
+
 using namespace sparky::world;
 
 namespace sparky
@@ -33,6 +35,7 @@ namespace sparky
 			StaticMeshRendererComponent* m_MeshComponent;
 			RigidBodyComponent* m_RigidBodyComponent;
 			RobotComponent* m_RobotComponent;
+			MovementComponent* m_MoveComponent;
 		};
 	}
 

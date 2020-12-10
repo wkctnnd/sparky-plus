@@ -4,6 +4,7 @@
 #include "world/component/staticmeshrenderercomponent.h"
 #include "world/component/rigidbodycomponent.h"
 #include "movementcomponent.h"
+#include "Playercomponent.h"
 using namespace sparky::world;
 
 namespace sparky
@@ -17,7 +18,8 @@ namespace sparky
 			{
 				m_MeshComponent = AddComponent<StaticMeshRendererComponent>();
 				m_RigidBodyComponent = AddComponent<RigidBodyComponent>();
-				m_PlayerComponent = AddComponent<MovementComponent> ();
+				m_PlayerComponent = AddComponent<PlayerComponent> ();
+				m_MoveComponent = AddComponent<MovementComponent>();
 				m_MeshComponent->AddStaticMesh(MeshResourc);
 				scene->AddActor(this);
 			}
@@ -32,7 +34,8 @@ namespace sparky
 			//class RawMesh* m_MeshResource;
 			StaticMeshRendererComponent* m_MeshComponent;
 			RigidBodyComponent* m_RigidBodyComponent;
-			PlayerComponent* m_PlayerComponent;
+			class PlayerComponent* m_PlayerComponent;
+			class MovementComponent* m_MoveComponent;
 		};
 	}
 

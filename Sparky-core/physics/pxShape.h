@@ -3,10 +3,15 @@
 #include "maths/vec3.h"
 #include <vector>
 #include "maths/AABox.h"
-#include "PxObject.h"
+ 
 
 namespace sparky
 {
+
+	namespace world
+	{
+		class Actor;
+	}
 	namespace phyx
 	{
 		enum ShapeType
@@ -16,12 +21,27 @@ namespace sparky
 			OBB_Shadpe,
 		};
 
-
+		struct HitPointInfo
+		{
+			float3 Position;
+			float3 Normal;
+			world::Actor* Actor;
+			 
+		};
 		class HitResult
 		{
 		public:
-
-			std::vector<>
+			void AddHitPointInfo(float3 position, float3 normal, world::Actor* actor)
+			{
+				m_HitPointInfo.emplace_back(position, normal, actor);
+			}
+			bool IsCollided() {
+				return m_HitPointInfo.size() > 0;
+			}
+		private:
+			std::vector<HitPointInfo> m_HitPointInfo;
+			 
+			
 		};
 
 

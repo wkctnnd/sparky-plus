@@ -1,6 +1,7 @@
 #include "physics/PxWorld.h"
 #include "physics/PxObject.h"
 #include "physics/CollisionHelper.h"
+#include "world/component/scriptcomponent.h"
 namespace sparky
 {
 	namespace phyx
@@ -38,10 +39,10 @@ namespace sparky
 						{
 							if (m_Objects[i]->CollideWith(m_Objects[j], result))
 							{
-								
+								result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), m_Objects[j]->GetActor());
 							}
 						}
-						
+						m_NotifyObjects.push_back(result);
 					}
 				}
 				
@@ -55,6 +56,17 @@ namespace sparky
 			for (int i=0;i<m_Objects.size();i++)
 			{
 				objects.push_back(m_Objects[i]);
+			}
+		}
+
+		void PxWorld::Notify()
+		{
+			for (int i=0;i<m_Objects.size();i++)
+			{
+				if (m_NotifyObjects[i].IsCollided())
+				{
+					m_Objects[i]->Notify();
+				}
 			}
 		}
 	}

@@ -12,8 +12,8 @@ namespace sparky
 		public:
 			void Update()
 			{
-				Robot* robot = new Robot();
-				RobotComponent *comp = robot->GetComponent<RobotComponent>();
+				Robot* robot = (Robot*)m_Owner;
+				MovementComponent *comp = (MovementComponent*)robot->GetComponent<MovementComponent>();
 				if (Input::GetKey(KEY_W))
 				{
 					comp->MoveUp();
@@ -31,7 +31,7 @@ namespace sparky
 					comp->MoveRight();
 				}
 
-				RigidBodyComponent* rigidbody = player->GetComponent<RigidBodyComponent>();
+				RigidBodyComponent* rigidbody = (RigidBodyComponent*)robot->GetComponent<RigidBodyComponent>();
 
 			}
 

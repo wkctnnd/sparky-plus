@@ -1,6 +1,7 @@
 #include "playercontroller.h"
 #include "input/input.h"
 #include "player.h"
+#include "movementcomponent.h"
 using namespace sparky::input;
 namespace sparky
 {
@@ -10,7 +11,7 @@ namespace sparky
 			void PlayerController::Update()
 			{
 				Player* player = (Player*)(m_Owner);
-				PlayerComponent *comp = (PlayerComponent *)player->GetComponent<PlayerComponent>();
+				MovementComponent *comp = (MovementComponent *)player->GetComponent<MovementComponent>();
 				if (Input::GetKey(KEY_W))
 				{
 					comp->MoveUp();
@@ -30,12 +31,7 @@ namespace sparky
 
 				/*RigidBodyComponent* rigidbody = player->GetComponent<RigidBodyComponent>();*/
 				
-			}
-
-	 
-
-	 
-			
-		};
+			}	
+		 
 	}
 }

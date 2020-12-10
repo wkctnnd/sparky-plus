@@ -1,18 +1,22 @@
 #pragma once
 namespace sparky
 {
+	namespace world
+	{
+		class Actor;
+	}
 	namespace game
 	{
 		class Controller
 		{
 		public:
-			void SetController(Actor* owner)
+			void SetController(world::Actor* owner)
 			{
 				m_Owner = owner;
 			}
 
 		protected:
-			Actor *m_Owner;
+			world::Actor *m_Owner;
 		};
 	}
 }
