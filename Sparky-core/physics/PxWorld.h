@@ -1,9 +1,16 @@
 #pragma once
 #include <vector>
+#include "physics/pxShape.h"
 namespace sparky
 {
 	namespace phyx
 	{
+
+		struct NotifyInfo
+		{
+			int id;
+			HitResult result;
+		};
 		class PxObject;
 		class PxWorld
 		{
@@ -17,6 +24,7 @@ namespace sparky
 			void Notify();
 		private:
 
+			std::vector<NotifyInfo*> m_NotifyObjects;
 			std::vector<PxObject*> m_Objects;
 		};
 	}

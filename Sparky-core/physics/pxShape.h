@@ -19,7 +19,9 @@ namespace sparky
 
 		class HitResult
 		{
+		public:
 
+			std::vector<>
 		};
 
 

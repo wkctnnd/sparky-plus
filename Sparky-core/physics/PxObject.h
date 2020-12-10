@@ -32,6 +32,9 @@ namespace sparky
 			virtual void ApplyForce(std::vector<Force>& force) = 0;
 			virtual void Simulate(float time) = 0;
 			virtual void Update(float time) = 0;
+			virtual bool CollideWith(PxObject* object, HitResult& result) {
+				return false;
+			}
 			//virtual void GetRenderData() = 0;
 		private:
  

@@ -16,6 +16,9 @@ namespace sparky
 			float3 m_Center;
 			float3 m_Extension;
 
+			//float3 m_Max;
+			//float3 m_Min;
+
 		};
 	}
 }

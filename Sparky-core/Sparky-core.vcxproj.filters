@@ -617,6 +617,9 @@
     <ClInclude Include="physics\PxAABBShape.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="physics\CollisionHelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

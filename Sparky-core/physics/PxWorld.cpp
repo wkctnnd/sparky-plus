@@ -1,6 +1,6 @@
 #include "physics/PxWorld.h"
 #include "physics/PxObject.h"
-
+#include "physics/CollisionHelper.h"
 namespace sparky
 {
 	namespace phyx
@@ -27,7 +27,25 @@ namespace sparky
 
 
 
-
+			for (int i=0;i<m_Objects.size();i++)
+			{
+				if (m_Objects[i]->GetType() == RIGID_BODY)
+				{
+					HitResult result;
+					for (int j = 0; j < m_Objects.size(); j++)
+					{
+						if (i!=j)
+						{
+							if (m_Objects[i]->CollideWith(m_Objects[j], result))
+							{
+								
+							}
+						}
+						
+					}
+				}
+				
+			}
 
 
 		}

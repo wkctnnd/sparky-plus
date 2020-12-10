@@ -257,6 +257,7 @@
     <ClInclude Include="graphics\texture\texture.h" />
     <ClInclude Include="graphics\texture\texture2d.h" />
     <ClInclude Include="maths\AABox.h" />
+    <ClInclude Include="physics\CollisionHelper.h" />
     <ClInclude Include="physics\PxAABBShape.h" />
     <ClInclude Include="physics\PxMassSpringSimulator.h" />
     <ClInclude Include="physics\PxObject.h" />
