@@ -3,8 +3,8 @@
 #include "maths/vec3.h"
 #include <vector>
 #include "maths/AABox.h"
- 
 
+using namespace sparky::maths;
 namespace sparky
 {
 
@@ -21,8 +21,14 @@ namespace sparky
 			OBB_Shadpe,
 		};
 
-		struct HitPointInfo
+	struct HitPointInfo
 		{
+			HitPointInfo(float3 p, float3 n, world::Actor* actor)
+			{
+				Position = p;
+				Normal = n;
+				Actor = actor;
+			}
 			float3 Position;
 			float3 Normal;
 			world::Actor* Actor;

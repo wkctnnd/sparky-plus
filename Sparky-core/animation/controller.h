@@ -8,6 +8,10 @@
 using namespace sparky::maths;
 namespace sparky
 {
+	namespace world
+	{
+		class AnimationComponent;
+	}
 	namespace animation
 	{
  
@@ -20,6 +24,14 @@ namespace sparky
 			int GetAnimationStackCount() { return m_AnimationStackArray.size(); };
 			class AnimationStack* GetAnimationStack(int id) { return m_AnimationStackArray[id]; }
 			//void AddAnimationStack() { m_AnimationStackArray.push_back(); }
+
+			void SetOwner(world::AnimationComponent* owner)
+			{
+				m_Owner = owner;
+			}
+
+		protected:
+			world::AnimationComponent *m_Owner;
 		private:
 			/*std::vector<Interpolator<float>*>  m_FloatInterpolators;
 			std::vector<Interpolator<float3>*> m_float3Interpolators;

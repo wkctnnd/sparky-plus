@@ -17,14 +17,14 @@ namespace sparky
 		class PxRigidBody :public PxObject
 		{
 		public:
-			PxRigidBody(world::ScriptComponent* sc):PxObject(sc) {   }
-			PxObjectType GetType() { return SOFT_BODY; }
+			PxRigidBody(world::ScriptComponent* sc);
+			PxObjectType GetType();
 			 
-			void GenerateShape(class RawMesh* mesh);
+			void GenerateShape(asset::RawMesh* mesh);
  
 		private:
 		 
-			class PxShape *m_Shape;
+			class phyx::PxShape *m_Shape;
 			phyx::ShapeType m_ShapeType;
 			//AABox m_BoundBox;
 

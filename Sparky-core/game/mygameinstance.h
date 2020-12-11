@@ -1,5 +1,9 @@
 #pragma once
 #include "gameinstance.h"
+#include <vector>
+
+
+using namespace std;
 namespace sparky
 {
 	namespace world
@@ -12,6 +16,9 @@ namespace sparky
 	}
 	namespace game
 	{
+		class Robot;
+		class Player;
+		class Lobby;
 		class MyGameInstance :public GameInstance
 		{
 		public:
@@ -21,16 +28,16 @@ namespace sparky
 
 		private:
 			//std::vector<world::Actor*> m_Astronauts;
-			world::Actor* m_Lobby;
+			//world::Actor* m_Lobby;
 			world::Scene* m_Scene;
-			world::Actor* m_Player;
+			//world::Actor* m_Player;
 
 			asset::RawMesh*  m_Astronautmeshresource;
 			asset::RawMesh*	 m_Lobbyresource;
 
-			vector<class Robot*> m_Robots;
-			class Player* m_Player;
-			class Lobby* m_Lobby;
+			vector<Robot*> m_Robots;
+			Player* m_Player;
+			Lobby* m_Lobby;
 
 		};
 	}

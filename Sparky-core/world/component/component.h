@@ -16,9 +16,8 @@ namespace sparky
 			STATICMESHRENDERER_TYPE,
 			RIGIDBODY_TYPE,
  
-			SCRIPT_TYPE,
-
-		};
+			ANIMATION_TYPE,
+			SCRIPT_TYPE,		};
 		class Component
 		{
 		public:

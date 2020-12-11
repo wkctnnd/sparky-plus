@@ -1,44 +1,40 @@
-#include "Robotcomponent.h"
-#include "input/input.h"
-#include "controller.h"
-#include "robot.h"
-using namespace sparky::input;
+#pragma once
+#include "robotcomponent.h"
+ 
+
+using namespace sparky::world;
+
 namespace sparky
 {
 	namespace game
 	{
-		class RobotController :public Controller
+		class Robot :public Actor
 		{
 		public:
-			void Update()
+			Robot(class Scene* scene, class RawMesh* MeshResourc)
 			{
-				Robot* robot = (Robot*)m_Owner;
-				MovementComponent *comp = (MovementComponent*)robot->GetComponent<MovementComponent>();
-				if (Input::GetKey(KEY_W))
-				{
-					comp->MoveUp();
-				}
-				else if (Input::GetKey(KEY_S))
-				{
-					comp->MoveDown();
-				}
-				else if (Input::GetKey(KEY_A))
-				{
-					comp->MoveLeft();
-				}
-				else if (Input::GetKey(KEY_S))
-				{
-					comp->MoveRight();
-				}
-
-				RigidBodyComponent* rigidbody = (RigidBodyComponent*)robot->GetComponent<RigidBodyComponent>();
-
+				m_MeshComponent = AddComponent<StaticMeshRendererComponent>();
+				m_RigidBodyComponent = AddComponent<RigidBodyComponent>();
+				m_RobotComponent = AddComponent<RobotComponent>();
+				m_MeshComponent->AddStaticMesh(MeshResourc);
+				scene->AddActor(this);
 			}
 
-			void SetOwner(Actor*);
+			void PreUpdate();
+			void Update();
+			void PostUpdate();
 
+			void SetController(class Controller* controller);
 		private:
-
+			//class RawMesh* m_MeshResource;
+			StaticMeshRendererComponent* m_MeshComponent;
+			RigidBodyComponent* m_RigidBodyComponent;
+			RobotComponent* m_RobotComponent;
+			//MovementComponent* m_MoveComponent;
 		};
 	}
+
+
 }
+
+

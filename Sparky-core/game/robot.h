@@ -5,12 +5,16 @@
 #include "world/component/staticmeshrenderercomponent.h"
 #include "world/component/rigidbodycomponent.h"
 #include "robotcomponent.h"
-#include "movementcomponent.h"
+//#include "movementcomponent.h"
 
 using namespace sparky::world;
 
 namespace sparky
 {
+	namespace animation
+	{
+		class AnimationComponent;
+	}
 	namespace game
 	{
 		class Robot :public Actor
@@ -29,13 +33,12 @@ namespace sparky
 			void Update();
 			void PostUpdate();
 
-			void SetController(class Controller* controller);
 		private:
 			//class RawMesh* m_MeshResource;
 			StaticMeshRendererComponent* m_MeshComponent;
 			RigidBodyComponent* m_RigidBodyComponent;
 			RobotComponent* m_RobotComponent;
-			MovementComponent* m_MoveComponent;
+			animation::AnimationComponent* m_AnimationComponent;
 		};
 	}
 

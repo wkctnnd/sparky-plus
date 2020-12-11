@@ -240,7 +240,10 @@
     <ClCompile Include="game\robotcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\movementcomponent.cpp">
+    <ClCompile Include="world\component\animationcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\CollisionHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -632,7 +635,10 @@
     <ClInclude Include="game\Playercomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\movementcomponent.h">
+    <ClInclude Include="world\component\controller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\animationcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

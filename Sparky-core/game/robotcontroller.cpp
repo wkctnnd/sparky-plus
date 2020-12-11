@@ -1,8 +1,10 @@
 #include "robotcontroller.h"
 #include "input/input.h"
 #include "robot.h"
-#include "movementcomponent.h"
+//#include "movementcomponent.h"
 #include "utils/random.h"
+#include "world/actor.h"
+#include "world/component/animationcomponent.h"
 using namespace sparky::input;
 namespace sparky
 {
@@ -12,22 +14,22 @@ namespace sparky
 		void RobotController::Update()
 		{
 			Robot* robot = (Robot*)(m_Owner);
-			MovementComponent *comp = (MovementComponent *)robot->GetComponent<MovementComponent>();
+			//MovementComponent *comp = (MovementComponent *)robot->GetComponent<MovementComponent>();
 			if (Input::GetKey(KEY_W))
 			{
-				comp->MoveUp();
+				MoveUp();
 			}
 			else if (Input::GetKey(KEY_S))
 			{
-				comp->MoveDown();
+				MoveDown();
 			}
 			else if (Input::GetKey(KEY_A))
 			{
-				comp->MoveLeft();
+				MoveLeft();
 			}
 			else if (Input::GetKey(KEY_S))
 			{
-				comp->MoveRight();
+				MoveRight();
 			}
 
 			/*RigidBodyComponent* rigidbody = player->GetComponent<RigidBodyComponent>();*/
@@ -45,6 +47,43 @@ namespace sparky
 
 
 
+
+
+		void RobotController::MoveUp()
+		{
+			m_Owner->GetOwner()->GetTransform()->Translate(float3(0, 0, m_Speed));
+		}
+
+
+		void RobotController::MoveDown()
+		{
+			m_Owner->GetOwner()->GetTransform()->Translate(float3(0, 0, -m_Speed));
+		}
+
+		void RobotController::MoveLeft()
+		{
+			m_Owner->GetOwner()->GetTransform()->Translate(float3(-m_Speed, 0, 0));
+		}
+
+
+		void RobotController::MoveRight()
+		{
+			m_Owner->GetOwner()->GetTransform()->Translate(float3(m_Speed, 0, 0));
+		}
+
+		void RobotController::SetDirection(float3 direction)
+		{
+			m_Direction = direction;
+		}
+
+		void RobotController::SetSpeed(float speed)
+		{
+			m_Speed = speed;
+		}
+
+		float3 RobotController::GetDirection()
+		{
+			return m_Direction;
+		}
 	};
-}
 }

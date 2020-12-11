@@ -11,7 +11,7 @@
 #include "engine.h"
 
 #include "input/input.h"
-
+using namespace sparky::input;
 int main()
 {
 	using namespace sparky;
@@ -45,21 +45,23 @@ int main()
 		//std::cout << vector;
 		if (window.isKeyPress(GLFW_KEY_W))
 		{
-			Input.SetKey(KEY_W)
+			Input::SetKey(KEY_W, true);
 		}
 
 		else if (window.isKeyPress(GLFW_KEY_A))
 		{
-			Input.SetKey(KEY_A)
+			Input::SetKey(KEY_A, true);
 		}
 		else if (window.isKeyPress(GLFW_KEY_S))
 		{
-			Input.SetKey(KEY_S)
+			Input::SetKey(KEY_S, true);
 		}
 		else if (window.isKeyPress(GLFW_KEY_D))
 		{
-			Input.SetKey(KEY_D)
+			Input::SetKey(KEY_D, true);
 		}
+
+		
 	
 		if (window.isMouseButtonPress(GLFW_MOUSE_BUTTON_LEFT))
 		{

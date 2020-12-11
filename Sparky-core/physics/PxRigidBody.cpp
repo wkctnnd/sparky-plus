@@ -5,11 +5,10 @@ namespace sparky
 {
 	namespace phyx
 	{
-
 		PxRigidBody::PxRigidBody(world::ScriptComponent* sc) :PxObject(sc) {   }
 		PxObjectType PxRigidBody::GetType() { return SOFT_BODY; }
 
-		void PxRigidBody::GenerateShape(RawMesh* mesh)
+		void PxRigidBody::GenerateShape(asset::RawMesh* mesh)
 		{
 			switch (m_ShapeType)
 			{

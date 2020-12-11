@@ -149,7 +149,6 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
-    <ClCompile Include="game\movementcomponent.cpp" />
     <ClCompile Include="game\playercontroller.cpp" />
     <ClCompile Include="game\robot.cpp" />
     <ClCompile Include="game\robotcomponent.cpp" />
@@ -162,6 +161,7 @@
     <ClCompile Include="graphics\texture\texture2d.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
+    <ClCompile Include="physics\CollisionHelper.cpp" />
     <ClCompile Include="physics\PxAABBShape.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />
     <ClCompile Include="physics\PxRigidBody.cpp" />
@@ -171,6 +171,7 @@
     <ClCompile Include="render\OceanRender.cpp" />
     <ClCompile Include="render\photorenderer.cpp" />
     <ClCompile Include="render\phyxRender.cpp" />
+    <ClCompile Include="world\component\animationcomponent.cpp" />
     <ClCompile Include="world\primitivesceneproxy.cpp" />
     <ClCompile Include="render\view.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />
@@ -239,7 +240,6 @@
     <ClInclude Include="input\input.h" />
     <ClInclude Include="game\lobby.h" />
     <ClInclude Include="game\player.h" />
-    <ClInclude Include="game\movementcomponent.h" />
     <ClInclude Include="game\playercontroller.h" />
     <ClInclude Include="game\robot.h" />
     <ClInclude Include="graphics\errorreport.h" />
@@ -298,6 +298,8 @@
     <ClInclude Include="render\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
+    <ClInclude Include="world\component\animationcomponent.h" />
+    <ClInclude Include="world\component\controller.h" />
     <ClInclude Include="world\component\inputcomponent.h" />
     <ClInclude Include="world\component\scriptcomponent.h" />
     <ClInclude Include="world\PrimitiveSceneProxy.h" />

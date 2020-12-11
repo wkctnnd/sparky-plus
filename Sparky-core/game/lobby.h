@@ -21,9 +21,9 @@ namespace sparky
 				scene->AddActor(this);
 			}
 
-			void PreUpdate();
-			void Update();
-			void PostUpdate();
+			void PreUpdate() {};
+			void Update() {};
+			void PostUpdate() {};
 
 
 		private:

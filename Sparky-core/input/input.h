@@ -30,7 +30,9 @@ namespace sparky
 		protected:
 		private:
 
-			bool m_KeyMapping[KeyNum];
+			static bool m_KeyMapping[KeyNum];
 		};
+
+		
 	}
 }
