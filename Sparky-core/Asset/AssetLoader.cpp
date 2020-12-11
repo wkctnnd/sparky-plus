@@ -45,11 +45,11 @@ namespace sparky {
 			}
 			else if (extension.compare("obj") == 0)
 			{
-				//m_MeshLoader = new objLoader();
-				//m_MeshLoader->Initialize();
-				////RawMesh mesh;
-				//m_MeshLoader->LoadFile(fullrelativepath.c_str());
-				//m_MeshLoader->LoadResources();
+				m_MeshLoader = new objLoader();
+				m_MeshLoader->Initialize();
+				//RawMesh mesh;
+				m_MeshLoader->LoadFile(fullrelativepath.c_str());
+				m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))
 			{

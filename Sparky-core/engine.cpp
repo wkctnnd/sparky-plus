@@ -38,126 +38,91 @@
 #include "maths/mat4.h"
 
 #include "gameinstance.h"
+#include "game/mygameinstance.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
 using namespace sparky::phyx;
 using namespace sparky::world;
+using namespace sparky::game;
 namespace sparky
 {
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
-		/*m_Renderer = new PhyxRenderer();
-		m_Renderer->Initialize();
-
-		m_Pxworld = new PxWorld();
-		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(1);
-		m_Pxlink.push_back(2);
-		m_Pxlink.push_back(2);
-		m_Pxlink.push_back(3);
-		m_Pxlink.push_back(0);
-
-		m_Pxlink.push_back(4);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(5);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(4);
-		m_Pxlink.push_back(7);
-
-		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(5);
-		m_Pxlink.push_back(1);
-		m_Pxlink.push_back(5);
-		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(4);
-
-		m_Pxlink.push_back(3);
-		m_Pxlink.push_back(2);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(7);
-		m_Pxlink.push_back(3);
-
-		m_Pxlink.push_back(4);
-		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(7);
-		m_Pxlink.push_back(7);
-		m_Pxlink.push_back(0);
-		m_Pxlink.push_back(3);
-
-		m_Pxlink.push_back(1);
-		m_Pxlink.push_back(5);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(1);
-		m_Pxlink.push_back(6);
-		m_Pxlink.push_back(2);
-		PxSoftBody *body = PxSoftBody::CreateDefaultCube(0);*/
-
-
-
-	//	m_Pxworld->AddObject(body);
 		
-		m_Scene = new sparky::world::Scene();
-		m_Scene->Initialize();
-		m_Renderer = new sparky::render::PhotoRenderer(m_Scene);
-		m_Renderer->Initialize();
-		Actor* camera = new Actor();
-		//sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
-		
-		//camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
-		sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
-		m_Scene->AddActor(camera);
-		Actor* photoedActor = new Actor();
-		m_Scene->AddActor(photoedActor);
-		sparky::world::StaticMeshRendererComponent* staticmeshcom = photoedActor->AddComponent<sparky::world::StaticMeshRendererComponent>();
-
-		//m_AssetLoader->LoadFile("model//hanoi.obj");
-		//int rawsectioncount = m_AssetLoader->GetRawStaticMeshCount();
-		//for (int i=0;i<rawsectioncount;i++)
-		//{
-		//	staticmeshcom->AddStaticMesh(m_AssetLoader->GetRawStaticMesh(i));
-		//}
 		//
-		RawMesh* mesh = new RawMesh();
-		std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//ucp201.obj";
-		objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
-		staticmeshcom->AddStaticMesh(mesh);
-		//camerameshcomponent->AddStaticMesh(mesh);
-		ColorRenderTarget  crt;
-		crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
-		crt.action = Clear_Store;
-		std::vector<ColorRenderTarget*> crts;
-		crts.push_back(&crt);
+		//m_Scene = new sparky::world::Scene();
+		//m_Scene->Initialize();
+		//m_Renderer = new sparky::render::PhotoRenderer(m_Scene);
+		//m_Renderer->Initialize();
+		//Actor* camera = new Actor();
+		////sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
+		//
+		////camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
+		//sparky::world::CameraComponent* cameracomponet = camera->AddComponent<sparky::world::CameraComponent>();
+		//m_Scene->AddActor(camera);
+		//Actor* photoedActor = new Actor();
+		//m_Scene->AddActor(photoedActor);
+		//sparky::world::StaticMeshRendererComponent* staticmeshcom = photoedActor->AddComponent<sparky::world::StaticMeshRendererComponent>();
 
-		DepthStencilRenderTarget dsrt;
-		dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
-		dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24STENCILl8);
-		cameracomponet->SetRenderTarget(crts, &dsrt);
-		/*m_ParticleManager = new ParticleManager();
-		m_ParticleManager->Initialize();
-		m_ParticleManager->CreateParticleSystem();*/
-		
-		//Mesh *m = Mesh::Load("test.obj");
-		
-		//m_Renderer->AddRenderable(skeletalmesh);
-		//render->AddSmokeVolume(smokemesh);
+		////m_AssetLoader->LoadFile("model//hanoi.obj");
+		////int rawsectioncount = m_AssetLoader->GetRawStaticMeshCount();
+		////for (int i=0;i<rawsectioncount;i++)
+		////{
+		////	staticmeshcom->AddStaticMesh(m_AssetLoader->GetRawStaticMesh(i));
+		////}
+		////
+		//RawMesh* mesh = new RawMesh();
+		//std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//ucp201.obj";
+		//objLoader::LoadMesh(fullrelativepath.c_str(), *mesh);
+		//staticmeshcom->AddStaticMesh(mesh);
+		////camerameshcomponent->AddStaticMesh(mesh);
+		//ColorRenderTarget  crt;
+		//crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
+		//crt.action = Clear_Store;
+		//std::vector<ColorRenderTarget*> crts;
+		//crts.push_back(&crt);
 
-		std::vector<CameraComponent*> cameras = m_Scene->GetRoot()->GetChildrenComponents<CameraComponent>();
-		if (cameras.size() > 0)
-		{
-			m_CameraComponent = cameras[0];
-		}
+		//DepthStencilRenderTarget dsrt;
+		//dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
+		//dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24STENCILl8);
+		//cameracomponet->SetRenderTarget(crts, &dsrt);
+		///*m_ParticleManager = new ParticleManager();
+		//m_ParticleManager->Initialize();
+		//m_ParticleManager->CreateParticleSystem();*/
+		//
+		////Mesh *m = Mesh::Load("test.obj");
+		//
+		////m_Renderer->AddRenderable(skeletalmesh);
+		////render->AddSmokeVolume(smokemesh);
 
+		//std::vector<CameraComponent*> cameras = m_Scene->GetRoot()->GetChildrenComponents<CameraComponent>();
+		//if (cameras.size() > 0)
+		//{
+		//	m_CameraComponent = cameras[0];
+		//}
+
+
+
+		m_GameInstance = new MyGameInstance();
+		m_GameInstance->Init();
+		Actor* camera = world::GScene->AddActor();
+		m_CameraComponent = camera->AddComponent<sparky::world::CameraComponent>();
+		//camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
+			//Actor* camera = new Actor();
+	////sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
+	//
+	////
+	//
 	}
 
-	float angleA = 0;
-	float angleB = -3.1415926/2;
-	float angleC = 0;
-	float angleD = 0;
-	float radius = 100;
-	
+	//float angleA = 0;
+	//float angleB = -3.1415926/2;
+	//float angleC = 0;
+	//float angleD = 0;
+	//float radius = 100;
+	//
 	
 	void Engine::Loop()
 	{
@@ -173,27 +138,12 @@ namespace sparky
 		float3 lookatpoistion(0, 0, 0);
 		float3 cameraposition;
 
-		if (angleC < 2 * 3.1415926)
-		{
-			angleC += 0.1;
-		}
-		else
-		{
-			angleC = angleC - (2 * 3.1415926);
-			if (angleA < 2 * 3.1415926)
-				angleA += 0.1;
-			else
-			{
-				angleA = angleA - (2 * 3.1415926);
-				angleB += 0.1f;
-			}
-		}
 		
+		m_GameInstance->Update();
+
 		if (component)
 		{
-			cameraposition.x = radius * Util::Cos(angleB)*Util::Sin(angleA);
-			cameraposition.z = radius * Util::Cos(angleB)*Util::Cos(angleA);
-			cameraposition.y = radius * Util::Sin(angleB);
+		
 			component->SetLocalPosition(cameraposition);
 
 			
@@ -234,7 +184,7 @@ namespace sparky
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		m_Renderer->RenderScene(cameraposition, axis, angleC);
+		//m_Renderer->RenderScene(cameraposition, axis, angleC);
 		//m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
@@ -267,7 +217,7 @@ namespace sparky
 
 		m_CameraComponent->GetRenderTargetInfo()->Bind();
 		std::string depthpath = path + temp + "depth.bmp";
-		m_Renderer->RenderSceneDepth(cameraposition,axis, angleC);
+		//m_Renderer->RenderSceneDepth(cameraposition,axis, angleC);
 		rt->SaveToDisk(depthpath);
 		
 		m_CameraComponent->GetRenderTargetInfo()->UnBind();

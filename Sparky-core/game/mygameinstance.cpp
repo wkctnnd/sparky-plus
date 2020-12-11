@@ -23,7 +23,7 @@ namespace sparky
 			AssetLoader assetloader;
 			AssetLoader assetloader2;
 			RawMesh* mesh = new RawMesh();
-			std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//astronouts//astronouts.obj";
+			std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//astronouts//amongus_astro_still.obj";
 
 			assetloader.LoadFile(fullrelativepath);
 			//objLoader::LoadMesh(fullrelativepath.c_str(), *m_Astronautmeshresource);

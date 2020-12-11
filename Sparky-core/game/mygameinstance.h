@@ -1,7 +1,7 @@
 #pragma once
 #include "gameinstance.h"
 #include <vector>
-
+#include <List>
 
 using namespace std;
 namespace sparky
@@ -35,7 +35,7 @@ namespace sparky
 			asset::RawMesh*  m_Astronautmeshresource;
 			asset::RawMesh*	 m_Lobbyresource;
 
-			vector<Robot*> m_Robots;
+			list<Robot*> m_Robots;
 			Player* m_Player;
 			Lobby* m_Lobby;
 

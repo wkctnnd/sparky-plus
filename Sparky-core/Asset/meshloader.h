@@ -5,7 +5,7 @@ namespace sparky {
 		{
 			public:
 
-				virtual void Initialize() = 0;
+				virtual void Initialize() {};
 				//virtual bool LoadMesh(const char* file, class RawMesh& rmesh) { return false; }
 				virtual void LoadResources() {}
 				virtual bool LoadFile(const char* file) { return false; };
@@ -13,7 +13,8 @@ namespace sparky {
 				virtual unsigned int GetRawSkinMeshCount() { return 0; };
 				virtual class RawMesh* GetRawStaticMesh(unsigned int id) { return 0; }
 				unsigned int GetRawStaticMeshCount() { return 0; }
-
+				unsigned  int GetMaterialCount() { return 0; }
+				class Material* GetMaterial(unsigned int id) { return 0; }
 				unsigned int GetClipCount() { return 0; }
 
 				unsigned int GetSkeletonCount() { return 0; }
