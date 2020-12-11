@@ -323,9 +323,6 @@
     <ClInclude Include="render\dynamicmesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="render\material.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="particle\Particle.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -639,6 +636,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\component\animationcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\material.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

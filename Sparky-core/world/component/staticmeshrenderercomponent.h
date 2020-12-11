@@ -4,7 +4,7 @@
 #include "maths/quaternion.h"
 #include "maths/mat4.h"
 #include "render/mesh.h"
-#include "render/material.h"
+#include "asset/material.h"
 #include "Asset/rawmesh.h"
 using namespace sparky::maths;
 using namespace sparky::render;

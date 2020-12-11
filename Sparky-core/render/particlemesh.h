@@ -1,6 +1,6 @@
 #pragma once
 #include "graphics/buffers/DynamicBuffer.h"
-#include "render/material.h"
+#include "asset/material.h"
 #include <vector>
 #include "maths/vec3.h"
 #include "renderable.h"
@@ -8,8 +8,8 @@
 using namespace sparky::graphics;
 using namespace sparky::render;
 using namespace sparky::maths;
+using namespace sparky::asset;
 
-class sparky::render::Material;
 namespace sparky
 {
 	namespace particle

@@ -214,11 +214,11 @@ namespace sparky {
 			}
 		}
 
-		bool FBXLoader::LoadFile(const char* filename)
+		bool FBXLoader::LoadFile(std::string filedir, std::string filename)
 		{
-
+			std::string filepath = filedir + filename;
 			int lFileFormat;
-			if (!mSdkManager->GetIOPluginRegistry()->DetectReaderFileFormat(filename, lFileFormat))
+			if (!mSdkManager->GetIOPluginRegistry()->DetectReaderFileFormat(filepath.c_str(), lFileFormat))
 			{
 				// Unrecognizable file format. Try to fall back to FbxImporter::eFBX_BINARY
 				lFileFormat = mSdkManager->GetIOPluginRegistry()->FindReaderIDByDescription("FBX binary (*.fbx)");;
@@ -226,7 +226,7 @@ namespace sparky {
 			bool lResult = false;
 
 			// Initialize the importer by providing a filename.
-			if (mImporter->Initialize(filename, lFileFormat) == true)
+			if (mImporter->Initialize(filepath.c_str(), lFileFormat) == true)
 			{
 
 				std::string error = mImporter->GetStatus().GetErrorString();

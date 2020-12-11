@@ -5,6 +5,7 @@
 #include <sstream>
 #include "Asset/imageloader.h"
 #include "Asset/material.h"
+#include "global.h"
 using namespace sparky::maths;
 namespace sparky {
 
@@ -33,17 +34,17 @@ namespace sparky {
 				if (linestr[0] == 'v') {
 					if (linestr[1] == 't') {//vt 0.581151 0.979929 纹理
 						std::istringstream in(linestr);
-						 
+
 						in >> head >> x >> y;
 						texcoords.emplace_back(x, y);
-					/*	in >> head >> rmesh. >> vt->TV;
-						m_pic.VT.push_back(*vt);*/
+						/*	in >> head >> rmesh. >> vt->TV;
+							m_pic.VT.push_back(*vt);*/
 
 					}
 					else if (linestr[1] == 'n') {//vn 0.637005 -0.0421857 0.769705 法向量
 						std::istringstream in(linestr);
 
-					 
+
 
 						in >> head >> x >> y >> z;
 						normals.emplace_back(x, y, z);
@@ -51,7 +52,7 @@ namespace sparky {
 					}
 					else {//v -53.0413 158.84 -135.806 点
 						std::istringstream in(linestr);
-						
+
 						in >> head >> x >> y >> z;
 						positions.emplace_back(x, y, z);
 
@@ -64,7 +65,7 @@ namespace sparky {
 
 					}
 					std::istringstream in(linestr);
-				 
+
 					in >> head;
 					int i = 0;
 					int tempindex;
@@ -90,10 +91,10 @@ namespace sparky {
 						}
 						i++;
 					}
-					
+
 
 				}
-				else if (linestr[0]=='m')
+				else if (linestr[0] == 'm')
 				{
 					std::istringstream in(linestr);
 					std::string mat;
@@ -106,15 +107,24 @@ namespace sparky {
 
 			return true;
 
-	
+
 
 		}
 
-
-
-		bool objLoader::LoadFile(const char* file)
+		unsigned  int objLoader::GetMaterialCount()
 		{
-			File f(file);
+			return m_Materials.size();
+		}
+		class Material* objLoader::GetMaterial(unsigned int id)
+		{
+			return m_Materials[id];
+		}
+
+		//支持加载一个mesh
+		bool objLoader::LoadFile(std::string fileDir, std:: string filename)
+		{
+			std::string filepath = fileDir + filename;
+			File f(filepath);
 			std::string linestr = f.GetLine();
 			float x, y, z;
 			std::string head;
@@ -208,22 +218,28 @@ namespace sparky {
 				linestr = f.GetLine();
 			}
 
-			ImageLoader loader;
-			for (int i=0;i<matfile.size();i++)
+		/*	std::string path(file);
+			int i= path.find_last_of("//");
+			std::string subpath = */
+			
+			for (int i = 0; i < matfile.size(); i++)
 			{
-				loader.LoadFile(matfile[i].c_str());
+				std::string matfilepath = filepath + matfile[i];
+				LoadMaterial(matfilepath.c_str());
 			}
+			m_Meshs.push_back(rmesh);
+			return true;
 		}
 
 		//https://blog.csdn.net/weixin_34414196/article/details/91954612
-		void LoadMaterial(const char* file)
+		void objLoader::LoadMaterial(const char* file)
 		{
-		
+			//std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + file;
 			File f(file);
 			std::string linestr = f.GetLine();
 			float x, y, z;
 			Material* mat = new Material();
-
+			ImageLoader imgloader;
 			std::string head;
 			//std::vector<float2> texcoords;
 			while (!f.IsEnd())
@@ -239,45 +255,43 @@ namespace sparky {
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->m_Ambient.x = x;
-						mat->m_Ambient.y = y;
-						mat->m_Ambient.z = z;
+						mat->SetAmbientColor(x, y, z);
+
 					}
 					else if (linestr[1] == 'd')
 					{
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->m_Diffuse.x = x;
-						mat->m_Diffuse.y = y;
-						mat->m_Diffuse.z = z;
+						mat->SetDiffuseColor(x, y, z);
+
 					}
 					else if (linestr[1] = 's')
 					{
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->m_Specular.x = x;
-						mat->m_Specular.y = y;
-						mat->m_Specular.z = z;
+						mat->SetSpecularColor(x, y, z);
 					}
 				}
-				if (linestr.substr(0,3).compare("map") ==0)
+				if (linestr.substr(0, 3).compare("map") == 0)
 				{
-					if (linestr.substr(4,2).compare("kd")==0)
+					if (linestr.substr(4, 2).compare("kd") == 0)
 					{
-
+						graphics::Texture* tex = imgloader.LoadFile(file);
+						mat->SetDiffuseMap(tex);
 					}
 				}
+				linestr = f.GetLine();
+			}
+
+			m_Materials.push_back(mat);
+
 		}
-		unsigned  int objLoader::GetMaterialCount()
-		{ 
-			return m_Materials.size();
-		}
-		class Material* objLoader::GetMaterial(unsigned int id) 
-		{ 
-			return m_Materials[id];
-		}
+
+
+
+
 
 	}
 }

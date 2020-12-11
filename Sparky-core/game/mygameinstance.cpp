@@ -23,17 +23,20 @@ namespace sparky
 			AssetLoader assetloader;
 			AssetLoader assetloader2;
 			RawMesh* mesh = new RawMesh();
-			std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "model//astronouts//amongus_astro_still.obj";
+ 
 
-			assetloader.LoadFile(fullrelativepath);
+			assetloader.LoadFile("amongus_astro_still.obj");
 			//objLoader::LoadMesh(fullrelativepath.c_str(), *m_Astronautmeshresource);
+
+			world::GScene = new Scene();
+			world::GScene->Initialize();
 
 			m_Astronautmeshresource = assetloader.GetRawStaticMesh(0);
 			m_Player = new Player(world::GScene, m_Astronautmeshresource);
 
 			
-			fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + "mobel//lobby//amongus_lobby.obj";
-			assetloader2.LoadFile(fullrelativepath);
+ 
+			assetloader2.LoadFile("amongus_lobby.obj");
 			m_Lobby = new Lobby(world::GScene, assetloader2.GetRawStaticMesh(0));
 
 	/*		m_Player = world::GScene->AddActor();

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 namespace sparky {
 	namespace asset {
 		class meshLoader
@@ -8,7 +9,7 @@ namespace sparky {
 				virtual void Initialize() {};
 				//virtual bool LoadMesh(const char* file, class RawMesh& rmesh) { return false; }
 				virtual void LoadResources() {}
-				virtual bool LoadFile(const char* file) { return false; };
+				virtual bool LoadFile(std::string fileDir, std::string filename) { return false; };
 				virtual class RawSkinMesh* GetRawSkinMesh(unsigned int id) { return 0; }
 				virtual unsigned int GetRawSkinMeshCount() { return 0; };
 				virtual class RawMesh* GetRawStaticMesh(unsigned int id) { return 0; }

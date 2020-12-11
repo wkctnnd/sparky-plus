@@ -27,7 +27,7 @@ namespace sparky {
 		}
 		void AssetLoader::LoadFile(std::string filename)
 		{
-			std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + filename;
+			std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath);
 			size_t pos = filename.find_last_of('.');
 			std::string extension = filename.substr(pos + 1, filename.size() - pos + 1);
 			transform(extension.begin(), extension.end(), extension.begin(), ::tolower);
@@ -36,7 +36,7 @@ namespace sparky {
 				m_MeshLoader =  new FBXLoader();
 				m_MeshLoader->Initialize();
 				//RawMesh mesh;
-				m_MeshLoader->LoadFile(fullrelativepath.c_str());
+				m_MeshLoader->LoadFile(fullrelativepath, filename);
 				m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("stl") == 0)
@@ -48,7 +48,7 @@ namespace sparky {
 				m_MeshLoader = new objLoader();
 				m_MeshLoader->Initialize();
 				//RawMesh mesh;
-				m_MeshLoader->LoadFile(fullrelativepath.c_str());
+				m_MeshLoader->LoadFile(fullrelativepath, filename);
 				m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))

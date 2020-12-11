@@ -3,6 +3,7 @@
 #include "Asset/rawskinmesh.h"
 #include "Asset/fbxloader.h"
 #include "skinmesh.h"
+#include "asset/AssetLoader.h"
 using namespace sparky::asset;
 namespace sparky {
 	namespace render {
@@ -19,12 +20,17 @@ namespace sparky {
 			m_VAO.setIndexBuffer(ibuffer);
 		}
 
+
+		//如果这里出错 可以查下git历史版本
 		SkinMesh* SkinMesh::Load(const char* file)
 		{
-			
-			FBXLoader fbxloader;
+			AssetLoader fbxloader;
 			fbxloader.LoadFile(file);
-			fbxloader.LoadResources();
+			//fbxloader.LoadResources();
+
+			/*		FBXLoader fbxloader;
+					fbxloader.LoadFile(file);
+					fbxloader.LoadResources();*/
 
 			RawSkinMesh* rawskinmesh = fbxloader.GetRawSkinMesh(0);
 			

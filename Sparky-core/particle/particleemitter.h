@@ -1,20 +1,25 @@
 #pragma once
 #include <list>
 #include "maths/vec3.h"
-#include "render/material.h"
+#include "asset/material.h"
 #include "utils/random.h"
+//#include "render/particlemesh.h"
 using namespace sparky::maths;
-using namespace sparky::render;
-class sparky::render::Material;
+
+
 namespace sparky
 {
+	namespace asset
+	{
+		class Material;
+	}
 	namespace render
 	{
 		struct PerEmitterVertex;
 		class ParticleMesh;
 	}
 }
- 
+using namespace sparky::render;
 namespace sparky
 {
 	namespace particle
@@ -49,7 +54,7 @@ namespace sparky
 			float Distance2Camera();
 		protected:
 			std::list<Particle*> m_Particles;
-			Material* m_Material;
+			asset::Material* m_Material;
 
 			float3 m_Direction;
 			float3 m_Position;

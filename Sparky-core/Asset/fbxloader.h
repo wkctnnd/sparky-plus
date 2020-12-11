@@ -106,7 +106,7 @@ namespace sparky {
 		{
 		public:
 			FBXLoader();
-			bool LoadFile(const char* file);
+			bool LoadFile(std::string filedir, std::string filename);
 			void LoadResources();
 			bool LoadMesh(RawMesh& rmesh);
 			void Initialize();

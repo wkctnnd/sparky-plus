@@ -295,7 +295,7 @@
     <ClInclude Include="particle\particalmempoolmanager.h" />
     <ClInclude Include="particle\particalsystem.h" />
     <ClInclude Include="render\dynamicmesh.h" />
-    <ClInclude Include="render\material.h" />
+    <ClInclude Include="Asset\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
     <ClInclude Include="world\component\animationcomponent.h" />
