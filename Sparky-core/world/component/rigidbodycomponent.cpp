@@ -15,7 +15,7 @@ namespace sparky
 {
 	namespace world
 	{
-		ComponentType RigidBodyComponent::TYPE = ComponentType::CAMER_TYPE;
+		ComponentType RigidBodyComponent::TYPE = ComponentType::RIGIDBODY_TYPE;
 
 //#ifdef EDITOR_USE
 //		void RigidBodyComponent::GenerateShape()

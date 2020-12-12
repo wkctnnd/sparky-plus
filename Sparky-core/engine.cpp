@@ -135,7 +135,7 @@ namespace sparky
 	
 	void Engine::Loop()
 	{
-		
+		float t = Engine::GlobalTimer.GetElapsemillionseconds();
 		GlobalTimer.Begin();
 
 		//m_ParticleManager->Update();
@@ -147,9 +147,13 @@ namespace sparky
 		float3 lookatpoistion(0, 0, 0);
 		float3 cameraposition(0,20,-10);
 
-		
+	
 		m_GameInstance->Update();
+
+		
+
 		m_GameInstance->GetScene()->Update(0);
+		m_Pxworld->AddObjects(m_GameInstance->GetScene());
 		if (component)
 		{
 		
@@ -172,7 +176,8 @@ namespace sparky
 
 		//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		//graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
-		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
+		m_Pxworld->Update(t);
+		m_Pxworld->Notify();
 		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
 

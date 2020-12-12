@@ -2,6 +2,11 @@
 #include "physics/PxObject.h"
 #include "physics/CollisionHelper.h"
 #include "world/component/scriptcomponent.h"
+#include "world/scene.h"
+#include "world/actor.h"
+#include "world/component/rigidbodycomponent.h"
+#include "physics/PxRigidBody.h"
+using namespace sparky::world;
 namespace sparky
 {
 	namespace phyx
@@ -68,6 +73,35 @@ namespace sparky
 					m_Objects[i]->Notify();
 				}
 			}
+		}
+
+		void PxWorld::AddObjects(world::Scene* scene)
+		{
+			Reset();
+			std::vector<RigidBodyComponent*> comps = scene->GetRoot()->GetChildrenComponents<RigidBodyComponent>();
+			/*for (int i = 0; i < comps.size(); i++)
+			{
+				Renderable* r = comps[i]->GetRenderable();
+				PhotoObjects.push_back(r);
+			}*/
+
+			for (int i = 0; i < comps.size(); i++)
+			{
+				PxRigidBody* rigidbody = (PxRigidBody*)comps[i]->GetRigidBody();
+				if (rigidbody)
+				{
+					AddObject(rigidbody);
+				}
+
+			}
+
+
+		}
+
+		void PxWorld::Reset()
+		{
+			m_Objects.clear();
+			m_NotifyObjects.clear();
 		}
 	}
 }

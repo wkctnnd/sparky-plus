@@ -37,7 +37,7 @@ namespace sparky
 			virtual bool CollideWith(PxObject* object, HitResult& result) {
 				return false;
 			}
-
+			phyx::PxShape* GetShape() { return m_Shape; }
 			void Notify()
 			{
 				m_ScriptComponent->OnCollided();
@@ -47,6 +47,7 @@ namespace sparky
  
 
 		protected:
+			class phyx::PxShape *m_Shape;
 			world::ScriptComponent* m_ScriptComponent;
 		};
 	}

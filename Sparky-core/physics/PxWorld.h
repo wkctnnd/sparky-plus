@@ -3,6 +3,10 @@
 #include "physics/pxShape.h"
 namespace sparky
 {
+	namespace world
+	{
+		class Scene;
+	}
 	namespace phyx
 	{
 
@@ -20,8 +24,10 @@ namespace sparky
 			void FetchResult(std::vector<PxObject*>& objects);
 			void AddObject(PxObject* object);
 
-
+			void AddObjects(world::Scene* scene);
 			void Notify();
+
+			void Reset();
 		private:
 
 			std::vector<HitResult> m_NotifyObjects;
