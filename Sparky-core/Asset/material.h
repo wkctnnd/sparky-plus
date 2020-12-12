@@ -40,12 +40,18 @@ namespace sparky
 			{
 				m_DiffuseMap = map;
 			}
+
+			graphics::Texture* GetDiffuseMap()
+			{
+				return m_DiffuseMap;
+			}
 		private:
 			float3 m_Ambient;
 			float3 m_Specular;
 			float3 m_Diffuse;
 
 			graphics::Texture* m_DiffuseMap;
+		
 		};
 	}
 }

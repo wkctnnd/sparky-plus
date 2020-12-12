@@ -39,7 +39,7 @@ namespace sparky
 			unsigned long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 			for (int i = 0; i < m_Controller.size(); i++)
 			{
-				m_Controller[i]->Update(elapse);
+				m_Controller[i]->Update();
 			}
 		}
 	}

@@ -26,5 +26,24 @@ namespace sparky
 
 			return true;
 		}
+
+		bool IsIntersectSphereWithSphere(Shpere& sphere0, Shpere& Shpere1, HitResult& result)
+		{
+			float3 disvec = (sphere0.m_Center - Shpere1.m_Center);
+			float dis = disvec.length();
+			 if (dis<sphere0.m_Radius+ Shpere1.m_Radius)
+			 {
+				 return true;
+			 }
+		
+			 return false;
+ 
+		}
+
+
+		bool IsIntersectSphereWithAABB(Shpere& sphere0, AABox& box1, HitResult& result)
+		{
+			return false;
+		}
 	}
 }

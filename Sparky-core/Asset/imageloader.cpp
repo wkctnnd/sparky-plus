@@ -11,7 +11,7 @@ namespace sparky
 		Texture* ImageLoader::LoadFile(const char* file)
 		{
 			int x, y, n;
-			unsigned char *data = stbi_load("filename", &x, &y, &n, 0);
+			unsigned char *data = stbi_load(file, &x, &y, &n, 0);
 			// filename : 文件名
 			// x : 图片宽 
 			// y : 图片高
@@ -19,17 +19,22 @@ namespace sparky
 			// 最后一个为自己设置的颜色通道个数，如果非0就按照此数值读取图像
 			// 返回值非NULL说明导入成功
 			// Do Something
-			stbi_image_free(data);
+			Texture *tex = 0;
 			switch (n)
 			{
 			case 3:
-				return new Texture2D(x, y, Format::RGB, data);
+				tex =new Texture2D(x, y, Format::RGB, data);
+				break;
+ 
 			case 4:
-				return new Texture2D(x, y, Format::RGBA, data);
+				tex = new Texture2D(x, y, Format::RGBA, data);
+				break;
 			default:
 				break;
 			}
-			return 0;
+
+			stbi_image_free(data);
+			return tex;
 		}
 
 

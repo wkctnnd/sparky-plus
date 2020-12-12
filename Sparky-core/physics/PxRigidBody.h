@@ -19,8 +19,12 @@ namespace sparky
 		public:
 			PxRigidBody(world::ScriptComponent* sc);
 			PxObjectType GetType();
-			 
+			void SetShapeType(phyx::ShapeType type)
+			{
+				m_ShapeType = type;
+			 }
 			void GenerateShape(asset::RawMesh* mesh);
+
  
 		private:
 		 

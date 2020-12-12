@@ -16,7 +16,7 @@ namespace sparky
 	{
 		enum ShapeType
 		{
-			Shere_Shape,
+			Sphere_Shape,
 			AABB_Shape,
 			OBB_Shadpe,
 		};

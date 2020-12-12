@@ -14,9 +14,9 @@ namespace sparky
 		class PlayerController :public Controller
 		{
 		public:
-			PlayerController() {}
+			PlayerController() :m_Speed(0.1f){}
 
-			void Update();
+			virtual void Update();
 
 			void MoveUp();
 
@@ -34,6 +34,7 @@ namespace sparky
 
 			float3 GetDirection();
 
+	 
 		private:
 
 			float3 m_Direction;

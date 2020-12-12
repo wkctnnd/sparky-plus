@@ -11,6 +11,10 @@ using namespace sparky::render;
 using namespace sparky::asset;
 namespace sparky
 {
+	namespace render
+	{
+		class RenderMaterial;
+	}
 	namespace world
 	{
 		class Actor;
@@ -30,8 +34,8 @@ namespace sparky
 			static ComponentType TYPE;
 			StaticMeshRendererComponent(Actor* owner);
 			void AddStaticMesh(RawMesh* mesh);
-			void SetMaterial(int index, Material& mat);
-			
+			void AddMaterial(Material* mat);
+			RenderMaterial* GetMaterial(int index);
 			Renderable* GetRenderable();
 			class SceneProxy* GetSceneProxy();
 			virtual void PreUpdate() {}
@@ -44,9 +48,10 @@ namespace sparky
 		private:
 		 
 			std::vector<Truck> m_Trunks;
-			std::vector<Material> m_Materials;
+			std::vector<RenderMaterial*> m_Materials;
 			bool m_Dirty;
 			render::Mesh* m_RenderMesh;
+			render::RenderMaterial *m_DefaultMaterial;
 		};
 
 

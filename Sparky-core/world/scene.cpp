@@ -8,18 +8,20 @@ namespace sparky
 		{
 			GScene = this;
 			m_RootActor = new Actor();
+			m_AllActors.push_back(m_RootActor);
 		}
 
 		void Scene::AddActor(Actor* atr)
 		{
 			m_RootActor->Attach(atr);
-			 
+			m_AllActors.push_back(atr);
 		}
 
 		Actor * Scene::AddActor()
 		{
 			Actor *atr = new Actor();
 			m_RootActor->Attach(atr);
+			m_AllActors.push_back(atr);
 			return atr;
 		}
 
@@ -27,7 +29,7 @@ namespace sparky
 		{
 			for (int i=0;i<m_AllActors.size();i++)
 			{
-			
+				m_AllActors[i]->Update();
 			}
 		}
 

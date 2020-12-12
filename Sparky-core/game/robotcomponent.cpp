@@ -10,7 +10,17 @@ namespace sparky
 	{
 
 
-		
+		void RobotComponent::PreUpdate()
+		{
+		}
+		void RobotComponent::Update()
+		{
+
+		}
+		void RobotComponent::PostUpdate()
+		{
+
+		}
 
 		void RobotComponent::OnCollided()
 		{
@@ -19,7 +29,7 @@ namespace sparky
 			con->SetDirection(con->GetDirection()*-1);
 		}
 
- 
+
 
 	}
 

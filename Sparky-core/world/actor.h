@@ -33,13 +33,18 @@ namespace sparky
 			std::vector<T*> GetChildrenComponents();
 
 			void AddToScene(Scene* scene);
-
-			virtual void Update() {};
+			void SetActive(bool ac)
+			{
+				m_IsActive = ac;
+			}
+			bool IsActive() { return m_IsActive; }
+			virtual void Update() ;
 			virtual void PreUpdate() {};
 			virtual void PostUpdate() {};
 		private:
 			//0号元素默认为transform组件，所以m_components的size>=1
 			std::vector<Component*> m_Components;
+			bool m_IsActive;
 		};
 
 	

@@ -74,6 +74,15 @@ namespace sparky {
 			return m_MeshLoader->GetRawStaticMeshCount();
 		}
 
+		unsigned int AssetLoader::GetMaterialCount()
+		{
+			return m_MeshLoader->GetMaterialCount();
+		}
+		Material* AssetLoader::GetMaterial(unsigned int id)
+		{
+			return m_MeshLoader->GetMaterial(id);
+		}
+
 		Skeleton* AssetLoader::GetSkeleton(unsigned int id)
 		{
 			return m_MeshLoader->GetSkeleton(id);

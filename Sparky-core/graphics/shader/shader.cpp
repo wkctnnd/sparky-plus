@@ -2,6 +2,7 @@
 #include <assert.h>
 
 #include "glm/gtc/type_ptr.hpp"
+#include "graphics/texture/texture.h"
 namespace sparky {
 	namespace graphics {
 
@@ -100,6 +101,20 @@ namespace sparky {
 			GLenum  Error = glGetError();
 			assert(Error == GL_NO_ERROR);
 			 
+		}
+
+
+
+		void Shader::SetTexture(const GLchar* name, Texture* tex)
+		{
+			glActiveTexture(GL_TEXTURE0);
+			tex->Bind();
+			
+			GLint  Location = GetUniformLocation(name);
+			glUniform1i(Location, 0);
+			GLenum  Error = glGetError();
+			assert(Error == GL_NO_ERROR);
+
 		}
 	}
 }

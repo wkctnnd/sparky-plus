@@ -237,13 +237,22 @@
     <ClCompile Include="physics\PxRigidBody.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\robotcomponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="world\component\animationcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="physics\CollisionHelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gamerenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\rendermateral.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="physics\PxShereShape.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\robotcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -434,9 +443,6 @@
     <ClInclude Include="maths\quaternion.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="animation\AnimationComponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="animation\animationstack.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -590,9 +596,6 @@
     <ClInclude Include="world\component\inputcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\Controller.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="game\controller.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -620,9 +623,6 @@
     <ClInclude Include="physics\CollisionHelper.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\robotcomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="shaders\toon.vert">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -639,6 +639,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Asset\material.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gamerenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\rendermaterial.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="physics\PxShpereShape.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="maths\sphere.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\robotcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -672,5 +687,7 @@
     <None Include="shaders\depth.vert" />
     <None Include="shaders\test.frag" />
     <None Include="shaders\test.vert" />
+    <None Include="shaders\texturelight.frag" />
+    <None Include="shaders\texturelight.vert" />
   </ItemGroup>
 </Project>

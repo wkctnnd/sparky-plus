@@ -13,14 +13,14 @@ namespace sparky {
 				virtual class RawSkinMesh* GetRawSkinMesh(unsigned int id) { return 0; }
 				virtual unsigned int GetRawSkinMeshCount() { return 0; };
 				virtual class RawMesh* GetRawStaticMesh(unsigned int id) { return 0; }
-				unsigned int GetRawStaticMeshCount() { return 0; }
-				unsigned  int GetMaterialCount() { return 0; }
-				class Material* GetMaterial(unsigned int id) { return 0; }
-				unsigned int GetClipCount() { return 0; }
+				virtual unsigned int GetRawStaticMeshCount() { return 0; }
+				virtual unsigned  int GetMaterialCount() { return 0; }
+				virtual class Material* GetMaterial(unsigned int id) { return 0; }
+				virtual unsigned int GetClipCount() { return 0; }
 
-				unsigned int GetSkeletonCount() { return 0; }
+				virtual unsigned int GetSkeletonCount() { return 0; }
 
-				class Skeleton* GetSkeleton(unsigned int id) { return 0; }
+				virtual class Skeleton* GetSkeleton(unsigned int id) { return 0; }
 
 				class SkeletonClip* GetClip(unsigned int id) { return 0; }
 				unsigned int GetAnimationLayerCount() { return 0; }

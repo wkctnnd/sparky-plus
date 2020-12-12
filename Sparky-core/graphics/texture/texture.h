@@ -41,6 +41,7 @@ namespace sparky
 			virtual void UnBind() const = 0;
 			GLuint GetRealId() 
 			{ 
+
 				return m_TexId; 
 			}
 			virtual void* Lock(unsigned int offset, unsigned int size) const = 0;

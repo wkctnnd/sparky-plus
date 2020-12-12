@@ -1,6 +1,7 @@
 #pragma once
 #include "PxRigidBody.h"
 #include "PxAABBShape.h"
+#include "PxShpereShape.h"
 namespace sparky
 {
 	namespace phyx
@@ -12,8 +13,8 @@ namespace sparky
 		{
 			switch (m_ShapeType)
 			{
-			case sparky::phyx::Shere_Shape:
-				m_Shape = new PxAABBShape(mesh);
+			case sparky::phyx::Sphere_Shape:
+				m_Shape = new PxShpereShape(mesh);
 				break;
 			case sparky::phyx::AABB_Shape:
 				m_Shape = new PxAABBShape(mesh);

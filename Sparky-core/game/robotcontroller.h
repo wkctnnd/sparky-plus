@@ -10,8 +10,11 @@ namespace sparky
 		class RobotController :public Controller
 		{
 		public:
-
-			void Update();
+			RobotController()
+			{
+				m_Direction = GetRandomDirection();
+			}
+			virtual void Update();
 
 			void MoveUp();
 
@@ -32,7 +35,7 @@ namespace sparky
  
 		private:
 			float3 GetRandomDirection();
-			Random m_RandomEngine;
+			
 
 			float3 m_Direction;
 			float m_Speed;

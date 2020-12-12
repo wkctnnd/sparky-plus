@@ -9,6 +9,7 @@ namespace sparky{
 		class OceanRenderer;
 		class PhyxRenderer;
 		class PhotoRenderer;
+		class GameRenderer;
 	}
 	namespace asset
 	{
@@ -50,13 +51,13 @@ namespace sparky
 		
 	private:
 		std::vector<int> m_Pxlink;
-		sparky::render::PhotoRenderer *m_Renderer;
+		//sparky::render::PhotoRenderer *m_Renderer;
 		sparky::asset::AssetLoader *m_AssetLoader;
 		sparky::particle::ParticleManager *m_ParticleManager;
 		sparky::phyx::PxWorld* m_Pxworld;
 		sparky::world::CameraComponent* m_CameraComponent;
 		sparky::world::Scene* m_Scene;
-
+		sparky::render::GameRenderer *m_Renderer;
 
 		//这么写,目前单线程
 		game::GameInstance* m_GameInstance;

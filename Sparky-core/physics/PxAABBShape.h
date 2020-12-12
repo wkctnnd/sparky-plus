@@ -14,9 +14,10 @@ namespace sparky
 	}
 	namespace phyx
 	{
- 
+		class PxShpereShape;
 		class PxAABBShape:public PxShape
 		{
+			friend PxShpereShape;
 		public:
 			virtual bool Collide(PxShape* othershape, HitResult& result);
 			PxAABBShape(asset::RawMesh* mesh);

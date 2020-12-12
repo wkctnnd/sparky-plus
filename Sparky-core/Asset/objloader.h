@@ -38,6 +38,8 @@ namespace sparky
 
 			std::vector<RawMesh*> m_Meshs;
 			std::vector<Material*> m_Materials;
+
+			std::string CurrentFileDir;
 		};
 	}
 }

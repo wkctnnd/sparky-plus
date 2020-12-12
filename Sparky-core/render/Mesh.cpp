@@ -20,6 +20,17 @@ namespace sparky {
 		{
 			Mesh* newmesh = new Mesh();
 			Buffer* buffer = new StaticBuffer(&(rawmesh.m_Position[0].x), rawmesh.m_Position.size() * 3, 3);
+			newmesh->vao.addBuffer(buffer, 0);
+			if (!rawmesh.m_Normal.empty())
+			{
+				Buffer* normalbuffer = new StaticBuffer(&(rawmesh.m_Normal[0].x), rawmesh.m_Normal.size() * 3, 3);
+				newmesh->vao.addBuffer(normalbuffer, 1);
+			}
+			if (!rawmesh.m_Texcoord.empty())
+			{
+				Buffer* texcoordbuffer = new StaticBuffer(&(rawmesh.m_Texcoord[0].x), rawmesh.m_Texcoord.size() * 2, 2);
+				newmesh->vao.addBuffer(texcoordbuffer, 2);
+			}
 			if (rawmesh.Indexed())
 			{
 				IndexBuffer* ibuffer = new IndexBuffer(&rawmesh.m_Faces[0], rawmesh.m_Faces.size());
@@ -27,7 +38,7 @@ namespace sparky {
 			}
 				
 			
-			newmesh->vao.addBuffer(buffer, 0);
+			
 			
 			return newmesh;
 		}

@@ -37,25 +37,28 @@
 #include "maths/util.h"
 #include "maths/mat4.h"
 
+#include "render/gamerenderer.h"
 #include "gameinstance.h"
 #include "game/mygameinstance.h"
+#include "input/input.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
 using namespace sparky::phyx;
 using namespace sparky::world;
 using namespace sparky::game;
+using namespace sparky::input;
 namespace sparky
 {
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
 		
-		//
+		m_Pxworld = new sparky::phyx::PxWorld();
+		
 		//m_Scene = new sparky::world::Scene();
 		//m_Scene->Initialize();
-		//m_Renderer = new sparky::render::PhotoRenderer(m_Scene);
-		//m_Renderer->Initialize();
+
 		//Actor* camera = new Actor();
 		////sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
 		//
@@ -107,7 +110,13 @@ namespace sparky
 
 		m_GameInstance = new MyGameInstance();
 		m_GameInstance->Init();
-		Actor* camera = world::GScene->AddActor();
+		
+		m_Renderer = new sparky::render::GameRenderer(m_GameInstance->GetScene());
+		m_Renderer->Initialize();
+
+		//奇怪赋值后gscene还是为null
+		//Actor* camera = world::GScene->AddActor();
+		Actor* camera = m_GameInstance->GetScene()->AddActor();
 		m_CameraComponent = camera->AddComponent<sparky::world::CameraComponent>();
 		//camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
 			//Actor* camera = new Actor();
@@ -119,7 +128,7 @@ namespace sparky
 
 	//float angleA = 0;
 	//float angleB = -3.1415926/2;
-	//float angleC = 0;
+	float angleC = 0;
 	//float angleD = 0;
 	//float radius = 100;
 	//
@@ -136,11 +145,11 @@ namespace sparky
 		TransformComponent* component = camera->GetTransform();
 
 		float3 lookatpoistion(0, 0, 0);
-		float3 cameraposition;
+		float3 cameraposition(0,20,-10);
 
 		
 		m_GameInstance->Update();
-
+		m_GameInstance->GetScene()->Update(0);
 		if (component)
 		{
 		
@@ -159,10 +168,10 @@ namespace sparky
 			//glm::rotate()
 		}
 		float3 axis = (cameraposition - lookatpoistion).Normalize();
-		m_Scene->UpdateTransform();
+		m_GameInstance->GetScene()->UpdateTransform();
 
-		graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
-		graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
+		//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
+		//graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
 		//m_Pxworld->Update(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
@@ -183,8 +192,8 @@ namespace sparky
 		//}
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
-		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		//m_Renderer->RenderScene(cameraposition, axis, angleC);
+		//m_CameraComponent->GetRenderTargetInfo()->Bind();
+		m_Renderer->RenderScene(cameraposition, axis, angleC);
 		//m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
@@ -212,15 +221,15 @@ namespace sparky
 
 		}
 		
-		std::string colorpath = path + temp + "color.bmp";
-		rt->SaveToDisk(colorpath);
+		//std::string colorpath = path + temp + "color.bmp";
+		//rt->SaveToDisk(colorpath);
 
-		m_CameraComponent->GetRenderTargetInfo()->Bind();
-		std::string depthpath = path + temp + "depth.bmp";
+		//m_CameraComponent->GetRenderTargetInfo()->Bind();
+		//std::string depthpath = path + temp + "depth.bmp";
 		//m_Renderer->RenderSceneDepth(cameraposition,axis, angleC);
-		rt->SaveToDisk(depthpath);
+		//rt->SaveToDisk(depthpath);
 		
-		m_CameraComponent->GetRenderTargetInfo()->UnBind();
+		//m_CameraComponent->GetRenderTargetInfo()->UnBind();
 		glFlush();
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
@@ -229,7 +238,7 @@ namespace sparky
 
 		//elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//std::cout << elapse << std::endl;
-
+		Input::Reset();
 		
 	}
 

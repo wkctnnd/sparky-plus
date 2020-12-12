@@ -22,6 +22,19 @@ namespace sparky
 		Actor::Actor()
 		{
 			m_Components.push_back(new TransformComponent(this));
+			m_IsActive = true;
+		}
+
+		void Actor::Update()
+		{
+			if (m_IsActive)
+			{
+				for (int i = 0; i < m_Components.size(); i++)
+				{
+					m_Components[i]->Update();
+				}
+			}
+		
 		}
 
 		void Actor::AddToScene(Scene* scene)

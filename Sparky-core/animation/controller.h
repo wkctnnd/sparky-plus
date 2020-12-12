@@ -20,7 +20,7 @@ namespace sparky
 		{
 		public:
 			void Initialize(std::vector<class AnimationStack*>& stacks);
-			void Update(unsigned long elapse);
+			virtual void Update();
 			int GetAnimationStackCount() { return m_AnimationStackArray.size(); };
 			class AnimationStack* GetAnimationStack(int id) { return m_AnimationStackArray[id]; }
 			//void AddAnimationStack() { m_AnimationStackArray.push_back(); }

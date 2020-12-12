@@ -5,6 +5,7 @@ namespace sparky
 	namespace world
 	{
 		class Actor;
+		class Scene;
 	}
 	namespace game
 	{
@@ -13,10 +14,12 @@ namespace sparky
 		public:
 			virtual void Init() = 0;
 			virtual void Update() = 0;
+			world::Scene* GetScene() {
+				return m_Scene;
+			}
+		protected:
 
-		private:
-
-		
+			world::Scene* m_Scene;
 		};
 	}
 }

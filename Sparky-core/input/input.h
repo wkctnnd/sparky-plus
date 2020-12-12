@@ -26,6 +26,7 @@ namespace sparky
 
 			static bool GetKey(KeyCode  code);
 
+			static void Reset();
 			static void SetKey(KeyCode  code, bool value);
 		protected:
 		private:

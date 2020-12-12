@@ -125,6 +125,12 @@ namespace sparky {
 		{
 			std::string filepath = fileDir + filename;
 			File f(filepath);
+
+			std::string path(filepath);
+			int i = path.find_last_of("//");
+			CurrentFileDir = filepath.substr(0, i + 1);
+
+			
 			std::string linestr = f.GetLine();
 			float x, y, z;
 			std::string head;
@@ -218,13 +224,10 @@ namespace sparky {
 				linestr = f.GetLine();
 			}
 
-		/*	std::string path(file);
-			int i= path.find_last_of("//");
-			std::string subpath = */
 			
 			for (int i = 0; i < matfile.size(); i++)
 			{
-				std::string matfilepath = filepath + matfile[i];
+				std::string matfilepath = CurrentFileDir + matfile[i];
 				LoadMaterial(matfilepath.c_str());
 			}
 			m_Meshs.push_back(rmesh);
@@ -242,7 +245,7 @@ namespace sparky {
 			ImageLoader imgloader;
 			std::string head;
 			//std::vector<float2> texcoords;
-			while (!f.IsEnd())
+			while (!linestr.empty()||!f.IsEnd())
 			{
 
 				if (linestr.length() < 2)
@@ -274,11 +277,17 @@ namespace sparky {
 						mat->SetSpecularColor(x, y, z);
 					}
 				}
-				if (linestr.substr(0, 3).compare("map") == 0)
+				std::string temp = linestr.substr(0, 3);
+				if (temp.compare("map") == 0)
 				{
-					if (linestr.substr(4, 2).compare("kd") == 0)
+					if (linestr.substr(4, 2).compare("Kd") == 0)
 					{
-						graphics::Texture* tex = imgloader.LoadFile(file);
+						std::istringstream in(linestr);
+						std::string texfilename;
+						in >> head >> texfilename;
+					 
+
+						graphics::Texture* tex = imgloader.LoadFile((CurrentFileDir+ texfilename).c_str());
 						mat->SetDiffuseMap(tex);
 					}
 				}

@@ -30,9 +30,9 @@ namespace sparky
 		public:
 			PxObject(world::ScriptComponent* sc) :m_ScriptComponent(sc) {}
 			virtual PxObjectType GetType() = 0;
-			virtual void ApplyForce(std::vector<Force>& force) = 0;
-			virtual void Simulate(float time) = 0;
-			virtual void Update(float time) = 0;
+			virtual void ApplyForce(std::vector<Force>& force) {}
+			virtual void Simulate(float time) {}
+			virtual void Update(float time) {}
 			world::Actor* GetActor() { return m_ScriptComponent->GetOwner(); }
 			virtual bool CollideWith(PxObject* object, HitResult& result) {
 				return false;

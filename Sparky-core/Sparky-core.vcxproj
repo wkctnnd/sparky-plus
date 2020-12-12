@@ -165,12 +165,15 @@
     <ClCompile Include="physics\PxAABBShape.cpp" />
     <ClCompile Include="physics\PxObject.cpp" />
     <ClCompile Include="physics\PxRigidBody.cpp" />
+    <ClCompile Include="physics\PxShereShape.cpp" />
     <ClCompile Include="physics\PxSoftBody.cpp" />
     <ClCompile Include="physics\PxWorld.cpp" />
     <ClCompile Include="render\dynamicmesh.cpp" />
+    <ClCompile Include="render\gamerenderer.cpp" />
     <ClCompile Include="render\OceanRender.cpp" />
     <ClCompile Include="render\photorenderer.cpp" />
     <ClCompile Include="render\phyxRender.cpp" />
+    <ClCompile Include="render\rendermateral.cpp" />
     <ClCompile Include="world\component\animationcomponent.cpp" />
     <ClCompile Include="world\primitivesceneproxy.cpp" />
     <ClCompile Include="render\view.cpp" />
@@ -215,7 +218,6 @@
     <ClCompile Include="game\mygameinstance.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="animation\AnimationComponent.h" />
     <ClInclude Include="animation\animationlayer.h" />
     <ClInclude Include="animation\animationmanager.h" />
     <ClInclude Include="animation\animationstack.h" />
@@ -233,7 +235,6 @@
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="game\aicontroller.h" />
-    <ClInclude Include="game\controller.h" />
     <ClInclude Include="game\Playercomponent.h" />
     <ClInclude Include="game\robotcomponent.h" />
     <ClInclude Include="game\robotcontroller.h" />
@@ -244,6 +245,7 @@
     <ClInclude Include="game\robot.h" />
     <ClInclude Include="graphics\errorreport.h" />
     <ClInclude Include="graphics\shader\uniformbuffer.h" />
+    <ClInclude Include="maths\sphere.h" />
     <ClInclude Include="miniheader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
     <ClInclude Include="Asset\rawskinmesh.h" />
@@ -266,12 +268,15 @@
     <ClInclude Include="physics\PxObject.h" />
     <ClInclude Include="physics\PxRigidBody.h" />
     <ClInclude Include="physics\pxShape.h" />
+    <ClInclude Include="physics\PxShpereShape.h" />
     <ClInclude Include="physics\PxSimulator.h" />
     <ClInclude Include="physics\PxSoftBody.h" />
     <ClInclude Include="physics\PxWorld.h" />
+    <ClInclude Include="render\gamerenderer.h" />
     <ClInclude Include="render\OceanRender.h" />
     <ClInclude Include="render\photorenderer.h" />
     <ClInclude Include="render\phyxRender.h" />
+    <ClInclude Include="render\rendermaterial.h" />
     <ClInclude Include="render\renderpath\SceneRenderer.h" />
     <ClInclude Include="render\renderpath\SimpleRenderer.h" />
     <ClInclude Include="shaders\toon.vert" />
@@ -349,6 +354,8 @@
   <ItemGroup>
     <None Include="animation\keyvalue.inl" />
     <None Include="maths\vec2.inl" />
+    <None Include="shaders\texturelight.frag" />
+    <None Include="shaders\texturelight.vert" />
     <None Include="shaders\ApplyAdvection.comp" />
     <None Include="shaders\ApplyAdvectionVelocity.comp" />
     <None Include="shaders\ApplyBuoyancy.comp" />

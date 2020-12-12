@@ -11,30 +11,6 @@ namespace sparky
 	namespace game
 	{
 
-			void PlayerController::Update()
-			{
-				 
-				//MovementComponent *comp = (MovementComponent *)player->GetComponent<MovementComponent>();
-				if (Input::GetKey(KEY_W))
-				{
-					MoveUp();
-				}
-				else if (Input::GetKey(KEY_S))
-				{
-					MoveDown();
-				}
-				else if (Input::GetKey(KEY_A))
-				{
-					MoveLeft();
-				}
-				else if (Input::GetKey(KEY_S))
-				{
-					MoveRight();
-				}
-
-				/*RigidBodyComponent* rigidbody = player->GetComponent<RigidBodyComponent>();*/
-				
-			}	
 
 
 
@@ -51,13 +27,13 @@ namespace sparky
 
 			void PlayerController::MoveLeft()
 			{
-				m_Owner->GetOwner()->GetTransform()->Translate(float3(-m_Speed, 0, 0));
+				m_Owner->GetOwner()->GetTransform()->Translate(float3(m_Speed, 0, 0));
 			}
 
 
 			void PlayerController::MoveRight()
 			{
-				m_Owner->GetOwner()->GetTransform()->Translate(float3(m_Speed, 0, 0));
+				m_Owner->GetOwner()->GetTransform()->Translate(float3(-m_Speed, 0, 0));
 			}
 
 			void PlayerController::SetDirection(float3 direction)
@@ -73,6 +49,27 @@ namespace sparky
 			float3 PlayerController::GetDirection()
 			{
 				return m_Direction;
+			}
+
+			void PlayerController::Update()
+			{
+				if (Input::GetKey(KEY_W))
+				{
+					MoveUp();
+				}
+				if (Input::GetKey(KEY_S))
+				{
+					MoveDown();
+				}
+				if (Input::GetKey(KEY_A))
+				{
+					MoveLeft();
+				}
+
+				if (Input::GetKey(KEY_D))
+				{
+					MoveRight();
+				}
 			}
 		 
 	}

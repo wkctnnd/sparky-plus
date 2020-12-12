@@ -5,6 +5,8 @@
 #include "utils/random.h"
 #include "world/actor.h"
 #include "world/component/animationcomponent.h"
+#include "utils/timer.h"
+#include "engine.h"
 using namespace sparky::input;
 namespace sparky
 {
@@ -15,23 +17,8 @@ namespace sparky
 		{
 			Robot* robot = (Robot*)(m_Owner);
 			//MovementComponent *comp = (MovementComponent *)robot->GetComponent<MovementComponent>();
-			if (Input::GetKey(KEY_W))
-			{
-				MoveUp();
-			}
-			else if (Input::GetKey(KEY_S))
-			{
-				MoveDown();
-			}
-			else if (Input::GetKey(KEY_A))
-			{
-				MoveLeft();
-			}
-			else if (Input::GetKey(KEY_S))
-			{
-				MoveRight();
-			}
-
+			m_Speed = 0.01;
+			m_Owner->GetOwner()->GetTransform()->Translate(m_Direction * m_Speed);
 			/*RigidBodyComponent* rigidbody = player->GetComponent<RigidBodyComponent>();*/
 
 		}
@@ -39,9 +26,11 @@ namespace sparky
 		float3 RobotController::GetRandomDirection()
 		{
 			float num[3];
-			m_RandomEngine.GenerateRandomNumber(num, 3, 2, 0);
-			float3 temp(num[0], num[1], num[2]);
-			temp = (temp - float3(1,1,1)) / 2.0f;
+			Random randomengine;
+			randomengine.Seed(Engine::GlobalTimer.GetElapsemillionseconds());
+			randomengine.GenerateRandomNumber(num, 3, 2, 0);
+			float3 temp(num[0], 0, num[2]);
+			temp = (temp - float3(1,0,1)) / 2.0f;
 			return temp.NormalizeSelf();
 		}
 

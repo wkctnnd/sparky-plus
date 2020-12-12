@@ -28,7 +28,8 @@ namespace sparky {
 			class Skeleton* GetSkeleton(unsigned int id);
 			unsigned int GetSkeletonCount();
 			unsigned int GetClipCount();
-
+			class Material* GetMaterial(unsigned int id);
+			unsigned  int GetMaterialCount();
 			unsigned int GetAnimationLayerCount();
 			AnimationLayer* GetAnimationLayer(unsigned int id);
 			class SkeletonClip* GetClip(unsigned int id);

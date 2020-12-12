@@ -17,5 +17,13 @@ namespace sparky
 		{
 			m_KeyMapping[code] = value;
 		}
+
+		void Input::Reset()
+		{
+			for (int i=0;i<KeyNum;i++)
+			{
+				m_KeyMapping[i] = false;
+			}
+		}
 	}
  }

@@ -7,7 +7,11 @@ namespace sparky
 
 			ComponentType AnimationComponent::TYPE = ANIMATION_TYPE;
 
- 
+			void AnimationComponent::Update()
+			{
+				m_Controller->Update();
+
+			}
  
 	
 	}

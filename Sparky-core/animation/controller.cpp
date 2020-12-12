@@ -19,7 +19,7 @@ namespace sparky
 			m_AnimationStackArray = stacks;
 		}
 
-		void Controller::Update(unsigned long elapse)
+		void Controller::Update()
 		{
 			/*for (unsigned int i = 0; i < m_FloatInterpolators.size(); i++)
 			{
