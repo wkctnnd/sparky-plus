@@ -23,6 +23,12 @@ namespace sparky
 			}
 		}
 
+		PxShape* PxAABBShape::NewShapeFromMatrix(maths::mat4& mat)
+		{
+			PxAABBShape* shape = new PxAABBShape();
+
+		}
+
 		PxAABBShape::PxAABBShape(asset::RawMesh * mesh)
 		{
 			m_ShapeType = AABB_Shape;

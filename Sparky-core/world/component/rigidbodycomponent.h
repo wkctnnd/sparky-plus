@@ -36,19 +36,15 @@ namespace sparky
 
 			 }
 
-			phyx::PxRigidBody * GetRigidBody() 
-			{ 
-				if(m_Owner->IsActive())
-					return m_RigidBody;
-				return 0;
-			}
+			phyx::PxRigidBody * GetRigidBody();
+			
 //#ifdef EDITOR_USE
 //			void GenerateShape();
 //#endif
 		private:
  
-			
-			phyx::PxRigidBody *m_RigidBody;
+			class phyx::PxShape *m_Shape;
+			//phyx::PxRigidBody *m_RigidBody;
 		};
 
 		

@@ -8,6 +8,8 @@
 #include "render/View.h"
 #include "physics/PxRigidBody.h"
 #include "physics/PxAABBShape.h"
+#include "physics/pxShape.h"
+#include "physics/PxShpereShape.h"
 using namespace sparky::graphics;
 using namespace sparky::render;
 using namespace sparky::phyx;
@@ -28,11 +30,40 @@ namespace sparky
 //		}
 //#endif
 
+		phyx::PxRigidBody * RigidBodyComponent::GetRigidBody()
+		{
+			if (m_Owner->IsActive())
+			{
+				ScriptComponent* comp = (ScriptComponent*)m_Owner->GetComponent<ScriptComponent>();
+				PxRigidBody* body = new PxRigidBody(comp);
+				body->
+				body->SetWorldMatrix(m_Owner->GetTransform()->GetWorldTransform());
+				return body;
+			}
+
+			return 0;
+		}
+
 		void RigidBodyComponent::GenerateShape(class asset::RawMesh* mesh, class world::ScriptComponent* component, phyx::ShapeType type)
 		{
-			m_RigidBody = new  PxRigidBody(component);
+	/*		m_RigidBody = new  PxRigidBody(component);
 			m_RigidBody->SetShapeType(type);
-			m_RigidBody->GenerateShape(mesh);
+			m_RigidBody->GenerateShape(mesh);*/
+			switch (type)
+			{
+			case sparky::phyx::Sphere_Shape:
+				m_Shape = new PxShpereShape(mesh);
+				break;
+			case sparky::phyx::AABB_Shape:
+				m_Shape = new PxAABBShape(mesh);
+				break;
+			case sparky::phyx::OBB_Shadpe:
+				m_Shape = new PxAABBShape(mesh);
+				break;
+			default:
+				break;
+			}
+			
 		}
 	}
 }

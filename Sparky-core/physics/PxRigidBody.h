@@ -25,6 +25,7 @@ namespace sparky
 			 }
 			void GenerateShape(asset::RawMesh* mesh);
 
+			
 			virtual bool CollideWith(PxObject* object, HitResult& result) {
 				return m_Shape->Collide(object->GetShape(), result);
 			}

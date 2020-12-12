@@ -58,7 +58,8 @@ namespace sparky
 			ShapeType GetType() { return m_ShapeType; }
 
 			virtual bool Collide(PxShape* shape, HitResult& result) = 0;
- 
+			
+			virtual PxShape* NewShapeFromMatrix(maths::mat4 mat) = 0;
 		protected:
 
 			ShapeType m_ShapeType;

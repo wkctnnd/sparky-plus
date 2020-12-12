@@ -3,6 +3,7 @@
 #include <vector>
 #include "world/component/scriptcomponent.h"
 #include "pxShape.h"
+#include "maths/mat4.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -28,7 +29,7 @@ namespace sparky
 		class PxObject
 		{
 		public:
-			PxObject(world::ScriptComponent* sc) :m_ScriptComponent(sc) {}
+			PxObject(world::ScriptComponent* sc, phyx::PxShape* shape, mat4 matp);
 			virtual PxObjectType GetType() = 0;
 			virtual void ApplyForce(std::vector<Force>& force) {}
 			virtual void Simulate(float time) {}
@@ -37,10 +38,18 @@ namespace sparky
 			virtual bool CollideWith(PxObject* object, HitResult& result) {
 				return false;
 			}
+			void SetShape(phyx::PxShape* shape, mat4 mat)
+			{
+
+			}
 			phyx::PxShape* GetShape() { return m_Shape; }
 			void Notify()
 			{
 				m_ScriptComponent->OnCollided();
+			}
+			void SetWorldMatrix(mat4 mat)
+			{
+				m_WorldMat = mat;
 			}
 			//virtual void GetRenderData() = 0;
 		private:
@@ -49,6 +58,7 @@ namespace sparky
 		protected:
 			class phyx::PxShape *m_Shape;
 			world::ScriptComponent* m_ScriptComponent;
+			mat4 m_WorldMat;
 		};
 	}
 }
