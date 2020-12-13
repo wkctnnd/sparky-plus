@@ -25,7 +25,7 @@ namespace sparky
 				m_PlayerComponent = AddComponent<PlayerComponent> ();
 				//m_MoveComponent = AddComponent<MovementComponent>();
 				m_MeshComponent->AddStaticMesh(MeshResourc);
-				m_RigidBodyComponent->GenerateShape(MeshResourc, m_PlayerComponent, phyx::ShapeType::Sphere_Shape);
+				m_RigidBodyComponent->GenerateShape(MeshResourc, phyx::ShapeType::Sphere_Shape);
 				m_AnimComponent = AddComponent<AnimationComponent>();
 				PlayerController* playercontroller = new PlayerController();
 				m_AnimComponent->SetController(playercontroller);

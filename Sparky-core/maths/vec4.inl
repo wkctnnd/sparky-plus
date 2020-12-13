@@ -60,5 +60,12 @@ namespace sparky {
 			stream << "vec4: (" << vector.x << "," << vector.y << "," << vector.z << vector<<")";
 			return stream;
 		}
+
+
+		template<class T>
+		float vec4<T>::Dot(const vec4& other) const
+		{
+			return x * other.x + y * other.y + z * other.z+w*other.w;
+		}
 	}
 }

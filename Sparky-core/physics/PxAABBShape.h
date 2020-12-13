@@ -24,7 +24,8 @@ namespace sparky
 			PxAABBShape(asset::RawMesh* mesh);
 			PxAABBShape(PxAABBShape* shape, mat4& mat)
 			{
-				shape->m_BoundBox
+				m_BoundBox = shape->m_BoundBox;
+				m_BoundBox.Transform(mat);
 			}
  
 		protected:

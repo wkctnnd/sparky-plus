@@ -25,7 +25,7 @@ namespace sparky
 
 			void OnCollided();
 		private:
-	 
+			int m_FronzonTime;
 		};
 	}
 

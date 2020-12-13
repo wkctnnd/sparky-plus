@@ -18,9 +18,13 @@ namespace sparky
 
 			}
 
+			void Update();
+
+			void  OnCollided();
+
 		private:
 
-
+			int m_FronzonTime;
 		};
 	}
 }

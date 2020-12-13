@@ -1,4 +1,4 @@
-#version 450 core
+#version 330 core
 
  varying vec3 worldnormal;
  varying vec3 worldposition;

@@ -29,7 +29,7 @@ namespace sparky
 		class PxObject
 		{
 		public:
-			PxObject(world::ScriptComponent* sc, phyx::PxShape* shape, mat4 matp);
+			PxObject(world::ScriptComponent* sc=0, phyx::PxShape* shape =0, mat4* matp=0);
 			virtual PxObjectType GetType() = 0;
 			virtual void ApplyForce(std::vector<Force>& force) {}
 			virtual void Simulate(float time) {}
@@ -45,12 +45,18 @@ namespace sparky
 			phyx::PxShape* GetShape() { return m_Shape; }
 			void Notify()
 			{
-				m_ScriptComponent->OnCollided();
+				if (m_ScriptComponent)
+				{
+					m_ScriptComponent->OnCollided();
+				}
+				
 			}
 			void SetWorldMatrix(mat4 mat)
 			{
 				m_WorldMat = mat;
 			}
+
+			world::ScriptComponent* GetScriptComponent() { return m_ScriptComponent; }
 			//virtual void GetRenderData() = 0;
 		private:
  

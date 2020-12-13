@@ -35,7 +35,10 @@ namespace sparky
 		}
 
 
-
+		void RobotController::Move(float distance)
+		{
+			m_Owner->GetOwner()->GetTransform()->Translate(m_Direction*distance);
+		}
 
 
 		void RobotController::MoveUp()

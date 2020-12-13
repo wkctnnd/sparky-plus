@@ -27,7 +27,7 @@ namespace sparky
 				
 				m_RobotComponent = AddComponent<RobotComponent>();
 				m_MeshComponent->AddStaticMesh(MeshResourc);
-				m_RigidBodyComponent->GenerateShape(MeshResourc, m_RobotComponent, phyx::ShapeType::Sphere_Shape);
+				m_RigidBodyComponent->GenerateShape(MeshResourc, phyx::ShapeType::Sphere_Shape);
 				m_AnimationComponent = AddComponent<AnimationComponent>();
 				RobotController* robotcontroller = new RobotController();
 				m_AnimationComponent->SetController(robotcontroller);

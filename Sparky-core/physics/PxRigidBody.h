@@ -17,7 +17,7 @@ namespace sparky
 		class PxRigidBody :public PxObject
 		{
 		public:
-			PxRigidBody(world::ScriptComponent* sc);
+			PxRigidBody(world::ScriptComponent* sc, phyx::PxShape* shape, mat4* matp);
 			PxObjectType GetType();
 			void SetShapeType(phyx::ShapeType type)
 			{

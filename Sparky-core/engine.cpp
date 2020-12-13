@@ -153,7 +153,7 @@ namespace sparky
 		
 
 		m_GameInstance->GetScene()->Update(0);
-		m_Pxworld->AddObjects(m_GameInstance->GetScene());
+		
 		if (component)
 		{
 		
@@ -173,7 +173,7 @@ namespace sparky
 		}
 		float3 axis = (cameraposition - lookatpoistion).Normalize();
 		m_GameInstance->GetScene()->UpdateTransform();
-
+		m_Pxworld->AddObjects(m_GameInstance->GetScene());
 		//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		//graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
 		m_Pxworld->Update(t);

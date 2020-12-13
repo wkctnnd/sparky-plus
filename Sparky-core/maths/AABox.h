@@ -15,7 +15,11 @@ namespace sparky
 			bool IsOverlap(AABox& box);
 			void Transform(mat4& mat)
 			{
-				m_Center = mat * float4(m_Center.x, m_Center.y, m_Center.z, 1);
+				float4 temp = mat * float4(m_Center.x, m_Center.y, m_Center.z, 1);
+				m_Center.x = temp.x;
+				m_Center.y = temp.y;
+				m_Center.z = temp.z;
+
 			}
 			float3 m_Center;
 			float3 m_Extension;

@@ -1,9 +1,11 @@
 #pragma once
 #include "vec3.h"
- 
+#include "vec4.h"
 namespace sparky {
 	namespace maths {
 		class Quaternion;
+
+		//апсеох
 		struct mat4
 		{
 			float elements[4 * 4];
@@ -34,11 +36,14 @@ namespace sparky {
 			static mat4 rotation(class Quaternion& q);
 			static mat4 scale(const float3& scale);
 			
-
+			float4 GetRow(int i)
+			{
+				return float4(elements[i ], elements[i+4], elements[i+8], elements[i+12]);
+			}
 			static mat4 Translate(const float3& translation);
 
 			friend mat4 operator*(mat4 left, const mat4& right);
-
+			friend float4 operator*(mat4 mat, float4 vec);
 			/*friend float4 operator*()*/
 		};
 		

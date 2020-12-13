@@ -5,7 +5,7 @@
 #include "pxShape.h"
 #include "Asset/rawmesh.h"
 #include "CollisionHelper.h"
-
+#include "PxShpereShape.h"
 using namespace sparky::asset;
 
 
@@ -21,12 +21,17 @@ namespace sparky
 			{
 				return IsIntersectAABBWithAABB(m_BoundBox, ((PxAABBShape*)(othershape))->m_BoundBox, result);	
 			}
+			else if (othershape->GetType() == Sphere_Shape)
+			{
+				return IsIntersectSphereWithAABB(((PxShpereShape*)(othershape))->m_Sphere, m_BoundBox, result);
+			}
 		}
 
 		PxShape* PxAABBShape::NewShapeFromMatrix(maths::mat4& mat)
 		{
-			PxAABBShape* shape = new PxAABBShape();
-
+			PxAABBShape* shape = new PxAABBShape(this,mat);
+			shape->m_ShapeType = ShapeType::AABB_Shape;
+			return shape;
 		}
 
 		PxAABBShape::PxAABBShape(asset::RawMesh * mesh)

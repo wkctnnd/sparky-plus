@@ -20,7 +20,7 @@ namespace sparky
 			static ComponentType TYPE;
 			RigidBodyComponent(Actor *owner) :Component(owner) {};
 			ComponentType GetType() { return ComponentType::RIGIDBODY_TYPE; }	
-			void GenerateShape(class asset::RawMesh* mesh, class world::ScriptComponent* component, phyx::ShapeType type);
+			void GenerateShape(class asset::RawMesh* mesh,  phyx::ShapeType type);
 			//phyx::ShapeType m_Type;
  
 			void PreUpdate()

@@ -32,19 +32,19 @@ namespace sparky
 
 		phyx::PxRigidBody * RigidBodyComponent::GetRigidBody()
 		{
-			if (m_Owner->IsActive())
+			if (m_Owner->IsActive()&&m_Shape)
 			{
 				ScriptComponent* comp = (ScriptComponent*)m_Owner->GetComponent<ScriptComponent>();
-				PxRigidBody* body = new PxRigidBody(comp);
-				body->
-				body->SetWorldMatrix(m_Owner->GetTransform()->GetWorldTransform());
+				PxRigidBody* body = new PxRigidBody(comp,m_Shape, &m_Owner->GetTransform()->GetWorldTransform());
+				 
+				//body->SetWorldMatrix(m_Owner->GetTransform()->GetWorldTransform());
 				return body;
 			}
 
 			return 0;
 		}
 
-		void RigidBodyComponent::GenerateShape(class asset::RawMesh* mesh, class world::ScriptComponent* component, phyx::ShapeType type)
+		void RigidBodyComponent::GenerateShape(class asset::RawMesh* mesh, phyx::ShapeType type)
 		{
 	/*		m_RigidBody = new  PxRigidBody(component);
 			m_RigidBody->SetShapeType(type);

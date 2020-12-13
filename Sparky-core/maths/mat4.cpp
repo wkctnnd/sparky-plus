@@ -208,5 +208,15 @@ namespace sparky {
 			return left.multiply(right);
 		}
 
+		float4 operator*(mat4 mat, float4 v)
+		{
+			
+			float4 temp;
+			temp.x = mat.GetRow(0).Dot(v);
+			temp.y = mat.GetRow(1).Dot(v);
+			temp.z = mat.GetRow(2).Dot(v);
+			temp.w = mat.GetRow(3).Dot(v);
+			return temp;
+		}
 	}
 }

@@ -4,9 +4,9 @@ namespace sparky
 {
 	namespace phyx
 	{
-		PxObject::PxObject(world::ScriptComponent* sc, phyx::PxShape* shape, mat4 matp) :m_ScriptComponent(sc)
+		PxObject::PxObject(world::ScriptComponent* sc, phyx::PxShape* shape, mat4* matp) :m_ScriptComponent(sc)
 		{
-			m_Shape
+			m_Shape = shape->NewShapeFromMatrix(*matp);
 		}
 	}
 }

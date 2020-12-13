@@ -40,7 +40,7 @@ namespace sparky
 			assetloader2.LoadFile("/model/lobby/amongus_lobby.obj");
 			m_Lobby = new Lobby(m_Scene, assetloader2.GetRawStaticMesh(0), assetloader2.GetMaterial(0));
 
-
+			m_Lobby->AddBoxColliderActor();
 			m_RandomEngine.Seed(10);
 
 

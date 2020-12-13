@@ -1,4 +1,4 @@
-#version 450 core
+#version 330 core
 
 uniform mat4 pr_matrix;
 

@@ -149,6 +149,8 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
+    <ClCompile Include="game\lobby.cpp" />
+    <ClCompile Include="game\playercomponent.cpp" />
     <ClCompile Include="game\playercontroller.cpp" />
     <ClCompile Include="game\robot.cpp" />
     <ClCompile Include="game\robotcomponent.cpp" />
@@ -175,6 +177,7 @@
     <ClCompile Include="render\phyxRender.cpp" />
     <ClCompile Include="render\rendermateral.cpp" />
     <ClCompile Include="world\component\animationcomponent.cpp" />
+    <ClCompile Include="world\component\scriptcomponent.cpp" />
     <ClCompile Include="world\primitivesceneproxy.cpp" />
     <ClCompile Include="render\view.cpp" />
     <ClCompile Include="utils\container\bitarray.cpp" />

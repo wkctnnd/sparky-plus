@@ -17,7 +17,7 @@ namespace sparky
 			virtual void Update();
 
 			void MoveUp();
-
+			void Move(float distance);
 
 			void MoveDown();
 

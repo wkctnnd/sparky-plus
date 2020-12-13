@@ -31,7 +31,11 @@ namespace sparky
 			{
 				for (int i = 0; i < m_Components.size(); i++)
 				{
-					m_Components[i]->Update();
+					if (m_Components[i]->IsEnable())
+					{
+						m_Components[i]->Update();
+					}
+					
 				}
 			}
 		

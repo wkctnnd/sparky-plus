@@ -6,7 +6,7 @@ namespace sparky
 {
 	namespace phyx
 	{
-		PxRigidBody::PxRigidBody(world::ScriptComponent* sc) :PxObject(sc) {   }
+		PxRigidBody::PxRigidBody(world::ScriptComponent* sc, phyx::PxShape* shape, mat4* matp) :PxObject(sc,shape,matp) {   }
 		PxObjectType PxRigidBody::GetType() { return RIGID_BODY; }
 
 		void PxRigidBody::GenerateShape(asset::RawMesh* mesh)

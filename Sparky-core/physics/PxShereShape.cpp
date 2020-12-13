@@ -60,7 +60,16 @@ namespace sparky
 			}
 
 			m_Sphere.m_Center = (max + min) / 2;
-			m_Sphere.m_Radius = (max - m_Sphere.m_Center).length();
+			m_Sphere.m_Radius = 0;
+			for (int i = 0; i < mesh->m_Position.size(); i++)
+			{
+				float3 vec = mesh->m_Position[i] - m_Sphere.m_Center;
+				if (vec.length()> m_Sphere.m_Radius)
+				{
+					m_Sphere.m_Radius = vec.length();
+				}
+				 
+			}
 		}
  
 

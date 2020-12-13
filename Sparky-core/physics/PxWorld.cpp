@@ -44,11 +44,17 @@ namespace sparky
 						{
 							if (m_Objects[i]->CollideWith(m_Objects[j], result))
 							{
-								result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), m_Objects[j]->GetActor());
+								if (m_Objects[j]->GetScriptComponent()==0)
+								{
+									result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), 0);
+								}
+								else
+									result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), m_Objects[j]->GetActor());
 							}
 						}
-						m_NotifyObjects.push_back(result);
+						
 					}
+					m_NotifyObjects.push_back(result);
 				}
 				
 			}
@@ -87,11 +93,15 @@ namespace sparky
 
 			for (int i = 0; i < comps.size(); i++)
 			{
-				PxRigidBody* rigidbody = (PxRigidBody*)comps[i]->GetRigidBody();
-				if (rigidbody)
+				if (comps[i]->IsEnable())
 				{
-					AddObject(rigidbody);
+					PxRigidBody* rigidbody = (PxRigidBody*)comps[i]->GetRigidBody();
+					if (rigidbody)
+					{
+						AddObject(rigidbody);
+					}
 				}
+				
 
 			}
 

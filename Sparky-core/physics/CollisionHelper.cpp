@@ -43,7 +43,22 @@ namespace sparky
 
 		bool IsIntersectSphereWithAABB(Shpere& sphere0, AABox& box1, HitResult& result)
 		{
-			return false;
+			float3 desvec = sphere0.m_Center - box1.m_Center;
+			if (abs(desvec.x)>sphere0.m_Radius+box1.m_Extension.x)
+			{
+				return false;
+			}
+			if (abs(desvec.y) > sphere0.m_Radius + box1.m_Extension.y)
+			{
+				return false;
+			}
+
+			if (abs(desvec.z) > sphere0.m_Radius + box1.m_Extension.z)
+			{
+				return false;
+			}
+
+			return true;
 		}
 	}
 }

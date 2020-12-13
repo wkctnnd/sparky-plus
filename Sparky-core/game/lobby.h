@@ -22,6 +22,8 @@ namespace sparky
 				scene->AddActor(this);
 			}
 
+
+			void AddBoxColliderActor();
 			/*void PreUpdate() {};
 			void Update() {};
 			void PostUpdate() {};*/
@@ -31,6 +33,10 @@ namespace sparky
 			//class RawMesh* m_MeshResource;
 			StaticMeshRendererComponent* m_MeshComponent;
 			RigidBodyComponent* m_RigidBodyComponent;
+			
+
+		private:
+			RawMesh GenerateRawMesh(float length,float3 offset);
  
 		};
 	}
