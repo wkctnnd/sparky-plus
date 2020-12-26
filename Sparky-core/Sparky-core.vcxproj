@@ -105,7 +105,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLEW\lib;D:\Sparky-core\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32d.lib;opengl32.lib;libfbxsdk-md.lib;zlib-md.lib;libxml2-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glew32d.lib;libfbxsdk-md.lib;zlib-md.lib;libxml2-md.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -308,6 +308,7 @@
     <ClInclude Include="render\ParticleRenderer.h" />
     <ClInclude Include="world\component\animationcomponent.h" />
     <ClInclude Include="world\component\controller.h" />
+    <ClInclude Include="world\component\fxcomponent.h" />
     <ClInclude Include="world\component\inputcomponent.h" />
     <ClInclude Include="world\component\scriptcomponent.h" />
     <ClInclude Include="world\PrimitiveSceneProxy.h" />

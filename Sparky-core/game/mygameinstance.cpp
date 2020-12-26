@@ -25,7 +25,7 @@ namespace sparky
 			RawMesh* mesh = new RawMesh();
  
 
-			assetloader.LoadFile("/model/astronouts/amongus_astro_still.obj");
+			assetloader.LoadFile("/model/huanghelou.obj");
 			//objLoader::LoadMesh(fullrelativepath.c_str(), *m_Astronautmeshresource);
 
 			m_Scene = new Scene();
