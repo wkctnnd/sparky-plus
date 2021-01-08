@@ -117,7 +117,11 @@ namespace sparky {
 		}
 		class Material* objLoader::GetMaterial(unsigned int id)
 		{
-			return m_Materials[id];
+			if (m_Materials.size()>id)
+			{
+				return m_Materials[id];
+			}
+		
 		}
 
 		//支持加载一个mesh
@@ -239,6 +243,10 @@ namespace sparky {
 		{
 			//std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + file;
 			File f(file);
+			if (f.IsInvalid())
+			{
+				return;
+			}
 			std::string linestr = f.GetLine();
 			float x, y, z;
 			Material* mat = new Material();

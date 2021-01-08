@@ -5,7 +5,8 @@ namespace sparky
 	void File::OpenFile(std::string path)
 	{
 		m_FileIn.open(path.c_str());
-
+		m_Invalid = m_FileIn.fail();
+	 
 	}
 
 	std::string File::GetLine()

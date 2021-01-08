@@ -11,11 +11,13 @@ namespace sparky {
 		{
 			OpenFile(path);
 		}
+		bool IsInvalid() { return m_Invalid; }
 		void OpenFile(std::string path);
 		bool IsEnd();
 		std::string GetLine();
 	private:
 		std::ifstream m_FileIn;
+		bool m_Invalid;
 	};
 
 }
