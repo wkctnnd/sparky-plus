@@ -9,7 +9,7 @@ namespace sparky{
 		class OceanRenderer;
 		class PhyxRenderer;
 		class PhotoRenderer;
-		class GameRenderer;
+		class GameRenderer2;
 	}
 	namespace asset
 	{
@@ -57,7 +57,7 @@ namespace sparky
 		sparky::phyx::PxWorld* m_Pxworld;
 		sparky::world::CameraComponent* m_CameraComponent;
 		sparky::world::Scene* m_Scene;
-		sparky::render::GameRenderer *m_Renderer;
+		sparky::render::GameRenderer2 *m_Renderer;
 
 		//这么写,目前单线程
 		game::GameInstance* m_GameInstance;

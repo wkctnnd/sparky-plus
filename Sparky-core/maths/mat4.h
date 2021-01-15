@@ -17,12 +17,9 @@ namespace sparky {
 			static mat4 identity();
 			mat4& multiply(const mat4& others);
 			/*void operator = (const mat4& others)*/
-			mat4 Inverse() 
-			{ 
-				mat4 invmat;
-				return invmat;
-			}
-
+			mat4 Inverse();
+			
+			float Det();
 			mat4& operator = (const mat4& other);
 			Quaternion* GetRotation();
 			float3 GetTranslate() { float3 result; return result; }
@@ -35,7 +32,7 @@ namespace sparky {
 			static mat4 rotation(float angle, const float3& axis);
 			static mat4 rotation(class Quaternion& q);
 			static mat4 scale(const float3& scale);
-			
+			float GetElement(int i) { return elements[i]; }
 			float4 GetRow(int i)
 			{
 				return float4(elements[i ], elements[i+4], elements[i+8], elements[i+12]);

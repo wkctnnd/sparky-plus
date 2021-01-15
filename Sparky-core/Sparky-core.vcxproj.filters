@@ -216,19 +216,7 @@
     <ClCompile Include="gameinstance.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\mygameinstance.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="game\playercontroller.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="game\robot.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="input\input.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="game\robotcontroller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="physics\PxAABBShape.cpp">
@@ -243,25 +231,73 @@
     <ClCompile Include="physics\CollisionHelper.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="render\gamerenderer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="render\rendermateral.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="physics\PxShereShape.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\robotcomponent.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="world\component\scriptcomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\playercomponent.cpp">
+    <ClCompile Include="render\renderpath\shadowpass.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="game\lobby.cpp">
+    <ClCompile Include="render\renderpath\lightpass.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderpath\SimpleRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderpath\rendercommand\DrawCommand.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\renderpath\rendercommand\graphicspipeline.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\lightsceneproxy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="world\component\lightcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\shader\shaderbinding.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gamerenderer2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\box.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\boxcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\button.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\buttoncomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\door.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\doorcomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\lobby.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\lobby2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\mygameinstance2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\playercomponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game1\playercontroller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -590,31 +626,10 @@
     <ClInclude Include="gameinstance.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\mygameinstance.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\player.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\robot.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\lobby.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\component\inputcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\playercontroller.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\aicontroller.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="input\input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="game\robotcontroller.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="world\component\scriptcomponent.h">
@@ -635,9 +650,6 @@
     <ClInclude Include="shaders\toon.frag">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\Playercomponent.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\component\controller.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -645,9 +657,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Asset\material.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="render\gamerenderer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="render\rendermaterial.h">
@@ -659,10 +668,70 @@
     <ClInclude Include="maths\sphere.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="game\robotcomponent.h">
+    <ClInclude Include="world\component\fxcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="world\component\fxcomponent.h">
+    <ClInclude Include="render\renderpath\shadowpass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderpath\pass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderpath\lightpass.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\graphicpiplinestate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderpath\rendercommand\DrawCommand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\lightsceneproxy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="world\component\lightcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\shader\shaderbinding.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gamerenderer2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\box.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\boxcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\button.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\buttoncomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\door.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\doorcomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\lobby.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\lobby2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\mygameInstance2.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\Playercomponent.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game1\playercontroller.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

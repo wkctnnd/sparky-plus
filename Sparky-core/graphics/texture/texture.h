@@ -37,7 +37,7 @@ namespace sparky
 		public:
 
 			Texture(int w, int h, int depth, Format f);
-			virtual void Bind() const = 0;
+			virtual int Bind() const = 0;
 			virtual void UnBind() const = 0;
 			GLuint GetRealId() 
 			{ 
@@ -92,6 +92,8 @@ namespace sparky
 
 			int m_MipMap;
 			int m_Border;
+
+			//int m_BindIndex;
 		};
 
 	}

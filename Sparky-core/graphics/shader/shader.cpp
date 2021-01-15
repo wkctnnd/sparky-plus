@@ -37,7 +37,7 @@ namespace sparky {
 		}
 
 		void Shader::setUniformMat4(const GLchar* name, const mat4& matrix)
-		{
+ 		{
 			int t = GetUniformLocation(name);
 			glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, matrix.elements);
 			GLenum  Error = glGetError();
@@ -105,13 +105,14 @@ namespace sparky {
 
 
 
-		void Shader::SetTexture(const GLchar* name, Texture* tex)
+		void Shader::SetTexture(const GLchar* name, Texture* tex , int index = 0)
 		{
-			glActiveTexture(GL_TEXTURE0);
-			tex->Bind();
-			
+			glActiveTexture(GL_TEXTURE0 + index);
+			int activeunite = tex->Bind();
+
 			GLint  Location = GetUniformLocation(name);
-			glUniform1i(Location, 0);
+			int bindoffset = activeunite - GL_TEXTURE0;
+			glUniform1i(Location, index);
 			GLenum  Error = glGetError();
 			assert(Error == GL_NO_ERROR);
 

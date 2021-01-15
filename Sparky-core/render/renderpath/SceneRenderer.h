@@ -11,7 +11,13 @@
 using namespace sparky::maths;
 using namespace sparky::graphics;
 using namespace std;
-
+namespace sparky
+{
+	namespace world
+	{
+		class PrimitiveSceneProxy;
+	}
+}
 
 namespace sparky {
 	namespace render {
@@ -20,15 +26,19 @@ namespace sparky {
 		class SceneRenderer
 		{
 		public:
-			SceneRenderer()
+			SceneRenderer(world::Scene* scene)
 			{
 				m_Passes.resize(PassType::PassNum);
+				m_Scene = scene;
 			}
 			virtual void Render() = 0;
 			virtual void AddSceneProxy() = 0;
 
+			virtual void AddPass(world::PrimitiveSceneProxy* psp) = 0;
 		protected:
 			std::vector<Pass*> m_Passes;
+			world::Scene* m_Scene;
+		
 		};
 	}
 }

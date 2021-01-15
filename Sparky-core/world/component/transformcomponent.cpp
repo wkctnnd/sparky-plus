@@ -25,7 +25,8 @@ namespace sparky
 
 		float3 TransformComponent::GetWorldPosition()
 		{
-			return float3(0, 0, 0);
+			 
+			return float3(m_WorldMatrix.GetElement(12), m_WorldMatrix.GetElement(13), m_WorldMatrix.GetElement(14));
 		}
 		float3 TransformComponent::GetWorldRotation()
 		{
@@ -98,12 +99,30 @@ namespace sparky
 
 		}
 
+
 		void TransformComponent::AttachTo(TransformComponent& component)
 		{
+			if (m_Parent)
+			{
+				m_Parent->Detach(*this);
+				m_Parent = 0;
+			}
+		
+			component.Attach(*this);
+			
+		}
+
+		void TransformComponent::Attach(TransformComponent& component)
+		{
+			if (component.m_Parent)
+			{
+				component.m_Parent->Detach(component);
+				component.m_Parent = 0;
+			}
 			m_Children.push_back(&component);
 			component.SetParent(*this);
 		}
-		void TransformComponent::DetachTo(TransformComponent& component)
+		void TransformComponent::Detach(TransformComponent& component)
 		{
 			for (int i=0;i<m_Children.size();i++)
 			{

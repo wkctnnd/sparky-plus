@@ -7,7 +7,7 @@ namespace sparky
 		class ShadowPass:public Pass
 		{
 		public:
-			void AddMeshDrawCommand();
+			void AddMeshDrawCommand(world::PrimitiveSceneProxy* psp, world::Scene* lightproxy);
 			void Process();
 
 

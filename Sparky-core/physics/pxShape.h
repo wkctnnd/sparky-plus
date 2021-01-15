@@ -44,6 +44,8 @@ namespace sparky
 			bool IsCollided() {
 				return m_HitPointInfo.size() > 0;
 			}
+
+			std::vector<HitPointInfo>& GetHitPointInfos() { return m_HitPointInfo; }
 		private:
 			std::vector<HitPointInfo> m_HitPointInfo;
 			 

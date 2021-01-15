@@ -3,6 +3,104 @@
 #include "quaternion.h"
 namespace sparky {
 	namespace maths {
+
+
+		float det(int n, float *aa)
+		{
+			if (n == 1)
+				return aa[0];
+			float *bb = new float[(n - 1)*(n - 1)];//创建n-1阶的代数余子式阵bb    
+			int mov = 0;//判断行是否移动   
+			float sum = 0.0;//sum为行列式的值  
+			for (int arow = 0; arow < n; arow++) // a的行数把矩阵a(nn)赋值到b(n-1)  
+			{
+				for (int brow = 0; brow < n - 1; brow++)//把aa阵第一列各元素的代数余子式存到bb  
+				{
+					mov = arow > brow ? 0 : 1; //bb中小于arow的行，同行赋值，等于的错过，大于的加一  
+					for (int j = 0; j < n - 1; j++)  //从aa的第二列赋值到第n列  
+					{
+						bb[brow*(n - 1) + j] = aa[(brow + mov)*n + j + 1];
+					}
+				}
+				int flag = (arow % 2 == 0 ? 1 : -1);//因为列数为0，所以行数是偶数时候，代数余子式为1.  
+				sum += flag * aa[arow*n] * det(n - 1, bb);//aa第一列各元素与其代数余子式积的和即为行列式
+			}
+			delete[]bb;
+			return sum;
+		}
+
+		float* inverse(int n, float *aa, float* result)
+		{
+			float det_aa = det(n, aa);
+			//cout << "输入矩阵的行列式：" << det_aa << endl;
+			if (det_aa == 0)
+			{
+				printf("行列式为0 ，不能计算逆矩阵。\n");
+				return 0;
+			}
+			float *adjoint = new float[n*n];
+			float *bb = new float[(n - 1)*(n - 1)];//创建n-1阶的代数余子式阵bb   
+
+			int pi, pj, q;
+			for (int ai = 0; ai < n; ai++) // a的行数把矩阵a(nn)赋值到b(n-1)  
+			{
+				for (int aj = 0; aj < n; aj++)
+				{
+					for (int bi = 0; bi < n - 1; bi++)//把元素aa[ai][0]代数余子式存到bb[][]  
+					{
+						for (int bj = 0; bj < n - 1; bj++)//把元素aa[ai][0]代数余子式存到bb[][]  
+						{
+							if (ai > bi)    //ai行的代数余子式是：小于ai的行，aa与bb阵，同行赋值  
+								pi = 0;
+							else
+								pi = 1;     //大于等于ai的行，取aa阵的ai+1行赋值给阵bb的bi行  
+							if (aj > bj)    //ai行的代数余子式是：小于ai的行，aa与bb阵，同行赋值  
+								pj = 0;
+							else
+								pj = 1;     //大于等于ai的行，取aa阵的ai+1行赋值给阵bb的bi行  
+
+							bb[bi*(n - 1) + bj] = aa[(bi + pi)*n + bj + pj];
+						}
+					}
+					if ((ai + aj) % 2 == 0)  q = 1;//因为列数为0，所以行数是偶数时候，代数余子式为-1.  
+					else  q = (-1);
+					adjoint[ai*n + aj] = q * det(n - 1, bb);
+				}
+			}
+			for (int i = 0; i < n; i++)//adjoint 转置
+			{
+				for (int j = 0; j < i; j++)
+				{
+					float tem = adjoint[i*n + j];
+					adjoint[i*n + j] = adjoint[j*n + i];
+					adjoint[j*n + i] = tem;
+				}
+			}
+	
+			for (int i = 0; i < n; i++) //打印逆矩阵  
+			{
+				for (int j = 0; j < n; j++)
+				{
+					result[i*n + j] = adjoint[i*n + j] / det_aa;
+
+				}
+			}
+			delete[]adjoint;
+			delete[]bb;
+		}
+
+		float mat4::Det()
+		{
+			return det(4.0f, elements);
+		}
+
+		mat4 mat4::Inverse()
+		{
+			mat4 mat;
+ 
+			inverse(4, elements, mat.elements);
+			return mat;
+		}
 		mat4::mat4()
 		{
 			for (int i = 0; i < 4 * 4; i++)
@@ -92,6 +190,8 @@ namespace sparky {
 			return *this;
 		}
 
+
+		
 		mat4 mat4::perspective(float fov, float aspectRatio, float near, float far)
 		{
 			mat4 result(1.0f);

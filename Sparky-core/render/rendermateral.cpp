@@ -11,6 +11,7 @@ namespace sparky
 		{
 			RenderMaterial* mat = new RenderMaterial();
 			mat->m_DiffuseMap = asset->GetDiffuseMap();
+			mat->m_NormalMap = asset->GetNormalMap();
 			mat->SetToonActive(false);
 			return mat;
 		}

@@ -35,7 +35,7 @@ namespace sparky
 			if (m_Owner->IsActive()&&m_Shape)
 			{
 				ScriptComponent* comp = (ScriptComponent*)m_Owner->GetComponent<ScriptComponent>();
-				PxRigidBody* body = new PxRigidBody(comp,m_Shape, &m_Owner->GetTransform()->GetWorldTransform());
+				PxRigidBody* body = new PxRigidBody(m_Owner,m_Shape, &m_Owner->GetTransform()->GetWorldTransform());
 				 
 				//body->SetWorldMatrix(m_Owner->GetTransform()->GetWorldTransform());
 				return body;

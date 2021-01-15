@@ -20,7 +20,7 @@ namespace sparky
 			static RenderMaterial* CreateMaterial(asset::Material* asset);
 
 			static RenderMaterial* CreateDefaultMaterial();
-			RenderMaterial() {};
+			RenderMaterial() { m_Diffuse.x = 1; m_Diffuse.y = 1; m_Diffuse.z = 1; };
 			void SetToonActive(bool enable)
 			{
 				m_IsToon = enable;
@@ -30,9 +30,19 @@ namespace sparky
 				return m_DiffuseMap;
 			}
 
+			graphics::Texture* GetNormalMap()
+			{
+				return m_NormalMap;
+			}
+
 			void SetDiffuseMap(graphics::Texture* texture)
 			{
 				m_DiffuseMap = texture;
+			}
+
+			void SetNormalMap(graphics::Texture* texture)
+			{
+				m_NormalMap = texture;
 			}
 
 			void SetDiffuseColor(float3 color)
@@ -56,6 +66,7 @@ namespace sparky
 			float3 m_Diffuse;
 
 			graphics::Texture* m_DiffuseMap;
+			graphics::Texture* m_NormalMap;
 			bool m_IsToon;
 		};
 	}

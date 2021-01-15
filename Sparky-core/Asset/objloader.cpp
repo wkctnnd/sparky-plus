@@ -129,7 +129,10 @@ namespace sparky {
 		{
 			std::string filepath = fileDir + filename;
 			File f(filepath);
-
+			if (!f.IsValid())
+			{
+				int a = 0;
+			}
 			std::string path(filepath);
 			int i = path.find_last_of("//");
 			CurrentFileDir = filepath.substr(0, i + 1);
@@ -138,6 +141,7 @@ namespace sparky {
 			std::string linestr = f.GetLine();
 			float x, y, z;
 			std::string head;
+			std::vector<float4> color;
 			std::vector<float3> positions;
 			std::vector<float3> normals;
 			std::vector<float2> texcoords;
@@ -174,10 +178,13 @@ namespace sparky {
 					}
 					else {//v -53.0413 158.84 -135.806 µã
 						std::istringstream in(linestr);
-
-						in >> head >> x >> y >> z;
+						float cx = -1000000;
+						float cy = -1000000;
+						float cz = -1000000;
+						in >> head >> x >> y >> z>>cx>>cy>>cz;
 						positions.emplace_back(x, y, z);
-
+						if(!(cx == -1000000&&cy== -1000000&&cz== -1000000))
+							color.emplace_back(cx, cy, cz, 1);
 					}
 
 				}
@@ -198,7 +205,13 @@ namespace sparky {
 							in >> tempindex;
 							tempindex -= 1;
 							rmesh->m_Position.push_back(positions[tempindex]);
+							if (color.size() != 0)
+							{
+								 
+								rmesh->m_Color.push_back(color[tempindex]);
+							}
 						}
+						
 						if (texcoords.size() != 0)
 						{
 							in >> tempindex;
@@ -243,7 +256,7 @@ namespace sparky {
 		{
 			//std::string fullrelativepath = FileUtile::GetCurrentWorkingDirectory() + std::string(AssetFilePath) + file;
 			File f(file);
-			if (f.IsInvalid())
+			if (!f.IsValid())
 			{
 				return;
 			}
@@ -297,6 +310,17 @@ namespace sparky {
 
 						graphics::Texture* tex = imgloader.LoadFile((CurrentFileDir+ texfilename).c_str());
 						mat->SetDiffuseMap(tex);
+					}
+
+					else if (linestr.substr(4, 4).compare("bump") == 0)
+					{
+						std::istringstream in(linestr);
+						std::string texfilename;
+						in >> head >> texfilename;
+
+
+						graphics::Texture* tex = imgloader.LoadFile((CurrentFileDir + texfilename).c_str());
+						mat->SetNormalMap(tex);
 					}
 				}
 				linestr = f.GetLine();

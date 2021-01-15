@@ -20,7 +20,7 @@ namespace sparky
 				m_Components.push_back(comp);
 				return comp;
 			}
-			Actor();
+			Actor(/*Scene* scene, Actor* parent = 0*/std::string name="default");
 			void Attach(Component* component);
 			void Attach(Actor* actor);
 			TransformComponent* GetTransform() { return (TransformComponent*)m_Components[0]; }
@@ -41,10 +41,12 @@ namespace sparky
 			virtual void Update() ;
 			virtual void PreUpdate() {};
 			virtual void PostUpdate() {};
+			std::string GetName() { return m_Name; }
 		private:
 			//0号元素默认为transform组件，所以m_components的size>=1
 			std::vector<Component*> m_Components;
 			bool m_IsActive;
+			std::string m_Name;
 		};
 
 	

@@ -74,10 +74,10 @@ namespace sparky {
 		//https://blog.csdn.net/shenshen211/article/details/78492055
 		Quaternion& Quaternion::operator *=(Quaternion& other)
 		{
-			 this->w = this->w*other.w-this->x*other.x-this->y*other.y-this->z*other.z;
-			 this->x= this->w*other.w + this->x*other.x + this->y*other.y - this->z*other.z;
-			 this->y = this->w*other.w - this->x*other.x + this->y*other.y + this->z*other.z;
-			 this->z = this->w*other.w + this->x*other.x - this->y*other.y + this->z*other.z;
+			 this->w = w * other.w - x*other.x - y*other.y - z*other.z;
+			 this->x = w * other.x + x*other.w + y*other.z - z*other.y;
+			 this->y = w * other.y - x*other.z + y*other.w + z*other.x;
+			 this->z = w * other.z + x*other.y - y*other.x + z*other.w;
 
 			 return *this;
 			/*q1 * q2 =

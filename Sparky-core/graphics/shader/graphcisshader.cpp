@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 #include "utils/fileutils.h"
+#include "world/PrimitiveSceneProxy.h"
+#include "world/lightsceneproxy.h"
 namespace sparky {
 	namespace graphics {
 
@@ -10,6 +12,13 @@ namespace sparky {
 		{
 			m_ShaderID = load();
 		}
+
+
+		void GraphicsShader::GetShaderBinding(class ShaderBinding* sb, world::PrimitiveSceneProxy* primitiveproxy, world::LightSceneProxy* lightproxy)
+		{
+
+		}
+
 
 		GLuint GraphicsShader::load()
 		{

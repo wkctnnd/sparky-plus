@@ -19,7 +19,7 @@ int main()
 	using namespace maths;
  
 	using namespace sparky::render;
-	Window window("Sparky!", 800, 600);
+	Window window("Sparky!", 800, 800);
 	 
 	float2 vector(1.0, 2.0);
 
@@ -45,20 +45,24 @@ int main()
 		//std::cout << vector;
 		if (window.isKeyPress(GLFW_KEY_W))
 		{
-			Input::SetKey(KEY_W, true);
+			InputManager::SetKey(KEY_W, true);
+		}
+		if (window.isKeyPress(GLFW_KEY_V))
+		{
+			InputManager::SetKey(KEY_V, true);
 		}
 
 		else if (window.isKeyPress(GLFW_KEY_A))
 		{
-			Input::SetKey(KEY_A, true);
+			InputManager::SetKey(KEY_A, true);
 		}
 		else if (window.isKeyPress(GLFW_KEY_S))
 		{
-			Input::SetKey(KEY_S, true);
+			InputManager::SetKey(KEY_S, true);
 		}
 		else if (window.isKeyPress(GLFW_KEY_D))
 		{
-			Input::SetKey(KEY_D, true);
+			InputManager::SetKey(KEY_D, true);
 		}
 
 		

@@ -1,6 +1,11 @@
 #pragma once
 namespace sparky
 {
+	namespace world
+	{
+		class PrimitiveSceneProxy;
+		class Scene;
+	}
 	namespace render
 	{
 		enum PassType
@@ -13,7 +18,7 @@ namespace sparky
 		class Pass
 		{
 		public:
-			virtual void AddMeshDrawCommand() = 0;
+			virtual void AddMeshDrawCommand(world::PrimitiveSceneProxy* psp, world::Scene* scene) = 0;
 			virtual void Process() = 0;
 
 

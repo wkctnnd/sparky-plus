@@ -34,7 +34,7 @@ namespace sparky {
 			void setUniform3f(const GLchar* name, const float3& vector);
 			void setUniform4f(const GLchar* name, const float4& vector);
 			void setBuffer(const GLchar* name, const ComputeBuffer& cb);
-			void SetTexture(const GLchar* name, class Texture* tex);
+			void SetTexture(const GLchar* name, class Texture* tex, int index);
 			//void setUniform4f(const GLchar* name, const float4& vector);
 
 		};

@@ -31,7 +31,13 @@ namespace sparky
 			}
 
 			render::RenderMaterial *GetMaterial() { return m_Materal; }
+
+			bool IsCastShadow() { return m_IsCastShadow; }
+			bool IsReceiveShadow() { return m_IsReceiveShadow; }
 		protected:
+			bool m_IsCastShadow;
+			bool m_IsReceiveShadow;
+
 
 			mat4 m_WorldMatrix;
 			render::Renderable* m_Mesh;

@@ -47,16 +47,26 @@ namespace sparky
 			void RotateFromQuat(Quaternion quat);
 			
 			void AttachTo(TransformComponent& component);
-			void DetachTo(TransformComponent& component);
+			void Attach(TransformComponent& component);
+			void Detach(TransformComponent& component);
 			void SetParent(TransformComponent& component);
+			TransformComponent* GetParent() { return m_Parent; }
 
 			int GetChildCount() { return m_Children.size(); }
 			TransformComponent* GetChild(int i) { return m_Children[i]; }
 			float3 Forward() {
+				
+				m_Forward.x = m_WorldMatrix.GetElement(8);
+				m_Forward.y = m_WorldMatrix.GetElement(9);
+				m_Forward.z = m_WorldMatrix.GetElement(10);
 				return m_Forward;
+
 			}
 			float3 Right() 
 			{
+				m_Right.x = m_WorldMatrix.GetElement(0);
+				m_Right.y = m_WorldMatrix.GetElement(1);
+				m_Right.z = m_WorldMatrix.GetElement(2);
 				return m_Right;
 			}
 			float3 Up() 

@@ -1,6 +1,6 @@
 #include "window.h"
 #include <iostream>
-
+#include "input/input.h"
 
 namespace sparky {
 	namespace graphics {
@@ -18,6 +18,8 @@ namespace sparky {
 		{
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->MouseButtons[key] = action != GLFW_RELEASE;
+
+			sparky::input::InputManager::SetMouseActionState(key, action);
 		}
 
 		void mouse_position_callback(GLFWwindow* window, double x, double y)
@@ -25,6 +27,8 @@ namespace sparky {
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			win->mx = x;
 			win->my = y;
+
+			sparky::input::InputManager::SetMouseMoveState( x, y);
 		}
 		Window::Window(const char*name, int width, int height)
 		{
@@ -78,6 +82,7 @@ namespace sparky {
 				return false;
 			}
 			m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+			WindowResize(m_Window, m_Width, m_Height);
 			if (!m_Window)
 			{
 				std::cout << "Failed to create GLFW window!" << std::endl;

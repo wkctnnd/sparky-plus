@@ -44,11 +44,11 @@ namespace sparky
 						{
 							if (m_Objects[i]->CollideWith(m_Objects[j], result))
 							{
-								if (m_Objects[j]->GetScriptComponent()==0)
+					/*			if (m_Objects[j]->GetScriptComponent()==0)
 								{
 									result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), 0);
 								}
-								else
+								else*/
 									result.AddHitPointInfo(float3(0, 0, 0), float3(0, 0, 0), m_Objects[j]->GetActor());
 							}
 						}
@@ -76,7 +76,7 @@ namespace sparky
 			{
 				if (m_NotifyObjects[i].IsCollided())
 				{
-					m_Objects[i]->Notify();
+					m_Objects[i]->Notify(m_NotifyObjects[i].GetHitPointInfos());
 				}
 			}
 		}

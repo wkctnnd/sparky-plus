@@ -10,7 +10,7 @@ namespace sparky
 		public:
 			Texture2D(int width, int height, Format format, void* data);
 			void SaveToDisk(std::string file);
-			virtual void Bind()const;
+			virtual int Bind()const;
 			virtual void UnBind()const;
 			virtual void* Lock(unsigned int offset, unsigned int size) const { return 0; };
 			virtual void unLock() const {};

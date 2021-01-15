@@ -3,7 +3,7 @@
 uniform mat4 pr_matrix;
 
 uniform mat4 vw_matrix;
-
+uniform mat4 world_matrix;
 
 layout(location = 0) in vec3 position;
 
@@ -13,7 +13,7 @@ varying vec4 clippos;
 void main()
 {
  
-    gl_Position = pr_matrix  * vw_matrix * vec4(position.xyz, 1.0);
+    gl_Position = pr_matrix  * vw_matrix * world_matrix* vec4(position.xyz, 1.0);
 
 	worldposition = position;
 	clippos = gl_Position;

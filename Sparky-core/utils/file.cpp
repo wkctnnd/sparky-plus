@@ -5,7 +5,7 @@ namespace sparky
 	void File::OpenFile(std::string path)
 	{
 		m_FileIn.open(path.c_str());
-		m_Invalid = m_FileIn.fail();
+		m_Valid = !m_FileIn.fail();
 	 
 	}
 

@@ -15,14 +15,15 @@ namespace sparky
 		{
 			TransformComponent* trans = (TransformComponent*)m_Components[0];
 			TransformComponent* trans2 = (TransformComponent*)actor->GetComponent(0);
-			trans->AttachTo(*trans2);
+			trans->Attach(*trans2);
 
 		}
 
-		Actor::Actor()
+		Actor::Actor(std::string name)
 		{
 			m_Components.push_back(new TransformComponent(this));
 			m_IsActive = true;
+			m_Name = name;
 		}
 
 		void Actor::Update()

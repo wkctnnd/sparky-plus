@@ -37,7 +37,11 @@ namespace sparky {
 				newmesh->vao.setIndexBuffer(ibuffer);
 			}
 				
-			
+			if (!rawmesh.m_Color.empty())
+			{
+				Buffer* colorbuffer = new StaticBuffer(&(rawmesh.m_Color[0].x), rawmesh.m_Color.size() * 4, 4);
+				newmesh->vao.addBuffer(colorbuffer, 3);
+			}
 			
 			
 			return newmesh;

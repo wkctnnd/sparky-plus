@@ -90,7 +90,7 @@ namespace sparky
 			double originaly = 10;
 			double originalz = 10;
 
-			PxSoftBody * body = new PxSoftBody();
+			PxSoftBody * body = new PxSoftBody(0);
 			init_mass(body, 0.01, 10, originalx, originaly, originalz, c);
 			init_spring(body, 20, 0.03, 10);
 			return body;

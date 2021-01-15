@@ -1,5 +1,6 @@
 #pragma once
 #include "component.h"
+#include "physics/pxShape.h"
 namespace sparky
 {
 	namespace world
@@ -15,7 +16,7 @@ namespace sparky
 			virtual void PostUpdate() {}
 
 
-			virtual void OnCollided() {};
+			virtual void OnCollided(std::vector<phyx::HitPointInfo>& hitpointinfos) {};
 		};
 	}
 }

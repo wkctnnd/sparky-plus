@@ -21,7 +21,7 @@ namespace sparky {
 		public:
 			void Render();
 			
-	 
+			void AddPass(world::PrimitiveSceneProxy* psp);
 		};
 	}
 }

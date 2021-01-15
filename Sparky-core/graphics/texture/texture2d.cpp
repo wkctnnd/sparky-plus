@@ -53,8 +53,8 @@ namespace sparky
 				break;
 			}
 			glTexImage2D(GL_TEXTURE_2D, 0, srctype, width, height, 0, texformat, textype, data);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			UnBind();
@@ -66,9 +66,13 @@ namespace sparky
 		}
 
 
-		void Texture2D::Bind()const
+		int Texture2D::Bind()const
 		{
+			GLint ActiveTextureUnit;
+			glGetIntegerv(GL_ACTIVE_TEXTURE, &ActiveTextureUnit);
+			//glActiveTexture(ActiveTextureUnit);
 			glBindTexture(GL_TEXTURE_2D, m_TexId);
+			return ActiveTextureUnit;
 		}
 		void Texture2D::UnBind()const
 		{

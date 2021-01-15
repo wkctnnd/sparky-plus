@@ -37,9 +37,9 @@
 #include "maths/util.h"
 #include "maths/mat4.h"
 
-#include "render/gamerenderer.h"
+#include "render/gamerenderer2.h"
 #include "gameinstance.h"
-#include "game/mygameinstance.h"
+#include "game/game1/mygameInstance2.h"
 #include "input/input.h"
 using namespace sparky::render;
 using namespace sparky::particle;
@@ -55,7 +55,7 @@ namespace sparky
 	{
 		
 		m_Pxworld = new sparky::phyx::PxWorld();
-		
+		InputManager::Initialize();
 		//m_Scene = new sparky::world::Scene();
 		//m_Scene->Initialize();
 
@@ -108,16 +108,17 @@ namespace sparky
 
 
 
-		m_GameInstance = new MyGameInstance();
+		m_GameInstance = new MyGameInstance2();
 		m_GameInstance->Init();
 		
-		m_Renderer = new sparky::render::GameRenderer(m_GameInstance->GetScene());
+		m_Renderer = new sparky::render::GameRenderer2(m_GameInstance->GetScene());
 		m_Renderer->Initialize();
 
 		//奇怪赋值后gscene还是为null
 		//Actor* camera = world::GScene->AddActor();
-		Actor* camera = m_GameInstance->GetScene()->AddActor();
-		m_CameraComponent = camera->AddComponent<sparky::world::CameraComponent>();
+		//Actor* camera = m_GameInstance->GetScene()->AddActor();
+		//m_CameraComponent = camera->AddComponent<sparky::world::CameraComponent>();
+		m_CameraComponent = m_GameInstance->GetScene()->GetCameraMain();
 		//camerameshcomponent->GetOwner()->GetTransform()->SetLocalScale(float3(0.2, 0.2, 0.2));
 			//Actor* camera = new Actor();
 	////sparky::world::StaticMeshRendererComponent* camerameshcomponent = camera->AddComponent<StaticMeshRendererComponent>();
@@ -145,9 +146,9 @@ namespace sparky
 		TransformComponent* component = camera->GetTransform();
 
 		float3 lookatpoistion(0, 0, 0);
-		float3 cameraposition(0,20,-10);
+		float3 cameraposition(39,10,80);
 
-	
+		
 		m_GameInstance->Update();
 
 		
@@ -157,7 +158,7 @@ namespace sparky
 		if (component)
 		{
 		
-			component->SetLocalPosition(cameraposition);
+			//component->SetLocalPosition(cameraposition);
 
 			
 			//Quaternion q = Quaternion::FromEulerAnyAxis(angleC, axis);
@@ -171,8 +172,10 @@ namespace sparky
 
 			//glm::rotate()
 		}
-		float3 axis = (cameraposition - lookatpoistion).Normalize();
+		
 		m_GameInstance->GetScene()->UpdateTransform();
+		cameraposition = component->GetWorldPosition();
+		float3 axis = (cameraposition - lookatpoistion).Normalize();
 		m_Pxworld->AddObjects(m_GameInstance->GetScene());
 		//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		//graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
@@ -198,7 +201,11 @@ namespace sparky
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
 		//m_CameraComponent->GetRenderTargetInfo()->Bind();
-		m_Renderer->RenderScene(cameraposition, axis, angleC);
+		sparky::maths::mat4 worldmat = m_CameraComponent->GetOwner()->GetTransform()->GetWorldTransform();
+		//m_Renderer->RenderScene(cameraposition, axis, angleC);
+
+		m_Renderer->RenderScene(worldmat.Inverse());
+
 		//m_Renderer->RenderSceneTest();
 		
 		GlobalTimer.Stop();
@@ -243,7 +250,7 @@ namespace sparky
 
 		//elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//std::cout << elapse << std::endl;
-		Input::Reset();
+		InputManager::Reset();
 		
 	}
 

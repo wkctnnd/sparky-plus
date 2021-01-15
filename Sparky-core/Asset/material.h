@@ -41,9 +41,19 @@ namespace sparky
 				m_DiffuseMap = map;
 			}
 
+			void SetNormalMap(graphics::Texture* map)
+			{
+				m_NormalMap = map;
+			}
+
 			graphics::Texture* GetDiffuseMap()
 			{
 				return m_DiffuseMap;
+			}
+
+			graphics::Texture* GetNormalMap()
+			{
+				return m_NormalMap;
 			}
 		private:
 			float3 m_Ambient;
@@ -51,7 +61,7 @@ namespace sparky
 			float3 m_Diffuse;
 
 			graphics::Texture* m_DiffuseMap;
-		
+			graphics::Texture* m_NormalMap;
 		};
 	}
 }

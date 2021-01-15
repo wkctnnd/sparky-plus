@@ -29,12 +29,12 @@ namespace sparky
 		class PxObject
 		{
 		public:
-			PxObject(world::ScriptComponent* sc=0, phyx::PxShape* shape =0, mat4* matp=0);
+			PxObject(world::Actor* sc=0, phyx::PxShape* shape =0, mat4* matp=0);
 			virtual PxObjectType GetType() = 0;
 			virtual void ApplyForce(std::vector<Force>& force) {}
 			virtual void Simulate(float time) {}
 			virtual void Update(float time) {}
-			world::Actor* GetActor() { return m_ScriptComponent->GetOwner(); }
+			world::Actor* GetActor() { return m_Owner; }
 			virtual bool CollideWith(PxObject* object, HitResult& result) {
 				return false;
 			}
@@ -43,11 +43,11 @@ namespace sparky
 
 			}
 			phyx::PxShape* GetShape() { return m_Shape; }
-			void Notify()
+			void Notify(std::vector<HitPointInfo>& hitinfos)
 			{
 				if (m_ScriptComponent)
 				{
-					m_ScriptComponent->OnCollided();
+					m_ScriptComponent->OnCollided(hitinfos);
 				}
 				
 			}
@@ -64,6 +64,7 @@ namespace sparky
 		protected:
 			class phyx::PxShape *m_Shape;
 			world::ScriptComponent* m_ScriptComponent;
+			world::Actor* m_Owner;
 			mat4 m_WorldMat;
 		};
 	}

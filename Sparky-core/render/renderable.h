@@ -7,6 +7,8 @@ namespace sparky
 		{
 		public:
 			virtual void render() {};
+
+
 		};
 	}
 }
