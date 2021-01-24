@@ -19,7 +19,6 @@ namespace sparky
 
 
 
-
 		class LightPass :public Pass
 		{
 		public:

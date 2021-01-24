@@ -8,7 +8,7 @@ namespace sparky {
 		class LightSceneProxy;
 	}
 	namespace graphics {
-		//目前是完整的shader片段
+		//目前是完整的shader片段,无法进行共享，拼接
 		class GraphicsShader :public Shader
 		{
 		public:

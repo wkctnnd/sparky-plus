@@ -23,6 +23,7 @@ namespace sparky {
 
 	
 			
+		private:
 			std::vector<ShaderBindingLayout> m_ShaderBindingLayouts;
 		};
 	}
