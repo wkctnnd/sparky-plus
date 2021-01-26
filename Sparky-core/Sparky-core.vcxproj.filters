@@ -201,9 +201,6 @@
     <ClCompile Include="world\component\staticmeshrenderercomponent.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\shader\uniformbuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="render\view.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -298,6 +295,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="game\game1\playercontroller.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\buffers\uniformbuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game3\mygameinstance3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -611,9 +614,6 @@
     <ClInclude Include="graphics\errorreport.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\shader\uniformbuffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\component\rigidbodycomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -732,6 +732,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="game\game1\playercontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\buffers\uniformbuffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderpath\shaderresource\shaderparameter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\renderpath\vertexfactory\vertexfactory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game3\mygameInstance3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

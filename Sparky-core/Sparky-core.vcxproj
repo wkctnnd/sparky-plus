@@ -160,9 +160,10 @@
     <ClCompile Include="game\game1\mygameinstance2.cpp" />
     <ClCompile Include="game\game1\playercomponent.cpp" />
     <ClCompile Include="game\game1\playercontroller.cpp" />
+    <ClCompile Include="game\game3\mygameinstance3.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\shaderbinding.cpp" />
-    <ClCompile Include="graphics\shader\uniformbuffer.cpp" />
+    <ClCompile Include="graphics\buffers\uniformbuffer.cpp" />
     <ClCompile Include="graphics\texture\rendertexture.cpp" />
     <ClCompile Include="graphics\texture\rendertexture2d.cpp" />
     <ClCompile Include="graphics\texture\texture.cpp" />
@@ -261,11 +262,12 @@
     <ClInclude Include="game\game1\player.h" />
     <ClInclude Include="game\game1\Playercomponent.h" />
     <ClInclude Include="game\game1\playercontroller.h" />
+    <ClInclude Include="game\game3\mygameInstance3.h" />
     <ClInclude Include="graphics\graphicpiplinestate.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />
     <ClInclude Include="input\input.h" />
     <ClInclude Include="graphics\errorreport.h" />
-    <ClInclude Include="graphics\shader\uniformbuffer.h" />
+    <ClInclude Include="graphics\buffers\uniformbuffer.h" />
     <ClInclude Include="maths\sphere.h" />
     <ClInclude Include="miniheader.h" />
     <ClInclude Include="Asset\rawmesh.h" />
@@ -302,8 +304,10 @@
     <ClInclude Include="render\renderpath\lightpass.h" />
     <ClInclude Include="render\renderpath\pass.h" />
     <ClInclude Include="render\renderpath\SceneRenderer.h" />
+    <ClInclude Include="render\renderpath\shaderresource\shaderparameter.h" />
     <ClInclude Include="render\renderpath\shadowpass.h" />
     <ClInclude Include="render\renderpath\SimpleRenderer.h" />
+    <ClInclude Include="render\renderpath\vertexfactory\vertexfactory.h" />
     <ClInclude Include="shaders\toon.vert" />
     <ClInclude Include="shaders\toon.frag" />
     <ClInclude Include="utils\container\bitarray.h" />
