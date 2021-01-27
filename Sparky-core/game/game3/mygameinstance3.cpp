@@ -1,4 +1,4 @@
-#include "mygameinstance2.h"
+#include "mygameinstance3.h"
 #include "world/component/cameracomponent.h"
 #include "world/component/transformcomponent.h"
 #include "world/component/staticmeshrenderercomponent.h"
@@ -7,10 +7,7 @@
 #include "Asset/AssetLoader.h"
 #include "world/scene.h"
 #include "world/actor.h"
-#include "player.h"
-#include "lobby.h"
-#include "lobby2.h"
-#include "door.h"
+ 
 using namespace sparky::render;
 using namespace sparky::asset;
 
@@ -19,7 +16,7 @@ namespace sparky
 {
 	namespace game
 	{
-		void MyGameInstance2::Init()
+		void MyGameInstance3::Init()
 		{
 			AssetLoader assetloader11;
 			AssetLoader assetloader12;
@@ -139,7 +136,7 @@ namespace sparky
 		}
 
 
-		void MyGameInstance2::Update()
+		void MyGameInstance3::Update()
 		{
 			float temp;
 	

@@ -49,7 +49,7 @@ namespace sparky
 
 			bool IsUpdated;
 		};
-		struct Skeleton
+		struct Skeleton :public Asset
 		{
 			Skeleton()
 			{

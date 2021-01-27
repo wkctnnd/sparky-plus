@@ -6,6 +6,7 @@
 #include "maths/vec4.h"
 #include <string>
 #include "skeleton.h"
+#include "asset.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -29,7 +30,7 @@ namespace sparky
 		//	std::vector<joint*> joints;
 		//};
 
-		struct RawSkinMesh
+		struct RawSkinMesh:public Asset
 		{
 			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;

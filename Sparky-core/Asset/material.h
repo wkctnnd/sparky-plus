@@ -1,5 +1,6 @@
 #pragma once
 #include "maths/vec3.h"
+#include "asset.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -9,7 +10,7 @@ namespace sparky
 	}
 	namespace asset
 	{
-		class Material
+		class Material :public Asset
 		{
 		public:
 

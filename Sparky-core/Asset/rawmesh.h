@@ -3,6 +3,7 @@
 #include "maths/vec3.h"
 #include "maths/vec2.h"
 #include "maths/vec4.h"
+#include "asset.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -19,7 +20,7 @@ namespace sparky
 			}
 			unsigned int m_VertexId[3];
 		};*/
-		struct RawMesh
+		struct RawMesh :public Asset
 		{
 			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;

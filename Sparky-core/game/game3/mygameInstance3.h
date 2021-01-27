@@ -4,8 +4,7 @@
 #include <List>
 #include "maths/vec3.h"
 #include "utils/random.h"
-#include "box.h"
-#include "button.h"
+ 
 using namespace std;
 using namespace sparky::maths;
 namespace sparky
@@ -21,12 +20,8 @@ namespace sparky
 	}
 	namespace game
 	{
-		class Robot;
-		class Player;
-		class Lobby;
-		class  Lobby2;
-		class Door;
-		class MyGameInstance2 :public GameInstance
+ 
+		class MyGameInstance3 :public GameInstance
 		{
 		public:
 			void Update();
@@ -39,25 +34,15 @@ namespace sparky
 
 			//world::Actor* m_Player;
 
-			asset::RawMesh*  m_BodyResource;
-			asset::RawMesh*	 m_LeftArmResource;
-			asset::RawMesh*  m_RightArmResource;
+			asset::RawMesh*  m_BallResource;
+			asset::RawMesh*	 m_CubeResource;
+			 
 
-			asset::RawMesh*  m_LeftDoorResource;
-			asset::RawMesh*  m_RightDoorResouce;
-
-			asset::RawMesh* m_TreeResource;
-			asset::RawMesh* m_FloorResource;
-			asset::RawMesh* m_WallResource;
+			asset::RawMesh* m_LobbyResource;
+ 
 
 		 
-			Player* m_Player;
-			Lobby* m_Lobby;
-			Lobby2* m_Lobby2;
-			Button* m_Button;
-			Box* m_Box;
-			Door* m_LeftDoor;
-			Door* m_RightDoor;
+		 
 			world::CameraComponent* m_CameraComponent;
 
 		private:
