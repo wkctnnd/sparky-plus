@@ -4,6 +4,7 @@ namespace sparky {
 	namespace asset {
 		class AssetManager
 		{
+		public:
 			void LoadAsset(std::string filepath);
 
 			class Asset* GetAsset(std::string virtualpath);

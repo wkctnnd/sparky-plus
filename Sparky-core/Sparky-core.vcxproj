@@ -161,6 +161,7 @@
     <ClCompile Include="game\game1\mygameinstance2.cpp" />
     <ClCompile Include="game\game1\playercomponent.cpp" />
     <ClCompile Include="game\game1\playercontroller.cpp" />
+    <ClCompile Include="game\game3\lobby3.cpp" />
     <ClCompile Include="game\game3\mygameinstance3.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\shaderbinding.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="game\game1\player.h" />
     <ClInclude Include="game\game1\Playercomponent.h" />
     <ClInclude Include="game\game1\playercontroller.h" />
+    <ClInclude Include="game\game3\lobby3.h" />
     <ClInclude Include="game\game3\mygameInstance3.h" />
     <ClInclude Include="graphics\graphicpiplinestate.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />

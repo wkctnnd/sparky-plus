@@ -4,6 +4,7 @@
 #include <List>
 #include "maths/vec3.h"
 #include "utils/random.h"
+#include "lobby3.h"
  
 using namespace std;
 using namespace sparky::maths;
@@ -17,6 +18,7 @@ namespace sparky
 	namespace asset
 	{
 		class RawMesh;
+		class AssetManager;
 	}
 	namespace game
 	{
@@ -36,18 +38,19 @@ namespace sparky
 
 			asset::RawMesh*  m_BallResource;
 			asset::RawMesh*	 m_CubeResource;
-			 
-
+			/*asset::RawMesh*  m_LobbyResource;*/
+			asset::RawMesh*  m_Centrum;
+ 
 			asset::RawMesh* m_LobbyResource;
  
 
 		 
-		 
+			asset::AssetManager* m_AssetManager;
 			world::CameraComponent* m_CameraComponent;
 
 		private:
 
-			 
+			Lobby3 *m_Lobby;
 		};
 	}
 }

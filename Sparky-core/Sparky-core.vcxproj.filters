@@ -306,6 +306,9 @@
     <ClCompile Include="Asset\AssetManager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="game\game3\lobby3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -750,6 +753,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Asset\asset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game3\lobby3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

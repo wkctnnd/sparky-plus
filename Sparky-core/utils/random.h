@@ -13,7 +13,10 @@ namespace sparky
 	{	
 	public:
 		void Seed(unsigned int seed) { e.seed(seed); };
-		void GenUniformRandomNumber(float* number, unsigned int num, float max, float min)
+
+
+		template<class T>
+		void GenUniformRandomNumber(T* number, unsigned int num, T max, T min)
 		{
 			
 			//if (seed != -1)
@@ -21,7 +24,7 @@ namespace sparky
 			//	e.seed(seed);
 			//}
 
-			uniform_real_distribution<double> u(min, max);  
+			uniform_real_distribution<T> u(min, max);  
 			for (unsigned int i = 0; i < num; ++i)   
 				number[i] = u(e);
 

@@ -15,5 +15,10 @@ namespace sparky {
 			}
 
 		}
+
+		class Asset* AssetManager::GetAsset(std::string virtualpath)
+		{
+			return m_Assets[virtualpath];
+		}
 	}
 }
