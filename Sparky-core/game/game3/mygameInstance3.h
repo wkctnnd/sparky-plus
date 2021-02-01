@@ -39,7 +39,7 @@ namespace sparky
 			asset::RawMesh*  m_BallResource;
 			asset::RawMesh*	 m_CubeResource;
 			/*asset::RawMesh*  m_LobbyResource;*/
-			asset::RawMesh*  m_Centrum;
+			asset::RawMesh*  m_CentrumResource;
  
 			asset::RawMesh* m_LobbyResource;
  

@@ -1,11 +1,11 @@
-#include "Lobby2.h"
+#include "Lobby3.h"
 #include "Asset/rawmesh.h"
 using namespace sparky::asset;
 namespace sparky
 {
 	namespace game
 	{
-		RawMesh Lobby2::GenerateRawMesh(float length, float3 offset)
+		RawMesh Lobby3::GenerateRawMesh(float length, float3 offset)
 		{
 		 
 			RawMesh mesh;
@@ -71,7 +71,7 @@ namespace sparky
 			return mesh;
 
 		}
-		void Lobby2::AddBoxColliderActor()
+		void Lobby3::AddBoxColliderActor()
 		{
 
 			{

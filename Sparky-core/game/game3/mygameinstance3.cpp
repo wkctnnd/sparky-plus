@@ -30,7 +30,7 @@ namespace sparky
 
 			m_CubeResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/game3/cube_mesh");
 			m_BallResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/game3/sphere_mesh");
-			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset("/context/mobel/games/lobby_mesh");
+			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/games/lobby_mesh");
 
 
 
@@ -39,36 +39,15 @@ namespace sparky
 			world::GScene = m_Scene;
 
 
-			m_Lobby = new Lobby3(m_Scene, m_LobbyResource);
+			m_Lobby = new Lobby3(m_Scene, m_LobbyResource,m_CubeResource,m_BallResource, m_CentrumResource);
 
 		
 
 			Actor* camera = new Actor();
 			m_CameraComponent = camera->AddComponent<sparky::world::CameraComponent>();
-			m_Player->GetTransform()->Translate(float3(39, 1, 67));
-			m_Player->Attach(camera);
+		 
 			camera->GetTransform()->SetLocalPosition(float3(0, 10, 10));
-			/*		m_Player = world::GScene->AddActor();
-					sparky::world::StaticMeshRendererComponent* staticmeshcom = m_Player->AddComponent<sparky::world::StaticMeshRendererComponent>();
-					int rawsectioncount = assetloader.GetRawStaticMeshCount();
-
-
-					for (int i = 0; i < rawsectioncount; i++)
-					{
-						staticmeshcom->AddStaticMesh(assetloader.GetRawStaticMesh(i));
-					}
-		*/
-
-		/*	staticmeshcom = m_Lobby->AddComponent<sparky::world::StaticMeshRendererComponent>();
-
-
-			rawsectioncount = assetloader2.GetRawStaticMeshCount();
-			for (int i = 0; i < rawsectioncount; i++)
-			{
-				staticmeshcom->AddStaticMesh(assetloader.GetRawStaticMesh(i));
-			}
-
-			staticmeshcom->AddStaticMesh(mesh);*/
+			
 		}
 
 
