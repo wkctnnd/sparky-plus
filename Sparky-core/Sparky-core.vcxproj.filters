@@ -758,6 +758,9 @@
     <ClInclude Include="game\game3\lobby3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="game\game3\map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

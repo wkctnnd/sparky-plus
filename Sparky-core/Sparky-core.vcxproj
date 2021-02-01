@@ -266,6 +266,7 @@
     <ClInclude Include="game\game1\Playercomponent.h" />
     <ClInclude Include="game\game1\playercontroller.h" />
     <ClInclude Include="game\game3\lobby3.h" />
+    <ClInclude Include="game\game3\map.h" />
     <ClInclude Include="game\game3\mygameInstance3.h" />
     <ClInclude Include="graphics\graphicpiplinestate.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />
