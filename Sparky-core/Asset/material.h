@@ -13,7 +13,10 @@ namespace sparky
 		class Material :public Asset
 		{
 		public:
+			Material():Asset(Material_Type)
+			{
 
+			}
 			void SetAmbientColor(float r, float g, float b)
 			{
 				m_Ambient.x = r;

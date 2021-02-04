@@ -8,6 +8,10 @@ namespace sparky
 	{
 		struct quad
 		{
+			quad():max(0,0,0),min(0,0,0)
+			{
+				
+			}
 			quad(float3 min, float3 max)
 			{
 				this->max = max;

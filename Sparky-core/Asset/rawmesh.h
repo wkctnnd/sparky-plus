@@ -22,6 +22,15 @@ namespace sparky
 		};*/
 		struct RawMesh :public Asset
 		{
+			RawMesh(std::string virtualpath) :Asset(virtualpath)
+			{
+
+			}
+
+			RawMesh() :Asset(StaticMesh_Type)
+			{
+
+			}
 			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;
 			std::vector<float3> m_Normal;

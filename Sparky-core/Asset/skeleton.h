@@ -4,7 +4,7 @@
 #include "maths/mat4.h"
 #include "maths/quaternion.h"
 #include "animation/property.h"
-
+#include "asset.h"
 using namespace sparky::maths;
 using namespace sparky::animation;
 namespace sparky
@@ -51,15 +51,27 @@ namespace sparky
 		};
 		struct Skeleton :public Asset
 		{
-			Skeleton()
+			Skeleton(std::string path):Asset(path)
 			{
 
 			}
-			Skeleton(int size)
+			Skeleton(int size, std::string path):Asset(path)
 			{
 				WorldPose.resize(size);
 				SkinMat.resize(size);
 			}
+
+			Skeleton(int size) :Asset(Skeleton_Type)
+			{
+				WorldPose.resize(size);
+				SkinMat.resize(size);
+			}
+
+			Skeleton() :Asset(Skeleton_Type)
+			{
+ 
+			}
+
 			void UpdateWorldMatrix();
 
 			//for simple use

@@ -32,6 +32,15 @@ namespace sparky
 
 		struct RawSkinMesh:public Asset
 		{
+			RawSkinMesh(std::string virtualpath) :Asset(virtualpath)
+			{
+
+			}
+
+			RawSkinMesh() :Asset(SkinMesh_Type)
+			{
+
+			}
 			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;
 			std::vector<float3> m_Tangent;
