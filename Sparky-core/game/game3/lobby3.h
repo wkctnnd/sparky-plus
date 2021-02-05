@@ -105,7 +105,7 @@ namespace sparky
 					float posx, posy, posz;
 					while (!res)
 					{
-						quad q();
+						quad q;
 
 					
 						m_RandomEngine.GenUniformRandomNumber(&posx, 1, x, 0.0f);

@@ -30,7 +30,7 @@ namespace sparky
 			{
 				float temp[3];
 				//float speed;
-				random.GenerateRandomNumber(temp, 3, 1, -1);
+				random.GenUniformRandomNumber(temp, 3.0f, 1.0f, -1.0f);
 				for (unsigned int i = 0; i < 1; i++)
 				{
 					Particle* newparticle = pool->GetParticle();

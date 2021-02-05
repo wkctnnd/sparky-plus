@@ -10,7 +10,7 @@ namespace sparky
 		protected:
 			GLuint m_BufferID;
 			GLuint m_ComponentCount;
-			int m_Count;
+			unsigned int m_Count;
 		public:
 			//Buffer(GLfloat* data, GLsizei count, GLuint componentCount);
 

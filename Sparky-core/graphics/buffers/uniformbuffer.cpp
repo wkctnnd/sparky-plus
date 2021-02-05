@@ -60,9 +60,9 @@ namespace sparky
 			glBindBuffer(GL_UNIFORM_BUFFER, 0);
 		}
 
-		unsigned int UniformBuffer::count() const
-		{
-			return m_Count;
-		}
+		//unsigned int UniformBuffer::count()
+		//{
+		//	return m_Count;
+		//}
 	}
 }

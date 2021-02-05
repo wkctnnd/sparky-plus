@@ -30,6 +30,21 @@ namespace sparky
 
 		}
 
+		template<>
+		void GenUniformRandomNumber(int* number, unsigned int num, int max, int min)
+		{
+
+			//if (seed != -1)
+			//{
+			//	e.seed(seed);
+			//}
+
+			uniform_real_distribution<float> u(min, max);
+			for (unsigned int i = 0; i < num; ++i)
+				number[i] = u(e);
+
+		}
+
 		void GenNormalRandomNumber(float* number, unsigned int num, float mean, float variance)
 		{
 
