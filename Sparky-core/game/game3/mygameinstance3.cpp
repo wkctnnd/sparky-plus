@@ -26,11 +26,11 @@ namespace sparky
 
 			m_AssetManager->LoadAsset("/model/game3/cube.obj");
 			m_AssetManager->LoadAsset("/model/game3/sphere.obj");
-			m_AssetManager->LoadAsset("/model/games/lobby.obj");
+			m_AssetManager->LoadAsset("/model/game3/lobby.obj");
 
 			m_CubeResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/game3/cube_mesh");
 			m_BallResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/game3/sphere_mesh");
-			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/games/lobby_mesh");
+			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset("/context/model/game3/lobby_mesh");
 
 
 
@@ -54,7 +54,14 @@ namespace sparky
 		void MyGameInstance3::Update()
 		{
 			float temp;
-	
+			static int i = 0;
+
+			PathPoint ppoint = m_Lobby->GetPathPoint(i);
+			m_CameraComponent->GetOwner()->GetTransform()->SetLocalPosition(ppoint.position);
+
+			Quaternion r = Quaternion::FromEulerXYZ(0, ppoint.globalangle, 0);
+			m_CameraComponent->GetOwner()->GetTransform()->SetLocalRotation(float3(0, ppoint.globalangle, 0));
+			i++;
 
 		}
 

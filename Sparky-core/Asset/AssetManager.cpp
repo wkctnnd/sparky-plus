@@ -10,7 +10,7 @@ namespace sparky {
 
 			for (int i=0;i<loader.GetRawStaticMeshCount();i++)
 			{
-				Asset* asset = (Asset*)loader.GetRawSkinMesh(i);
+				Asset* asset = (Asset*)(loader.GetRawStaticMesh(i));
 				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
 			}
 

@@ -20,8 +20,9 @@ namespace sparky
 			}
 			unsigned int m_VertexId[3];
 		};*/
-		struct RawMesh :public Asset
+		class RawMesh :public Asset
 		{
+		public:
 			RawMesh(std::string virtualpath) :Asset(virtualpath)
 			{
 

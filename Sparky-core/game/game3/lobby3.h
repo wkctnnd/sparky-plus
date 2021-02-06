@@ -8,10 +8,20 @@
 #include "map.h"
 using namespace sparky::world;
 using namespace sparky::asset;
+using namespace sparky::maths;
 namespace sparky
 {
 	namespace game
 	{
+
+		struct PathPoint 
+		{
+			float3 position;
+			float3 direction;
+			float angle;
+			float globalangle;
+		};
+
 		class Lobby3 :public Actor
 		{
 		public:
@@ -24,40 +34,48 @@ namespace sparky
 				m_RandomEngine.GenNormalRandomNumber(&x, 1, 4, 0.09);
 				m_RandomEngine.GenNormalRandomNumber(&y, 1, 3, 0.09);
 				m_RandomEngine.GenNormalRandomNumber(&z, 1, 0.8, 0.01);
+				m_LobbyX = x;
+				m_LobbyY = y;
+				m_LobbyZ = z;
 				StaticMeshRendererComponent* meshcomponent = m_Wall1->AddComponent<StaticMeshRendererComponent>();
 				meshcomponent->AddStaticMesh(lobbymesh);
 				m_Wall1->GetTransform()->SetLocalScale(float3(x, y, z));
 				Attach(m_Wall1);
 				
-				quad q(float3(0, 0, 0), float3(x, y, z));
-				m_Map.AddWall(q);
+				quad* q = new quad(float3(0, 0, 0), float3(x, y, z));
+				m_Map.AddWall(*q);
 
 				//任选一个位置的
 				m_LeatherBox = new Actor();
 				int leatherpos;
-				m_RandomEngine.GenUniformRandomNumber(&leatherpos, 1, 4, 1);
+				m_RandomEngine.GenUniformRandomNumber
+				(&leatherpos, 1, 4, 1);
+				float3 position;
 				if (leatherpos==1)
 				{
-					m_LeatherBox->GetTransform()->SetLocalPosition(float3(100, 0, 100));
+					position = float3(100, 0, 100);
 				}
 				else if (leatherpos==2)
 				{
-					m_LeatherBox->GetTransform()->SetLocalPosition(float3(100, 0, -100));
+					position = (float3(100, 0, -100));
 				}
 				else if (leatherpos==3)
 				{
-					m_LeatherBox->GetTransform()->SetLocalPosition(float3(-100, 0, 100));
+					position = (float3(-100, 0, 100));
 				}
 				else
 				{
-					m_LeatherBox->GetTransform()->SetLocalPosition(float3(-100, 0, -100));
+					position = (float3(-100, 0, -100));
 				}
 
+		
+				m_LeatherBox->GetTransform()->SetLocalPosition(position);
 				m_LeatherBox->GetTransform()->SetLocalScale(float3(500, 800, 1000));
 
 				Attach(m_LeatherBox);
 
-
+				q = new quad(position, float3(500, 800, 1000));
+				m_Map.AddWall(*q);
 
 				//随机8-10个的物体，随机选择椎体
 
@@ -105,8 +123,7 @@ namespace sparky
 					float posx, posy, posz;
 					while (!res)
 					{
-						quad q;
-
+						
 					
 						m_RandomEngine.GenUniformRandomNumber(&posx, 1, x, 0.0f);
 						m_RandomEngine.GenUniformRandomNumber(&posy, 1, y, 0.0f);
@@ -114,9 +131,10 @@ namespace sparky
 
 					
 
-						res = m_Map.AddBox(q);
+						
 					}
-
+					quad* q = new quad(float3(posx, posy, posz), float3(1, 1, 1));
+					res = m_Map.AddBox(*q);
 					obj->GetTransform()->SetLocalPosition(float3(posx, posy, posz));
 
 					Attach(obj);
@@ -131,7 +149,8 @@ namespace sparky
 			void Update() {};
 			void PostUpdate() {};*/
 
-
+			void GenCameraPath();
+			PathPoint GetPathPoint(int i);
 		private:
 			//class RawMesh* m_MeshResource;
 		 
@@ -143,6 +162,9 @@ namespace sparky
 		private:
 			RawMesh GenerateRawMesh(float length,float3 offset);
 			Map m_Map;
+
+			PathPoint path[15];
+			float m_LobbyX, m_LobbyY, m_LobbyZ;
 		};
 	}
 

@@ -11,6 +11,7 @@ namespace sparky {
 using namespace sparky::animation;
 namespace sparky {
 	namespace asset {
+		class RawMesh;
 		class AssetLoader
 		{
 		public:
@@ -22,7 +23,8 @@ namespace sparky {
 			class RawSkinMesh* GetRawSkinMesh(unsigned int id);
 		
 			unsigned int GetRawSkinMeshCount();
-			class RawMesh* GetRawStaticMesh(unsigned int id);
+			//"public: class sparky::asset::RawMesh * __cdecl sparky::asset::AssetLoader::GetRawStaticMesh(unsigned int)"
+			RawMesh* GetRawStaticMesh(unsigned int id);
 			unsigned int GetRawStaticMeshCount();
 
 			class Skeleton* GetSkeleton(unsigned int id);

@@ -71,6 +71,48 @@ namespace sparky
 			return mesh;
 
 		}
+
+
+		void Lobby3::GenCameraPath()
+		{
+			float dis[14];
+			float angle[15];
+			float x, y, z;
+			m_RandomEngine.GenUniformRandomNumber(&path[0].position.x, 1, m_LobbyX, 0.0f);
+			m_RandomEngine.GenUniformRandomNumber(&path[0].position.y, 1, m_LobbyY, 0.0f);
+			m_RandomEngine.GenUniformRandomNumber(&path[0].position.z, 1, m_LobbyZ, 0.0f);
+			
+ 
+			m_RandomEngine.GenNormalRandomNumber(dis, 14, 10, 6);
+			m_RandomEngine.GenNormalRandomNumber(angle, 15, 0, 0.1);
+
+			path[0].globalangle = angle[0];
+			float4 initdir(1, 0, 0, 0);
+			for (int i=1;i<15;i++)
+			{
+				float moveangle;
+				
+				m_RandomEngine.GenNormalRandomNumber(&moveangle, 1, 3.1415926 / 10, 0.1);
+
+				Quaternion r = Quaternion::FromEulerXYZ(0, moveangle, 0);
+				float4 newdir = r.GetMatrix()*initdir;
+				float3 ndir(newdir.x, newdir.y, newdir.z);
+				r = Quaternion::FromEulerXYZ(0, path[i].angle, 0);
+				//float4 newcameradir = r.GetMatrix()*newdir;
+
+				path[i].position = path[i - 1].position + ndir * dis[i];
+				path[i].globalangle = path[i - 1].globalangle+ moveangle;
+
+
+				initdir = newdir;
+			}
+		}
+
+		PathPoint Lobby3::GetPathPoint(int i)
+		{
+			return path[i];
+		}
+
 		void Lobby3::AddBoxColliderActor()
 		{
 

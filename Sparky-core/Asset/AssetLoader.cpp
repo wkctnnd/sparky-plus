@@ -65,7 +65,7 @@ namespace sparky {
 		{
 			return m_MeshLoader->GetRawSkinMeshCount();
 		}
-		class RawMesh* AssetLoader::GetRawStaticMesh(unsigned int id)
+		RawMesh* AssetLoader::GetRawStaticMesh(unsigned int id)
 		{
 			return m_MeshLoader->GetRawStaticMesh(id);
 		}
