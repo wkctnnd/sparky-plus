@@ -37,5 +37,12 @@ namespace sparky {
 			std::string ct = hourstr+std::string(":")+minstr + std::string(":") + secstr;
 			return ct;
 		}
+
+		long Timer::GetTime() const
+		{
+			long time = clock();
+			return time;
+
+		}
 	
 }

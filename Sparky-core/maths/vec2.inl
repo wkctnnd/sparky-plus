@@ -46,6 +46,16 @@ namespace sparky {
 
 			return *this;
 		}
+
+		template<class T>
+		vec2<T>& vec2<T>::divide(const float scale)
+		{
+			x /= scale;
+			y /= scale;
+
+			return *this;
+		}
+
 		template<class T>
 		void vec2<T>::SetElement(unsigned int i, T value)
 		{

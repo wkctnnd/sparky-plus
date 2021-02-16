@@ -11,6 +11,7 @@ namespace sparky {
 		unsigned long GetElapsemillionseconds();
 		float GetElapseSeconds() const;
 		std::string GetCurrentTime() const;
+		long GetTime() const;
 	private:
 		long m_Start;
 		long m_End;

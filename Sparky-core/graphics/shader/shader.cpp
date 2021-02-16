@@ -80,7 +80,23 @@ namespace sparky {
 		{
 			GLint  Location = GetUniformLocation(name);
 			glUniform4f(Location, vector.x, vector.y, vector.z, vector.w);
+			GLenum  Error = glGetError();
+			assert(Error == GL_NO_ERROR);
+		}
 
+		void Shader::SetUniform3fv(const GLchar* name, std::vector<float3> values)
+		{
+			GLint  Location = GetUniformLocation(name);
+			glUniform3fv(Location, values.size(), &values[0].x);
+			GLenum  Error = glGetError();
+			assert(Error == GL_NO_ERROR);
+		}
+
+
+		void Shader::SetUniform4fv(const GLchar* name, std::vector<float4> values)
+		{
+			GLint  Location = GetUniformLocation(name);
+			glUniform4fv(Location, values.size(), &values[0].x);
 			GLenum  Error = glGetError();
 			assert(Error == GL_NO_ERROR);
 		}

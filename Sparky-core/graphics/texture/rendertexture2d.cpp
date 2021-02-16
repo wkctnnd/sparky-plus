@@ -27,12 +27,24 @@ namespace sparky
 			void *data = new char[m_Texture->Width()*m_Texture->Height()*m_Texture->GetElementSize()];
 			void* savedata = data;
 			ReadPixel(0, 0, m_Texture->Width(), m_Texture->Height(), data);
-			if (m_Texture->TexFormat() == DEPTH24STENCILl8)
+
+
+
+ 			if (m_Texture->TexFormat() == DEPTH24STENCILl8)
 			{
 				void* outputdata = new char[width*height * 4];
 				ConvertDepthData(data, outputdata, width, height);
 				savedata = outputdata;
 			}
+
+
+			//revert image
+			{
+				void* outputdata = new char[width*height * 4];
+				ReverseImage(savedata, outputdata, width, height);
+				savedata = outputdata;
+			}
+
 
 			ImageLoader loader;
 			ErrorCode code = ErrorReport::GetError();
@@ -52,7 +64,7 @@ namespace sparky
 			glGenFramebuffers(1, &framebufferid);
 			glBindFramebuffer(GL_FRAMEBUFFER, framebufferid);
 			m_Texture->Bind();
-			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture->GetTextureID(), 0);
+ 			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Texture->GetTextureID(), 0);
 			glViewport(0, 0, w, h);
 			GLenum datatype;
 			GLenum dataformat;
@@ -101,6 +113,31 @@ namespace sparky
 						odata[4*index +1] = 0;
 						odata[4 * index + 2] = 0;
 						odata[4 * index + 3] = 0;
+					}
+				}
+
+			}
+		}
+
+		void RenderTexture2D::ReverseImage(void* inputdata, void* outputdata, int width, int height)
+		{
+			unsigned int* data = (unsigned int*)inputdata;
+			char *odata = (char*)outputdata;
+			if (data)
+			{
+				for (int i = 0; i<height; i++)
+				{
+					for (int j = 0; j < width; j++)
+					{
+						int index = i * width + j;
+						int index2 = (height - i)*width + j;
+						/*		unsigned int a = data[index];
+						a = a >> 8;
+						int temp = (int)((float)(a) / 16777216.0f * 255);*/
+						odata[4 * index] = ((char*)(inputdata))[4 * index2];
+						odata[4 * index + 1] = ((char*)(inputdata))[4 * index2 + 1];
+						odata[4 * index + 2] = ((char*)(inputdata))[4 * index2 + 2];
+						odata[4 * index + 3] = ((char*)(inputdata))[4 * index2 + 3];
 					}
 				}
 

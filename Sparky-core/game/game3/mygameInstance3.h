@@ -27,7 +27,7 @@ namespace sparky
 		{
 		public:
 			void Update();
-
+			void PostRender();
 			void Init();
 
 		private:
@@ -46,8 +46,10 @@ namespace sparky
 
 		 
 			asset::AssetManager* m_AssetManager;
-			world::CameraComponent* m_CameraComponent;
+			world::CameraComponent* m_LeftCamera;
+			world::CameraComponent* m_RightCamera;
 
+			world::Actor *m_CameraRoot;
 		private:
 
 			Lobby3 *m_Lobby;

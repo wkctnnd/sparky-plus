@@ -9,7 +9,7 @@ namespace sparky{
 		class OceanRenderer;
 		class PhyxRenderer;
 		class PhotoRenderer;
-		class GameRenderer2;
+		class GameRenderer3;
 	}
 	namespace asset
 	{
@@ -44,7 +44,7 @@ namespace sparky
 	public:
 		 void Loop();
 		 void Initialize();
-
+		 void PostRender();
 	public:
 
 		static Timer GlobalTimer;
@@ -57,7 +57,7 @@ namespace sparky
 		sparky::phyx::PxWorld* m_Pxworld;
 		sparky::world::CameraComponent* m_CameraComponent;
 		sparky::world::Scene* m_Scene;
-		sparky::render::GameRenderer2 *m_Renderer;
+		sparky::render::GameRenderer3 *m_Renderer;
 
 		//这么写,目前单线程
 		game::GameInstance* m_GameInstance;

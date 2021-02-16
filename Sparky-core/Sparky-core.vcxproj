@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8CA744EE-0BF2-405E-B510-B27C942E1540}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -161,6 +161,7 @@
     <ClCompile Include="game\game1\mygameinstance2.cpp" />
     <ClCompile Include="game\game1\playercomponent.cpp" />
     <ClCompile Include="game\game1\playercontroller.cpp" />
+    <ClCompile Include="game\game3\cameracontroller.cpp" />
     <ClCompile Include="game\game3\lobby3.cpp" />
     <ClCompile Include="game\game3\mygameinstance3.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="physics\PxSoftBody.cpp" />
     <ClCompile Include="physics\PxWorld.cpp" />
     <ClCompile Include="render\dynamicmesh.cpp" />
+    <ClCompile Include="render\gamerender3.cpp" />
     <ClCompile Include="render\gamerenderer2.cpp" />
     <ClCompile Include="render\OceanRender.cpp" />
     <ClCompile Include="render\photorenderer.cpp" />
@@ -265,6 +267,7 @@
     <ClInclude Include="game\game1\player.h" />
     <ClInclude Include="game\game1\Playercomponent.h" />
     <ClInclude Include="game\game1\playercontroller.h" />
+    <ClInclude Include="game\game3\cameracontroller.h" />
     <ClInclude Include="game\game3\lobby3.h" />
     <ClInclude Include="game\game3\map.h" />
     <ClInclude Include="game\game3\mygameInstance3.h" />
@@ -300,6 +303,7 @@
     <ClInclude Include="physics\PxSimulator.h" />
     <ClInclude Include="physics\PxSoftBody.h" />
     <ClInclude Include="physics\PxWorld.h" />
+    <ClInclude Include="render\gamerender3.h" />
     <ClInclude Include="render\gamerenderer2.h" />
     <ClInclude Include="render\OceanRender.h" />
     <ClInclude Include="render\photorenderer.h" />

@@ -35,8 +35,9 @@ namespace sparky {
 
 
 			void PostUpdate();
-			void RenderScene(float3 position, float3 axis, float angle);
+			//void RenderScene(float3 position, float3 axis, float angle);
 			void RenderScene(maths::mat4 viewmatrix);
+			void RenderSceneDepth();
 			void AddRenderable(Renderable* r);
 
 		private:

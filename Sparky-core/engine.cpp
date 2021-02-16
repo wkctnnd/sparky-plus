@@ -37,7 +37,7 @@
 #include "maths/util.h"
 #include "maths/mat4.h"
 
-#include "render/gamerenderer2.h"
+#include "render/gamerender3.h"
 #include "gameinstance.h"
 #include "game/game3/mygameInstance3.h"
 #include "input/input.h"
@@ -53,7 +53,7 @@ namespace sparky
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
-		
+
 		m_Pxworld = new sparky::phyx::PxWorld();
 		InputManager::Initialize();
 		//m_Scene = new sparky::world::Scene();
@@ -110,8 +110,8 @@ namespace sparky
 
 		m_GameInstance = new MyGameInstance3();
 		m_GameInstance->Init();
-		
-		m_Renderer = new sparky::render::GameRenderer2(m_GameInstance->GetScene());
+
+		m_Renderer = new sparky::render::GameRenderer3(m_GameInstance->GetScene());
 		m_Renderer->Initialize();
 
 		//奇怪赋值后gscene还是为null
@@ -125,6 +125,7 @@ namespace sparky
 	//
 	////
 	//
+		m_Scene = m_GameInstance->GetScene();
 	}
 
 	//float angleA = 0;
@@ -133,7 +134,14 @@ namespace sparky
 	//float angleD = 0;
 	//float radius = 100;
 	//
-	
+
+
+	void Engine::PostRender()
+	{
+		m_GameInstance->PostRender();
+	}
+
+
 	void Engine::Loop()
 	{
 		float t = Engine::GlobalTimer.GetElapsemillionseconds();
@@ -141,26 +149,26 @@ namespace sparky
 
 		//m_ParticleManager->Update();
 		//m_Renderer->Update();
-		
-		Actor *camera = m_CameraComponent->GetOwner();
-		TransformComponent* component = camera->GetTransform();
+
+		//Actor *camera = m_CameraComponent->GetOwner();
+		//TransformComponent* component = camera->GetTransform();
 
 		float3 lookatpoistion(0, 0, 0);
-		float3 cameraposition(39,10,80);
+		float3 cameraposition(39, 10, 80);
 
-		
+
 		m_GameInstance->Update();
 
-		
+
 
 		m_GameInstance->GetScene()->Update(0);
-		
-		if (component)
-		{
-		
+
+		/*	if (component)
+			{*/
+
 			//component->SetLocalPosition(cameraposition);
 
-			
+
 			//Quaternion q = Quaternion::FromEulerAnyAxis(angleC, axis);
 			//maths::mat4 mat = q.GetMatrix();
 
@@ -171,11 +179,11 @@ namespace sparky
 			//component->RotateForwardTo(direction);
 
 			//glm::rotate()
-		}
-		
-		m_GameInstance->GetScene()->UpdateTransform();
-		cameraposition = component->GetWorldPosition();
-		float3 axis = (cameraposition - lookatpoistion).Normalize();
+		//}
+
+		m_Scene->UpdateTransform();
+		//cameraposition = component->GetWorldPosition();
+		//float3 axis = (cameraposition - lookatpoistion).Normalize();
 		m_Pxworld->AddObjects(m_GameInstance->GetScene());
 		//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
 		//graphics::RenderTexture* drt = m_CameraComponent->GetDepthStencilRenderTexture();
@@ -184,7 +192,7 @@ namespace sparky
 		//m_Pxworld->Simulate(Engine::GlobalTimer.GetElapsemillionseconds());
 		//m_CameraComponent->GetOwner()->GetTransform()->RotateYAxis(10);
 
- 
+
 		//std::vector<PxObject*> result;
 		//m_Pxworld->FetchResult(result);
 		//for (int i=0;i<result.size();i++)
@@ -200,39 +208,59 @@ namespace sparky
 		//}
 		//m_Renderer->Update();
 		m_Renderer->PostUpdate();
-		//m_CameraComponent->GetRenderTargetInfo()->Bind();
-		sparky::maths::mat4 worldmat = m_CameraComponent->GetOwner()->GetTransform()->GetWorldTransform();
-		//m_Renderer->RenderScene(cameraposition, axis, angleC);
 
-		m_Renderer->RenderScene(worldmat.Inverse());
+
+		m_Renderer->RenderSceneDepth();
+
+		for (int i = 0; i < m_Scene->GetCameraCount(); i++)
+		{
+			world::CameraComponent*  camera = m_Scene->GetCamera(i);
+
+			camera->GetRenderTargetInfo()->Bind();
+		/*	sparky::maths::mat4::LookAt()*/
+			sparky::maths::mat4 worldmat = camera->GetOwner()->GetTransform()->GetWorldTransform();
+			//m_Renderer->RenderScene(cameraposition, axis, angleC);
+
+			m_Renderer->RenderScene(worldmat.Inverse());
+			camera->GetRenderTargetInfo()->UnBind();
+		}
+		//m_CameraComponent->GetRenderTargetInfo()->Bind();
+		//sparky::maths::mat4 worldmat = m_CameraComponent->GetOwner()->GetTransform()->GetWorldTransform();
+		////m_Renderer->RenderScene(cameraposition, axis, angleC);
+
+		//m_Renderer->RenderScene(worldmat.Inverse());
 
 		//m_Renderer->RenderSceneTest();
-		
+
 		GlobalTimer.Stop();
-		
+
 		std::string time = GlobalTimer.GetCurrentTime();
-		std::string path = FileUtile::GetCurrentWorkingDirectory()+string("\\..\\Assets\\output\\");
-		std::string temp = GlobalTimer.GetCurrentTime();
+		/*	std::string path = FileUtile::GetCurrentWorkingDirectory()+string("\\..\\Assets\\output\\");
+			std::string temp = GlobalTimer.GetCurrentTime();
 
-		string::iterator it;
+			string::iterator it;
 
-		for (it = temp.begin(); it < temp.end(); it++)
-
-		{
-
-			if (*it == ':')
+			for (it = temp.begin(); it < temp.end(); it++)
 
 			{
 
-				temp.erase(it);
+				if (*it == ':')
 
-				it--;
- 
+				{
 
-			}
+					temp.erase(it);
 
-		}
+					it--;
+
+
+				}
+
+			}*/
 		
+		glFlush();
+
+
+
 		//std::string colorpath = path + temp + "color.bmp";
 		//rt->SaveToDisk(colorpath);
 
@@ -240,9 +268,9 @@ namespace sparky
 		//std::string depthpath = path + temp + "depth.bmp";
 		//m_Renderer->RenderSceneDepth(cameraposition,axis, angleC);
 		//rt->SaveToDisk(depthpath);
-		
+
 		//m_CameraComponent->GetRenderTargetInfo()->UnBind();
-		glFlush();
+
 		//long elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//long remain = 330 - elapse;
 		//if (remain > 0)
@@ -251,7 +279,7 @@ namespace sparky
 		//elapse = Engine::GlobalTimer.GetElapsemillionseconds();
 		//std::cout << elapse << std::endl;
 		InputManager::Reset();
-		
+
 	}
 
 }

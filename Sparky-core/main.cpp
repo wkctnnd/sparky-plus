@@ -78,8 +78,10 @@ int main()
 		//glEnd();
 	
 		engine.Loop();
-
+		engine.PostRender();
 		window.update();
+
+		
 	}
 
 	system("PAUSE");

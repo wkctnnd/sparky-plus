@@ -46,7 +46,7 @@ namespace sparky
 
 			std::string GetVirtualPath()
 			{
-				return m_AssetPath;
+				return m_VirtualPath;
 			}
 
 		protected:

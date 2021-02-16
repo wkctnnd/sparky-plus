@@ -36,7 +36,7 @@ namespace sparky
 				if (hitpointinfos[i].Actor->GetName().compare("Box")==0)
 				{
 					RenderMaterial* mat = ((StaticMeshRendererComponent*)(m_Owner->GetComponent<StaticMeshRendererComponent>()))->GetMaterial(0);
-					mat->SetDiffuseColor(float3(1, 0, 0));
+					mat->SetDiffuseColor(float4(1, 0, 0,1));
 					IsOpen = true;
 
 					m_Player->GetComponent<RigidBodyComponent>()->SetEnable(false);

@@ -62,5 +62,17 @@ namespace sparky
 			class CameraComponent* camera = (CameraComponent*)(m_RootActor->GetChildrenComponents<CameraComponent>()[0]);
 			return camera;
 		}
+
+		int Scene::GetCameraCount()const
+		{
+			std::vector<CameraComponent*> cameras = m_RootActor->GetChildrenComponents<CameraComponent>();
+			return cameras.size();
+		}
+
+		class CameraComponent* Scene::GetCamera(int id)
+		{
+			std::vector<CameraComponent*> cameras = m_RootActor->GetChildrenComponents<CameraComponent>();
+			return cameras[id];
+		}
 	}
 }

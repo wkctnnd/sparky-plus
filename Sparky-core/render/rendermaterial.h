@@ -1,5 +1,6 @@
 #pragma once
 #include "maths/vec3.h"
+#include "maths/vec4.h"
 using namespace sparky::maths;
 namespace sparky
 {
@@ -20,7 +21,9 @@ namespace sparky
 			static RenderMaterial* CreateMaterial(asset::Material* asset);
 
 			static RenderMaterial* CreateDefaultMaterial();
-			RenderMaterial() { m_Diffuse.x = 1; m_Diffuse.y = 1; m_Diffuse.z = 1; };
+			RenderMaterial() {
+				m_Diffuse.x = 1; m_Diffuse.y = 1; m_Diffuse.z = 1; m_Diffuse.z = 1; m_Diffuse.w = 1;
+			};
 			void SetToonActive(bool enable)
 			{
 				m_IsToon = enable;
@@ -45,13 +48,13 @@ namespace sparky
 				m_NormalMap = texture;
 			}
 
-			void SetDiffuseColor(float3 color)
+			void SetDiffuseColor(float4 color)
 			{
 
 				m_Diffuse = color;
 			}
 
-			float3 GetDiffuseColor()
+			float4 GetDiffuseColor()
 			{
 				return m_Diffuse;
 
@@ -63,7 +66,7 @@ namespace sparky
 		private:
 			float3 m_Ambient;
 			float3 m_Specular;
-			float3 m_Diffuse;
+			float4 m_Diffuse;
 
 			graphics::Texture* m_DiffuseMap;
 			graphics::Texture* m_NormalMap;

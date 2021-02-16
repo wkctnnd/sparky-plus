@@ -1,5 +1,6 @@
 #pragma once
 #include "maths/vec3.h"
+#include "maths/vec4.h"
 #include "asset.h"
 using namespace sparky::maths;
 namespace sparky
@@ -24,11 +25,12 @@ namespace sparky
 				m_Ambient.z = b;
 			}
 
-			void SetDiffuseColor(float r, float g, float b)
+			void SetDiffuseColor(float r, float g, float b, float c)
 			{
 				m_Diffuse.x = r;
 				m_Diffuse.y = g;
 				m_Diffuse.z = b;
+				m_Diffuse.w = c;
 			}
 
 
@@ -59,10 +61,15 @@ namespace sparky
 			{
 				return m_NormalMap;
 			}
+
+			float4 GetDiffuseColor()
+			{
+				return m_Diffuse;
+			}
 		private:
 			float3 m_Ambient;
 			float3 m_Specular;
-			float3 m_Diffuse;
+			float4 m_Diffuse;
 
 			graphics::Texture* m_DiffuseMap;
 			graphics::Texture* m_NormalMap;

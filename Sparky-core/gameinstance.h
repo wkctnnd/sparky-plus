@@ -14,6 +14,7 @@ namespace sparky
 		public:
 			virtual void Init() = 0;
 			virtual void Update() = 0;
+			virtual void PostRender() = 0;
 			world::Scene* GetScene() {
 				return m_Scene;
 			}

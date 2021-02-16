@@ -40,7 +40,7 @@ namespace sparky {
 		mat4 Quaternion::GetMatrix()
 		{
 			mat4 result;
-
+			result = mat4::rotation(*this);
 			return result;
 		}
 	

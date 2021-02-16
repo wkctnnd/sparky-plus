@@ -309,6 +309,12 @@
     <ClCompile Include="game\game3\lobby3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="game\game3\cameracontroller.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="render\gamerender3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -759,6 +765,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="game\game3\map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game3\cameracontroller.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render\gamerender3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

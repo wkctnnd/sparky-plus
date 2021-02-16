@@ -14,6 +14,7 @@ namespace sparky {
 
 		private:
 			void ConvertDepthData(void* inputdata, void* outputdata, int width, int height);
+			void ReverseImage(void* inputdata, void* outputdata, int width, int height);
 		};
 
 	}

@@ -30,6 +30,9 @@ namespace sparky
 			class LightSceneProxy* GetLight(int id);
 
 			class CameraComponent* GetCameraMain();
+			class CameraComponent* GetCamera(int id);
+
+			int GetCameraCount()const;
 		private:
 
 			static Scene* m_CurrentScene;

@@ -287,7 +287,7 @@ namespace sparky {
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->SetDiffuseColor(x, y, z);
+						mat->SetDiffuseColor(x, y, z , 1);
 
 					}
 					else if (linestr[1] = 's')

@@ -170,7 +170,7 @@ namespace sparky
 					else
 					{
 						m_SimpleShader->setUniform1i("isTex", 0);
-						m_SimpleShader->setUniform3f("ScaleColor", m_PrimitiveSceneProxy[i]->GetMaterial()->GetDiffuseColor());
+						m_SimpleShader->setUniform4f("ScaleColor", m_PrimitiveSceneProxy[i]->GetMaterial()->GetDiffuseColor());
 						
 					}
 					Renderable* rb = m_PrimitiveSceneProxy[i]->getRenderable();
@@ -190,7 +190,7 @@ namespace sparky
 
 			glEnable(GL_DEPTH_TEST);
 			glDepthFunc(GL_LESS);
-			glClearColor(0, 0, 0, 1);
+			glClearColor(1, 1, 1, 1);
 			glClearDepth(1);
 
 
@@ -199,38 +199,38 @@ namespace sparky
 
 
 
-			m_DepthTarget->Bind();
-			m_DepthShader->enable();
-
-
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
-			glViewport(0, 0, 4096, 4096);
-			glm::mat4 ShadowProjectionMatrix = glm::ortho(-150.0f, 150.0f, -150.0f, 150.0f, 0.5f, 200.0f);
-
-	/*		glm::mat4 trans2 = glm::mat4(1.0f);
-			trans2 = glm::rotate(trans2, angle, glm::vec3(axis.x, axis.y, axis.z));
-			glm::vec3 up2 = trans2 * glm::vec4(0, 1, 0, 0);
-*/
-			glm::mat4 ShadowViewMatrix = glm::lookAt(glm::vec3(39, 100, 70), glm::vec3(39, 70, 30), glm::vec3(0, 1, 0));
-			m_DepthShader->setUniformMat41("pr_matrix", ShadowProjectionMatrix);
-			m_DepthShader->setUniformMat41("vw_matrix", ShadowViewMatrix);
-			m_DepthShader->setUniform3f("campos", float3(40, 60, 40));
-			//m_OceanShader->setUniform3f("lightdir", )
-
-			for (int i = 0; i < m_PrimitiveSceneProxy.size(); i++)
-			{
-				mat4 worldmat = m_PrimitiveSceneProxy[i]->GetWorldMatrix();
-				m_DepthShader->setUniformMat4("world_matrix", worldmat);
-				Renderable* rb = m_PrimitiveSceneProxy[i]->getRenderable();
-				rb->render();
-			}
-			m_DepthShader->disable();
+//			m_DepthTarget->Bind();
+//			m_DepthShader->enable();
+//
+//
+//			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//
+//
+//			glViewport(0, 0, 4096, 4096);
+//			glm::mat4 ShadowProjectionMatrix = glm::ortho(-150.0f, 150.0f, -150.0f, 150.0f, 0.5f, 200.0f);
+//
+//	/*		glm::mat4 trans2 = glm::mat4(1.0f);
+//			trans2 = glm::rotate(trans2, angle, glm::vec3(axis.x, axis.y, axis.z));
+//			glm::vec3 up2 = trans2 * glm::vec4(0, 1, 0, 0);
+//*/
+//			glm::mat4 ShadowViewMatrix = glm::lookAt(glm::vec3(39, 100, 70), glm::vec3(39, 70, 30), glm::vec3(0, 1, 0));
+//			m_DepthShader->setUniformMat41("pr_matrix", ShadowProjectionMatrix);
+//			m_DepthShader->setUniformMat41("vw_matrix", ShadowViewMatrix);
+//			m_DepthShader->setUniform3f("campos", float3(40, 60, 40));
+//			//m_OceanShader->setUniform3f("lightdir", )
+//
+//			for (int i = 0; i < m_PrimitiveSceneProxy.size(); i++)
+//			{
+//				mat4 worldmat = m_PrimitiveSceneProxy[i]->GetWorldMatrix();
+//				m_DepthShader->setUniformMat4("world_matrix", worldmat);
+//				Renderable* rb = m_PrimitiveSceneProxy[i]->getRenderable();
+//				//rb->render();
+//			}
+//			m_DepthShader->disable();
 			Texture* temp = m_DepthTarget->GetDepthStencilRenderTexture()->GetTexture();
 
-			m_DepthTarget->UnBind();
-
+		/*	m_DepthTarget->UnBind();
+*/
 
 			//m_DepthTarget2->Bind();
 			glViewport(0, 0, 800, 800);
@@ -258,8 +258,8 @@ namespace sparky
 			//m_DepthTarget->GetDepthStencilRenderTexture();
 			m_SimpleShader->SetTexture("shadowTex", temp, 0);
 			//m_SimpleShader->SetTexture("clip2Shadow", temp);
-			m_SimpleShader->setUniformMat41("shadowpr_matrix", ShadowProjectionMatrix);
-			m_SimpleShader->setUniformMat41("shadowvw_matrix", ShadowViewMatrix);
+			//m_SimpleShader->setUniformMat41("shadowpr_matrix", ShadowProjectionMatrix);
+			//m_SimpleShader->setUniformMat41("shadowvw_matrix", ShadowViewMatrix);
 			for (int i = 0; i < m_PrimitiveSceneProxy.size(); i++)
 			{
 				//if (!m_PrimitiveSceneProxy[i]->GetMaterial()->IsToon())
@@ -276,7 +276,7 @@ namespace sparky
 				else
 				{
 					m_SimpleShader->setUniform1i("isTex", 0);
-					m_SimpleShader->setUniform3f("ScaleColor", m_PrimitiveSceneProxy[i]->GetMaterial()->GetDiffuseColor());
+					m_SimpleShader->setUniform4f("ScaleColor", m_PrimitiveSceneProxy[i]->GetMaterial()->GetDiffuseColor());
 
 				}
 
