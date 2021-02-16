@@ -315,6 +315,9 @@
     <ClCompile Include="render\gamerender3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="utils\log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -771,6 +774,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="render\gamerender3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\log.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -192,6 +192,7 @@
     <ClCompile Include="render\renderpath\rendercommand\graphicspipeline.cpp" />
     <ClCompile Include="render\renderpath\shadowpass.cpp" />
     <ClCompile Include="render\renderpath\SimpleRenderer.cpp" />
+    <ClCompile Include="utils\log.cpp" />
     <ClCompile Include="world\component\animationcomponent.cpp" />
     <ClCompile Include="world\component\lightcomponent.cpp" />
     <ClCompile Include="world\component\scriptcomponent.cpp" />
@@ -341,6 +342,7 @@
     <ClInclude Include="Asset\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
+    <ClInclude Include="utils\log.h" />
     <ClInclude Include="world\component\animationcomponent.h" />
     <ClInclude Include="world\component\controller.h" />
     <ClInclude Include="world\component\fxcomponent.h" />
