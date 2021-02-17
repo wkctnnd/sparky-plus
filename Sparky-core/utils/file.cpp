@@ -3,7 +3,7 @@
 #define LINE_LENGTH 100
 namespace sparky
 {
-	void File::OpenFile(std::string path, FileMode mode = File_Read)
+	void File::OpenFile(std::string path, FileMode mode)
 	{
 		if (mode==File_Read)
 		{
@@ -27,7 +27,7 @@ namespace sparky
 	//https://blog.csdn.net/qq_34097715/article/details/79970860
 	void File::WriteLine(std::string line)
 	{
-		m_FileOut.
+		m_FileOut << line <<std::endl;
 	}
 
 	std::string File::GetLine()

@@ -16,7 +16,7 @@ namespace sparky {
 		File(std::string path, FileMode mode = File_Read)
 		{
 			this->mode = mode;
-			OpenFile(path);
+			OpenFile(path, mode);
 		}
 		bool IsValid() { return m_Valid; }
 		void OpenFile(std::string path, FileMode mode = File_Read);
@@ -25,7 +25,7 @@ namespace sparky {
 		void WriteLine(std::string line);
 	private:
 		std::ifstream m_FileIn;
-		std::ifstream m_FileOut;
+		std::ofstream m_FileOut;
 		std::fstream m_FileInOut;
 		bool m_Valid;
 

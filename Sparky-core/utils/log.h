@@ -8,7 +8,7 @@ namespace sparky
 
 
 		Logger(std::string outputpath);
-
+		void Log(std::string text);
 	private:
 		class File* m_LogFile;
 	};

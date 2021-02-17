@@ -5,7 +5,8 @@
 #include "maths/vec3.h"
 #include "utils/random.h"
 #include "lobby3.h"
- 
+#include "utils/log.h"
+
 using namespace std;
 using namespace sparky::maths;
 namespace sparky
@@ -53,6 +54,7 @@ namespace sparky
 		private:
 
 			Lobby3 *m_Lobby;
+			Logger* m_Log;
 		};
 	}
 }

@@ -17,6 +17,7 @@
 
 #include "utils/timer.h"
 #include "engine.h"
+#include <sstream>
 using namespace sparky::render;
 using namespace sparky::asset;
 
@@ -27,7 +28,7 @@ namespace sparky
 	{
 		void MyGameInstance3::Init()
 		{
-			
+			m_Log = new Logger("camerparam.txt");
 			m_AssetManager = new asset::AssetManager();
 
 
@@ -105,13 +106,18 @@ namespace sparky
 		{
 			float temp;
 			static int i = 0;
-
-			PathPoint ppoint = m_Lobby->GetPathPoint(i);
-			m_CameraRoot->GetTransform()->SetLocalPosition(ppoint.position);
-
-			Quaternion r = Quaternion::FromEulerXYZ(0, ppoint.cameraangle, 0);
-			m_CameraRoot->GetTransform()->SetLocalRotation(float3(0, ppoint.cameraangle, 0));
-			i++;
+			if (i < 15)
+			{
+				PathPoint orignpoint = m_Lobby->GetPathPoint(0);
+				PathPoint ppoint = m_Lobby->GetPathPoint(i);
+				m_CameraRoot->GetTransform()->SetLocalPosition(ppoint.position);
+				std::ostringstream out;
+				out << ppoint.position.x - orignpoint.position.x << " " << ppoint.position.z - orignpoint.position. z<< " " << ppoint.cameraangle;
+				m_Log->Log(out.str());
+				Quaternion r = Quaternion::FromEulerXYZ(0, ppoint.cameraangle, 0);
+				m_CameraRoot->GetTransform()->SetLocalRotation(float3(0, ppoint.cameraangle, 0));
+				i++;
+			}
 
 		}
 
