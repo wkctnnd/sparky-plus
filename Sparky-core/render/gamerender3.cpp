@@ -134,10 +134,10 @@ namespace sparky
 			glm::mat4 ShadowProjectionMatrix = glm::ortho(-150.0f, 150.0f, -150.0f, 150.0f, 0.5f, 200.0f);
 			glm::mat4 ShadowViewMatrix = glm::lookAt(glm::vec3(0, 100, 0), glm::vec3(-1, 99.5, -1), glm::vec3(0, 1, 0));
 
-			glViewport(0, 0, 800, 800);
+			glViewport(0, 0, 1920, 1080);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			glm::mat4 mProjectionMatrix = glm::perspective(glm::radians(80.0f), 1.0f, 0.1f, 1000.0f);
+			glm::mat4 mProjectionMatrix = glm::perspective(glm::radians(80.0f), 1.7777777778f, 0.1f, 1000.0f);
 
 			m_SimpleShader->enable();
 

@@ -128,7 +128,7 @@ namespace sparky
 
 			
 			//m_DepthTarget2->Bind();
-			glViewport(0, 0, 800, 800);
+			glViewport(0, 0, 1920, 1080);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
@@ -233,7 +233,7 @@ namespace sparky
 */
 
 			//m_DepthTarget2->Bind();
-			glViewport(0, 0, 800, 800);
+			glViewport(0, 0, 1920, 1080);
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 

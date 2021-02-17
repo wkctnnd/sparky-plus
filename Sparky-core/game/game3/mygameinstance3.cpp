@@ -74,14 +74,14 @@ namespace sparky
 
 			
 			ColorRenderTarget  crt;
-			crt.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
+			crt.texture = new RenderTexture2D(1920, 1080, graphics::Format::RGBA);
 			crt.action = Clear_Store;
 			std::vector<ColorRenderTarget*> crts;
 			crts.push_back(&crt);
 
 			DepthStencilRenderTarget dsrt;
 			dsrt.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
-			dsrt.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24STENCILl8);
+			dsrt.texture = new RenderTexture2D(1920, 1080, graphics::Format::DEPTH24STENCILl8);
 			m_LeftCamera->SetRenderTarget(crts, &dsrt);
 			//很奇怪在此处调用，无反应
 			//m_CameraComponent->GetRenderTargetInfo()->Bind();
@@ -89,14 +89,14 @@ namespace sparky
 
 
 			ColorRenderTarget  crt2;
-			crt2.texture = new RenderTexture2D(512, 512, graphics::Format::RGBA);
+			crt2.texture = new RenderTexture2D(1920, 1080, graphics::Format::RGBA);
 			crt2.action = Clear_Store;
 			std::vector<ColorRenderTarget*> crts2;
 			crts2.push_back(&crt2);
 
 			DepthStencilRenderTarget dsrt2;
 			dsrt2.action = DepthStencilRenderTargetAction::DepthClearDontStore_StecilClearDontStore;
-			dsrt2.texture = new RenderTexture2D(512, 512, graphics::Format::DEPTH24STENCILl8);
+			dsrt2.texture = new RenderTexture2D(1920, 1080, graphics::Format::DEPTH24STENCILl8);
 			m_RightCamera->SetRenderTarget(crts2, &dsrt2);
 
 		}
@@ -112,7 +112,7 @@ namespace sparky
 				PathPoint ppoint = m_Lobby->GetPathPoint(i);
 				m_CameraRoot->GetTransform()->SetLocalPosition(ppoint.position);
 				std::ostringstream out;
-				out << ppoint.position.x - orignpoint.position.x << " " << ppoint.position.z - orignpoint.position. z<< " " << ppoint.cameraangle;
+				out << ppoint.position.x - orignpoint.position.x << " " << ppoint.position.z - orignpoint.position. z<< " " << ppoint.cameraangle - orignpoint.cameraangle;
 				m_Log->Log(out.str());
 				Quaternion r = Quaternion::FromEulerXYZ(0, ppoint.cameraangle, 0);
 				m_CameraRoot->GetTransform()->SetLocalRotation(float3(0, ppoint.cameraangle, 0));

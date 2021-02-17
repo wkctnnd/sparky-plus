@@ -130,7 +130,7 @@ namespace sparky
 					for (int j = 0; j < width; j++)
 					{
 						int index = i * width + j;
-						int index2 = (height - i)*width + j;
+						int index2 = (height - i - 1)*width + j;
 						/*		unsigned int a = data[index];
 						a = a >> 8;
 						int temp = (int)((float)(a) / 16777216.0f * 255);*/

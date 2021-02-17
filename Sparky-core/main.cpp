@@ -19,7 +19,7 @@ int main()
 	using namespace maths;
  
 	using namespace sparky::render;
-	Window window("Sparky!", 800, 800);
+	Window window("Sparky!", 1920, 1080);
 	 
 	float2 vector(1.0, 2.0);
 
