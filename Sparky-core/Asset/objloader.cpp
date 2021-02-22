@@ -6,6 +6,7 @@
 #include "Asset/imageloader.h"
 #include "Asset/material.h"
 #include "global.h"
+#include <map>
 using namespace sparky::maths;
 namespace sparky {
 
@@ -15,13 +16,15 @@ namespace sparky {
 			File f(file);
 			std::string linestr = f.GetLine();
 			float x, y, z;
-
+			MeshTrunk * CurrentTrunk;
 			std::vector<std::string> matfile;
 			std::string head;
 			std::vector<float3> positions;
 			std::vector<float3> normals;
 			std::vector<float2> texcoords;
 			std::vector<unsigned short> faces;
+			std::map<std::string, int> matids;
+			int matid = 0;
 			//std::vector<float2> texcoords;
 			while (!f.IsEnd())
 			{
@@ -99,6 +102,29 @@ namespace sparky {
 					std::istringstream in(linestr);
 					std::string mat;
 					in >> head >> mat;
+
+				
+				}
+
+				else if (linestr.compare("usemtl"))
+				{
+
+					std::istringstream in(linestr);
+
+					CurrentTrunk = new MeshTrunk();
+					std::string trunckmatname;
+					in >> head >> trunckmatname;
+ 
+					auto itr = matids.find(trunckmatname);
+					if (itr != matids.end())
+					{
+						CurrentTrunk->m_MaterialId = itr->second;
+
+					}
+					matids.insert(std::make_pair(trunckmatname, matid));
+					CurrentTrunk->m_MaterialId = matid;
+					matid++;
+				
 				}
 
 				linestr = f.GetLine();
@@ -148,6 +174,10 @@ namespace sparky {
 			std::vector<unsigned short> faces;
 			RawMesh* rmesh = new RawMesh();
 			std::vector<std::string> matfile;
+			std::map<std::string, int> matids;
+			MeshTrunk * CurrentTrunk = 0;
+			int matid = 0;
+
 			//std::vector<float2> texcoords;
 			while (!f.IsEnd())
 			{
@@ -237,6 +267,26 @@ namespace sparky {
 					matfile.push_back(mat);
 				}
 
+				else if (linestr.compare("usemtl"))
+				{
+
+					std::istringstream in(linestr);
+
+					CurrentTrunk = new MeshTrunk();
+					std::string trunckmatname;
+					in >> head >> trunckmatname;
+
+					auto itr = matids.find(trunckmatname);
+					if (itr != matids.end())
+					{
+						CurrentTrunk->m_MaterialId = itr->second;
+
+					}
+					matids.insert(std::make_pair(trunckmatname, matid));
+					CurrentTrunk->m_MaterialId = matid;
+					matid++;
+
+				}
 
 				linestr = f.GetLine();
 			}
@@ -265,6 +315,7 @@ namespace sparky {
 			Material* mat = new Material();
 			ImageLoader imgloader;
 			std::string head;
+			
 			//std::vector<float2> texcoords;
 			while (!linestr.empty()||!f.IsEnd())
 			{

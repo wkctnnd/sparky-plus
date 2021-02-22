@@ -38,7 +38,7 @@ namespace sparky
 			//world::Actor* m_Player;
 
 			asset::RawMesh*  m_AssetResource;
-			 
+			asset::Material* m_MaterialResource;
 			world::CameraComponent* m_RightCamera;
 
 			world::Actor *m_CameraRoot;

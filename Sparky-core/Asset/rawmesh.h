@@ -20,6 +20,18 @@ namespace sparky
 			}
 			unsigned int m_VertexId[3];
 		};*/
+		class MeshTrunk
+		{
+		public:
+			MeshTrunk() {};
+
+
+			int m_MaterialId;
+	/*		std::string m_MaterialName;*/
+			std::string m_MeshName;
+			std::vector<unsigned short> m_Faces;
+		};
+
 		class RawMesh :public Asset
 		{
 		public:
@@ -40,6 +52,7 @@ namespace sparky
 
 			std::vector<unsigned short> m_Faces;
 
+			std::vector<MeshTrunk*> m_Trunks;
 			bool Indexed() { return m_Faces.size() > 0; }
 			void Optimize() {};
 		};

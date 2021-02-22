@@ -318,6 +318,12 @@
     <ClCompile Include="utils\log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="game\game4\lobby4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="game\game4\mygameinstance4.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\window.h">
@@ -777,6 +783,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="utils\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game4\lobby4.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="game\game4\mygameInstance4.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

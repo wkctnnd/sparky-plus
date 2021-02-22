@@ -39,9 +39,11 @@ namespace sparky
 			m_Scene = new Scene();
 			m_Scene->Initialize();
 			world::GScene = m_Scene;
+		 
+			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/Ã‘±¶µÍ∆Ã«Â”∆Àÿ≤ƒ");
+			m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/Ã‘±¶µÍ∆Ã«Â”∆Àÿ≤ƒ");
 
-			
-			m_Lobby = new Lobby4(m_Scene, m_LobbyResource,m_CubeResource,m_BallResource, m_CentrumResource);
+			m_Lobby = new Lobby4(m_Scene, m_AssetResource, m_MaterialResource);
 
 		
 			m_CameraRoot = new Actor();
@@ -67,68 +69,14 @@ namespace sparky
 
 		void MyGameInstance4::Update()
 		{
-			float temp;
-			static int i = 0;
-			if (i < 15)
-			{
-				PathPoint orignpoint = m_Lobby->GetPathPoint(0);
-				PathPoint ppoint = m_Lobby->GetPathPoint(i);
-				m_CameraRoot->GetTransform()->SetLocalPosition(ppoint.position);
-				std::ostringstream out;
-				out << ppoint.position.x - orignpoint.position.x << " " << ppoint.position.z - orignpoint.position. z<< " " << ppoint.cameraangle - orignpoint.cameraangle;
-				m_Log->Log(out.str());
-				Quaternion r = Quaternion::FromEulerXYZ(0, ppoint.cameraangle, 0);
-				m_CameraRoot->GetTransform()->SetLocalRotation(float3(0, ppoint.cameraangle, 0));
-				i++;
-			}
+ 
 
 		}
 
-		void MyGameInstance3::PostRender()
+		void MyGameInstance4::PostRender()
 		{
 			
-			//static int index = 0;
-			//if (index==15)
-			//{
-			//	exit(0);
-			//}
-			//std::string path = FileUtile::GetCurrentWorkingDirectory() + string("\\..\\Assets\\output\\");
-			////std::string temp = GlobalTimer.GetCurrentTime();
-
-
-			//std::string colorpath = path  + "color"+ std::to_string(index) +".bmp";
-
-			//graphics::RenderTexture* rt = m_CameraComponent->GetColorRenderTexture(0);
-
-			//rt->SaveToDisk(colorpath);
-			//index++;
-			//glFlush();
-
-			static int index = 0;
-			
-			if (index == 15)
-			{
-				exit(0);
-			}
-
-			for (int i = 0; i < m_Scene->GetCameraCount(); i++)
-			{
-				world::CameraComponent*  camera = m_Scene->GetCamera(i);
-
-
-				std::string path = FileUtile::GetCurrentWorkingDirectory() + string("\\..\\Assets\\output\\");
-				//std::string temp = GlobalTimer.GetCurrentTime();
-
-
-				std::string colorpath = path + "color" + std::to_string(i) + std::to_string(index) + ".bmp";
-
-				graphics::RenderTexture* rt = camera->GetColorRenderTexture(0);
-
-				rt->SaveToDisk(colorpath);
-				
-
-			}
-			index++;
+	
 	
 		}
 
