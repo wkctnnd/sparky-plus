@@ -27,9 +27,12 @@ namespace sparky
 
 
 			int m_MaterialId;
-	/*		std::string m_MaterialName;*/
+			std::string m_MaterialName;
 			std::string m_MeshName;
 			std::vector<unsigned short> m_Faces;
+
+			int m_VertexOffset;
+			int m_VertexCount;
 		};
 
 		class RawMesh :public Asset

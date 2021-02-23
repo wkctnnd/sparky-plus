@@ -68,7 +68,7 @@ namespace sparky {
 
 					}
 					std::istringstream in(linestr);
-
+					CurrentTrunk->m_VertexOffset = rmesh.m_Position.size();
 					in >> head;
 					int i = 0;
 					int tempindex;
@@ -94,7 +94,7 @@ namespace sparky {
 						}
 						i++;
 					}
-
+					CurrentTrunk->m_VertexCount = rmesh.m_Position.size() - CurrentTrunk->m_VertexCount + 1;
 
 				}
 				else if (linestr[0] == 'm')
@@ -174,7 +174,7 @@ namespace sparky {
 			std::vector<unsigned short> faces;
 			RawMesh* rmesh = new RawMesh();
 			std::vector<std::string> matfile;
-			std::map<std::string, int> matids;
+		//	std::map<std::string, int> matids;
 			MeshTrunk * CurrentTrunk = 0;
 			int matid = 0;
 
@@ -224,7 +224,7 @@ namespace sparky {
 
 					}
 					std::istringstream in(linestr);
-
+					CurrentTrunk->m_VertexOffset = rmesh->m_Position.size();
 					in >> head;
 					int i = 0;
 					int tempindex;
@@ -256,7 +256,7 @@ namespace sparky {
 						}
 						i++;
 					}
-
+					CurrentTrunk->m_VertexCount = rmesh->m_Position.size() - CurrentTrunk->m_VertexOffset + 1;
 
 				}
 				else if (linestr[0] == 'm')
@@ -276,14 +276,15 @@ namespace sparky {
 					std::string trunckmatname;
 					in >> head >> trunckmatname;
 
-					auto itr = matids.find(trunckmatname);
+				/*	auto itr = matids.find(trunckmatname);
 					if (itr != matids.end())
 					{
 						CurrentTrunk->m_MaterialId = itr->second;
 
 					}
 					matids.insert(std::make_pair(trunckmatname, matid));
-					CurrentTrunk->m_MaterialId = matid;
+					CurrentTrunk->m_MaterialId = matid;*/
+					CurrentTrunk->m_MaterialName = trunckmatname;
 					matid++;
 
 				}
@@ -312,7 +313,7 @@ namespace sparky {
 			}
 			std::string linestr = f.GetLine();
 			float x, y, z;
-			Material* mat = new Material();
+			Material* currentmat = 0;
 			ImageLoader imgloader;
 			std::string head;
 			
@@ -325,12 +326,26 @@ namespace sparky {
 					linestr = f.GetLine();
 					continue;
 				}
+				if (linestr[0]=='n')
+				{
+					if (linestr[1]=='e')
+					{
+						std::istringstream in(linestr);
+						in>>head>>
+					}
+				}
+				if (linestr.compare("newmtl")==0)
+				{
+					currentmat = new Material();
+					m_Materials.push_back(currentmat);
+					
+				}
 				if (linestr[0] == 'K') {
 					if (linestr[1] == 'a') {//vt 0.581151 0.979929 ÎÆÀí
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->SetAmbientColor(x, y, z);
+						currentmat->SetAmbientColor(x, y, z);
 
 					}
 					else if (linestr[1] == 'd')
@@ -338,7 +353,7 @@ namespace sparky {
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->SetDiffuseColor(x, y, z , 1);
+						currentmat->SetDiffuseColor(x, y, z , 1);
 
 					}
 					else if (linestr[1] = 's')
@@ -346,7 +361,7 @@ namespace sparky {
 						std::istringstream in(linestr);
 
 						in >> head >> x >> y >> z;
-						mat->SetSpecularColor(x, y, z);
+						currentmat->SetSpecularColor(x, y, z);
 					}
 				}
 				std::string temp = linestr.substr(0, 3);
@@ -360,7 +375,7 @@ namespace sparky {
 					 
 
 						graphics::Texture* tex = imgloader.LoadFile((CurrentFileDir+ texfilename).c_str());
-						mat->SetDiffuseMap(tex);
+						currentmat->SetDiffuseMap(tex);
 					}
 
 					else if (linestr.substr(4, 4).compare("bump") == 0)
@@ -371,13 +386,13 @@ namespace sparky {
 
 
 						graphics::Texture* tex = imgloader.LoadFile((CurrentFileDir + texfilename).c_str());
-						mat->SetNormalMap(tex);
+						currentmat->SetNormalMap(tex);
 					}
 				}
 				linestr = f.GetLine();
 			}
 
-			m_Materials.push_back(mat);
+			
 
 		}
 
