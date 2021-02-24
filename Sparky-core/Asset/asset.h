@@ -49,9 +49,20 @@ namespace sparky
 				return m_VirtualPath;
 			}
 
+			void SetName(std::string name)
+			{
+				m_Name = name;
+			}
+
+			std::string GetName()
+			{
+				return m_Name;
+			}
 		protected:
 			std::string m_AssetPath;
 			std::string m_VirtualPath;
+
+			std::string m_Name;
 		};
 	}
 }

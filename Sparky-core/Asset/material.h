@@ -66,6 +66,7 @@ namespace sparky
 			{
 				return m_Diffuse;
 			}
+
 		private:
 			float3 m_Ambient;
 			float3 m_Specular;
@@ -73,6 +74,8 @@ namespace sparky
 
 			graphics::Texture* m_DiffuseMap;
 			graphics::Texture* m_NormalMap;
+
+			std::string m_Name;
 		};
 	}
 }

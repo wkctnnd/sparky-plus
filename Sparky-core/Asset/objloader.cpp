@@ -16,7 +16,7 @@ namespace sparky {
 			File f(file);
 			std::string linestr = f.GetLine();
 			float x, y, z;
-			MeshTrunk * CurrentTrunk;
+			MeshTrunk * CurrentTrunk = 0;
 			std::vector<std::string> matfile;
 			std::string head;
 			std::vector<float3> positions;
@@ -176,8 +176,23 @@ namespace sparky {
 			std::vector<std::string> matfile;
 		//	std::map<std::string, int> matids;
 			MeshTrunk * CurrentTrunk = 0;
-			int matid = 0;
+			
+			struct Trunktemp
+			{
 
+				std::vector<int>  positionindex;
+				std::vector<int>  normalindex;
+				std::vector<int>  texcoordindex;
+
+
+			};
+			
+
+			int matid = 0;
+			Trunktemp* Currenttemp = 0;
+			
+
+			std::vector<Trunktemp*> trunktemps;
 			//std::vector<float2> texcoords;
 			while (!f.IsEnd())
 			{
@@ -234,30 +249,34 @@ namespace sparky {
 						{
 							in >> tempindex;
 							tempindex -= 1;
-							rmesh->m_Position.push_back(positions[tempindex]);
+							Currenttemp->positionindex.push_back(tempindex);
+							/*rmesh->m_Position.push_back(positions[tempindex]);
 							if (color.size() != 0)
 							{
 								 
 								rmesh->m_Color.push_back(color[tempindex]);
-							}
+							}*/
 						}
 						
 						if (texcoords.size() != 0)
 						{
 							in >> tempindex;
 							tempindex -= 1;
-							rmesh->m_Texcoord.push_back(texcoords[tempindex]);
+							Currenttemp->texcoordindex.push_back(tempindex);
+							//rmesh->m_Texcoord.push_back(texcoords[tempindex]);
 						}
 						if (normals.size() != 0)
 						{
 							in >> tempindex;
 							tempindex -= 1;
-							rmesh->m_Normal.push_back(normals[tempindex]);
+							Currenttemp->normalindex.push_back(tempindex);
+							//rmesh->m_Normal.push_back(normals[tempindex]);
 						}
 						i++;
 					}
 					CurrentTrunk->m_VertexCount = rmesh->m_Position.size() - CurrentTrunk->m_VertexOffset + 1;
-
+					rmesh->m_Trunks.push_back(CurrentTrunk);
+					trunktemps.push_back(Currenttemp);
 				}
 				else if (linestr[0] == 'm')
 				{
@@ -273,6 +292,7 @@ namespace sparky {
 					std::istringstream in(linestr);
 
 					CurrentTrunk = new MeshTrunk();
+					Currenttemp = new Trunktemp();
 					std::string trunckmatname;
 					in >> head >> trunckmatname;
 
@@ -297,6 +317,22 @@ namespace sparky {
 			{
 				std::string matfilepath = CurrentFileDir + matfile[i];
 				LoadMaterial(matfilepath.c_str());
+			}
+
+			for (int i=0;i<rmesh->m_Trunks.size();i++)
+			{
+				std::string matname = rmesh->m_Trunks[i]->m_MaterialName;
+				for (int j = 0; j < m_Materials.size(); j++)
+				{
+					if (m_Materials[j]->GetName() == matname)
+						CurrentTrunk->m_MaterialId = j;
+
+				}
+
+				for (int j=0;j<trunktemps.size();j++)
+				{
+					rmesh->m_Trunks.
+				}
 			}
 			m_Meshs.push_back(rmesh);
 			return true;
@@ -330,15 +366,15 @@ namespace sparky {
 				{
 					if (linestr[1]=='e')
 					{
+						std::string matname;
 						std::istringstream in(linestr);
-						in>>head>>
+						currentmat = new Material();
+						m_Materials.push_back(currentmat);
+						currentmat->SetName(matname);
+						in >> head >> matname;
+					 
+
 					}
-				}
-				if (linestr.compare("newmtl")==0)
-				{
-					currentmat = new Material();
-					m_Materials.push_back(currentmat);
-					
 				}
 				if (linestr[0] == 'K') {
 					if (linestr[1] == 'a') {//vt 0.581151 0.979929 Œ∆¿Ì

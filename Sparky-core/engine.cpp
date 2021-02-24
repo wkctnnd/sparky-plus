@@ -40,6 +40,7 @@
 #include "render/gamerender3.h"
 #include "gameinstance.h"
 #include "game/game3/mygameInstance3.h"
+#include "game/game4/mygameInstance4.h"
 #include "input/input.h"
 using namespace sparky::render;
 using namespace sparky::particle;
@@ -108,7 +109,7 @@ namespace sparky
 
 
 
-		m_GameInstance = new MyGameInstance3();
+		m_GameInstance = new MyGameInstance4();
 		m_GameInstance->Init();
 
 		m_Renderer = new sparky::render::GameRenderer3(m_GameInstance->GetScene());
