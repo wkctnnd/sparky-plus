@@ -419,10 +419,11 @@ namespace sparky {
 					{
 						std::string matname;
 						std::istringstream in(linestr);
-						currentmat = new Material();
-						m_Materials.push_back(currentmat);
-						currentmat->SetName(matname);
 						in >> head >> matname;
+						currentmat = new Material(matname);
+						m_Materials.push_back(currentmat);
+						//currentmat->SetName(matname);
+					
 					 
 
 					}
