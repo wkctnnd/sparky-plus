@@ -51,23 +51,23 @@ namespace sparky
 		};
 		struct Skeleton :public Asset
 		{
-			Skeleton(std::string path):Asset(path)
+			Skeleton(std::string path, std::string name = ""):Asset(path,name)
 			{
 
 			}
-			Skeleton(int size, std::string path):Asset(path)
-			{
-				WorldPose.resize(size);
-				SkinMat.resize(size);
-			}
-
-			Skeleton(int size) :Asset(Skeleton_Type)
+			Skeleton(int size, std::string path, std::string name = ""):Asset(path,name)
 			{
 				WorldPose.resize(size);
 				SkinMat.resize(size);
 			}
 
-			Skeleton() :Asset(Skeleton_Type)
+			Skeleton(int size, std::string name = "") :Asset(Skeleton_Type,name)
+			{
+				WorldPose.resize(size);
+				SkinMat.resize(size);
+			}
+
+			Skeleton(std::string name = "") :Asset(Skeleton_Type,name)
 			{
  
 			}

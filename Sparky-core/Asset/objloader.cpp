@@ -234,8 +234,23 @@ namespace sparky {
 
 				}
 				else if (linestr[0] == 'f') {//f 2443//2656 2442//2656 2444//2656 Ãæ
+					bool Slashed = false;
 					for (int k = linestr.size() - 1; k >= 0; k--) {
-						if (linestr[k] == '/')linestr[k] = ' ';
+						if (linestr[k] == '/' && !Slashed)
+						{
+							linestr[k] = ' ';
+							Slashed = true;
+						}
+						else if ((linestr[k] == '/'||linestr[k] == ' ')&&Slashed)
+						{
+							linestr[k] = '0';
+							linestr.insert(linestr.begin()+k, ' ');
+							Slashed = false;
+						}
+						else
+						{
+							Slashed = false;
+						}
 
 					}
 					std::istringstream in(linestr);
@@ -245,38 +260,52 @@ namespace sparky {
 					int tempindex;
 					while (i < 3)
 					{
-						if (positions.size() != 0)
+						if (positions.size() != -1)
 						{
 							in >> tempindex;
-							tempindex -= 1;
-							Currenttemp->positionindex.push_back(tempindex);
-							/*rmesh->m_Position.push_back(positions[tempindex]);
-							if (color.size() != 0)
+							if (tempindex != 0)
 							{
-								 
-								rmesh->m_Color.push_back(color[tempindex]);
-							}*/
+								tempindex -= 1;
+								Currenttemp->positionindex.push_back(tempindex);
+								rmesh->m_Position.push_back(positions[tempindex]);
+								if (color.size() != 0)
+								{
+
+									rmesh->m_Color.push_back(color[tempindex]);
+								}
+							}
+							
 						}
 						
-						if (texcoords.size() != 0)
+						if (texcoords.size() != 0 )
 						{
 							in >> tempindex;
-							tempindex -= 1;
-							Currenttemp->texcoordindex.push_back(tempindex);
-							//rmesh->m_Texcoord.push_back(texcoords[tempindex]);
+							if (tempindex != 0)
+							{
+
+								tempindex -= 1;
+
+								Currenttemp->texcoordindex.push_back(tempindex);
+								rmesh->m_Texcoord.push_back(texcoords[tempindex]);
+							}
+							
 						}
 						if (normals.size() != 0)
 						{
 							in >> tempindex;
-							tempindex -= 1;
-							Currenttemp->normalindex.push_back(tempindex);
-							//rmesh->m_Normal.push_back(normals[tempindex]);
+							if (tempindex != 0)
+							{
+								tempindex -= 1;
+								Currenttemp->normalindex.push_back(tempindex);
+								rmesh->m_Normal.push_back(normals[tempindex]);
+							}
+		
 						}
 						i++;
 					}
 					CurrentTrunk->m_VertexCount = rmesh->m_Position.size() - CurrentTrunk->m_VertexOffset + 1;
-					rmesh->m_Trunks.push_back(CurrentTrunk);
-					trunktemps.push_back(Currenttemp);
+					
+					
 				}
 				else if (linestr[0] == 'm')
 				{
@@ -286,26 +315,31 @@ namespace sparky {
 					matfile.push_back(mat);
 				}
 
-				else if (linestr.compare("usemtl"))
+				else if (linestr[0]=='u'&&linestr[1]=='s')
 				{
-
-					std::istringstream in(linestr);
-
-					CurrentTrunk = new MeshTrunk();
-					Currenttemp = new Trunktemp();
-					std::string trunckmatname;
-					in >> head >> trunckmatname;
-
-				/*	auto itr = matids.find(trunckmatname);
-					if (itr != matids.end())
+					if (linestr.substr(0,6).compare("usemtl")==0)
 					{
-						CurrentTrunk->m_MaterialId = itr->second;
+						std::istringstream in(linestr);
 
+						CurrentTrunk = new MeshTrunk();
+						Currenttemp = new Trunktemp();
+						trunktemps.push_back(Currenttemp);
+						rmesh->m_Trunks.push_back(CurrentTrunk);
+						std::string trunckmatname;
+						in >> head >> trunckmatname;
+
+						/*	auto itr = matids.find(trunckmatname);
+							if (itr != matids.end())
+							{
+								CurrentTrunk->m_MaterialId = itr->second;
+
+							}
+							matids.insert(std::make_pair(trunckmatname, matid));
+							CurrentTrunk->m_MaterialId = matid;*/
+						CurrentTrunk->m_MaterialName = trunckmatname;
+						matid++;
 					}
-					matids.insert(std::make_pair(trunckmatname, matid));
-					CurrentTrunk->m_MaterialId = matid;*/
-					CurrentTrunk->m_MaterialName = trunckmatname;
-					matid++;
+					
 
 				}
 
@@ -329,10 +363,27 @@ namespace sparky {
 
 				}
 
-				for (int j=0;j<trunktemps.size();j++)
+			/*	for (int j=0;j<trunktemps.size();j++)
 				{
-					rmesh->m_Trunks.
-				}
+					for (int k=0; k<trunktemps[j]->positionindex.size(); k++)
+					{
+						  int posindex = trunktemps[j]->positionindex[k];
+						  rmesh->m_Position.push_back(positions[posindex]);
+						  if (trunktemps[j]->normalindex.size()>0)
+						  {
+							  int normindex = trunktemps[j]->positionindex[k];
+							  rmesh->m_Normal.push_back(normals[normindex]);
+							   
+						  }
+						  if (trunktemps[j]->texcoordindex.size()>0)
+						  {
+							  int texindex = trunktemps[j]->texcoordindex[k];
+							  rmesh->m_Texcoord.push_back(texcoords[texindex]);
+						  }
+					}
+					
+
+				}*/
 			}
 			m_Meshs.push_back(rmesh);
 			return true;

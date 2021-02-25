@@ -14,11 +14,17 @@ namespace sparky {
 				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
 			}
 
+			for (int i=0;i<loader.GetMaterialCount();i++)
+			{
+				Asset* asset = (Asset*)(loader.GetMaterial(i));
+				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
+			}
 		}
 
 		class Asset* AssetManager::GetAsset(std::string virtualpath)
 		{
-			return m_Assets[virtualpath];
+			if(m_Assets.find(virtualpath)!=m_Assets.end())
+				return m_Assets[virtualpath];
 		}
 	}
 }

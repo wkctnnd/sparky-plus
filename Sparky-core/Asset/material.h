@@ -14,7 +14,7 @@ namespace sparky
 		class Material :public Asset
 		{
 		public:
-			Material():Asset(Material_Type)
+			Material(std::string name = ""):Asset(Material_Type,name)
 			{
 
 			}

@@ -38,12 +38,12 @@ namespace sparky
 		class RawMesh :public Asset
 		{
 		public:
-			RawMesh(std::string virtualpath) :Asset(virtualpath)
+			RawMesh(std::string virtualpath, std::string name="") :Asset(virtualpath, name)
 			{
 
 			}
 
-			RawMesh() :Asset(StaticMesh_Type)
+			RawMesh(std::string name="") :Asset(StaticMesh_Type, name)
 			{
 
 			}
