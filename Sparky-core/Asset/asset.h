@@ -61,7 +61,7 @@ namespace sparky
 					}
 					else
 					{
-						m_VirtualPath = "Content/Asset/Skeleton" + name;
+						m_VirtualPath = "Content/Asset/Skeleton/" + name;
 					}
 					break;
 				case sparky::asset::Material_Type:
@@ -72,7 +72,7 @@ namespace sparky
 
 					}
 					else
-						m_VirtualPath = "Content/Asset/Material/DefaultMaterial" + name;
+						m_VirtualPath = "Content/Asset/Material/" + name;
 					break;
 				default:
 					break;
@@ -93,11 +93,24 @@ namespace sparky
 			{
 				return m_Name;
 			}
+
+			void SetAssetIdInPool(int id)
+			{
+				m_AssetIdInPool = id;
+			}
+
+			int GetAssetIdInPool()
+			{
+				return m_AssetIdInPool;
+			}
 		protected:
 			std::string m_AssetPath;
 			std::string m_VirtualPath;
 
 			std::string m_Name;
+
+
+			int m_AssetIdInPool;
 		};
 	}
 }

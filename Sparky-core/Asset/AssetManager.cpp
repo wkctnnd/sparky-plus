@@ -23,8 +23,11 @@ namespace sparky {
 
 		class Asset* AssetManager::GetAsset(std::string virtualpath)
 		{
-			if(m_Assets.find(virtualpath)!=m_Assets.end())
+			if (m_Assets.find(virtualpath) != m_Assets.end())
 				return m_Assets[virtualpath];
 		}
+
+
+		
 	}
 }
