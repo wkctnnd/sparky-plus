@@ -166,6 +166,8 @@
     <ClCompile Include="game\game3\mygameinstance3.cpp" />
     <ClCompile Include="game\game4\lobby4.cpp" />
     <ClCompile Include="game\game4\mygameinstance4.cpp" />
+    <ClCompile Include="game\game5\lobby5.cpp" />
+    <ClCompile Include="game\game5\mygameinstance5.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\shaderbinding.cpp" />
     <ClCompile Include="graphics\buffers\uniformbuffer.cpp" />
@@ -258,6 +260,7 @@
     <ClInclude Include="Asset\imagedata.h" />
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="core\object.h" />
     <ClInclude Include="game\game1\box.h" />
     <ClInclude Include="game\game1\boxcomponent.h" />
     <ClInclude Include="game\game1\button.h" />
@@ -276,6 +279,8 @@
     <ClInclude Include="game\game3\mygameInstance3.h" />
     <ClInclude Include="game\game4\lobby4.h" />
     <ClInclude Include="game\game4\mygameInstance4.h" />
+    <ClInclude Include="game\game5\lobby5.h" />
+    <ClInclude Include="game\game5\mygameinstance5.h" />
     <ClInclude Include="graphics\graphicpiplinestate.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />
     <ClInclude Include="input\input.h" />
