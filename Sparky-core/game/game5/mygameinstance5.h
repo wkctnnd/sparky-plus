@@ -45,7 +45,7 @@ namespace sparky
 			asset::AssetManager* m_AssetManager;
 		private:
 
-			Lobby4 *m_Lobby;
+			Lobby5 *m_Lobby;
 			Logger* m_Log;
 		};
 	}

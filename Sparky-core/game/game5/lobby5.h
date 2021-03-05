@@ -27,7 +27,7 @@ namespace sparky
 			//class RawMesh* m_MeshResource;
 		 
  
-			Actor* m_HouseBox;
+			Actor* m_Fabric;
 			std::vector<Actor*> m_Objects;
 			Random m_RandomEngine;
 		private:

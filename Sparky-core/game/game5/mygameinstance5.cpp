@@ -32,7 +32,7 @@ namespace sparky
 			m_AssetManager = new asset::AssetManager();
 
 
-			m_AssetManager->LoadAsset("/model/game4/taobaosucai.obj");
+			m_AssetManager->LoadAsset("/model/game4/fabric.obj");
 	
 
 
@@ -40,8 +40,8 @@ namespace sparky
 			m_Scene->Initialize();
 			world::GScene = m_Scene;
 		 
-			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh0");
-			m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/taobaosucai");
+			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/fabric");
+			m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/fabric");
 
 			m_Lobby = new Lobby5(m_Scene, m_AssetResource, m_MaterialResource);
 
