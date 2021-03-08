@@ -40,8 +40,8 @@ namespace sparky
 			m_Scene->Initialize();
 			world::GScene = m_Scene;
 		 
-			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh0");
-			m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/taobaosucai");
+			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh0");
+			m_MaterialResource = (Material*)m_AssetManager->GetAsset<Material>("Content/Asset/Material/taobaosucai");
 
 			m_Lobby = new Lobby4(m_Scene, m_AssetResource, m_MaterialResource);
 

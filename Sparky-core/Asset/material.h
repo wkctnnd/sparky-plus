@@ -11,9 +11,15 @@ namespace sparky
 	}
 	namespace asset
 	{
+		//实时new出来的material也需要放入assetmanager
 		class Material :public Asset
 		{
 		public:
+			static AssetType Type()
+			{
+				return AssetType::Material_Type;
+			}
+
 			Material(std::string name = ""):Asset(Material_Type,name)
 			{
 

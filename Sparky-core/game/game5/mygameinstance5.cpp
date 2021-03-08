@@ -18,6 +18,7 @@
 #include "utils/timer.h"
 #include "engine.h"
 #include <sstream>
+#include "Asset/rawmesh.h"
 using namespace sparky::render;
 using namespace sparky::asset;
 
@@ -32,7 +33,7 @@ namespace sparky
 			m_AssetManager = new asset::AssetManager();
 
 
-			m_AssetManager->LoadAsset("/model/game4/fabric.obj");
+			m_AssetManager->LoadAsset("/model/game5/fabric.obj");
 	
 
 
@@ -40,30 +41,24 @@ namespace sparky
 			m_Scene->Initialize();
 			world::GScene = m_Scene;
 		 
-			m_AssetResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/fabric");
-			m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/fabric");
-
+			m_AssetResource =  m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh0");
+			//m_MaterialResource = (Material*)m_AssetManager->GetAsset("Content/Asset/Material/fabric");
+			m_MaterialResource = new asset::Material();
+			
 			m_Lobby = new Lobby5(m_Scene, m_AssetResource, m_MaterialResource);
 
-		
-			m_CameraRoot = new Actor();
+	
 	
 		
 			Actor* righteye = new Actor();
 			m_RightCamera = righteye->AddComponent<sparky::world::CameraComponent>();
-			righteye->GetTransform()->SetLocalPosition(float3(0, 0, -5));
+			righteye->GetTransform()->SetLocalPosition(float3(0, 5, 0));
 
 
 
-			m_Scene->AddActor(m_CameraRoot);
+			m_Scene->AddActor(righteye);
 		 
-			m_CameraRoot->Attach(righteye);
-
-			AnimationComponent* animcomp = m_CameraRoot->AddComponent<AnimationComponent>();
-			CameraController* controller = new CameraController();
-			animcomp->SetController(controller);
-
-
+	 
 		}
 
 

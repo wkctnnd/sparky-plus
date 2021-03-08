@@ -49,13 +49,19 @@ namespace sparky
 
 			bool IsUpdated;
 		};
-		struct Skeleton :public Asset
+		class Skeleton :public Asset
 		{
-			Skeleton(std::string path, std::string name = ""):Asset(path,name)
+		public:
+			static AssetType Type()
+			{
+				return AssetType::SkinMesh_Type;
+			}
+
+			Skeleton(std::string path, std::string name = ""):Asset(AssetType::Skeleton_Type, path, name)
 			{
 
 			}
-			Skeleton(int size, std::string path, std::string name = ""):Asset(path,name)
+			Skeleton(int size, std::string path, std::string name = ""):Asset(AssetType::Skeleton_Type, path,name)
 			{
 				WorldPose.resize(size);
 				SkinMat.resize(size);

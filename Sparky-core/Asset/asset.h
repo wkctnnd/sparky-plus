@@ -9,20 +9,23 @@ namespace sparky
 			StaticMesh_Type,
 			SkinMesh_Type,
 			Skeleton_Type,
-			Material_Type
+			Material_Type,
+			AssetType_Num
 		};
 
 		class Asset
 		{
 		public:
-			Asset(std::string path, std::string name)
+			Asset(AssetType type, std::string path, std::string name)
 			{
 				m_VirtualPath = path;
 				m_Name = name;
+				m_AssetType = type;
 			}
 
 			Asset(AssetType type, std::string name)
 			{
+				m_AssetType = type;
 				m_Name = name;
 				static int meshid = 0;
 				static int skinmeshid = 0;
@@ -103,6 +106,11 @@ namespace sparky
 			{
 				return m_AssetIdInPool;
 			}
+
+			AssetType GetAssetType()
+			{
+				return m_AssetType;
+			}
 		protected:
 			std::string m_AssetPath;
 			std::string m_VirtualPath;
@@ -110,6 +118,7 @@ namespace sparky
 			std::string m_Name;
 
 
+			AssetType m_AssetType;
 			int m_AssetIdInPool;
 		};
 	}

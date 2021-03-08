@@ -32,7 +32,7 @@ namespace sparky
 
 		struct RawSkinMesh:public Asset
 		{
-			RawSkinMesh(std::string virtualpath, std::string name = "") :Asset(virtualpath ,name)
+			RawSkinMesh(std::string virtualpath, std::string name = "") :Asset(AssetType::SkinMesh_Type, virtualpath ,name)
 			{
 
 			}

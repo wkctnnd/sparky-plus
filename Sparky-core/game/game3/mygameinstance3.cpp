@@ -37,10 +37,10 @@ namespace sparky
 			m_AssetManager->LoadAsset("/model/game3/Pyramid.obj");
 			m_AssetManager->LoadAsset("/model/game3/lobby.obj");
 
-			m_CubeResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh0");
-			m_BallResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh1");
-			m_CentrumResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh2");
-			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset("Content/Asset/StaticMesh/DefaultMesh3");
+			m_CubeResource = (RawMesh*)m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh0");
+			m_BallResource = (RawMesh*)m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh1");
+			m_CentrumResource = (RawMesh*)m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh2");
+			m_LobbyResource = (RawMesh*)m_AssetManager->GetAsset<RawMesh>("Content/Asset/StaticMesh/DefaultMesh3");
 
 
 			m_Scene = new Scene();

@@ -18,6 +18,10 @@ namespace sparky
 		class SkinMesh :public Renderable
 		{
 		public:
+			static AssetType Type()
+			{
+				return AssetType::SkinMesh_Type;
+			}
 			SkinMesh(class RawSkinMesh* rawskinmesh);
 			void render();
 			static SkinMesh* Load(const char* file);

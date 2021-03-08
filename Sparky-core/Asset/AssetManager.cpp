@@ -11,20 +11,23 @@ namespace sparky {
 			for (int i=0;i<loader.GetRawStaticMeshCount();i++)
 			{
 				Asset* asset = (Asset*)(loader.GetRawStaticMesh(i));
-				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
+				m_AssetPools[asset->GetAssetType()].AddAsset(asset);
+		/*		m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));*/
 			}
 
 			for (int i=0;i<loader.GetMaterialCount();i++)
 			{
 				Asset* asset = (Asset*)(loader.GetMaterial(i));
-				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
+				m_AssetPools[asset->GetAssetType()].AddAsset(asset);
 			}
 		}
 
-		class Asset* AssetManager::GetAsset(std::string virtualpath)
+		class Asset* AssetManager::GetAsset(AssetType type, std::string virtualpath)
 		{
-			if (m_Assets.find(virtualpath) != m_Assets.end())
-				return m_Assets[virtualpath];
+			AssetPool& pool = m_AssetPools[type];
+			return pool.GetAsset(virtualpath);
+
+	 
 		}
 
 

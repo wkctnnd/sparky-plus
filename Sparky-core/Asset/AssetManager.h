@@ -2,6 +2,7 @@
 #include <map>
 #include "asset.h"
 #include <vector>
+#include <map>
 namespace sparky {
 	namespace asset {
 
@@ -25,24 +26,38 @@ namespace sparky {
 	 
 		};
 
-		template<class T>
 		class AssetPool
 		{
+
 		public:
-			void AddAsset(T* asset)
+			void AddAsset(Asset* asset)
 			{
-				m_AssetPool.push_back(asset)
+				m_Assets.insert(std::make_pair(asset->GetVirtualPath(), asset));
+				//m_Assets.push_back(asset);
 			}
 
-			T* GetAsset(int id)
+			Asset* GetAsset(std::string virtualpath)
 			{
-				return m_Assets[id];
+				return m_Assets[virtualpath];
 			}
 
-		private:
-			
-			std::vector<T*> m_Assets;
+		protected:
+
+			//std::vector<Asset*> m_Assets;
+			std::map<std::string, Asset*> m_Assets;
 		};
+
+		/*	template<class T>
+			class AssetPool
+			{
+			public:
+				void AddAsset(T* asset)
+				{
+					m_Assets.push_back(asset)
+				}
+
+
+			};*/
 
 
 
@@ -52,26 +67,30 @@ namespace sparky {
 		public:
 			void LoadAsset(std::string filepath);
 
-			template<class T>
-			T* GetAsset(int id)
-			{
-				AssetPool* pool = GetAssetPool<T>();
-				if (pool)
-				{
-					return pool->GetAsset(id);
-				}
-				return 0;
-			}
 
-			class Asset* GetAsset(std::string virtualpath);
+			Asset* GetAsset(AssetType type, std::string virtualpath);
 
+			
 			template<class T>
-			class AssetPool<T>* GetAssetPool()
+			T* GetAsset(std::string virtualpath);
+
+	 
+			class AssetPool& GetAssetPool(AssetType type)
 			{
-				return AssetPool<T>::
+				return m_AssetPools[type];
 			}
 		private:
-			
+			AssetPool m_AssetPools[AssetType::AssetType_Num];
 		};
+
+
+		template<class T>
+		T* AssetManager::GetAsset(std::string virtualpath)
+		{
+
+			return (T*)GetAsset(T::Type(), virtualpath);
+		}
+
+
 	}
 }

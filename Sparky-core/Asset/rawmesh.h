@@ -38,7 +38,7 @@ namespace sparky
 		class RawMesh :public Asset
 		{
 		public:
-			RawMesh(std::string virtualpath, std::string name="") :Asset(virtualpath, name)
+			RawMesh(std::string virtualpath, std::string name="") :Asset(AssetType::StaticMesh_Type,virtualpath, name)
 			{
 
 			}
@@ -47,6 +47,12 @@ namespace sparky
 			{
 
 			}
+
+			static AssetType Type()
+			{
+				return AssetType::StaticMesh_Type;
+			}
+		 
 			std::vector<float3> m_Position;
 			std::vector<float4> m_Color;
 			std::vector<float3> m_Normal;
