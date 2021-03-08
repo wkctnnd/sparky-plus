@@ -14,10 +14,14 @@ namespace sparky
 			//µÿ√Ê
 			//m_Fabric = new Actor();
 		 
-			for (int i=0;i<1;i++)
+
+			
+
+			for (int i=0;i<5;i++)
 			{
-				for (int j=0;j<1;j++)
+				for (int j=0;j<5;j++)
 				{
+					float3 offset(0, 0, 0);
 					Actor* part = new Actor();
 					StaticMeshRendererComponent* meshcomponent = part->AddComponent<StaticMeshRendererComponent>();
 					meshcomponent->AddStaticMesh(fabricmesh);
@@ -25,7 +29,11 @@ namespace sparky
 					//Material* material = new Material();
 					//material->SetDiffuseColor(0.455, 0.305, 0.305, 1);
 					meshcomponent->AddMaterial(fabricmat);
-
+					TransformComponent* tc = part->GetTransform();
+					offset.x += 1.162*i;
+					offset.y += 1.189*j;
+					tc->SetLocalPosition(offset);
+					tc->SetLocalRotation(float3(90, 0, 0));
 					Attach(part);
 				}
 			}

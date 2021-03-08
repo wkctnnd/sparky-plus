@@ -52,8 +52,8 @@ namespace sparky
 		
 			Actor* righteye = new Actor();
 			m_RightCamera = righteye->AddComponent<sparky::world::CameraComponent>();
-			righteye->GetTransform()->SetLocalPosition(float3(0, 5, 0));
-
+			righteye->GetTransform()->SetLocalPosition(float3(0, 0, 20));
+			
 
 
 			m_Scene->AddActor(righteye);
