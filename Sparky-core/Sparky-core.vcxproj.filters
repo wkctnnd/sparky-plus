@@ -330,7 +330,10 @@
     <ClCompile Include="game\game5\mygameinstance5.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Editor\imgui\backends\imgui_impl_opengl3.cpp">
+    <ClCompile Include="UI\imgui\backends\imgui_impl_opengl3.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -809,7 +812,10 @@
     <ClInclude Include="game\game5\mygameinstance5.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Editor\imgui\backends\imgui_impl_opengl3.h">
+    <ClInclude Include="UI\imgui\backends\imgui_impl_opengl3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

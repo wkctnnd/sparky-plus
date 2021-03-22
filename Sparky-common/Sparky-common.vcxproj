@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{9D0DC723-3788-4985-8BA2-C6D6958D5C19}</ProjectGuid>
-    <RootNamespace>Editor</RootNamespace>
+    <ProjectGuid>{04B1DC5F-8969-4818-932E-A71525BBE2E2}</ProjectGuid>
+    <RootNamespace>Sparkycommon</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,10 +69,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)imgui\;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)\sparky-ui\imgui\backends;$(SolutionDir)\sparky-ui\imgui;$(SolutionDir)\sparky-ui;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -82,8 +79,6 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>glfw3.lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32d.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -128,14 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="imgui\examples\example_allegro5\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="editor\editorcpp.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="editor\editor.h" />
+    <ClInclude Include="global.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

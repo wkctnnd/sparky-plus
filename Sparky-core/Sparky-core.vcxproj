@@ -76,7 +76,7 @@
     <IntDir>$(SolutionDir)bin\$(Configuration)\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(ProjectDir)\common;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\fbx\lib\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
