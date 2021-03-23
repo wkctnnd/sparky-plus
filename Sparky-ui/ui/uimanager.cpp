@@ -52,6 +52,14 @@ namespace sparky
 {
 	namespace ui
 	{
+
+		class Widget* UIManager::GetWidget()
+		{
+
+		}
+
+
+
 		bool UIManager::Initialize()
 		{
 			// Setup window

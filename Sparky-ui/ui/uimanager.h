@@ -15,7 +15,7 @@ namespace sparky
 			bool Initialize();
 			 void ActiveUI();
 			 void DeActiveUI();
-			 class UIBass* GetUI();
+			 class Widget* GetWidget();
 			 void ClearStack();
 			 void DeActiveAll();
 			 void OnLogin();
