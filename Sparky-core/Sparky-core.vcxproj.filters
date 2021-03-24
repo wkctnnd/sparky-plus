@@ -818,6 +818,18 @@
     <ClInclude Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="utils\delegate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="core\event.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\DelegateList.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\DelegateTemplate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\particle.vert" />

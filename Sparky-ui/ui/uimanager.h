@@ -12,7 +12,7 @@ namespace sparky
 		{
 		public:
 
-			bool Initialize();
+			 bool Initialize();
 			 void ActiveUI();
 			 void DeActiveUI();
 			 class Widget* GetWidget();
@@ -24,6 +24,7 @@ namespace sparky
 
 		protected:
 			std::vector<class Widget*> m_Widgets;
+			class Window* m_RootWidget;
 		};
 	}
 }

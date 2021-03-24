@@ -262,6 +262,7 @@
     <ClInclude Include="Asset\imagedata.h" />
     <ClInclude Include="Asset\imageloader.h" />
     <ClInclude Include="Asset\meshloader.h" />
+    <ClInclude Include="core\event.h" />
     <ClInclude Include="core\object.h" />
     <ClInclude Include="UI\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="game\game1\box.h" />
@@ -355,6 +356,9 @@
     <ClInclude Include="Asset\material.h" />
     <ClInclude Include="render\particlemeshhpass.h" />
     <ClInclude Include="render\ParticleRenderer.h" />
+    <ClInclude Include="utils\delegate.h" />
+    <ClInclude Include="utils\DelegateList.h" />
+    <ClInclude Include="utils\DelegateTemplate.h" />
     <ClInclude Include="utils\log.h" />
     <ClInclude Include="world\component\animationcomponent.h" />
     <ClInclude Include="world\component\controller.h" />
