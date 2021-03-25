@@ -24,8 +24,8 @@ namespace sparky
 
 	 
 		protected:
-			 
-			std::vector<Widget*> m_Widgets;
+			Widget* m_Parent;
+			std::vector<Widget*> m_Children;
 		};
 	}
 }

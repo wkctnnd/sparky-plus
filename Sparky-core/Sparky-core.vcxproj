@@ -76,7 +76,7 @@
     <IntDir>$(SolutionDir)bin\$(Configuration)\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(ProjectDir)\common;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(SolutionDir)\sparky-common;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\fbx\lib\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -177,7 +177,6 @@
     <ClCompile Include="graphics\texture\rendertexture2d.cpp" />
     <ClCompile Include="graphics\texture\texture.cpp" />
     <ClCompile Include="graphics\texture\texture2d.cpp" />
-    <ClCompile Include="input\input.cpp" />
     <ClCompile Include="maths\AABox.cpp" />
     <ClCompile Include="physics\CollisionHelper.cpp" />
     <ClCompile Include="physics\PxAABBShape.cpp" />
@@ -288,7 +287,6 @@
     <ClInclude Include="graphics\graphicpiplinestate.h" />
     <ClInclude Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />
-    <ClInclude Include="input\input.h" />
     <ClInclude Include="graphics\errorreport.h" />
     <ClInclude Include="graphics\buffers\uniformbuffer.h" />
     <ClInclude Include="maths\sphere.h" />

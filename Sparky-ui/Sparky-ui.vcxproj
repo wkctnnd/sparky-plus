@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)imgui\;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(ProjectDir)imgui\backends;$(SolutionDir)Sparky-common;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)imgui\;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(ProjectDir)imgui\backends;$(SolutionDir)Sparky-common;$(SolutionDir)Sparky-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -139,8 +139,11 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="ui\button.h" />
     <ClInclude Include="ui\layout.h" />
+    <ClInclude Include="ui\recttransform.h" />
+    <ClInclude Include="ui\text.h" />
     <ClInclude Include="ui\uimanager.h" />
     <ClInclude Include="ui\widget.h" />
+    <ClInclude Include="ui\window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui\backends\imgui_impl_opengl3.cpp" />
@@ -148,6 +151,7 @@
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="ui\layout.cpp" />
     <ClCompile Include="ui\uimanager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
