@@ -33,16 +33,28 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ui\uibase.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ui\uimanager.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ui\button.h">
+    <ClInclude Include="ui\widget.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ui\widget.h">
+    <ClInclude Include="ui\layout.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="component\recttransform.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="component\button.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="component\text.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="component\canvas.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,6 +75,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ui\uimanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\layout.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
