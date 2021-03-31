@@ -80,5 +80,11 @@
     <ClCompile Include="ui\layout.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="component\button.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="component\text.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

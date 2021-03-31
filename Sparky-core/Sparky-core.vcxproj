@@ -76,7 +76,7 @@
     <IntDir>$(SolutionDir)bin\$(Configuration)\intermediate</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(SolutionDir)\sparky-common;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\fbx\include;$(SolutionDir)Sparky-core;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\glm-0.9.9.1\glm-0.9.9.1;$(SolutionDir);$(SolutionDir)\sparky-ui;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(SolutionDir)Dependencies\fbx\lib\x64\debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -101,7 +101,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;IMGUI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLEW\lib;D:\Sparky-core\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -150,6 +150,8 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
+    <ClCompile Include="graphics\platform\imguiWindow.cpp" />
+    <ClCompile Include="graphics\window.cpp" />
     <ClCompile Include="UI\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="game\game1\box.cpp" />
     <ClCompile Include="game\game1\boxcomponent.cpp" />
@@ -224,7 +226,6 @@
     <ClCompile Include="graphics\shader\graphcisshader.cpp" />
     <ClCompile Include="graphics\shader\shader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="graphics\window.cpp" />
     <ClCompile Include="maths\mat4.cpp" />
     <ClCompile Include="render\Mesh.cpp" />
     <ClCompile Include="render\ParticleRenderer.cpp" />
@@ -263,6 +264,9 @@
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="core\event.h" />
     <ClInclude Include="core\object.h" />
+    <ClInclude Include="graphics\platform\glwindow.h" />
+    <ClInclude Include="graphics\platform\imguiWindow.h" />
+    <ClInclude Include="graphics\window.h" />
     <ClInclude Include="UI\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="game\game1\box.h" />
     <ClInclude Include="game\game1\boxcomponent.h" />
@@ -376,7 +380,6 @@
     <ClInclude Include="graphics\shader\graphicsshader.h" />
     <ClInclude Include="graphics\shader\shader.h" />
     <ClInclude Include="graphics\shader\shaderresource.h" />
-    <ClInclude Include="graphics\window.h" />
     <ClInclude Include="Asset\objloader.h" />
     <ClInclude Include="maths\mat4.h" />
     <ClInclude Include="maths\util.h" />

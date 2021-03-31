@@ -21,9 +21,6 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\window.cpp">
-      <Filter>源文件\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="maths\mat4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -213,9 +210,6 @@
     <ClCompile Include="gameinstance.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="input\input.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="physics\PxAABBShape.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -336,11 +330,14 @@
     <ClCompile Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\platform\imguiWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="graphics\window.h">
-      <Filter>源文件\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="maths\vec2.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -662,9 +659,6 @@
     <ClInclude Include="world\component\inputcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="input\input.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="world\component\scriptcomponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -828,6 +822,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="utils\DelegateTemplate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\platform\glwindow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\platform\imguiWindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

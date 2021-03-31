@@ -147,6 +147,8 @@
     <ClInclude Include="ui\window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="component\button.cpp" />
+    <ClCompile Include="component\text.cpp" />
     <ClCompile Include="imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />

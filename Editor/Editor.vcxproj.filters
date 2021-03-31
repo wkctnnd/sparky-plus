@@ -18,24 +18,15 @@
     <None Include="imgui\examples\example_allegro5\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="imgui\examples\example_glfw_opengl3\main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\backends\imgui_impl_glfw.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui\backends\imgui_impl_opengl3.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="editor\editorcpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="imgui\backends\imgui_impl_glfw.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui\backends\imgui_impl_opengl3.h">
+    <ClInclude Include="editor\editor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
