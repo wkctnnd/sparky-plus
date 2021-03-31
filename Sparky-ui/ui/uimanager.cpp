@@ -154,6 +154,9 @@ namespace sparky
 		}
 
 
-		void 
+		void UIManager::Render()
+		{
+			ImGui::Render();
+		}
 	}
 }

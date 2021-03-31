@@ -16,6 +16,8 @@ namespace sparky
 			virtual int OnMouseClick(int x, int y) { return 0; };
 			virtual int OnKeyPress(input::KeyCode code) { return 0; };
 			virtual int OnMouseMove(int x, int y) { return 0; };
+
+			void Update();
 		protected:
 			std::string m_Name;
 			int m_Layer;

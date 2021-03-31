@@ -24,6 +24,8 @@ namespace sparky
 			 void OnLogOut();
 			 void OnEnterScene();
 
+			 void Render();
+
 		protected:
 			std::vector<class Widget*> m_Widgets;
 			class Window* m_RootWidget;
