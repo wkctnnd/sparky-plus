@@ -150,9 +150,9 @@
     <ClCompile Include="Asset\objloader.cpp" />
     <ClCompile Include="Asset\skeleton.cpp" />
     <ClCompile Include="Asset\stlloader.cpp" />
-    <ClCompile Include="graphics\platform\imguiWindow.cpp" />
+    <ClCompile Include="application.cpp" />
+    <ClCompile Include="graphics\platform\glWindow.cpp" />
     <ClCompile Include="graphics\window.cpp" />
-    <ClCompile Include="UI\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="game\game1\box.cpp" />
     <ClCompile Include="game\game1\boxcomponent.cpp" />
     <ClCompile Include="game\game1\button.cpp" />
@@ -264,10 +264,9 @@
     <ClInclude Include="Asset\meshloader.h" />
     <ClInclude Include="core\event.h" />
     <ClInclude Include="core\object.h" />
+    <ClInclude Include="application.h" />
     <ClInclude Include="graphics\platform\glwindow.h" />
-    <ClInclude Include="graphics\platform\imguiWindow.h" />
     <ClInclude Include="graphics\window.h" />
-    <ClInclude Include="UI\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="game\game1\box.h" />
     <ClInclude Include="game\game1\boxcomponent.h" />
     <ClInclude Include="game\game1\button.h" />

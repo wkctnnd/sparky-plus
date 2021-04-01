@@ -144,7 +144,6 @@
     <ClInclude Include="ui\layout.h" />
     <ClInclude Include="ui\uimanager.h" />
     <ClInclude Include="ui\widget.h" />
-    <ClInclude Include="ui\window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="component\button.cpp" />

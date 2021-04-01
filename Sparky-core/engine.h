@@ -11,6 +11,10 @@ namespace sparky{
 		class PhotoRenderer;
 		class GameRenderer3;
 	}
+	namespace ui
+	{
+		class UIManager;
+	}
 	namespace asset
 	{
 		class AssetLoader;
@@ -61,6 +65,7 @@ namespace sparky
 
 		//这么写,目前单线程
 		game::GameInstance* m_GameInstance;
+		sparky::ui::UIManager* m_UIManager;
 		/*sparky::render::ph*/
 	};
 

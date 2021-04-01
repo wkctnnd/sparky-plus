@@ -42,9 +42,6 @@
     <ClInclude Include="ui\layout.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ui\window.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="component\recttransform.h">
       <Filter>头文件</Filter>
     </ClInclude>
