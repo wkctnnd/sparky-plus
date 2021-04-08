@@ -44,7 +44,7 @@
 #include "game/game5/mygameInstance5.h"
 #include "input/input.h"
 
-#include "ui/uimanager.h"
+#include "ui/imguimanager.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -58,7 +58,7 @@ namespace sparky
 	void Engine::Initialize()
 	{
 
-		m_UIManager = new sparky::ui::UIManager();
+		m_UIManager = new sparky::ui::ImguiManager();
 		m_UIManager->Initialize();
 		m_Pxworld = new sparky::phyx::PxWorld();
 		InputManager::Initialize();

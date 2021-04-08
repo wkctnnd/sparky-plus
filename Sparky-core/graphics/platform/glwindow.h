@@ -1,5 +1,5 @@
 #pragma once
-#include "../window.h"
+#include "graphics/window.h"
 
 namespace sparky {
 	namespace graphics {
@@ -8,16 +8,12 @@ namespace sparky {
 #define Max_BUTTONS 10
 		class GLWindow:public Window
 		{
-			friend void key_callback(GLFWwindow* window, int, int, int, int);
-			friend void mouse_button_callback(GLFWwindow* window, int, int, int);
-			friend void mouse_position_callback(GLFWwindow* window, double, double);
-		public:
-			static Window* INSTANCE;
 
+		public:
+		 
 
 		private:
-			const char* m_Title;
-			int m_Width, m_Height;
+		 
 			GLFWwindow* m_Window;
 
 			bool MouseButtons[Max_BUTTONS];
@@ -32,11 +28,6 @@ namespace sparky {
 			void update();
 			bool Closed()const;
 
-			inline int getWidth()const { return m_Width; }
-			int getHeight()const { return m_Height; }
-
-			bool isKeyPress(unsigned int keycode);
-			bool isMouseButtonPress(unsigned int buttoncode);
 		private:
 			bool init();
 			//static void key_callback(GLFWwindow* window, int )

@@ -30,11 +30,8 @@ namespace sparky {
 
 			sparky::input::InputManager::SetMouseMoveState(x, y);
 		}
-		Window::Window(const char*name, int width, int height)
+		GLWindow::GLWindow(const char*name, int width, int height):Window(name, width, height)
 		{
-			m_Title = name;
-			m_Width = width;
-			m_Height = height;
 			if (!init())
 			{
 				glfwTerminate();
@@ -55,26 +52,18 @@ namespace sparky {
 
 		}
 
-		void Window::clear()const
+		void GLWindow::clear()const
 		{
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 
-		bool Window::Closed()const
+		bool GLWindow::Closed()const
 		{
 			return glfwWindowShouldClose(m_Window);
 		}
 
-		bool Window::isKeyPress(unsigned int keycode)
-		{
-			if (keycode < MAX_KEYS)
-			{
-				return Keys[keycode];
-			}
-			return false;
-		}
-
-		bool Window::init()
+	
+		bool GLWindow::init()
 		{
 			if (!glfwInit())
 			{
@@ -103,16 +92,8 @@ namespace sparky {
 			return true;
 		}
 
-		bool Window::isMouseButtonPress(unsigned int buttoncode)
-		{
-			if (buttoncode < Max_BUTTONS)
-			{
-				return MouseButtons[buttoncode];
-			}
-			return false;
-		}
-
-		void Window::update()
+		
+		void GLWindow::update()
 		{
 			glfwPollEvents();
 			glfwGetFramebufferSize(m_Window, &m_Width, &m_Height);

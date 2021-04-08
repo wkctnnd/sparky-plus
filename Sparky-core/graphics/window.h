@@ -13,10 +13,10 @@ namespace sparky {
 			friend void mouse_button_callback(GLFWwindow* window, int, int, int);
 			friend void mouse_position_callback(GLFWwindow* window, double, double);
 		public:
-			static Window* INSTANCE;
+
 		
 			
-		private:
+		protected:
 			const char* m_Title;
 			int m_Width, m_Height;
 			GLFWwindow* m_Window;
@@ -27,17 +27,24 @@ namespace sparky {
 			bool m_Closed;
 			
 		public:
-			Window(const char*name, int width, int height);
-			void clear() const;
-			~Window();
-			void update();
-			bool Closed()const;
+			
+			virtual void clear() const = 0;
+			
+			virtual void update() = 0;
+			virtual bool Closed()const = 0;
 
+			
+
+		public:
+			Window(const char*name, int width, int height);
+			~Window();
+			
 			inline int getWidth()const { return m_Width; }
 			int getHeight()const { return m_Height; }
 
-			 bool isKeyPress(unsigned int keycode);
-			 bool isMouseButtonPress(unsigned int buttoncode);
+			bool isKeyPress(unsigned int keycode);
+			bool isMouseButtonPress(unsigned int buttoncode);
+
 		private:
 			bool init();
 			//static void key_callback(GLFWwindow* window, int )

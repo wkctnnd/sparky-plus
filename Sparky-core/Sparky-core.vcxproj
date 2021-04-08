@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8CA744EE-0BF2-405E-B510-B27C942E1540}</ProjectGuid>
     <RootNamespace>Sparkycore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -171,7 +171,6 @@
     <ClCompile Include="game\game4\mygameinstance4.cpp" />
     <ClCompile Include="game\game5\lobby5.cpp" />
     <ClCompile Include="game\game5\mygameinstance5.cpp" />
-    <ClCompile Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.cpp" />
     <ClCompile Include="graphics\rendertarget.cpp" />
     <ClCompile Include="graphics\shader\shaderbinding.cpp" />
     <ClCompile Include="graphics\buffers\uniformbuffer.cpp" />
@@ -199,6 +198,7 @@
     <ClCompile Include="render\renderpath\rendercommand\graphicspipeline.cpp" />
     <ClCompile Include="render\renderpath\shadowpass.cpp" />
     <ClCompile Include="render\renderpath\SimpleRenderer.cpp" />
+    <ClCompile Include="ui\uimanager.cpp" />
     <ClCompile Include="utils\log.cpp" />
     <ClCompile Include="world\component\animationcomponent.cpp" />
     <ClCompile Include="world\component\lightcomponent.cpp" />
@@ -288,7 +288,6 @@
     <ClInclude Include="game\game5\lobby5.h" />
     <ClInclude Include="game\game5\mygameinstance5.h" />
     <ClInclude Include="graphics\graphicpiplinestate.h" />
-    <ClInclude Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.h" />
     <ClInclude Include="graphics\shader\shaderbinding.h" />
     <ClInclude Include="graphics\errorreport.h" />
     <ClInclude Include="graphics\buffers\uniformbuffer.h" />
@@ -335,6 +334,7 @@
     <ClInclude Include="render\renderpath\vertexfactory\vertexfactory.h" />
     <ClInclude Include="shaders\toon.vert" />
     <ClInclude Include="shaders\toon.frag" />
+    <ClInclude Include="ui\uimanager.h" />
     <ClInclude Include="utils\container\bitarray.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="graphics\buffers\DynamicBuffer.h" />

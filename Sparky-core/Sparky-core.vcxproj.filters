@@ -324,16 +324,16 @@
     <ClCompile Include="game\game5\mygameinstance5.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\window.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\platform\glWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\uimanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -806,9 +806,6 @@
     <ClInclude Include="game\game5\mygameinstance5.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\platform\opengl\imguibackend\imgui_impl_opengl3.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="utils\delegate.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -824,10 +821,13 @@
     <ClInclude Include="graphics\platform\glwindow.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\window.h">
+    <ClInclude Include="application.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="application.h">
+    <ClInclude Include="ui\uimanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\window.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

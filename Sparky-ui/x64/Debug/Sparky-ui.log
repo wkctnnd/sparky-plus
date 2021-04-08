@@ -1,7 +1,59 @@
-﻿  imgui_impl_opengl3.cpp
-  imgui.cpp
-  imgui_draw.cpp
-  imgui_tables.cpp
+﻿  imguimanager.cpp
+d:\project\sparky-plus2\sparky-ui\ui\imguimanager.h(15): warning C4275: 非 dll 接口 class“sparky::ui::UIManager”用作 dll 接口 class“sparky::ui::ImguiManager”的基
+  d:\project\sparky-plus2\sparky-core\ui\uimanager.h(14): note: 参见“sparky::ui::UIManager”的声明
+  d:\project\sparky-plus2\sparky-ui\ui\imguimanager.h(14): note: 参见“sparky::ui::ImguiManager”的声明
+d:\project\sparky-plus2\sparky-ui\ui\imguimanager.h(34): warning C4251: “sparky::ui::ImguiManager::m_Widgets”: class“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”需要有 dll 接口由 class“sparky::ui::ImguiManager”的客户端使用
+          with
+          [
+              _Ty=sparky::ui::Widget *
+          ]
+  d:\project\sparky-plus2\sparky-core\ui\uimanager.h(33): note: 参见“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”的声明
+          with
+          [
+              _Ty=sparky::ui::Widget *
+          ]
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(20): error C2988: 不可识别的模板声明/定义
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(20): error C2143: 语法错误: 缺少“;”(在“<”的前面)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(20): error C2059: 语法错误:“<”
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(24): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(24): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(117): error C2988: 不可识别的模板声明/定义
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(117): error C2143: 语法错误: 缺少“;”(在“<”的前面)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(117): error C2059: 语法错误:“<”
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(121): error C2143: 语法错误: 缺少“;”(在“{”的前面)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(121): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2143: 语法错误: 缺少“;”(在“<”的前面)
+  d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(235): note: 参见对正在编译的类 模板 实例化“sparky::VSDelegateEvent<RETUREN_TYPE(A1)>”的引用
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2238: 意外的标记位于“;”之前
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C3646: “m_handlers”: 未知重写说明符
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2143: 语法错误: 缺少“;”(在“<”的前面)
+  d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(235): note: 参见对正在编译的类 模板 实例化“sparky::VSDelegateEvent<RETUREN_TYPE(A1,A2)>”的引用
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2238: 意外的标记位于“;”之前
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C3646: “m_handlers”: 未知重写说明符
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2143: 语法错误: 缺少“;”(在“<”的前面)
+  d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(235): note: 参见对正在编译的类 模板 实例化“sparky::VSDelegateEvent<RETUREN_TYPE(A1,A2,A3)>”的引用
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(233): error C2238: 意外的标记位于“;”之前
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C3646: “m_handlers”: 未知重写说明符
+d:\project\sparky-plus2\sparky-core\utils\delegatetemplate.h(234): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\application.h(26): error C2143: 语法错误: 缺少“;”(在“*”的前面)
+d:\project\sparky-plus2\sparky-core\application.h(26): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+d:\project\sparky-plus2\sparky-core\application.h(27): error C2334: “{”的前面有意外标记；跳过明显的函数体
+d:\project\sparky-plus2\sparky-ui\ui\imguimanager.cpp(16): fatal error C1083: 无法打开包括文件: “GL/gl3w.h”: No such file or directory
+  layout.cpp
   imgui_widgets.cpp
+  imgui_tables.cpp
+  imgui_draw.cpp
+  imgui.cpp
+  imgui_impl_opengl3.cpp
+d:\project\sparky-plus2\sparky-ui\imgui\backends\imgui_impl_opengl3.cpp(103): fatal error C1083: 无法打开包括文件: “GL/gl3w.h”: No such file or directory
+  text.cpp
+  button.cpp
   正在生成代码...
-  Sparky-ui.vcxproj -> E:\engine\sparky-plus7\x64\Debug\Sparky-ui.dll
+d:\project\sparky-plus2\sparky-ui\ui\layout.cpp(24): error C4716: “sparky::ui::Layout::OnKeyPress”: 必须返回一个值
+d:\project\sparky-plus2\sparky-ui\ui\layout.cpp(16): error C4716: “sparky::ui::Layout::OnMouseClick”: 必须返回一个值
+d:\project\sparky-plus2\sparky-ui\ui\layout.cpp(32): error C4716: “sparky::ui::Layout::OnMouseMove”: 必须返回一个值
