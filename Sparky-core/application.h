@@ -43,4 +43,6 @@ namespace sparky
 		Window * m_Window;
 		sparky::Engine* m_Engine;
 	};
+
+	//Application* Application::app = 0;
 }

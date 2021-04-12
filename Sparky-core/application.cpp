@@ -17,10 +17,10 @@
 
 using namespace sparky::input;
 using namespace sparky::graphics;
-
+sparky::Application* sparky::Application::app = 0;
 namespace sparky
 {
-	Application* Application::app = 0;
+	
 	void Application::Initialize()
 	{
 		m_Engine = new Engine();

@@ -70,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)imgui\;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)\sparky-ui\imgui\backends;$(SolutionDir)\sparky-ui\imgui;$(SolutionDir)\sparky-ui;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)imgui\;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)\sparky-ui\imgui\backends;$(SolutionDir)\sparky-ui\imgui;$(SolutionDir)\sparky-ui;$(SolutionDir)\sparky-core;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib;$(SolutionDir)Dependencies\GLEW\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

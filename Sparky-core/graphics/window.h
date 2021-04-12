@@ -44,7 +44,7 @@ namespace sparky {
 
 			bool isKeyPress(unsigned int keycode);
 			bool isMouseButtonPress(unsigned int buttoncode);
-
+			void* GetNativeWindow() { return 0; };
 		private:
 			bool init();
 			//static void key_callback(GLFWwindow* window, int )

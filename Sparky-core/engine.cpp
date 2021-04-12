@@ -45,6 +45,7 @@
 #include "input/input.h"
 
 #include "ui/imguimanager.h"
+#include "application.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;
@@ -60,7 +61,7 @@ namespace sparky
 	{
 
 		m_UIManager = new ImguiManager();
-		m_UIManager->Initialize();
+		m_UIManager->Initialize(Application::app->GetWindow()->GetNativeWindow());
 		m_Pxworld = new sparky::phyx::PxWorld();
 		InputManager::Initialize();
 		//m_Scene = new sparky::world::Scene();

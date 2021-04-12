@@ -27,7 +27,7 @@ namespace sparky {
 			~GLWindow();
 			void update();
 			bool Closed()const;
-
+			void* GetNativeWindow() { return m_Window; }
 		private:
 			bool init();
 			//static void key_callback(GLFWwindow* window, int )
