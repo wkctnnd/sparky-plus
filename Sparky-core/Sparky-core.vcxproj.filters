@@ -336,6 +336,9 @@
     <ClCompile Include="graphics\window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="input\input.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maths\vec2.h">
@@ -828,6 +831,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="graphics\window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="input\input.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

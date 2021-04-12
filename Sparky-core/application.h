@@ -3,11 +3,13 @@
 
 namespace sparky
 {
+	class Engine;
 	namespace graphics
 	{
 		class Window;
 	}
 }
+using namespace sparky::graphics;
 namespace sparky
 {
 	class Application

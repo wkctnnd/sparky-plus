@@ -47,7 +47,7 @@ namespace sparky {
 				MouseButtons[i] = false;
 			}
 		}
-		Window::~Window()
+		GLWindow::~GLWindow()
 		{
 
 		}

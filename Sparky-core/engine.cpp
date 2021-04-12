@@ -52,13 +52,14 @@ using namespace sparky::phyx;
 using namespace sparky::world;
 using namespace sparky::game;
 using namespace sparky::input;
+using namespace sparky::ui;
 namespace sparky
 {
 	Timer Engine::GlobalTimer;
 	void Engine::Initialize()
 	{
 
-		m_UIManager = new sparky::ui::ImguiManager();
+		m_UIManager = new ImguiManager();
 		m_UIManager->Initialize();
 		m_Pxworld = new sparky::phyx::PxWorld();
 		InputManager::Initialize();

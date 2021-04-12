@@ -20,6 +20,7 @@ using namespace sparky::graphics;
 
 namespace sparky
 {
+	Application* Application::app = 0;
 	void Application::Initialize()
 	{
 		m_Engine = new Engine();
