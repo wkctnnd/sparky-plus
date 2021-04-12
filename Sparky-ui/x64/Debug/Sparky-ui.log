@@ -1,39 +1,37 @@
-﻿  imguimanager.cpp
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(15): warning C4275: 非 dll 接口 class“sparky::ui::UIManager”用作 dll 接口 class“sparky::ui::ImguiManager”的基
-  e:\engine\sparky-plus7\sparky-core\ui\uimanager.h(13): note: 参见“sparky::ui::UIManager”的声明
-  e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(14): note: 参见“sparky::ui::ImguiManager”的声明
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(37): warning C4251: “sparky::ui::ImguiManager::m_Widgets”: class“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”需要有 dll 接口由 class“sparky::ui::ImguiManager”的客户端使用
+﻿  button.cpp
+  text.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  imguimanager.cpp
+d:\engine\spp\sparky-plus4\sparky-core\ui\uimanager.h(39): warning C4251: “sparky::ui::UIManager::m_Widgets”: class“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”需要有 dll 接口由 class“sparky::ui::UIManager”的客户端使用
           with
           [
               _Ty=sparky::ui::Widget *
           ]
-  e:\engine\sparky-plus7\sparky-core\ui\uimanager.h(33): note: 参见“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”的声明
+  d:\engine\spp\sparky-plus4\sparky-core\ui\uimanager.h(39): note: 参见“std::vector<sparky::ui::Widget *,std::allocator<_Ty>>”的声明
           with
           [
               _Ty=sparky::ui::Widget *
           ]
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.cpp(67): warning C4273: “sparky::ui::ImguiManager::Initialize”: dll 链接不一致
-  e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(21): note: 参见“Initialize”的前一个定义
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.cpp(107): warning C4273: “sparky::ui::ImguiManager::Render”: dll 链接不一致
-  e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(31): note: 参见“Render”的前一个定义
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.cpp(112): warning C4273: “sparky::ui::ImguiManager::Begin”: dll 链接不一致
-  e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(33): note: 参见“Begin”的前一个定义
-e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.cpp(120): warning C4273: “sparky::ui::ImguiManager::End”: dll 链接不一致
-  e:\engine\sparky-plus7\sparky-ui\ui\imguimanager.h(34): note: 参见“End”的前一个定义
-    正在创建库 E:\engine\sparky-plus7\x64\Debug\Sparky-ui.lib 和对象 E:\engine\sparky-plus7\x64\Debug\Sparky-ui.exp
-glfw3.lib(context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(context.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(init.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(init.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(input.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(input.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(monitor.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(monitor.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(vulkan.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(vulkan.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(window.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(window.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_init.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_init.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_joystick.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_joystick.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_monitor.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_monitor.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_time.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_time.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_thread.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_thread.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(win32_window.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_window.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(wgl_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(wgl_context.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(egl_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(egl_context.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-glfw3.lib(osmesa_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(osmesa_context.obj)”或在“E:\engine\sparky-plus7\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
-  Sparky-ui.vcxproj -> E:\engine\sparky-plus7\x64\Debug\Sparky-ui.dll
+  正在生成代码...
+    正在创建库 D:\Engine\spp\sparky-plus4\x64\Debug\Sparky-ui.lib 和对象 D:\Engine\spp\sparky-plus4\x64\Debug\Sparky-ui.exp
+glfw3.lib(context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(context.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(init.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(init.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(input.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(input.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(monitor.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(monitor.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(vulkan.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(vulkan.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(window.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(window.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_init.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_init.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_joystick.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_joystick.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_monitor.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_monitor.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_time.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_time.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_thread.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_thread.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(win32_window.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(win32_window.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(wgl_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(wgl_context.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(egl_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(egl_context.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+glfw3.lib(osmesa_context.obj) : warning LNK4099: 未找到 PDB“glfw.pdb”(使用“glfw3.lib(osmesa_context.obj)”或在“D:\Engine\spp\sparky-plus4\x64\Debug\glfw.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+  Sparky-ui.vcxproj -> D:\Engine\spp\sparky-plus4\x64\Debug\Sparky-ui.dll
