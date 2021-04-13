@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sparky-core", "Sparky-core\Sparky-core.vcxproj", "{8CA744EE-0BF2-405E-B510-B27C942E1540}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BDA8EDA2-9DC3-4C45-B6F4-F0510BC54CF6} = {BDA8EDA2-9DC3-4C45-B6F4-F0510BC54CF6}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor", "Editor\Editor.vcxproj", "{9D0DC723-3788-4985-8BA2-C6D6958D5C19}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BDA8EDA2-9DC3-4C45-B6F4-F0510BC54CF6} = {BDA8EDA2-9DC3-4C45-B6F4-F0510BC54CF6}
+		{8CA744EE-0BF2-405E-B510-B27C942E1540} = {8CA744EE-0BF2-405E-B510-B27C942E1540}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sparky-ui", "Sparky-ui\Sparky-ui.vcxproj", "{BDA8EDA2-9DC3-4C45-B6F4-F0510BC54CF6}"
 EndProject

@@ -1,5 +1,5 @@
 #pragma once
-static const char* AssetFilePath = "/../Assets/";
+static const char* AssetFilePath = "/Assets/";
 
 #define Curve_Component_X "X"
 #define Curve_Component_Y "Y"
@@ -21,4 +21,10 @@ enum PropertyType
 #define UI_API __declspec(dllimport)
 #endif
 
+
+#ifdef ENGINEEXPORT
+#define ENGINE_API __declspec(dllexport)
+#else ENGINEIMPORT
+#define ENGINE_API __declspec(dllimport)
+#endif
 

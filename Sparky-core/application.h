@@ -1,5 +1,5 @@
 #pragma once
-
+#include "miniheader.h"
 
 namespace sparky
 {
@@ -12,7 +12,7 @@ namespace sparky
 using namespace sparky::graphics;
 namespace sparky
 {
-	class Application
+	class ENGINE_API Application
 	{
 	public:
 

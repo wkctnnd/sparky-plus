@@ -6,7 +6,7 @@ namespace sparky
 	{
 		void Editor::Init()
 		{
-			bool res = m_UIManager->Initialize();
+			 
 		}
 	}
 }

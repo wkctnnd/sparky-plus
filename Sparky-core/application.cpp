@@ -25,6 +25,7 @@ namespace sparky
 	{
 		m_Engine = new Engine();
 		m_Window = new GLWindow("Sparky!", 1920, 1080);
+		m_Engine->Initialize();
 	}
 
 

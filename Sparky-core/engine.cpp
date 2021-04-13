@@ -243,6 +243,7 @@ namespace sparky
 
 		GlobalTimer.Stop();
 
+		m_UIManager->Render();
 		std::string time = GlobalTimer.GetCurrentTime();
 		/*	std::string path = FileUtile::GetCurrentWorkingDirectory()+string("\\..\\Assets\\output\\");
 			std::string temp = GlobalTimer.GetCurrentTime();

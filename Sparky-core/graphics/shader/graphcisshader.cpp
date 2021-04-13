@@ -5,6 +5,7 @@
 #include "utils/fileutils.h"
 #include "world/PrimitiveSceneProxy.h"
 #include "world/lightsceneproxy.h"
+#include "miniheader.h"
 namespace sparky {
 	namespace graphics {
 
@@ -25,9 +26,14 @@ namespace sparky {
 			GLuint program = glCreateProgram();
 			GLuint vertex = glCreateShader(GL_VERTEX_SHADER);
 			GLuint fragment = glCreateShader(GL_FRAGMENT_SHADER);
+			std::string workdir = FileUtile::GetCurrentWorkingDirectory();
 
-			std::string vsource = FileUtile::read_file(m_VertPath);
-			std::string fsource = FileUtile::read_file(m_FragPath);
+			std::string vdir = workdir + std::string(AssetFilePath) +std::string(m_VertPath);
+			std::string fdir = workdir + std::string(AssetFilePath) + std::string(m_FragPath);
+
+			std::string vsource = FileUtile::read_file(vdir.c_str());
+			std::string fsource = FileUtile::read_file(fdir.c_str());
+
 			const char* vertSource = vsource.c_str();
 			const char* fragSource = fsource.c_str();
 

@@ -1,3 +1,9 @@
-﻿  Sparky-ui.vcxproj -> E:\engine\sparky-plus8\x64\Debug\Sparky-ui.dll
+﻿  imguimanager.cpp
+e:\engine\sparky-plus8\sparky-ui\ui\imguimanager.h(15): warning C4275: 非 dll 接口 class“sparky::ui::UIManager”用作 dll 接口 class“sparky::ui::ImguiManager”的基
+  e:\engine\sparky-plus8\sparky-core\ui\uimanager.h(13): note: 参见“sparky::ui::UIManager”的声明
+  e:\engine\sparky-plus8\sparky-ui\ui\imguimanager.h(14): note: 参见“sparky::ui::ImguiManager”的声明
+e:\engine\sparky-plus8\sparky-ui\ui\imguimanager.cpp(98): warning C4101: “display_h”: 未引用的局部变量
+e:\engine\sparky-plus8\sparky-ui\ui\imguimanager.cpp(98): warning C4101: “display_w”: 未引用的局部变量
+  Sparky-ui.vcxproj -> E:\engine\sparky-plus8\x64\Debug\Sparky-ui.dll
   E:\engine\sparky-plus8\x64\Debug\Sparky-ui.lib
   复制了 1 个文件

@@ -49,7 +49,7 @@ namespace sparky {
 				m_MeshLoader->Initialize();
 				//RawMesh mesh;
 				m_MeshLoader->LoadFile(fullrelativepath, filename);
-				m_MeshLoader->LoadResources();
+ 				m_MeshLoader->LoadResources();
 			}
 			else if (extension.compare("bmp") || extension.compare("png") || extension.compare("jpg"))
 			{
