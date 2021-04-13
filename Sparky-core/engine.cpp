@@ -46,6 +46,7 @@
 
 #include "ui/imguimanager.h"
 #include "application.h"
+#include "graphics/window.h"
 using namespace sparky::render;
 using namespace sparky::particle;
 using namespace sparky::asset;

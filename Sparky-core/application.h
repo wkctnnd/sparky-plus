@@ -29,7 +29,7 @@ namespace sparky
 
 		void Run();
 
-		Window * GetWindow()
+		graphics::Window * GetWindow()
 		{
 			return m_Window;
 		}
@@ -40,7 +40,7 @@ namespace sparky
 
 		}
 		
-		Window * m_Window;
+		graphics::Window * m_Window;
 		sparky::Engine* m_Engine;
 	};
 

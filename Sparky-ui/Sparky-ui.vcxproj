@@ -90,9 +90,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PostBuildEvent>
-      <Command>set SolutionDir=$(SolutionDir)
-set Configuration=$(Configuration)
- </Command>
+      <Command>IF EXIST $(SolutionDir)x64\Debug\sparky-ui.lib xcopy $(SolutionDir)x64\Debug\sparky-ui.lib $(SolutionDir)x64\lib  /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

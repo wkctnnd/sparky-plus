@@ -107,6 +107,9 @@
       <AdditionalLibraryDirectories>D:\Sparky-core\Dependencies\GLEW\lib;D:\Sparky-core\Dependencies\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;glew32d.lib;libfbxsdk-md.lib;zlib-md.lib;libxml2-md.lib;opengl32.lib;sparky-ui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST $(SolutionDir)x64\Debug\sparky-core.lib xcopy $(SolutionDir)x64\Debug\sparky-core.lib $(SolutionDir)x64\lib  /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
